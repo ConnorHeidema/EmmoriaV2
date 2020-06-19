@@ -1,5 +1,5 @@
 #ifndef __APPLICATION__
-#define __APPLICATION
+#define __APPLICATION__
 
 #include "util/Size.hpp"
 
@@ -26,7 +26,6 @@ private:
 	RenderSystem m_renderSystem;
 
 	entt::registry m_reg;
-    sfe::Movie m_movie;
 };
 
 #endif

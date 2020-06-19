@@ -1,5 +1,5 @@
 #ifndef __IGRAPHICS_SYSTEM__
-#define __IGRAPHICS_ISYSTEM__
+#define __IGRAPHICS_SYSTEM__
 
 #include <entt/entt.hpp>
 

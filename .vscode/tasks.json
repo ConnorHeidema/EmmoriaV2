@@ -9,11 +9,13 @@
                 "-std=c++17",
                 "-g", "${workspaceFolder}/main.cpp",
                 "${workspaceFolder}/src/core/Application.cpp",
+                "${workspaceFolder}/src/util/Mediamap.cpp",
 
                 "-I", "${workspaceFolder}/inc",
                 "-I", "${workspaceFolder}/ext/inc",
                 "-L", "${workspaceFolder}/ext/bin/SFML",
                 "-L", "${workspaceFolder}/ext/bin/sfemovie",
+                "-l","stdc++fs",
                 "-l", "avcodec",
                 "-l", "sfeMovie",
                 "-l", "avdevice",
