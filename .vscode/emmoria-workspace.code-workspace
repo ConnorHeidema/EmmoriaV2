@@ -1,0 +1,12 @@
+{
+	"settings": {
+		"files.associations": {
+			"array": "cpp"
+		}
+	},
+	"folders": [
+		{
+			"path": "../inc"
+		}
+	]
+}
