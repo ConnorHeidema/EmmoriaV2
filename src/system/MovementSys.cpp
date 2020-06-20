@@ -3,6 +3,8 @@
 #include "component/PlayerComp.hpp"
 #include "component/PositionComp.hpp"
 
+#include <SFML/Graphics.hpp>
+
 void MovementSys::Update(entt::registry& reg)
 {
 reg.view<PlayerComp, PositionComp>().each([](auto entity, auto &posComp) {
