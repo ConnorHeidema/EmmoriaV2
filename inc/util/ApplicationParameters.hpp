@@ -10,6 +10,8 @@ struct ApplicationParameters
 	static int const k_framerate;
 	static std::string const k_windowName;
 	static std::string const k_dataPath;
+	static std::string const k_spritePath;
+	static int const k_playerMovementSpeed;
 };
 
 #endif

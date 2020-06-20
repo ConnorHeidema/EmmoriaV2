@@ -11,6 +11,7 @@ class EntityLoaderFactory
 {
 public:
 	static void LoadFiles(entt::registry& reg, std::istringstream& reader);
+	static void LoadBackground(entt::registry& reg, std::istringstream& reader);
 };
 
 #endif

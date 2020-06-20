@@ -13,7 +13,11 @@ class MovementSys
 	: public ISystem
 {
 public:
+	MovementSys();
 	void Update(entt::registry& reg) override;
+
+private:
+	int const& m_speed;
 };
 
 #endif

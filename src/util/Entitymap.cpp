@@ -9,6 +9,7 @@ std::unordered_map<std::string, void(*)(entt::registry& reg, std::istringstream&
 {
 	std::unordered_map<std::string, void(*)(entt::registry& reg, std::istringstream& line)> m;
 	m["file"] = EntityLoaderFactory::LoadFiles;
+	m["background"] = EntityLoaderFactory::LoadBackground;
 	return m;
 }
 

@@ -7,3 +7,5 @@ int const ApplicationParameters::k_screenHeight = sf::VideoMode::getDesktopMode(
 int const ApplicationParameters::k_framerate = 60;
 std::string const ApplicationParameters::k_windowName = "Emmoria";
 std::string const ApplicationParameters::k_dataPath = "data/";
+std::string const ApplicationParameters::k_spritePath = "sprite/";
+int const ApplicationParameters::k_playerMovementSpeed = 3;
