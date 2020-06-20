@@ -1,10 +1,5 @@
 #include "core/Application.hpp"
 
-#include "system/MovementSys.hpp"
-#include "system/PrintMovementSys.hpp"
-#include "system/MovieRenderSys.hpp"
-#include "system/GameRenderSys.hpp"
-
 #include "util/ApplicationParameters.hpp"
 
 #include <memory>
