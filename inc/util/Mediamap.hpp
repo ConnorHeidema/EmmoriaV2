@@ -11,10 +11,10 @@ enum class Media_t
 	NONE
 };
 
-struct MediaMap
+struct Mediamap
 {
     static std::unordered_map<Media_t, std::string> Create_map();
-    static const std::unordered_map<Media_t, std::string> m_mediaMap;
+    static const std::unordered_map<Media_t, std::string> m_mediamap;
 };
 
 #endif

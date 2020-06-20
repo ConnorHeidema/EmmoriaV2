@@ -5,11 +5,13 @@
 
 #include "system/MovementSys.hpp"
 #include "system/PrintMovementSys.hpp"
-#include "system/RenderSystem.hpp"
+#include "system/MovieRenderSys.hpp"
+#include "system/GameRenderSys.hpp"
 
-#include <sfeMovie/Movie.hpp>
 #include <SFML/Graphics.hpp>
 #include <entt/entt.hpp>
+
+#include <memory>
 
 class Application
 {
@@ -18,14 +20,18 @@ public:
 	bool Start();
 
 private:
-	void RunLoop_(sf::RenderWindow& gameWindow);
-	void CheckForEvents_(sf::RenderWindow& gameWindow);
+	void Initialize_();
+	void RunLoop_();
+	void CheckForEvents_();
 
 	MovementSys m_movementSys;
 	PrintMovementSys m_printMovementSys;
-	RenderSystem m_renderSystem;
+	MovieRenderSys m_movieRenderSystem;
+	GameRenderSys m_gameRenderSystem;
 
 	entt::registry m_reg;
+
+	std::shared_ptr<sf::RenderWindow> m_renderWindow;
 };
 
 #endif

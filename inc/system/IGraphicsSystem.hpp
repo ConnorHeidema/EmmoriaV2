@@ -5,11 +5,15 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <memory>
+
 class IGraphicsSystem
 {
 public:
 	IGraphicsSystem() {};
-	virtual void Update(entt::registry& reg, sf::RenderWindow& gameWindow) = 0;
+	virtual void Initialize(entt::registry& reg) {}
+	virtual void Update(entt::registry& reg, std::shared_ptr<sf::RenderWindow> /*pRenderWindow*/) = 0;
+	virtual bool IsEnabled() { return true; }
 	virtual ~IGraphicsSystem() {};
 };
 

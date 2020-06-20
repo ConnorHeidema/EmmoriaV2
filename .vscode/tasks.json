@@ -7,9 +7,23 @@
             "command": "/usr/bin/g++-7",
             "args": [
                 "-std=c++17",
-                "-g", "${workspaceFolder}/main.cpp",
+
+                "-g",
+                "${workspaceFolder}/main.cpp",
+
                 "${workspaceFolder}/src/core/Application.cpp",
+
                 "${workspaceFolder}/src/util/Mediamap.cpp",
+                "${workspaceFolder}/src/util/Entitymap.cpp",
+                "${workspaceFolder}/src/util/ApplicationParameters.cpp",
+
+                "${workspaceFolder}/src/system/MovementSys.cpp",
+                "${workspaceFolder}/src/system/PrintMovementSys.cpp",
+                "${workspaceFolder}/src/system/MovieRenderSys.cpp",
+                "${workspaceFolder}/src/system/GameRenderSys.cpp",
+
+                "${workspaceFolder}/src/loader/EntityLoader.cpp",
+                "${workspaceFolder}/src/loader/EntityLoaderFactory.cpp",
 
                 "-I", "${workspaceFolder}/inc",
                 "-I", "${workspaceFolder}/ext/inc",

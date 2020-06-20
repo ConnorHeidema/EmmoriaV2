@@ -1,58 +1,62 @@
 #include "core/Application.hpp"
 
-#include "component/PlayerComp.hpp"
-#include "component/PositionComp.hpp"
-#include "component/RenderableComp.hpp"
-#include "component/MovieComp.hpp"
+#include "system/MovementSys.hpp"
+#include "system/PrintMovementSys.hpp"
+#include "system/MovieRenderSys.hpp"
+#include "system/GameRenderSys.hpp"
 
-#include "util/Mediamap.hpp"
+#include "util/ApplicationParameters.hpp"
 
-#include <iostream>
 #include <memory>
 #include <string>
 
 Application::Application()
+	: m_renderWindow(nullptr)
 { }
 
 bool Application::Start()
 {
-	auto gameWindow(sf::RenderWindow
-			(sf::VideoMode(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height),
-			"Test",
-			sf::Style::Fullscreen));
-	gameWindow.setFramerateLimit(60);
-
-	auto player = m_reg.create();
-	m_reg.emplace<PlayerComp>(player);
-	auto& rMovementComponent = m_reg.emplace<PositionComp>(player);
-	rMovementComponent.position.x = 100;
-	rMovementComponent.position.y = 200;
-
-	auto movie = m_reg.create();
-	m_reg.emplace<MovieComp>(movie);
-
-	m_reg.emplace<RenderableComp>(player);
-	while (gameWindow.isOpen()) { while(true) {RunLoop_(gameWindow);}; }
-
+	Initialize_();
+	while (m_renderWindow->isOpen()) { {RunLoop_();}; }
 	return true;
 }
 
-void Application::RunLoop_(sf::RenderWindow& gameWindow)
+void Application::Initialize_()
 {
-	m_movementSys.Update(m_reg);
-	m_printMovementSys.Update(m_reg);
-	m_renderSystem.Update(m_reg, gameWindow);
-	CheckForEvents_(gameWindow);
+	m_renderWindow = std::make_shared<sf::RenderWindow>(
+			sf::VideoMode(
+				ApplicationParameters::k_screenWidth,
+				ApplicationParameters::k_screenHeight),
+			ApplicationParameters::k_windowName,
+			sf::Style::Fullscreen);
+	m_renderWindow->setFramerateLimit(ApplicationParameters::k_framerate);
+
+	m_movementSys.Initialize(m_reg);
+	m_printMovementSys.Initialize(m_reg);
+	m_movieRenderSystem.Initialize(m_reg);
+	m_gameRenderSystem.Initialize(m_reg);
 }
 
-void Application::CheckForEvents_(sf::RenderWindow& gameWindow)
+
+void Application::RunLoop_()
+{
+	m_renderWindow->clear();
+	m_movementSys.Update(m_reg);
+	m_printMovementSys.Update(m_reg);
+	m_movieRenderSystem.Update(m_reg, m_renderWindow);
+	m_gameRenderSystem.Update(m_reg, m_renderWindow);
+	CheckForEvents_();
+	m_renderWindow->display();
+}
+
+void Application::CheckForEvents_()
 {
 	sf::Event event;
-	while (gameWindow.pollEvent(event))
+	while (m_renderWindow->pollEvent(event))
 	{
 		switch (event.type)
 		{
-			case sf::Event::Closed: gameWindow.close(); break;
+			case sf::Event::Closed: m_renderWindow->close(); break;
 			case sf::Event::GainedFocus: break;
 			case sf::Event::LostFocus:  break;
 			default: break;
