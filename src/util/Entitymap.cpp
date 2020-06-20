@@ -1,5 +1,5 @@
 #include "util/Entitymap.hpp"
-#include "loader/EntityLoaderFactory.hpp"
+#include "entity/EntityLoaderFactory.hpp"
 
 #include <iostream>
 #include <fstream>

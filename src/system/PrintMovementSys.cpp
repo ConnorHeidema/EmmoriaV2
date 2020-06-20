@@ -1,6 +1,5 @@
 #include "system/PrintMovementSys.hpp"
 
-#include "component/PlayerComp.hpp"
 #include "component/PositionComp.hpp"
 
 #include <iostream>

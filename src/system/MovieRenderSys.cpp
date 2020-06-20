@@ -6,8 +6,6 @@
 #include "util/Entitymap.hpp"
 #include "util/MediatoEntitymap.hpp"
 
-#include <iostream>
-
 MovieRenderSys::MovieRenderSys() : m_currentMedia(Media_t::INTRO_MOVIE)
 {
 	m_movie.openFromFile(Mediamap::m_mediamap.at(m_currentMedia));

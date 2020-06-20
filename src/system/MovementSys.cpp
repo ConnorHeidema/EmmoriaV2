@@ -1,6 +1,5 @@
 #include "system/MovementSys.hpp"
 
-#include "component/MovieComp.hpp"
 #include "component/PlayerComp.hpp"
 #include "component/PositionComp.hpp"
 

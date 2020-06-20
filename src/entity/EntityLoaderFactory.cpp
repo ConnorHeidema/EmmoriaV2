@@ -1,4 +1,4 @@
-#include "loader/EntityLoaderFactory.hpp"
+#include "entity/EntityLoaderFactory.hpp"
 
 void EntityLoaderFactory::LoadFiles(entt::registry& reg, std::istringstream& reader)
 {

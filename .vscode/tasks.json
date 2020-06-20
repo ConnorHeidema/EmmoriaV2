@@ -24,7 +24,7 @@
                 "${workspaceFolder}/src/system/GameRenderSys.cpp",
                 "${workspaceFolder}/src/system/LoadingSys.cpp",
 
-                "${workspaceFolder}/src/loader/EntityLoaderFactory.cpp",
+                "${workspaceFolder}/src/entity/EntityLoaderFactory.cpp",
 
                 "-I", "${workspaceFolder}/inc",
                 "-I", "${workspaceFolder}/ext/inc",
