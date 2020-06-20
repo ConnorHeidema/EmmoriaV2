@@ -1,12 +1,16 @@
 #include "system/MovieRenderSys.hpp"
 
 #include "component/MovieComp.hpp"
+#include "component/LoadComp.hpp"
 
-#include "util/Mediamap.hpp"
+#include "util/Entitymap.hpp"
+#include "util/MediatoEntitymap.hpp"
 
-MovieRenderSys::MovieRenderSys()
+#include <iostream>
+
+MovieRenderSys::MovieRenderSys() : m_currentMedia(Media_t::INTRO_MOVIE)
 {
-	m_movie.openFromFile(Mediamap::m_mediamap.at(Media_t::INTRO_MOVIE));
+	m_movie.openFromFile(Mediamap::m_mediamap.at(m_currentMedia));
 	m_movie.play();
 }
 
@@ -18,13 +22,20 @@ void MovieRenderSys::Initialize(entt::registry& reg)
 
 void MovieRenderSys::Update(entt::registry& reg, std::shared_ptr<sf::RenderWindow> pRenderWindow)
 {
-
 	reg.view<MovieComp>().each([&](auto entity, auto &movieComp)
 	{
-		m_movie.update();
-		if (m_movie.getStatus() != sfe::End)
+		if (m_movie.getStatus() != sfe::Stopped)
 		{
+			m_movie.update();
 			pRenderWindow->draw(m_movie);
+		}
+		else if (m_currentMedia != Media_t::NONE)
+		{
+			reg = {};
+			auto loadEntity = reg.create();
+			auto& load = reg.emplace<LoadComp>(loadEntity);
+			load.filePath = MediatoEntitymap::m_mediatoEntitymap.at(m_currentMedia);
+			m_currentMedia = Media_t::NONE;
 		}
 	});
 }

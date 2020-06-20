@@ -33,8 +33,9 @@ void Application::Initialize_()
 
 	m_movementSys.Initialize(m_reg);
 	m_printMovementSys.Initialize(m_reg);
-	m_movieRenderSystem.Initialize(m_reg);
-	m_gameRenderSystem.Initialize(m_reg);
+	m_movieRenderSys.Initialize(m_reg);
+	m_gameRenderSys.Initialize(m_reg);
+	m_loadingSys.Initialize(m_reg);
 }
 
 
@@ -43,8 +44,9 @@ void Application::RunLoop_()
 	m_renderWindow->clear();
 	m_movementSys.Update(m_reg);
 	m_printMovementSys.Update(m_reg);
-	m_movieRenderSystem.Update(m_reg, m_renderWindow);
-	m_gameRenderSystem.Update(m_reg, m_renderWindow);
+	m_movieRenderSys.Update(m_reg, m_renderWindow);
+	m_gameRenderSys.Update(m_reg, m_renderWindow);
+	m_loadingSys.Update(m_reg);
 	CheckForEvents_();
 	m_renderWindow->display();
 }

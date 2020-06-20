@@ -15,14 +15,15 @@
 
                 "${workspaceFolder}/src/util/Mediamap.cpp",
                 "${workspaceFolder}/src/util/Entitymap.cpp",
+                "${workspaceFolder}/src/util/MediatoEntitymap.cpp",
                 "${workspaceFolder}/src/util/ApplicationParameters.cpp",
 
                 "${workspaceFolder}/src/system/MovementSys.cpp",
                 "${workspaceFolder}/src/system/PrintMovementSys.cpp",
                 "${workspaceFolder}/src/system/MovieRenderSys.cpp",
                 "${workspaceFolder}/src/system/GameRenderSys.cpp",
+                "${workspaceFolder}/src/system/LoadingSys.cpp",
 
-                "${workspaceFolder}/src/loader/EntityLoader.cpp",
                 "${workspaceFolder}/src/loader/EntityLoaderFactory.cpp",
 
                 "-I", "${workspaceFolder}/inc",

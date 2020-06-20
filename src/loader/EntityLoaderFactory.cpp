@@ -2,5 +2,5 @@
 
 void EntityLoaderFactory::LoadFiles(entt::registry& reg, std::istringstream& reader)
 {
-	std::cout << "here" << std::endl;
+	std::cout << "Not implemented. should load files onto screen given certain parameters." << std::endl;
 }

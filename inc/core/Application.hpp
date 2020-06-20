@@ -7,6 +7,7 @@
 #include "system/PrintMovementSys.hpp"
 #include "system/MovieRenderSys.hpp"
 #include "system/GameRenderSys.hpp"
+#include "system/LoadingSys.hpp"
 
 #include <SFML/Graphics.hpp>
 #include <entt/entt.hpp>
@@ -26,8 +27,9 @@ private:
 
 	MovementSys m_movementSys;
 	PrintMovementSys m_printMovementSys;
-	MovieRenderSys m_movieRenderSystem;
-	GameRenderSys m_gameRenderSystem;
+	MovieRenderSys m_movieRenderSys;
+	GameRenderSys m_gameRenderSys;
+	LoadingSys m_loadingSys;
 
 	entt::registry m_reg;
 
