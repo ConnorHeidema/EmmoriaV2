@@ -5,7 +5,8 @@
 
 #include "sfeMovie/Movie.hpp"
 
-struct MovieComp {
+struct MovieComp
+{
 	Media_t m_currentMedia;
 };
 

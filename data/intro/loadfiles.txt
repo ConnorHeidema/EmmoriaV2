@@ -1,3 +1,3 @@
-background OpeningScreen
-file 45 75 10 5
-file 45 85 10 5
+Background OpeningScreen
+File 45 75 10 5
+File 45 85 10 5

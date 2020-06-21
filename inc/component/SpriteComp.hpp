@@ -3,7 +3,8 @@
 
 #include <string>
 
-struct SpriteComp {
+struct SpriteComp
+{
   std::string filePath;
 };
 

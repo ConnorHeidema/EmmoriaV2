@@ -3,7 +3,8 @@
 
 #include "../util/Position.hpp"
 
-struct PositionComp {
+struct PositionComp
+{
   Position position;
 };
 

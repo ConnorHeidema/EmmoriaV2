@@ -10,8 +10,12 @@
 class EntityLoaderFactory
 {
 public:
-	static void LoadFiles(entt::registry& reg, std::istringstream& reader);
-	static void LoadBackground(entt::registry& reg, std::istringstream& reader);
-};
+	#define LOAD_DECL(name) \
+		static void Load##name(entt::registry& reg, std::istringstream& reader);
 
+		LOAD_DECL(File)
+		LOAD_DECL(Background)
+		LOAD_DECL(Dialog)
+	#undef LOAD_DEF
+};
 #endif

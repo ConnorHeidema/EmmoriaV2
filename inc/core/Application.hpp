@@ -9,6 +9,7 @@
 #include "system/GameRenderSys.hpp"
 #include "system/LoadingSys.hpp"
 #include "system/ClickableSys.hpp"
+#include "system/DialogSys.hpp"
 
 #include <SFML/Graphics.hpp>
 #include <entt/entt.hpp>
@@ -32,6 +33,7 @@ private:
 	GameRenderSys m_gameRenderSys;
 	LoadingSys m_loadingSys;
 	ClickableSys m_clickableSys;
+	DialogSys m_dialogSys;
 
 	entt::registry m_reg;
 

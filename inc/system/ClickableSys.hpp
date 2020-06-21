@@ -17,6 +17,8 @@ private:
 	int m_yMousePosition;
 	int m_MovieDelayFrame;
 	int m_MovieDelayFrameMax;
+
+	entt::entity m_entity;
 };
 
 #endif

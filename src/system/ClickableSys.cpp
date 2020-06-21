@@ -4,6 +4,7 @@
 #include "component/ClickableComp.hpp"
 #include "component/SizeComp.hpp"
 #include "component/MovieComp.hpp"
+#include "component/RenderableTextComp.hpp"
 
 #include "util/Mediamap.hpp"
 
@@ -21,14 +22,16 @@ void ClickableSys::Update(entt::registry& reg)
 	m_xMousePosition = sf::Mouse::getPosition().x;
 	m_yMousePosition = sf::Mouse::getPosition().y;
 
-	reg.view<PositionComp, SizeComp, ClickableComp>().each([&](auto entity, auto &posComp, auto &sizeComp) {
+	reg.view<PositionComp, SizeComp, ClickableComp>(entt::exclude<RenderableTextComp>)
+		.each([&](auto entity, auto &posComp, auto &sizeComp)
+	{
 		if (IsCollisionDetected_(
 			posComp.position.x,
 			posComp.position.y,
 			sizeComp.size.width,
 			sizeComp.size.height))
 		{
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && m_MovieDelayFrame == 0)
 			{
 				auto startMovie = reg.create();
 				auto& movieComp = reg.emplace<MovieComp>(startMovie);
@@ -47,16 +50,17 @@ void ClickableSys::Update(entt::registry& reg)
 			{
 				m_MovieDelayFrame++;
 			}
-			if (m_MovieDelayFrame == m_MovieDelayFrameMax)
-			{
-				reg = {};
-				auto startMovie = reg.create();
-				auto& movieComp = reg.emplace<MovieComp>(startMovie);
-				movieComp.m_currentMedia = Media_t::NEW_GAME_SELECTED;
-				m_MovieDelayFrame = 0;
-			}
 		}
 	});
+
+	if (m_MovieDelayFrame == m_MovieDelayFrameMax)
+	{
+		m_MovieDelayFrame = 0;
+		reg.view<PositionComp>(entt::exclude<MovieComp>).each([&](auto entity, auto &posComp)
+		{
+			reg.destroy(entity);
+		});
+	}
 }
 
 bool ClickableSys::IsCollisionDetected_(int const& left, int const& top, int const& width, int const& height)

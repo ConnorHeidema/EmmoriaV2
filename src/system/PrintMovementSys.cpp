@@ -13,5 +13,4 @@ void PrintMovementSys::Update(entt::registry& reg)
 	// 		std::to_string(posComp.position.y) << ")" <<
 	// 		std::endl;
 	// });
-	std::cout << "Registry size: " << reg.size() << std::endl;
 }

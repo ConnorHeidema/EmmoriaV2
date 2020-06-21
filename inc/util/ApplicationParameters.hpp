@@ -14,6 +14,7 @@ struct ApplicationParameters
 	static int const k_playerMovementSpeed;
 	static int const k_widthUnits;
 	static int const k_heightUnits;
+	static std::string const k_fontPath;
 };
 
 #endif

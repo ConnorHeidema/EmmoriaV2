@@ -3,7 +3,8 @@
 
 #include <string>
 
-struct LoadComp {
+struct LoadComp
+{
 	std::string filePath;
 };
 

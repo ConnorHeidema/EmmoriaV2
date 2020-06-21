@@ -19,7 +19,7 @@ void LoadingSys::Update(entt::registry& reg)
 		{
 			std::istringstream line(token);
 			line >> token;
-			std::cout << ApplicationParameters::k_dataPath + loadComp.filePath;
+			std::cout << "Loading from file: " + ApplicationParameters::k_dataPath + loadComp.filePath << std::endl;
 			Entitymap::m_entityMap.at(token)(reg, line);
 		}
 		reg.destroy(entity);

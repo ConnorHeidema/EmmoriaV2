@@ -1,0 +1,1 @@
+Dialog 10 85 10 5 hello there world!

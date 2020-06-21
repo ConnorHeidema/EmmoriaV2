@@ -3,7 +3,8 @@
 
 #include "../util/Size.hpp"
 
-struct SizeComp {
+struct SizeComp
+{
   Size size;
 };
 

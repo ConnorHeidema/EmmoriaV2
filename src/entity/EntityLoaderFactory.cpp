@@ -8,10 +8,13 @@
 #include "component/SpriteComp.hpp"
 #include "component/ClickableComp.hpp"
 #include "component/RenderableComp.hpp"
+#include "component/RenderableTextComp.hpp"
+
+#include <SFML/Graphics.hpp>
 
 #include <string>
 
-void EntityLoaderFactory::LoadFiles(entt::registry& reg, std::istringstream& reader)
+void EntityLoaderFactory::LoadFile(entt::registry& reg, std::istringstream& reader)
 {
 	auto entity = reg.create();
 	auto& size = reg.emplace<SizeComp>(entity);
@@ -25,9 +28,9 @@ void EntityLoaderFactory::LoadFiles(entt::registry& reg, std::istringstream& rea
 	reader >> token;
 	position.position.y = std::stoi(token) * ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;
 	reader >> token;
-	size.size.width = std::stoi(token) * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;;
+	size.size.width = std::stoi(token) * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
 	reader >> token;
-	size.size.height = std::stoi(token) * ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;;
+	size.size.height = std::stoi(token) * ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;
 }
 
 void EntityLoaderFactory::LoadBackground(entt::registry& reg, std::istringstream& reader)
@@ -43,4 +46,28 @@ void EntityLoaderFactory::LoadBackground(entt::registry& reg, std::istringstream
 	std::string token;
 	reader >> token;
 	spritePath.filePath = ApplicationParameters::k_spritePath + token + ".png";
+}
+
+void EntityLoaderFactory::LoadDialog(entt::registry& reg, std::istringstream& reader)
+{
+	auto entity = reg.create();
+	auto& size = reg.emplace<SizeComp>(entity);
+	auto& position = reg.emplace<PositionComp>(entity);
+	auto& text = reg.emplace<RenderableTextComp>(entity);
+	reg.emplace<ClickableComp>(entity);
+	reg.emplace<RenderableComp>(entity);
+
+	std::string token;
+	reader >> token;
+	position.position.x = std::stoi(token) * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
+	reader >> token;
+	position.position.y = std::stoi(token) * ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;
+	reader >> token;
+	size.size.width = std::stoi(token) * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
+	reader >> token;
+	size.size.height = std::stoi(token) * ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;
+	while (reader >> token)
+	{
+		text.m_text += token + " ";
+	}
 }

@@ -32,7 +32,7 @@ void MovieRenderSys::Update(entt::registry& reg, std::shared_ptr<sf::RenderWindo
 		}
 		else if (movieComp.m_currentMedia != Media_t::NONE)
 		{
-			reg = {};
+			reg.destroy(entity);
 			auto loadEntity = reg.create();
 			auto& load = reg.emplace<LoadComp>(loadEntity);
 			load.filePath = MediatoEntitymap::m_mediatoEntitymap.at(movieComp.m_currentMedia);

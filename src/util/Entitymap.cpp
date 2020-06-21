@@ -7,9 +7,13 @@
 
 std::unordered_map<std::string, void(*)(entt::registry& reg, std::istringstream& line)> Entitymap::Create_map()
 {
-	std::unordered_map<std::string, void(*)(entt::registry& reg, std::istringstream& line)> m;
-	m["file"] = EntityLoaderFactory::LoadFiles;
-	m["background"] = EntityLoaderFactory::LoadBackground;
+	#define LOADER_TYPE(name) m[#name] = EntityLoaderFactory::Load##name;
+		std::unordered_map<std::string, void(*)(entt::registry& reg, std::istringstream& line)> m;
+		LOADER_TYPE(File);
+		LOADER_TYPE(Background);
+		LOADER_TYPE(Dialog)
+	#undef LOADER_TYPE
+
 	return m;
 }
 
