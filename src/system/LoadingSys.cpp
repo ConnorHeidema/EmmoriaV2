@@ -22,6 +22,6 @@ void LoadingSys::Update(entt::registry& reg)
 			std::cout << ApplicationParameters::k_dataPath + loadComp.filePath;
 			Entitymap::m_entityMap.at(token)(reg, line);
 		}
-		reg.remove_all(entity);
+		reg.destroy(entity);
 	});
 }

@@ -39,7 +39,7 @@ void Application::RunLoop_()
 {
 	m_renderWindow->clear();
 	m_movementSys.Update(m_reg);
-	//m_printMovementSys.Update(m_reg);
+	m_printMovementSys.Update(m_reg);
 	m_movieRenderSys.Update(m_reg, m_renderWindow);
 	m_gameRenderSys.Update(m_reg, m_renderWindow);
 	m_clickableSys.Update(m_reg);

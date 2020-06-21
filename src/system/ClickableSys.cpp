@@ -3,10 +3,18 @@
 #include "component/PositionComp.hpp"
 #include "component/ClickableComp.hpp"
 #include "component/SizeComp.hpp"
+#include "component/MovieComp.hpp"
+
+#include "util/Mediamap.hpp"
 
 #include <SFML/Graphics.hpp>
 
 #include <iostream>
+
+ClickableSys::ClickableSys() : m_MovieDelayFrame(0), m_MovieDelayFrameMax(24)
+{
+
+}
 
 void ClickableSys::Update(entt::registry& reg)
 {
@@ -22,7 +30,10 @@ void ClickableSys::Update(entt::registry& reg)
 		{
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			{
-				std::cout << "Left clicked" << std::endl;
+				auto startMovie = reg.create();
+				auto& movieComp = reg.emplace<MovieComp>(startMovie);
+				movieComp.m_currentMedia = Media_t::NEW_GAME_SELECTED;
+				m_MovieDelayFrame++;
 			}
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
 			{
@@ -31,6 +42,19 @@ void ClickableSys::Update(entt::registry& reg)
 			std::cout << "Mouse position at : (" +
 				std::to_string(sf::Mouse::getPosition().x) + ", " +
 				std::to_string(sf::Mouse::getPosition().y) + ")" << std::endl;
+
+			if (m_MovieDelayFrame > 0)
+			{
+				m_MovieDelayFrame++;
+			}
+			if (m_MovieDelayFrame == m_MovieDelayFrameMax)
+			{
+				reg = {};
+				auto startMovie = reg.create();
+				auto& movieComp = reg.emplace<MovieComp>(startMovie);
+				movieComp.m_currentMedia = Media_t::NEW_GAME_SELECTED;
+				m_MovieDelayFrame = 0;
+			}
 		}
 	});
 }

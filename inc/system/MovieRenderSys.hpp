@@ -11,14 +11,12 @@ class MovieRenderSys
 	: public IGraphicsSystem
 {
 public:
-	MovieRenderSys();
 
 	void Initialize(entt::registry& reg) override;
 
 	void Update(entt::registry& reg, std::shared_ptr<sf::RenderWindow> pRenderWindow) override;
 
-	Media_t m_currentMedia;
-
+	Media_t m_lastMedia;
     sfe::Movie m_movie;
 };
 
