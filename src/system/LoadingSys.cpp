@@ -15,7 +15,8 @@ void LoadingSys::Update(entt::registry& reg)
 		std::string token;
 		std::ifstream file(ApplicationParameters::k_dataPath + loadComp.filePath);
 		std::cout << ApplicationParameters::k_dataPath + loadComp.filePath;
-		while(std::getline(file, token)) {
+		while(std::getline(file, token))
+		{
 			std::istringstream line(token);
 			line >> token;
 			std::cout << ApplicationParameters::k_dataPath + loadComp.filePath;

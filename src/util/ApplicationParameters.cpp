@@ -9,3 +9,5 @@ std::string const ApplicationParameters::k_windowName = "Emmoria";
 std::string const ApplicationParameters::k_dataPath = "data/";
 std::string const ApplicationParameters::k_spritePath = "sprite/";
 int const ApplicationParameters::k_playerMovementSpeed = 3;
+int const ApplicationParameters::k_widthUnits = 100;
+int const ApplicationParameters::k_heightUnits = 100;

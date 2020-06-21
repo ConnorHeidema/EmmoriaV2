@@ -8,6 +8,7 @@
 #include "system/MovieRenderSys.hpp"
 #include "system/GameRenderSys.hpp"
 #include "system/LoadingSys.hpp"
+#include "system/ClickableSys.hpp"
 
 #include <SFML/Graphics.hpp>
 #include <entt/entt.hpp>
@@ -30,6 +31,7 @@ private:
 	MovieRenderSys m_movieRenderSys;
 	GameRenderSys m_gameRenderSys;
 	LoadingSys m_loadingSys;
+	ClickableSys m_clickableSys;
 
 	entt::registry m_reg;
 

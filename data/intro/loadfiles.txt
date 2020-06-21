@@ -1,3 +1,3 @@
 background OpeningScreen
-file 40 20 50 30 dawn_pillar 50 50
-file 40 35 50 45 dawn_pillar 60 50
+file 45 75 10 5
+file 45 85 10 5

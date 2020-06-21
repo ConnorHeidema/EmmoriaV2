@@ -8,6 +8,7 @@
 enum class Media_t
 {
 	INTRO_MOVIE,
+	NEW_GAME_SELECTED,
 	NONE
 };
 

@@ -31,6 +31,7 @@ void Application::Initialize_()
 	m_movieRenderSys.Initialize(m_reg);
 	m_gameRenderSys.Initialize(m_reg);
 	m_loadingSys.Initialize(m_reg);
+	m_clickableSys.Initialize(m_reg);
 }
 
 
@@ -38,9 +39,10 @@ void Application::RunLoop_()
 {
 	m_renderWindow->clear();
 	m_movementSys.Update(m_reg);
-	m_printMovementSys.Update(m_reg);
+	//m_printMovementSys.Update(m_reg);
 	m_movieRenderSys.Update(m_reg, m_renderWindow);
 	m_gameRenderSys.Update(m_reg, m_renderWindow);
+	m_clickableSys.Update(m_reg);
 	m_loadingSys.Update(m_reg);
 	CheckForEvents_();
 	m_renderWindow->display();

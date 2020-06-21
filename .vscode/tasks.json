@@ -23,9 +23,11 @@
                 "${workspaceFolder}/src/system/MovieRenderSys.cpp",
                 "${workspaceFolder}/src/system/GameRenderSys.cpp",
                 "${workspaceFolder}/src/system/LoadingSys.cpp",
+                "${workspaceFolder}/src/system/ClickableSys.cpp",
 
                 "${workspaceFolder}/src/entity/EntityLoaderFactory.cpp",
 
+                
                 "-I", "${workspaceFolder}/inc",
                 "-I", "${workspaceFolder}/ext/inc",
                 "-L", "${workspaceFolder}/ext/bin/SFML",

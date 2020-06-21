@@ -4,6 +4,7 @@ std::unordered_map<Media_t, std::string> Mediamap::Create_map()
 {
 	std::unordered_map<Media_t, std::string> m;
 	m[Media_t::INTRO_MOVIE] = std::experimental::filesystem::current_path().u8string() + "/media/intro.avi";
+	m[Media_t::NEW_GAME_SELECTED] = std::experimental::filesystem::current_path().u8string() + "/media/new_game_selected.avi";
 	return m;
 }
 
