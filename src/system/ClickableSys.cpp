@@ -7,6 +7,7 @@
 #include "component/RenderableTextComp.hpp"
 
 #include "util/Mediamap.hpp"
+#include "util/MouseUtils.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -25,11 +26,13 @@ void ClickableSys::Update(entt::registry& reg)
 	reg.view<PositionComp, SizeComp, ClickableComp>(entt::exclude<RenderableTextComp>)
 		.each([&](auto entity, auto &posComp, auto &sizeComp)
 	{
-		if (IsCollisionDetected_(
+		if (MouseUtils::IsCollisionDetected_(
 			posComp.position.x,
 			posComp.position.y,
 			sizeComp.size.width,
-			sizeComp.size.height))
+			sizeComp.size.height,
+			m_xMousePosition,
+			m_yMousePosition))
 		{
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && m_MovieDelayFrame == 0)
 			{
@@ -61,13 +64,4 @@ void ClickableSys::Update(entt::registry& reg)
 			reg.destroy(entity);
 		});
 	}
-}
-
-bool ClickableSys::IsCollisionDetected_(int const& left, int const& top, int const& width, int const& height)
-{
-	return
-		left < m_xMousePosition &&
-		left + width > m_xMousePosition &&
-		top < m_yMousePosition &&
-		top + height > m_yMousePosition;
 }

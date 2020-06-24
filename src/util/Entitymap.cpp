@@ -11,7 +11,7 @@ std::unordered_map<std::string, void(*)(entt::registry& reg, std::istringstream&
 		std::unordered_map<std::string, void(*)(entt::registry& reg, std::istringstream& line)> m;
 		LOADER_TYPE(File);
 		LOADER_TYPE(Background);
-		LOADER_TYPE(Dialog)
+		LOADER_TYPE(RandomDialog)
 	#undef LOADER_TYPE
 
 	return m;

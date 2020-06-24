@@ -11,8 +11,6 @@ public:
 
 	void Update(entt::registry& reg) override;
 private:
-	bool IsCollisionDetected_(int const& left, int const& top, int const& width, int const& height);
-
 	int m_xMousePosition;
 	int m_yMousePosition;
 	int m_MovieDelayFrame;

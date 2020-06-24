@@ -15,7 +15,7 @@ public:
 
 		LOAD_DECL(File)
 		LOAD_DECL(Background)
-		LOAD_DECL(Dialog)
+		LOAD_DECL(RandomDialog)
 	#undef LOAD_DEF
 };
 #endif

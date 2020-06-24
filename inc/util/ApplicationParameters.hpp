@@ -14,7 +14,9 @@ struct ApplicationParameters
 	static int const k_playerMovementSpeed;
 	static int const k_widthUnits;
 	static int const k_heightUnits;
+	static int const k_debounceFrames;
 	static std::string const k_fontPath;
+	static std::string const k_dialogDelimiter;
 };
 
 #endif
