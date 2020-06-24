@@ -7,14 +7,17 @@
 
 #include <SFML/Graphics.hpp>
 
-MovementSys::MovementSys()
-	: m_speed(ApplicationParameters::k_playerMovementSpeed)
+#include <entt/entt.hpp>
+
+MovementSys::MovementSys(entt::registry& rReg)
+	: m_rReg(rReg)
+	, m_speed(ApplicationParameters::k_playerMovementSpeed)
 { }
 
-void MovementSys::Update(entt::registry& reg)
+void MovementSys::Update()
 {
 	int const& speed = ApplicationParameters::k_playerMovementSpeed;
-	reg.view<PlayerComp, PositionComp>().each([&](auto entity, auto &posComp) {
+	m_rReg.view<PlayerComp, PositionComp>().each([&](auto entity, auto &posComp) {
 		{
 			using namespace sf;
 			if (Keyboard::isKeyPressed(Keyboard::A)) { posComp.position.x -= m_speed; }

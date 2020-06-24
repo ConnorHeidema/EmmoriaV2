@@ -3,6 +3,9 @@
 
 #include <string>
 
+/**
+ * This component should be used for anything that should link back to a sprite
+ */
 struct SpriteComp
 {
   std::string filePath;

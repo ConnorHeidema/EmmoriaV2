@@ -6,17 +6,24 @@
 #include "util/Entitymap.hpp"
 #include "util/MediatoEntitymap.hpp"
 
-void MovieRenderSys::Initialize(entt::registry& reg)
+#include <entt/entt.hpp>
+
+#include <SFML/Graphics.hpp>
+
+
+MovieRenderSys::MovieRenderSys(entt::registry& rReg, sf::RenderWindow& rRenderWindow)
+	: m_rRenderWindow(rRenderWindow)
+	, m_rReg(rReg)
 {
-	auto movie = reg.create();
-	auto& media = reg.emplace<MovieComp>(movie);
+	auto movie = m_rReg.create();
+	auto& media = m_rReg.emplace<MovieComp>(movie);
 	media.m_currentMedia = Media_t::INTRO_MOVIE;
 	m_lastMedia = Media_t::NONE;
 }
 
-void MovieRenderSys::Update(entt::registry& reg, std::shared_ptr<sf::RenderWindow> pRenderWindow)
+void MovieRenderSys::Update()
 {
-	reg.view<MovieComp>().each([&](auto entity, auto &movieComp)
+	m_rReg.view<MovieComp>().each([&](auto entity, auto &movieComp)
 	{
 		if (m_lastMedia == Media_t::NONE && movieComp.m_currentMedia != Media_t::NONE)
 		{
@@ -28,13 +35,13 @@ void MovieRenderSys::Update(entt::registry& reg, std::shared_ptr<sf::RenderWindo
 		if (m_movie.getStatus() != sfe::Stopped)
 		{
 			m_movie.update();
-			pRenderWindow->draw(m_movie);
+			m_rRenderWindow.draw(m_movie);
 		}
 		else if (movieComp.m_currentMedia != Media_t::NONE)
 		{
-			reg.destroy(entity);
-			auto loadEntity = reg.create();
-			auto& load = reg.emplace<LoadComp>(loadEntity);
+			m_rReg.destroy(entity);
+			auto loadEntity = m_rReg.create();
+			auto& load = m_rReg.emplace<LoadComp>(loadEntity);
 			load.filePath = MediatoEntitymap::m_mediatoEntitymap.at(movieComp.m_currentMedia);
 			m_lastMedia = Media_t::NONE;
 		}

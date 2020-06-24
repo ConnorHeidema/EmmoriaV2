@@ -3,6 +3,9 @@
 
 #include "../util/Position.hpp"
 
+/**
+ * This component should be added to anything that needs a position
+ */
 struct PositionComp
 {
   Position position;

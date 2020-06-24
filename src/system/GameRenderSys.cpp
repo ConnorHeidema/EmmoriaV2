@@ -8,12 +8,18 @@
 
 #include "util/Mediamap.hpp"
 
-GameRenderSys::GameRenderSys()
+#include <entt/entt.hpp>
+
+#include <SFML/Graphics.hpp>
+
+GameRenderSys::GameRenderSys(entt::registry& rReg, sf::RenderWindow& rRenderWindow)
+	: m_rReg(rReg)
+	, m_rRenderWindow(rRenderWindow)
 { }
 
-void GameRenderSys::Update(entt::registry& reg, std::shared_ptr<sf::RenderWindow> pRenderWindow)
+void GameRenderSys::Update()
 {
-	reg.view<PositionComp, SizeComp, SpriteComp>().each([pRenderWindow](
+	m_rReg.view<PositionComp, SizeComp, SpriteComp>().each([&](
 		auto entity,
 		auto &posComp,
 		auto &sizeComp,
@@ -24,10 +30,10 @@ void GameRenderSys::Update(entt::registry& reg, std::shared_ptr<sf::RenderWindow
 		texture.loadFromFile(filePath.filePath); // this should be stored somehow
 		genericSprite.setTexture(&texture);
 		genericSprite.setPosition(posComp.position.x, posComp.position.y);
-		pRenderWindow->draw(genericSprite);
+		m_rRenderWindow.draw(genericSprite);
 	});
 
-	reg.view<PositionComp, SizeComp, RenderableComp>().each([pRenderWindow](
+	m_rReg.view<PositionComp, SizeComp, RenderableComp>().each([&](
 		auto entity,
 		auto &posComp,
 		auto &sizeComp)
@@ -35,15 +41,15 @@ void GameRenderSys::Update(entt::registry& reg, std::shared_ptr<sf::RenderWindow
 		sf::RectangleShape rectShape(sf::Vector2f(sizeComp.size.width,sizeComp.size.height));
 		rectShape.setPosition(sf::Vector2f(posComp.position.x, posComp.position.y));
 		rectShape.setFillColor(sf::Color::Green);
-		pRenderWindow->draw(rectShape);
+		m_rRenderWindow.draw(rectShape);
 	});
 
-	// reg.view<PositionComp, RenderableComp>().each([pRenderWindow](auto entity, auto &posComp)
+	// reg.view<PositionComp, RenderableComp>().each([m_pRenderWindow](auto entity, auto &posComp)
 	// {
 	// 	// dummy data for now
 	// 	auto a = sf::RectangleShape(sf::Vector2f(20, 20));
 	// 	a.setFillColor(sf::Color::Green);
 	// 	a.setPosition(posComp.position.x, posComp.position.y);
-	// 	pRenderWindow->draw(a);
+	// 	m_pRenderWindow->draw(a);
 	// });
 }

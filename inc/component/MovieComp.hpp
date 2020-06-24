@@ -3,8 +3,10 @@
 
 #include "util/Mediamap.hpp"
 
-#include "sfeMovie/Movie.hpp"
-
+/**
+ * This component should be added and changed
+ * when the current media is changed
+ */
 struct MovieComp
 {
 	Media_t m_currentMedia;

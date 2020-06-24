@@ -1,20 +1,13 @@
 #ifndef __APPLICATION__
 #define __APPLICATION__
 
-#include "util/Size.hpp"
-
-#include "system/MovementSys.hpp"
-#include "system/PrintMovementSys.hpp"
-#include "system/MovieRenderSys.hpp"
-#include "system/GameRenderSys.hpp"
-#include "system/LoadingSys.hpp"
-#include "system/ClickableSys.hpp"
-#include "system/DialogSys.hpp"
+#include "system/ISystem.hpp"
 
 #include <SFML/Graphics.hpp>
 #include <entt/entt.hpp>
 
 #include <memory>
+#include <list>
 
 class Application
 {
@@ -27,17 +20,10 @@ private:
 	void RunLoop_();
 	void CheckForEvents_();
 
-	MovementSys m_movementSys;
-	PrintMovementSys m_printMovementSys;
-	MovieRenderSys m_movieRenderSys;
-	GameRenderSys m_gameRenderSys;
-	LoadingSys m_loadingSys;
-	ClickableSys m_clickableSys;
-	DialogSys m_dialogSys;
-
 	entt::registry m_reg;
+	sf::RenderWindow m_renderWindow;
 
-	std::shared_ptr<sf::RenderWindow> m_renderWindow;
+	std::list<std::shared_ptr<ISystem>> m_pSystems;
 };
 
 #endif

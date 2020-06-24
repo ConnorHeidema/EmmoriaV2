@@ -1,15 +1,19 @@
 #ifndef __GAME_RENDER_SYS__
 #define __GAME_RENDER_SYS__
 
-#include "system/IGraphicsSystem.hpp"
+#include "system/ISystem.hpp"
 
 class GameRenderSys
-	: public IGraphicsSystem
+	: public ISystem
 {
 public:
-	GameRenderSys();
+	GameRenderSys(entt::registry& rReg, sf::RenderWindow& rRenderWindow);
 
-	void Update(entt::registry& reg, std::shared_ptr<sf::RenderWindow> pRenderWindow) override;
+	void Update() override;
+
+private:
+	entt::registry& m_rReg;
+	sf::RenderWindow& m_rRenderWindow;
 };
 
 #endif

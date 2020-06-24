@@ -7,7 +7,10 @@ class LoadingSys
 	: public ISystem
 {
 public:
-	void Update(entt::registry& reg) override;
+	LoadingSys(entt::registry& reg);
+	void Update() override;
+private:
+	entt::registry& m_rReg;
 };
 
 #endif

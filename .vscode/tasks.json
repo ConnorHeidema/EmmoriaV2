@@ -30,7 +30,6 @@
 
                 "${workspaceFolder}/src/entity/EntityLoaderFactory.cpp",
 
-
                 "-I", "${workspaceFolder}/inc",
                 "-I", "${workspaceFolder}/ext/inc",
                 "-L", "${workspaceFolder}/ext/bin/SFML",

@@ -1,20 +1,24 @@
 #ifndef __MOVIE_RENDER_SYS__
 #define __MOVIE_RENDER_SYS__
 
-#include "system/IGraphicsSystem.hpp"
+#include "system/ISystem.hpp"
 
 #include "util/Mediamap.hpp"
 
 #include <sfeMovie/Movie.hpp>
 
+#include <memory>
+
 class MovieRenderSys
-	: public IGraphicsSystem
+	: public ISystem
 {
 public:
+	MovieRenderSys(entt::registry& rReg, sf::RenderWindow& rRenderWindow);
+	void Update() override;
 
-	void Initialize(entt::registry& reg) override;
-
-	void Update(entt::registry& reg, std::shared_ptr<sf::RenderWindow> pRenderWindow) override;
+private:
+	sf::RenderWindow& m_rRenderWindow;
+	entt::registry& m_rReg;
 
 	Media_t m_lastMedia;
     sfe::Movie m_movie;

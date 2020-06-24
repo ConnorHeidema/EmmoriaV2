@@ -5,13 +5,19 @@
 #include "util/ApplicationParameters.hpp"
 #include "util/Entitymap.hpp"
 
+#include <entt/entt.hpp>
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
 
-void LoadingSys::Update(entt::registry& reg)
+LoadingSys::LoadingSys(entt::registry& rReg)
+	: m_rReg(rReg)
+{}
+
+void LoadingSys::Update()
 {
-	reg.view<LoadComp>().each([&](auto entity, auto &loadComp) {
+	m_rReg.view<LoadComp>().each([&](auto entity, auto &loadComp) {
 		std::string token;
 		std::ifstream file(ApplicationParameters::k_dataPath + loadComp.filePath);
 		std::cout << ApplicationParameters::k_dataPath + loadComp.filePath;
@@ -20,8 +26,8 @@ void LoadingSys::Update(entt::registry& reg)
 			std::istringstream line(token);
 			line >> token;
 			std::cout << "Loading from file: " + ApplicationParameters::k_dataPath + loadComp.filePath << std::endl;
-			Entitymap::m_entityMap.at(token)(reg, line);
+			Entitymap::m_entityMap.at(token)(m_rReg, line);
 		}
-		reg.destroy(entity);
+		m_rReg.destroy(entity);
 	});
 }

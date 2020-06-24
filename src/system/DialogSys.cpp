@@ -10,28 +10,33 @@
 #include "util/MouseUtils.hpp"
 #include "util/Helper.hpp"
 
+#include <entt/entt.hpp>
+
 #include <SFML/Graphics.hpp>
 
 #include <iostream>
 
-
-DialogSys::DialogSys() : m_dialogSysState(WAITING), m_curClickFrame(0)
+DialogSys::DialogSys(entt::registry& rReg, sf::RenderWindow& rRenderWindow)
+	: m_rRenderWindow(rRenderWindow)
+	, m_rReg(rReg)
+	, m_dialogSysState(WAITING)
+	, m_curClickFrame(0)
 {}
 
-void DialogSys::Update(entt::registry& reg, std::shared_ptr<sf::RenderWindow> pRenderWindow)
+void DialogSys::Update()
 {
 	switch (m_dialogSysState)
 	{
-		case WAITING: WaitingUpdate_(reg); break;
+		case WAITING: WaitingUpdate_(); break;
 		case CONSUMING: ConsumingUpdate_(); break;
-		case PRESENTING: PresentingUpdate_(pRenderWindow); break;
+		case PRESENTING: PresentingUpdate_(); break;
 	}
 }
 
-void DialogSys::WaitingUpdate_(entt::registry& reg)
+void DialogSys::WaitingUpdate_()
 {
 	bool bDialogFound = false;
-	reg.view<
+	m_rReg.view<
 		SizeComp,
 		ClickableComp,
 		RenderableComp,
@@ -46,7 +51,7 @@ void DialogSys::WaitingUpdate_(entt::registry& reg)
 		m_curSize = sizeComp.size;
 		DelimitText_(stringText.m_text);
 
-		reg.destroy(entity);
+		m_rReg.destroy(entity);
 		bDialogFound = true;
 	});
 
@@ -62,7 +67,7 @@ void DialogSys::ConsumingUpdate_()
 	m_dialogSysState = (m_currentDialogList.empty() ? WAITING : PRESENTING);
 }
 
-void DialogSys::PresentingUpdate_(std::shared_ptr<sf::RenderWindow> pRenderWindow)
+void DialogSys::PresentingUpdate_()
 {
 		if (m_curClickFrame > 0 &&
 			m_curClickFrame < ApplicationParameters::k_debounceFrames)
@@ -81,8 +86,8 @@ void DialogSys::PresentingUpdate_(std::shared_ptr<sf::RenderWindow> pRenderWindo
 		sf::RectangleShape rectShape(sf::Vector2f(text.getLocalBounds().width, m_curSize.height * 1.5));
 		rectShape.setPosition(sf::Vector2f(m_curPosition.x, m_curPosition.y));
 		rectShape.setFillColor(sf::Color::Green);
-		pRenderWindow->draw(rectShape);
-		pRenderWindow->draw(text);
+		m_rRenderWindow.draw(rectShape);
+		m_rRenderWindow.draw(text);
 
 		m_dialogSysState = (
 			MouseUtils::IsCollisionDetected_(

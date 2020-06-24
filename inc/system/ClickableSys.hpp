@@ -3,14 +3,17 @@
 
 #include "system/ISystem.hpp"
 
+#include <entt/entt.hpp>
+
 class ClickableSys
 	: public ISystem
 {
 public:
-	ClickableSys();
-
-	void Update(entt::registry& reg) override;
+	ClickableSys(entt::registry& rReg);
+	void Update() override;
 private:
+	entt::registry& m_rReg;
+
 	int m_xMousePosition;
 	int m_yMousePosition;
 	int m_MovieDelayFrame;

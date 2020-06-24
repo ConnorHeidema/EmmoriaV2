@@ -3,6 +3,9 @@
 
 #include <string>
 
+/**
+ * This tag is meant to be used in order to load file's contents
+ */
 struct LoadComp
 {
 	std::string filePath;

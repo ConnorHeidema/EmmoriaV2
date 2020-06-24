@@ -3,11 +3,17 @@
 
 #include "system/ISystem.hpp"
 
+#include <entt/entt.hpp>
+
 class PrintMovementSys
 	: public ISystem
 {
 public:
-	void Update(entt::registry& reg) override;
+	PrintMovementSys(entt::registry& reg);
+	void Update() override;
+
+private:
+	entt::registry& m_rReg;
 };
 
 #endif
