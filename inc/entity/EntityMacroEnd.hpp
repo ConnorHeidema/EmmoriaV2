@@ -1,0 +1,2 @@
+#undef ENTITY_MACRO
+#undef ALL_ENTITY_MACRO

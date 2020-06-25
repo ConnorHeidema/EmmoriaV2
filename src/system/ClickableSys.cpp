@@ -17,9 +17,7 @@ ClickableSys::ClickableSys(entt::registry& rReg)
 	: m_rReg(rReg)
 	, m_MovieDelayFrame(0)
 	, m_MovieDelayFrameMax(24)
-{
-
-}
+{ }
 
 void ClickableSys::Update()
 {

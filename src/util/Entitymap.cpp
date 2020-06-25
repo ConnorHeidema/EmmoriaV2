@@ -1,6 +1,8 @@
 #include "util/Entitymap.hpp"
 #include "entity/EntityLoaderFactory.hpp"
 
+#include "entity/EntityMacro.hpp"
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -9,12 +11,12 @@ std::unordered_map<std::string, void(*)(entt::registry& reg, std::istringstream&
 {
 	#define LOADER_TYPE(name) m[#name] = EntityLoaderFactory::Load##name;
 		std::unordered_map<std::string, void(*)(entt::registry& reg, std::istringstream& line)> m;
-		LOADER_TYPE(File);
-		LOADER_TYPE(Background);
-		LOADER_TYPE(RandomDialog)
+	ALL_ENTITY_MACRO(LOADER_TYPE)
 	#undef LOADER_TYPE
 
 	return m;
 }
 
 std::unordered_map<std::string, void(*)(entt::registry& reg, std::istringstream& line)> const Entitymap::m_entityMap =  Entitymap::Create_map();
+
+#include "entity/EntityMacroEnd.hpp"
