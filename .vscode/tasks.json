@@ -19,6 +19,7 @@
                 "${workspaceFolder}/src/util/ApplicationParameters.cpp",
                 "${workspaceFolder}/src/util/MouseUtils.cpp",
                 "${workspaceFolder}/src/util/Helper.cpp",
+                "${workspaceFolder}/src/util/SystemList.cpp",
 
                 "${workspaceFolder}/src/system/MovementSys.cpp",
                 "${workspaceFolder}/src/system/PrintMovementSys.cpp",

@@ -3,6 +3,9 @@
 
 #include "system/ISystem.hpp"
 
+#include <entt/entt.hpp>
+#include <SFML/Graphics.hpp>
+
 class GameRenderSys
 	: public ISystem
 {

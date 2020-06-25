@@ -3,6 +3,9 @@
 
 #include "system/ISystem.hpp"
 
+
+#include <entt/entt.hpp>
+
 class LoadingSys
 	: public ISystem
 {

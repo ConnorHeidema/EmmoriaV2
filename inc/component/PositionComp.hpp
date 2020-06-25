@@ -8,7 +8,7 @@
  */
 struct PositionComp
 {
-  Position position;
+	Position position;
 };
 
 #endif

@@ -2,8 +2,12 @@
 #define __DIALOG_SYS__
 
 #include "system/ISystem.hpp"
+
 #include "util/Size.hpp"
 #include "util/Position.hpp"
+
+#include <entt/entt.hpp>
+#include <SFML/Graphics.hpp>
 
 #include <list>
 

@@ -3,8 +3,13 @@
 #include <stdlib.h>
 #include <time.h>
 
-int Helper::Rand(int const& lowerBound, int const& higherBound)
+Helper::Helper()
 {
 	srand(time(NULL));
+}
+
+int Helper::Rand(int const& lowerBound, int const& higherBound)
+{
+
 	return rand() % higherBound + lowerBound;
 }

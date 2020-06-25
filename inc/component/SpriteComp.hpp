@@ -8,7 +8,7 @@
  */
 struct SpriteComp
 {
-  std::string filePath;
+	std::string filePath;
 };
 
 #endif
