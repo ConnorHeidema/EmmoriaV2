@@ -46,7 +46,6 @@ void DialogSys::UpdateWaitingState_()
 
 void DialogSys::UpdateProducingState_()
 {
-	bool bTextFinished = false;
 	m_rReg.view<DialogChainComp, TextComp>().each([&](auto entity, auto& textComp)
 	{
 		auto fragmentEntity = m_rReg.create();
@@ -70,33 +69,48 @@ void DialogSys::UpdateProducingState_()
 		fragmentRenderableComp.m_bRendered = false;
 
 		m_rReg.emplace<ClickableComp>(fragmentEntity);
-
-		if (textComp.m_text.empty())
-		{
-			bTextFinished = true;
-		}
 	});
-	m_dialogSysState = (bTextFinished ? DialogSysState_t::FINISHED : DialogSysState_t::PENDING);
+	m_dialogSysState = DialogSysState_t::PENDING;
 }
 
 void DialogSys::UpdatePendingState_()
 {
 	bool bLiveFragment = true;
+	bool bLiveChain = true;
 	m_rReg.view<DialogChainFragmentComp, ClickableComp>().each([&](auto entity, auto& clickableComp)
 	{
 		if (clickableComp.m_bLeftClicked)
 		{
 			m_rReg.destroy(entity);
 			bLiveFragment = false;
+
+			m_rReg.view<DialogChainComp, TextComp>().each([&](auto entity, auto& textComp)
+			{
+				if (textComp.m_text.empty())
+				{
+					m_rReg.destroy(entity);
+					bLiveChain = false;
+				}
+			});
 		}
 	});
-	m_dialogSysState = (bLiveFragment ? DialogSysState_t::PENDING : DialogSysState_t::PRODUCING);
+	if (!bLiveChain)
+	{
+		m_rReg.view<DialogChainFragmentComp, ClickableComp>().each([&](auto entity, auto& clickableComp)
+		{
+			m_rReg.destroy(entity);
+		});
+	}
+
+	m_dialogSysState = !bLiveChain ?
+		DialogSysState_t::FINISHED :
+			(bLiveFragment ?
+				DialogSysState_t::PENDING :
+				DialogSysState_t::PRODUCING);
 }
 
 void DialogSys::UpdateFinishedState_()
 {
-	m_rReg.view<DialogChainFragmentComp>().each([&](auto entity) { m_rReg.destroy(entity); });
 	std::cout << "Finished" << std::endl;
-	m_rReg.view<DialogChainComp>().each([&](auto entity) { m_rReg.destroy(entity); });
 	m_dialogSysState = DialogSysState_t::WAITING;
 }
