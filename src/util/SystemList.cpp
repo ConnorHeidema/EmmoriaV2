@@ -12,8 +12,7 @@
 
 std::list<std::shared_ptr<ISystem>> SystemList::CreateSystemList(entt::registry& m_reg, sf::RenderWindow& m_renderWindow)
 {
-	// This is the order the systems will run in each frame...
-	std::list<std::shared_ptr<ISystem>> m_sysList
+	std::list<std::shared_ptr<ISystem>> m_sysRunningOrder
 	{
 		std::make_unique<MovementSys>(m_reg),
 		std::make_unique<PrintMovementSys>(m_reg),
@@ -25,7 +24,7 @@ std::list<std::shared_ptr<ISystem>> SystemList::CreateSystemList(entt::registry&
 		std::make_unique<DialogSys>(m_reg, m_renderWindow),
 		std::make_unique<PersistentSys>(m_reg)
 	};
-	return m_sysList;
+	return m_sysRunningOrder;
 }
 
 std::list<std::shared_ptr<ISystem>> SystemList::m_pSystemList = {};
