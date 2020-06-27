@@ -1,16 +1,19 @@
 #include "system/GameRenderSys.hpp"
 
-#include "component/PositionComp.hpp"
-#include "component/RenderableComp.hpp"
-#include "component/SpriteComp.hpp"
-#include "component/SizeComp.hpp"
-#include "component/PositionComp.hpp"
+#include "component/functional/RenderableComp.hpp"
+#include "component/functional/PositionComp.hpp"
+#include "component/functional/SpriteComp.hpp"
+#include "component/functional/SizeComp.hpp"
+#include "component/functional/TextComp.hpp"
 
 #include "util/Mediamap.hpp"
+#include "util/ApplicationParameters.hpp"
 
 #include <entt/entt.hpp>
 
 #include <SFML/Graphics.hpp>
+
+#include <iostream>
 
 GameRenderSys::GameRenderSys(entt::registry& rReg, sf::RenderWindow& rRenderWindow)
 	: m_rReg(rReg)
@@ -19,37 +22,61 @@ GameRenderSys::GameRenderSys(entt::registry& rReg, sf::RenderWindow& rRenderWind
 
 void GameRenderSys::Update()
 {
-	m_rReg.view<PositionComp, SizeComp, SpriteComp>().each([&](
-		auto entity,
-		auto &posComp,
-		auto &sizeComp,
-		auto &filePath)
+	m_rReg.view<RenderableComp>().each([&](
+	auto entity,
+	auto& renderableComp)
 	{
-		auto genericSprite = sf::RectangleShape(sf::Vector2f(sizeComp.size.width, sizeComp.size.height));
-		sf::Texture texture;
-		texture.loadFromFile(filePath.filePath); // this should be stored somehow
-		genericSprite.setTexture(&texture);
-		genericSprite.setPosition(posComp.position.x, posComp.position.y);
-		m_rRenderWindow.draw(genericSprite);
+		renderableComp.m_bRendered = false;
 	});
 
-	m_rReg.view<PositionComp, SizeComp, RenderableComp>().each([&](
+	m_rReg.view<RenderableComp, PositionComp, SizeComp, SpriteComp>().each([&](
 		auto entity,
-		auto &posComp,
-		auto &sizeComp)
+		auto& renderableComp,
+		auto& positionComp,
+		auto& sizeComp,
+		auto& spriteComp)
 	{
-		sf::RectangleShape rectShape(sf::Vector2f(sizeComp.size.width,sizeComp.size.height));
-		rectShape.setPosition(sf::Vector2f(posComp.position.x, posComp.position.y));
-		rectShape.setFillColor(sf::Color::Green);
-		m_rRenderWindow.draw(rectShape);
+		if (renderableComp.m_bRendered == false)
+		{
+			auto genericSprite = sf::RectangleShape(sf::Vector2f(sizeComp.m_size.width, sizeComp.m_size.height));
+			sf::Texture texture;
+			texture.loadFromFile(spriteComp.m_filePath); // this should be stored somehow
+			genericSprite.setTexture(&texture);
+			genericSprite.setPosition(positionComp.m_position.x - sizeComp.m_size.width/2, positionComp.m_position.y - sizeComp.m_size.height/2);
+			m_rRenderWindow.draw(genericSprite);
+			renderableComp.m_bRendered = true;
+		}
 	});
 
-	// reg.view<PositionComp, RenderableComp>().each([m_pRenderWindow](auto entity, auto &posComp)
-	// {
-	// 	// dummy data for now
-	// 	auto a = sf::RectangleShape(sf::Vector2f(20, 20));
-	// 	a.setFillColor(sf::Color::Green);
-	// 	a.setPosition(posComp.position.x, posComp.position.y);
-	// 	m_pRenderWindow->draw(a);
-	// });
+	m_rReg.view<RenderableComp, PositionComp, SizeComp, TextComp>().each([&](
+		auto entity,
+		auto& renderableComp,
+		auto& positionComp,
+		auto& sizeComp,
+		auto& textComp)
+	{
+		if (renderableComp.m_bRendered == false)
+		{
+			sf::RectangleShape rectShape(sf::Vector2f(sizeComp.m_size.width,sizeComp.m_size.height));
+			rectShape.setPosition(
+				sf::Vector2f(
+					positionComp.m_position.x - sizeComp.m_size.width/2,
+					positionComp.m_position.y - sizeComp.m_size.height/2));
+			rectShape.setFillColor(sf::Color::Green);
+			m_rRenderWindow.draw(rectShape);
+
+			sf::Text text;
+			sf::Font font;
+			font.loadFromFile(ApplicationParameters::k_fontPath);
+			text.setFont(font);
+			text.setCharacterSize(sizeComp.m_size.height*ApplicationParameters::k_textFactor);
+			text.setString(textComp.m_text);
+			text.setPosition(
+				sf::Vector2f(
+					positionComp.m_position.x - sizeComp.m_size.width/2,
+					positionComp.m_position.y - sizeComp.m_size.height/2));
+			m_rRenderWindow.draw(text);
+			renderableComp.m_bRendered = true;
+		}
+	});
 }

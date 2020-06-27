@@ -18,13 +18,6 @@ public:
 		int const& height,
 		int const& xMousePosition,
 		int const& yMousePosition);
-
-// 	MouseUtils();
-// 	bool BufferedLeftClick();
-
-// private:
-// 	int m_currentLeftClick;
-// 	static int const s_kBufferedLeftClickFrameCap
 };
 
 #endif

@@ -6,10 +6,8 @@
  */
 struct ClickableComp
 {
-	// When the frame wait counters are 1, the object has technically been clicked.
-	bool leftClicked;
-	bool rightClicked;
-	int scrollWheelValue;
+	bool m_bLeftClicked;
+	bool m_bRightClicked;
 };
 
 #endif

@@ -14,9 +14,6 @@ public:
 private:
 	entt::registry& m_rReg;
 
-	int m_MovieDelayFrame;
-	int m_MovieDelayFrameMax;
-
 	entt::entity m_entity;
 };
 

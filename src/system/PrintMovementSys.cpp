@@ -1,6 +1,6 @@
 #include "system/PrintMovementSys.hpp"
 
-#include "component/PositionComp.hpp"
+#include "component/functional/PositionComp.hpp"
 
 #include <iostream>
 

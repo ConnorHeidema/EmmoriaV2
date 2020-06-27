@@ -1,7 +1,7 @@
 #include "system/MovieRenderSys.hpp"
 
-#include "component/MovieComp.hpp"
-#include "component/LoadComp.hpp"
+#include "component/functional/MovieComp.hpp"
+#include "component/functional/LoadComp.hpp"
 
 #include "util/Entitymap.hpp"
 #include "util/MediatoEntitymap.hpp"
@@ -42,7 +42,7 @@ void MovieRenderSys::Update()
 			m_rReg.destroy(entity);
 			auto loadEntity = m_rReg.create();
 			auto& load = m_rReg.emplace<LoadComp>(loadEntity);
-			load.filePath = MediatoEntitymap::m_mediatoEntitymap.at(movieComp.m_currentMedia);
+			load.m_filePath = MediatoEntitymap::m_mediatoEntitymap.at(movieComp.m_currentMedia);
 			m_lastMedia = Media_t::NONE;
 		}
 	});

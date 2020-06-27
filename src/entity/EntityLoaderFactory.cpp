@@ -2,64 +2,86 @@
 
 #include "util/ApplicationParameters.hpp"
 
-#include "component/PositionComp.hpp"
-#include "component/RenderableComp.hpp"
-#include "component/SizeComp.hpp"
-#include "component/SpriteComp.hpp"
+#include "component/functional/RenderableComp.hpp"
+#include "component/functional/PositionComp.hpp"
+#include "component/functional/SizeComp.hpp"
+#include "component/functional/TextComp.hpp"
 #include "component/functional/ClickableComp.hpp"
-#include "component/RenderableComp.hpp"
-#include "component/RenderableTextComp.hpp"
+#include "component/functional/SpriteComp.hpp"
 
 #include <SFML/Graphics.hpp>
 
 #include <string>
 
-void EntityLoaderFactory::LoadFile(entt::registry& reg, std::istringstream& reader)
+void EntityLoaderFactory::LoadFile(entt::registry& rReg, std::istringstream& reader)
 {
-	auto entity = reg.create();
-	auto& size = reg.emplace<SizeComp>(entity);
-	auto& position = reg.emplace<PositionComp>(entity);
-	reg.emplace<RenderableComp>(entity);
-	reg.emplace<ClickableComp>(entity);
+	auto entity = rReg.create();
+	auto& renderableComp = rReg.emplace<RenderableComp>(entity);
+	renderableComp.m_bRendered = false;
+
+	auto& sizeComp = rReg.emplace<SizeComp>(entity);
+	auto& positionComp = rReg.emplace<PositionComp>(entity);
+	rReg.emplace<ClickableComp>(entity);
 
 	std::string token;
 	reader >> token;
-	position.position.x = std::stoi(token) * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
+	positionComp.m_position.x = std::stoi(token) * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
 	reader >> token;
-	position.position.y = std::stoi(token) * ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;
+	positionComp.m_position.y = std::stoi(token) * ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;
 	reader >> token;
-	size.size.width = std::stoi(token) * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
+	sizeComp.m_size.height = std::stoi(token) * ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;
+
+	auto& textComp = rReg.emplace<TextComp>(entity);
 	reader >> token;
-	size.size.height = std::stoi(token) * ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;
+
+	replace( token.begin(), token.end(), '_', ' ' );
+	textComp.m_text = token;
+
+	sf::Text dummyText;
+	sf::Font font;
+	font.loadFromFile(ApplicationParameters::k_fontPath);
+	dummyText.setFont(font);
+	dummyText.setCharacterSize(sizeComp.m_size.height*ApplicationParameters::k_textFactor);
+	dummyText.setString(textComp.m_text);
+
+	sizeComp.m_size.width = dummyText.getLocalBounds().width;
 }
 
-void EntityLoaderFactory::LoadBackground(entt::registry& reg, std::istringstream& reader)
+void EntityLoaderFactory::LoadBackground(entt::registry& rReg, std::istringstream& reader)
 {
-	auto entity = reg.create();
-	auto& size = reg.emplace<SizeComp>(entity);
-	size.size.width = ApplicationParameters::k_screenWidth;
-	size.size.height = ApplicationParameters::k_screenHeight;
-	auto& position = reg.emplace<PositionComp>(entity);
-	position.position.x = 0;
-	position.position.y = 0;
-	auto& spritePath = reg.emplace<SpriteComp>(entity);
+	auto entity = rReg.create();
+	auto& renderableComp = rReg.emplace<RenderableComp>(entity);
+	renderableComp.m_bRendered = false;
+
+	auto& sizeComp = rReg.emplace<SizeComp>(entity);
+	sizeComp.m_size.width = ApplicationParameters::k_screenWidth;
+	sizeComp.m_size.height = ApplicationParameters::k_screenHeight;
+
+	auto& positionComp = rReg.emplace<PositionComp>(entity);
+	positionComp.m_position.x = 50 * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
+	positionComp.m_position.y = 50 * ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;
+
+	auto& spriteComp = rReg.emplace<SpriteComp>(entity);
 	std::string token;
 	reader >> token;
-	spritePath.filePath = ApplicationParameters::k_spritePath + token + ".png";
+	spriteComp.m_filePath = ApplicationParameters::k_spritePath + token + ".png";
 }
 
-void EntityLoaderFactory::LoadRandomDialog(entt::registry& reg, std::istringstream& reader)
+void EntityLoaderFactory::LoadRandomDialog(entt::registry& rReg, std::istringstream& reader)
 {
-	auto entity = reg.create();
-	auto& size = reg.emplace<SizeComp>(entity);
-	auto& text = reg.emplace<RenderableTextComp>(entity);
-	reg.emplace<PositionComp>(entity);
-	reg.emplace<ClickableComp>(entity);
-	reg.emplace<RenderableComp>(entity);
+	auto entity = rReg.create();
+	auto& sizeComp = rReg.emplace<SizeComp>(entity);
+	auto& textComp = rReg.emplace<TextComp>(entity);
+	rReg.emplace<PositionComp>(entity);
+	rReg.emplace<ClickableComp>(entity);
+
+	auto& renderableComp = rReg.emplace<RenderableComp>(entity);
+	renderableComp.m_bRendered = false;
+
 	std::string token;
 	reader >> token;
-	size.size.width = std::stoi(token) * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
+	sizeComp.m_size.width = std::stoi(token) * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
 	reader >> token;
-	size.size.height = std::stoi(token) * ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;
-	while (reader >> token) { text.m_text += token + " "; }
+	sizeComp.m_size.height = std::stoi(token) * ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;
+	while (reader >> token) { textComp.m_text += token + " "; }
 }
