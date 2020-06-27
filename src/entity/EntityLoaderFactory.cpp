@@ -2,6 +2,8 @@
 
 #include "util/ApplicationParameters.hpp"
 
+#include "component/tag/ButtonComp.hpp"
+
 #include "component/functional/RenderableComp.hpp"
 #include "component/functional/PositionComp.hpp"
 #include "component/functional/SizeComp.hpp"
@@ -16,6 +18,9 @@
 void EntityLoaderFactory::LoadFile(entt::registry& rReg, std::istringstream& reader)
 {
 	auto entity = rReg.create();
+
+	rReg.emplace<ButtonComp>(entity);
+
 	auto& renderableComp = rReg.emplace<RenderableComp>(entity);
 	renderableComp.m_bRendered = false;
 
@@ -34,7 +39,7 @@ void EntityLoaderFactory::LoadFile(entt::registry& rReg, std::istringstream& rea
 	auto& textComp = rReg.emplace<TextComp>(entity);
 	reader >> token;
 
-	replace( token.begin(), token.end(), '_', ' ' );
+	replace( token.begin(), token.end(), '_', ' ');
 	textComp.m_text = token;
 
 	sf::Text dummyText;

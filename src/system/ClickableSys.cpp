@@ -23,14 +23,31 @@ void ClickableSys::Update()
 void ClickableSys::CheckClick_(sf::Mouse::Button click)
 {
 	bool& buttonClicked = ((click == sf::Mouse::Left ? m_bLeftClicked : m_bRightClicked));
+
 	if (buttonClicked && sf::Mouse::isButtonPressed(click))
 	{
+		m_rReg.view<ClickableComp, SizeComp, PositionComp>()
+			.each([&](auto entity, auto &clickableComp, auto& sizeComp, auto& positionComp)
+		{
+			bool& compClicked = (click == sf::Mouse::Left ? clickableComp.m_bLeftClicked : clickableComp.m_bRightClicked);
+			compClicked = false;
+		});
 		return;
 	}
-	else if (buttonClicked && !sf::Mouse::isButtonPressed(click))
+
+	if (!sf::Mouse::isButtonPressed(click))
 	{
+		m_rReg.view<ClickableComp, SizeComp, PositionComp>()
+			.each([&](auto entity, auto &clickableComp, auto& sizeComp, auto& positionComp)
+		{
+			bool& compClicked = (click == sf::Mouse::Left ? clickableComp.m_bLeftClicked : clickableComp.m_bRightClicked);
+			compClicked = false;
+		});
 		buttonClicked = false;
+		return;
 	}
+
+	buttonClicked = true;
 	m_rReg.view<ClickableComp, SizeComp, PositionComp>()
 		.each([&](auto entity, auto &clickableComp, auto& sizeComp, auto& positionComp)
 	{
@@ -46,7 +63,6 @@ void ClickableSys::CheckClick_(sf::Mouse::Button click)
 			bool& compClicked = (click == sf::Mouse::Left ? clickableComp.m_bLeftClicked : clickableComp.m_bRightClicked);
 			std::cout << "Clicked on clickable object" << std::endl;
 			compClicked = true;
-			buttonClicked = true;
 		}
 	});
 }
