@@ -16,6 +16,9 @@ public:
 		static void Load##name(entt::registry& reg, std::istringstream& reader);
 	ALL_ENTITY_MACRO(LOAD_DECL)
 	#undef LOAD_DEF
+private:
+	static int GetTextWidth_(std::string text, int height);
+	static std::string ReadString_(std::istringstream& reader);
 };
 
 #include "entity/EntityMacroEnd.hpp"

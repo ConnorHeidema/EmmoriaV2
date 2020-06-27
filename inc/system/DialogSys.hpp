@@ -7,27 +7,33 @@
 #include "util/Position.hpp"
 
 #include <entt/entt.hpp>
-#include <SFML/Graphics.hpp>
 
 #include <list>
 
-enum DialogSysState
+enum DialogSysState_t
 {
 	WAITING,
-	CONSUMING,
-	PRESENTING
+	PRODUCING,
+	PENDING,
+	FINISHED
 };
 
 class DialogSys
 	: public ISystem
 {
 public:
-	DialogSys(entt::registry& reg, sf::RenderWindow& rRenderWindow);
+	DialogSys(entt::registry& reg);
 	void Update() override;
 
 private:
+	void UpdateWaitingState_();
+	void UpdateProducingState_();
+	void UpdatePendingState_();
+	void UpdateFinishedState_();
+
 	entt::registry& m_rReg;
-	sf::RenderWindow& m_rRenderWindow;
+
+	DialogSysState_t m_dialogSysState;
 };
 
 #endif

@@ -17,7 +17,7 @@ LoadingSys::LoadingSys(entt::registry& rReg)
 
 void LoadingSys::Update()
 {
-	m_rReg.view<LoadComp>().each([&](auto entity, auto &loadComp)
+	m_rReg.view<LoadComp>().each([&](auto entity, auto& loadComp)
 	{
 		std::string token;
 		std::ifstream file(ApplicationParameters::k_dataPath + loadComp.m_filePath);

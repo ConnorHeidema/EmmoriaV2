@@ -27,7 +27,7 @@ void ClickableSys::CheckClick_(sf::Mouse::Button click)
 	if (buttonClicked && sf::Mouse::isButtonPressed(click))
 	{
 		m_rReg.view<ClickableComp, SizeComp, PositionComp>()
-			.each([&](auto entity, auto &clickableComp, auto& sizeComp, auto& positionComp)
+			.each([&](auto entity, auto& clickableComp, auto& sizeComp, auto& positionComp)
 		{
 			bool& compClicked = (click == sf::Mouse::Left ? clickableComp.m_bLeftClicked : clickableComp.m_bRightClicked);
 			compClicked = false;
@@ -38,7 +38,7 @@ void ClickableSys::CheckClick_(sf::Mouse::Button click)
 	if (!sf::Mouse::isButtonPressed(click))
 	{
 		m_rReg.view<ClickableComp, SizeComp, PositionComp>()
-			.each([&](auto entity, auto &clickableComp, auto& sizeComp, auto& positionComp)
+			.each([&](auto entity, auto& clickableComp, auto& sizeComp, auto& positionComp)
 		{
 			bool& compClicked = (click == sf::Mouse::Left ? clickableComp.m_bLeftClicked : clickableComp.m_bRightClicked);
 			compClicked = false;
@@ -49,7 +49,7 @@ void ClickableSys::CheckClick_(sf::Mouse::Button click)
 
 	buttonClicked = true;
 	m_rReg.view<ClickableComp, SizeComp, PositionComp>()
-		.each([&](auto entity, auto &clickableComp, auto& sizeComp, auto& positionComp)
+		.each([&](auto entity, auto& clickableComp, auto& sizeComp, auto& positionComp)
 	{
 		if (sf::Mouse::isButtonPressed(click) &&
 			MouseUtils::IsCollisionDetected_(

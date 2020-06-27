@@ -21,7 +21,7 @@ std::list<std::shared_ptr<ISystem>> SystemList::CreateSystemList(entt::registry&
 		std::make_unique<LoadingSys>(m_reg),
 		std::make_unique<ButtonSys>(m_reg),
 		std::make_unique<ClickableSys>(m_reg),
-		std::make_unique<DialogSys>(m_reg, m_renderWindow),
+		std::make_unique<DialogSys>(m_reg),
 		std::make_unique<PersistentSys>(m_reg)
 	};
 	return m_sysRunningOrder;

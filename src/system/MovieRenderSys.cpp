@@ -23,7 +23,7 @@ MovieRenderSys::MovieRenderSys(entt::registry& rReg, sf::RenderWindow& rRenderWi
 
 void MovieRenderSys::Update()
 {
-	m_rReg.view<MovieComp>().each([&](auto entity, auto &movieComp)
+	m_rReg.view<MovieComp>().each([&](auto entity, auto& movieComp)
 	{
 		if (m_lastMedia == Media_t::NONE && movieComp.m_currentMedia != Media_t::NONE)
 		{

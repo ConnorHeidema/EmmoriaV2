@@ -3,6 +3,7 @@
 #include "util/ApplicationParameters.hpp"
 
 #include "component/tag/ButtonComp.hpp"
+#include "component/tag/DialogChainComp.hpp"
 
 #include "component/functional/RenderableComp.hpp"
 #include "component/functional/PositionComp.hpp"
@@ -37,19 +38,10 @@ void EntityLoaderFactory::LoadFile(entt::registry& rReg, std::istringstream& rea
 	sizeComp.m_size.height = std::stoi(token) * ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;
 
 	auto& textComp = rReg.emplace<TextComp>(entity);
-	reader >> token;
+	textComp.m_text = ReadString_(reader);
 
-	replace( token.begin(), token.end(), '_', ' ');
-	textComp.m_text = token;
+	sizeComp.m_size.width = GetTextWidth_(textComp.m_text, sizeComp.m_size.height);
 
-	sf::Text dummyText;
-	sf::Font font;
-	font.loadFromFile(ApplicationParameters::k_fontPath);
-	dummyText.setFont(font);
-	dummyText.setCharacterSize(sizeComp.m_size.height*ApplicationParameters::k_textFactor);
-	dummyText.setString(textComp.m_text);
-
-	sizeComp.m_size.width = dummyText.getLocalBounds().width;
 }
 
 void EntityLoaderFactory::LoadBackground(entt::registry& rReg, std::istringstream& reader)
@@ -75,18 +67,33 @@ void EntityLoaderFactory::LoadBackground(entt::registry& rReg, std::istringstrea
 void EntityLoaderFactory::LoadRandomDialog(entt::registry& rReg, std::istringstream& reader)
 {
 	auto entity = rReg.create();
+	rReg.emplace<DialogChainComp>(entity);
+
 	auto& sizeComp = rReg.emplace<SizeComp>(entity);
 	auto& textComp = rReg.emplace<TextComp>(entity);
-	rReg.emplace<PositionComp>(entity);
-	rReg.emplace<ClickableComp>(entity);
-
-	auto& renderableComp = rReg.emplace<RenderableComp>(entity);
-	renderableComp.m_bRendered = false;
 
 	std::string token;
 	reader >> token;
-	sizeComp.m_size.width = std::stoi(token) * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
-	reader >> token;
-	sizeComp.m_size.height = std::stoi(token) * ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;
-	while (reader >> token) { textComp.m_text += token + " "; }
+	sizeComp.m_size.height = std::stoi(token) * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
+	sizeComp.m_size.width = GetTextWidth_(textComp.m_text, sizeComp.m_size.height);
+	textComp.m_text = ReadString_(reader);
+}
+
+int EntityLoaderFactory::GetTextWidth_(std::string text, int height)
+{	sf::Text dummyText;
+	sf::Font font;
+	font.loadFromFile(ApplicationParameters::k_fontPath);
+	dummyText.setFont(font);
+	dummyText.setCharacterSize(height*ApplicationParameters::k_textFactor);
+	dummyText.setString(text);
+	return dummyText.getLocalBounds().width;
+}
+
+std::string EntityLoaderFactory::ReadString_(std::istringstream& reader)
+{
+	std::string stringToRead;
+	std::string token;
+	while (reader >> token) { stringToRead += token + " "; }
+	stringToRead.pop_back();
+	return stringToRead;
 }

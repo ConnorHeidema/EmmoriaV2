@@ -16,7 +16,7 @@ MovementSys::MovementSys(entt::registry& rReg)
 void MovementSys::Update()
 {
 	// int const& speed = ApplicationParameters::k_playerMovementSpeed;
-	// m_rReg.view<PlayerComp, PositionComp>().each([&](auto entity, auto &posComp) {
+	// m_rReg.view<PlayerComp, PositionComp>().each([&](auto entity, auto& posComp) {
 	// 	{
 	// 		using namespace sf;
 	// 		if (Keyboard::isKeyPressed(Keyboard::A)) { posComp.position.x -= m_speed; }
