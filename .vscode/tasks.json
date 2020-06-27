@@ -3,7 +3,7 @@
     "tasks": [
         {
             "type": "shell",
-            "label": "C/C++: g++-7 build active file",
+            "label": "BuildAll",
             "command": "/usr/bin/g++-7",
             "args": [
                 "-std=c++17",
@@ -26,7 +26,8 @@
                 "${workspaceFolder}/src/system/MovieRenderSys.cpp",
                 "${workspaceFolder}/src/system/GameRenderSys.cpp",
                 "${workspaceFolder}/src/system/LoadingSys.cpp",
-                "${workspaceFolder}/src/system/ClickableSys.cpp",
+                "${workspaceFolder}/src/system/ButtonSys.cpp",
+                "${workspaceFolder}/src/system/ClickableSys2.cpp",
                 "${workspaceFolder}/src/system/DialogSys.cpp",
 
                 "${workspaceFolder}/src/entity/EntityLoaderFactory.cpp",
@@ -51,12 +52,8 @@
                 "-l", "sfml-network",
                 "-o", "${workspaceFolder}/output/emmoria.out"
             ],
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": [ "$gcc" ],
             "group": {
                 "kind": "build",
                 "isDefault": true

@@ -4,7 +4,7 @@
 #include "component/SizeComp.hpp"
 #include "component/RenderableComp.hpp"
 #include "component/RenderableTextComp.hpp"
-#include "component/ClickableComp.hpp"
+#include "component/functional/ClickableComp.hpp"
 
 #include "util/ApplicationParameters.hpp"
 #include "util/MouseUtils.hpp"
@@ -38,12 +38,12 @@ void DialogSys::WaitingUpdate_()
 	bool bDialogFound = false;
 	m_rReg.view<
 		SizeComp,
-		ClickableComp,
 		RenderableComp,
 		RenderableTextComp,
-		PositionComp
+		PositionComp,
+		ClickableComp
 		>
-	().each([&](auto entity, auto& sizeComp, auto& stringText, auto& posComp)
+	().each([&](auto entity, auto& sizeComp, auto& stringText, auto& posComp, auto& clickableComp)
 	{
 		m_curPosition.x = Helper::Rand(1, ApplicationParameters::k_screenWidth - 400);
 		m_curPosition.y = Helper::Rand(1, ApplicationParameters::k_screenHeight - 150);

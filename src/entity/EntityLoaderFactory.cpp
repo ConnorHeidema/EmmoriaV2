@@ -6,7 +6,7 @@
 #include "component/RenderableComp.hpp"
 #include "component/SizeComp.hpp"
 #include "component/SpriteComp.hpp"
-#include "component/ClickableComp.hpp"
+#include "component/functional/ClickableComp.hpp"
 #include "component/RenderableComp.hpp"
 #include "component/RenderableTextComp.hpp"
 

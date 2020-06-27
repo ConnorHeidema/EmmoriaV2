@@ -5,7 +5,7 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "g++-7 - Build and debug active file",
+			"name": "g++-7 - build and debug all",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/output/emmoria.out",
@@ -28,7 +28,7 @@
 					"ignoreFailures": true
 				}
 			],
-			"preLaunchTask": "C/C++: g++-7 build active file",
+			"preLaunchTask": "BuildAll",
 			"miDebuggerPath": "/usr/bin/gdb"
 		}
 	]
