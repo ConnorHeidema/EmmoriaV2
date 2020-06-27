@@ -1,4 +1,5 @@
 #include "util/Entitymap.hpp"
+
 #include "entity/EntityLoaderFactory.hpp"
 
 #include "entity/EntityMacro.hpp"

@@ -11,8 +11,6 @@
 
 #include <SFML/Graphics.hpp>
 
-#include <iostream>
-
 ButtonSys::ButtonSys(entt::registry& rReg)
 	: m_rReg(rReg)
 { }

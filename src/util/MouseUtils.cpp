@@ -1,7 +1,5 @@
 #include "util/MouseUtils.hpp"
 
-#include "SFML/Graphics.hpp"
-
 bool MouseUtils::IsCollisionDetected_(
 	int const& left,
 	int const& top,

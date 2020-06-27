@@ -1,4 +1,5 @@
 #include "util/EntityLoaderUtils.hpp"
+
 #include "util/ApplicationParameters.hpp"
 
 int EntityLoaderUtils::GetTextWidth(std::string text, int height)

@@ -3,12 +3,7 @@
 
 #include "system/ISystem.hpp"
 
-#include "util/Size.hpp"
-#include "util/Position.hpp"
-
 #include <entt/entt.hpp>
-
-#include <list>
 
 enum DialogSysState_t
 {

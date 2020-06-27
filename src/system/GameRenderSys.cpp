@@ -13,8 +13,6 @@
 
 #include <SFML/Graphics.hpp>
 
-#include <iostream>
-
 GameRenderSys::GameRenderSys(entt::registry& rReg, sf::RenderWindow& rRenderWindow)
 	: m_rReg(rReg)
 	, m_rRenderWindow(rRenderWindow)

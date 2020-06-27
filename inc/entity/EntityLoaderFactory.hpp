@@ -5,10 +5,6 @@
 
 #include <entt/entt.hpp>
 
-#include <fstream>
-#include <iostream>
-#include <sstream>
-
 class EntityLoaderFactory
 {
 public:

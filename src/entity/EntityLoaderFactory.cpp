@@ -1,8 +1,5 @@
 #include "entity/EntityLoaderFactory.hpp"
 
-#include "util/ApplicationParameters.hpp"
-#include "util/EntityLoaderUtils.hpp"
-
 #include "component/tag/ButtonComp.hpp"
 #include "component/tag/DialogChainComp.hpp"
 #include "component/tag/RandomComp.hpp"
@@ -13,6 +10,9 @@
 #include "component/functional/TextComp.hpp"
 #include "component/functional/ClickableComp.hpp"
 #include "component/functional/SpriteComp.hpp"
+
+#include "util/ApplicationParameters.hpp"
+#include "util/EntityLoaderUtils.hpp"
 
 #include <SFML/Graphics.hpp>
 

@@ -1,9 +1,9 @@
 #include "core/Application.hpp"
 
+#include "system/ISystem.hpp"
+
 #include "util/ApplicationParameters.hpp"
 #include "util/SystemList.hpp"
-
-#include "system/ISystem.hpp"
 
 Application::Application()
 	: m_reg()
