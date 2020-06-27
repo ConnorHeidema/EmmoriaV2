@@ -29,6 +29,7 @@
                 "${workspaceFolder}/src/system/ButtonSys.cpp",
                 "${workspaceFolder}/src/system/ClickableSys.cpp",
                 "${workspaceFolder}/src/system/DialogSys.cpp",
+                "${workspaceFolder}/src/system/PersistentSys.cpp",
 
                 "${workspaceFolder}/src/entity/EntityLoaderFactory.cpp",
 

@@ -1,6 +1,7 @@
 #include "system/ButtonSys.hpp"
 
 #include "component/tag/ButtonComp.hpp"
+#include "component/tag/PersistentComp.hpp"
 
 #include "component/functional/ClickableComp.hpp"
 #include "component/functional/TextComp.hpp"
@@ -35,6 +36,7 @@ void ButtonSys::Update()
 	if (movieToPlay != Media_t::NONE)
 	{
 		auto movie = m_rReg.create();
+		m_rReg.emplace<PersistentComp>(movie);
 		auto& media = m_rReg.emplace<MovieComp>(movie);
 		media.m_currentMedia = movieToPlay;
 	}
