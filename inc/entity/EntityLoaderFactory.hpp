@@ -17,7 +17,6 @@ public:
 	ALL_ENTITY_MACRO(LOAD_DECL)
 	#undef LOAD_DEF
 private:
-	static int GetTextWidth_(std::string text, int height);
 	static std::string ReadString_(std::istringstream& reader);
 };
 

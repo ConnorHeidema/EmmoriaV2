@@ -18,6 +18,7 @@
                 "${workspaceFolder}/src/util/MediatoEntitymap.cpp",
                 "${workspaceFolder}/src/util/ApplicationParameters.cpp",
                 "${workspaceFolder}/src/util/MouseUtils.cpp",
+                "${workspaceFolder}/src/util/EntityLoaderUtils.cpp",
                 "${workspaceFolder}/src/util/Helper.cpp",
                 "${workspaceFolder}/src/util/SystemList.cpp",
 

@@ -1,9 +1,11 @@
 #include "entity/EntityLoaderFactory.hpp"
 
 #include "util/ApplicationParameters.hpp"
+#include "util/EntityLoaderUtils.hpp"
 
 #include "component/tag/ButtonComp.hpp"
 #include "component/tag/DialogChainComp.hpp"
+#include "component/tag/RandomComp.hpp"
 
 #include "component/functional/RenderableComp.hpp"
 #include "component/functional/PositionComp.hpp"
@@ -40,7 +42,7 @@ void EntityLoaderFactory::LoadFile(entt::registry& rReg, std::istringstream& rea
 	auto& textComp = rReg.emplace<TextComp>(entity);
 	textComp.m_text = ReadString_(reader);
 
-	sizeComp.m_size.width = GetTextWidth_(textComp.m_text, sizeComp.m_size.height);
+	sizeComp.m_size.width = EntityLoaderUtils::GetTextWidth(textComp.m_text, sizeComp.m_size.height);
 
 }
 
@@ -68,6 +70,7 @@ void EntityLoaderFactory::LoadRandomDialog(entt::registry& rReg, std::istringstr
 {
 	auto entity = rReg.create();
 	rReg.emplace<DialogChainComp>(entity);
+	rReg.emplace<RandomComp>(entity);
 
 	auto& sizeComp = rReg.emplace<SizeComp>(entity);
 	auto& textComp = rReg.emplace<TextComp>(entity);
@@ -75,18 +78,8 @@ void EntityLoaderFactory::LoadRandomDialog(entt::registry& rReg, std::istringstr
 	std::string token;
 	reader >> token;
 	sizeComp.m_size.height = std::stoi(token) * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
-	sizeComp.m_size.width = GetTextWidth_(textComp.m_text, sizeComp.m_size.height);
+	sizeComp.m_size.width = EntityLoaderUtils::GetTextWidth(textComp.m_text, sizeComp.m_size.height);
 	textComp.m_text = ReadString_(reader);
-}
-
-int EntityLoaderFactory::GetTextWidth_(std::string text, int height)
-{	sf::Text dummyText;
-	sf::Font font;
-	font.loadFromFile(ApplicationParameters::k_fontPath);
-	dummyText.setFont(font);
-	dummyText.setCharacterSize(height*ApplicationParameters::k_textFactor);
-	dummyText.setString(text);
-	return dummyText.getLocalBounds().width;
 }
 
 std::string EntityLoaderFactory::ReadString_(std::istringstream& reader)

@@ -2,6 +2,7 @@
 
 #include "component/tag/DialogChainFragmentComp.hpp"
 #include "component/tag/DialogChainComp.hpp"
+#include "component/tag/RandomComp.hpp"
 
 #include "component/functional/SizeComp.hpp"
 #include "component/functional/TextComp.hpp"
@@ -10,6 +11,8 @@
 #include "component/functional/ClickableComp.hpp"
 
 #include "util/ApplicationParameters.hpp"
+#include "util/EntityLoaderUtils.hpp"
+#include "util/Helper.hpp"
 
 #include <entt/entt.hpp>
 
@@ -46,7 +49,7 @@ void DialogSys::UpdateWaitingState_()
 
 void DialogSys::UpdateProducingState_()
 {
-	m_rReg.view<DialogChainComp, TextComp>().each([&](auto entity, auto& textComp)
+	m_rReg.view<DialogChainComp, RandomComp, TextComp, SizeComp>().each([&](auto entity, auto& textComp, auto& sizeComp)
 	{
 		auto fragmentEntity = m_rReg.create();
 		m_rReg.emplace<DialogChainFragmentComp>(fragmentEntity);
@@ -58,12 +61,18 @@ void DialogSys::UpdateProducingState_()
 			textComp.m_text.substr(textComp.m_text.find(ApplicationParameters::k_dialogDelimiter) + 1);
 
 		auto& fragmentSizeComp = m_rReg.emplace<SizeComp>(fragmentEntity);
-		fragmentSizeComp.m_size.width = 40; // dummy value
-		fragmentSizeComp.m_size.height = 20; // dummy value
+		fragmentSizeComp.m_size.width = EntityLoaderUtils::GetTextWidth(fragmentTextComp.m_text, sizeComp.m_size.height);
+		fragmentSizeComp.m_size.height = sizeComp.m_size.height;
 
 		auto& fragmentPositionComp = m_rReg.emplace<PositionComp>(fragmentEntity);
-		fragmentPositionComp.m_position.x = 100; // dummy value
-		fragmentPositionComp.m_position.y = 200; // dummy value
+		fragmentPositionComp.m_position.x =
+			Helper::Rand(
+				fragmentSizeComp.m_size.width/2, 
+				ApplicationParameters::k_screenWidth - fragmentSizeComp.m_size.width/2);
+		fragmentPositionComp.m_position.y =
+			Helper::Rand(
+				fragmentSizeComp.m_size.height/2,
+				ApplicationParameters::k_screenHeight - fragmentSizeComp.m_size.height/2);
 
 		auto& fragmentRenderableComp = m_rReg.emplace<RenderableComp>(fragmentEntity);
 		fragmentRenderableComp.m_bRendered = false;

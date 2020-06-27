@@ -10,6 +10,5 @@ Helper::Helper()
 
 int Helper::Rand(int const& lowerBound, int const& higherBound)
 {
-
-	return rand() % higherBound + lowerBound;
+	return rand() % (higherBound - lowerBound) + lowerBound;
 }
