@@ -19,11 +19,13 @@ void MovementSys::Update()
 {
 	m_rReg.view<PlayerComp, PositionComp>().each([&](auto entity, auto& positionComp) {
 		{
+			int& xPos = positionComp.m_position.x;
+			int& yPos = positionComp.m_position.y;
 			using namespace sf;
-			if (Keyboard::isKeyPressed(Keyboard::A)) { positionComp.m_position.x -= m_speed; }
-			if (Keyboard::isKeyPressed(Keyboard::W)) { positionComp.m_position.y -= m_speed; }
-			if (Keyboard::isKeyPressed(Keyboard::D)) { positionComp.m_position.x += m_speed; }
-			if (Keyboard::isKeyPressed(Keyboard::S)) { positionComp.m_position.y += m_speed; }
+			if (Keyboard::isKeyPressed(Keyboard::A)) { xPos -= m_speed; }
+			if (Keyboard::isKeyPressed(Keyboard::W)) { yPos -= m_speed; }
+			if (Keyboard::isKeyPressed(Keyboard::D)) { xPos += m_speed; }
+			if (Keyboard::isKeyPressed(Keyboard::S)) { yPos += m_speed; }
 		}
 	});
 }
