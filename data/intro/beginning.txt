@@ -1,1 +1,1 @@
-RandomDialog 5 Help!- We've been trapped for so long.- Please.- Save us!
+RandomDialog 5 Help!-We've been trapped for so long.-Please.-Save us!-*dawn_pillar/0,0*

@@ -17,6 +17,8 @@ struct ApplicationParameters
 	static int const k_debounceFrames;
 	static std::string const k_fontPath;
 	static std::string const k_dialogDelimiter;
+	static std::string const k_dialogEscape;
+	static char const k_dialogEscapeChar;
 	static float const k_textFactor;
 };
 

@@ -17,6 +17,7 @@
 #include <SFML/Graphics.hpp>
 
 #include <string>
+#include <iostream>
 
 void EntityLoaderFactory::LoadFile(entt::registry& rReg, std::istringstream& reader)
 {
@@ -80,6 +81,11 @@ void EntityLoaderFactory::LoadRandomDialog(entt::registry& rReg, std::istringstr
 	sizeComp.m_size.height = std::stoi(token) * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
 	sizeComp.m_size.width = EntityLoaderUtils::GetTextWidth(textComp.m_text, sizeComp.m_size.height);
 	textComp.m_text = ReadString_(reader);
+}
+
+void EntityLoaderFactory::LoadPlayer(entt::registry& rReg, std::istringstream& reader)
+{
+	std::cout << "loading player" << std::endl;
 }
 
 std::string EntityLoaderFactory::ReadString_(std::istringstream& reader)

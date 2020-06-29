@@ -4,4 +4,5 @@
 #define ALL_ENTITY_MACRO(macroToUse) \
 	macroToUse(File) \
 	macroToUse(Background) \
-	macroToUse(RandomDialog)
+	macroToUse(RandomDialog) \
+	macroToUse(Player)

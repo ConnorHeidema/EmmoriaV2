@@ -19,7 +19,7 @@ void LoadingSys::Update()
 {
 	m_rReg.view<LoadComp>().each([&](auto entity, auto& loadComp)
 	{
-		std::string token;
+		std::string token; 
 		std::ifstream file(ApplicationParameters::k_dataPath + loadComp.m_filePath);
 		std::cout << ApplicationParameters::k_dataPath + loadComp.m_filePath;
 		while(std::getline(file, token))

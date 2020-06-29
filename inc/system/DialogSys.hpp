@@ -10,6 +10,7 @@ enum DialogSysState_t
 	WAITING,
 	PRODUCING,
 	PENDING,
+	LOADING,
 	FINISHED
 };
 
@@ -24,6 +25,7 @@ private:
 	void UpdateWaitingState_();
 	void UpdateProducingState_();
 	void UpdatePendingState_();
+	void UpdateLoadingState_();
 	void UpdateFinishedState_();
 
 	entt::registry& m_rReg;
