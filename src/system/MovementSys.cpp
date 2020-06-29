@@ -1,5 +1,7 @@
 #include "system/MovementSys.hpp"
 
+#include "component/tag/PlayerComp.hpp"
+
 #include "component/functional/PositionComp.hpp"
 
 #include "util/ApplicationParameters.hpp"
@@ -15,14 +17,13 @@ MovementSys::MovementSys(entt::registry& rReg)
 
 void MovementSys::Update()
 {
-	// int const& speed = ApplicationParameters::k_playerMovementSpeed;
-	// m_rReg.view<PlayerComp, PositionComp>().each([&](auto entity, auto& posComp) {
-	// 	{
-	// 		using namespace sf;
-	// 		if (Keyboard::isKeyPressed(Keyboard::A)) { posComp.position.x -= m_speed; }
-	// 		if (Keyboard::isKeyPressed(Keyboard::W)) { posComp.position.y -= m_speed; }
-	// 		if (Keyboard::isKeyPressed(Keyboard::D)) { posComp.position.x += m_speed; }
-	// 		if (Keyboard::isKeyPressed(Keyboard::S)) { posComp.position.y += m_speed; }
-	// 	}
-	// });
+	m_rReg.view<PlayerComp, PositionComp>().each([&](auto entity, auto& positionComp) {
+		{
+			using namespace sf;
+			if (Keyboard::isKeyPressed(Keyboard::A)) { positionComp.m_position.x -= m_speed; }
+			if (Keyboard::isKeyPressed(Keyboard::W)) { positionComp.m_position.y -= m_speed; }
+			if (Keyboard::isKeyPressed(Keyboard::D)) { positionComp.m_position.x += m_speed; }
+			if (Keyboard::isKeyPressed(Keyboard::S)) { positionComp.m_position.y += m_speed; }
+		}
+	});
 }

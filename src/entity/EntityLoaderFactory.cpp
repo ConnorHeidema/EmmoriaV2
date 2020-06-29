@@ -1,8 +1,9 @@
 #include "entity/EntityLoaderFactory.hpp"
 
 #include "component/tag/ButtonComp.hpp"
-#include "component/tag/DialogChainComp.hpp"
 #include "component/tag/RandomComp.hpp"
+#include "component/tag/PlayerComp.hpp"
+#include "component/tag/DialogChainComp.hpp"
 
 #include "component/functional/RenderableComp.hpp"
 #include "component/functional/PositionComp.hpp"
@@ -86,6 +87,30 @@ void EntityLoaderFactory::LoadRandomDialog(entt::registry& rReg, std::istringstr
 void EntityLoaderFactory::LoadPlayer(entt::registry& rReg, std::istringstream& reader)
 {
 	std::cout << "loading player" << std::endl;
+	std::string token;
+
+	auto entity = rReg.create();
+	rReg.emplace<PlayerComp>(entity);
+
+	auto& positionComp = rReg.emplace<PositionComp>(entity);
+
+	auto& renderableComp = rReg.emplace<RenderableComp>(entity);
+	renderableComp.m_bRendered = false;
+
+	reader >> token;
+	positionComp.m_position.x = std::stoi(token) * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
+	reader >> token;
+	positionComp.m_position.y = std::stoi(token) * ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;
+
+	auto& sizeComp = rReg.emplace<SizeComp>(entity);
+	reader >> token;
+	sizeComp.m_size.width = std::stoi(token) * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
+	reader >> token;
+	sizeComp.m_size.height = std::stoi(token) * ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;
+
+	auto& spriteComp = rReg.emplace<SpriteComp>(entity);
+	reader >> token;
+	spriteComp.m_filePath = ApplicationParameters::k_spritePath + token + ".png";
 }
 
 std::string EntityLoaderFactory::ReadString_(std::istringstream& reader)
