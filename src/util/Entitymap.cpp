@@ -18,6 +18,9 @@ std::unordered_map<std::string, void(*)(entt::registry& reg, std::istringstream&
 	return m;
 }
 
-std::unordered_map<std::string, void(*)(entt::registry& reg, std::istringstream& line)> const Entitymap::m_entityMap =  Entitymap::Create_map();
+std::unordered_map<
+	std::string,
+	void(*)(entt::registry& reg, std::istringstream& line)>
+		const Entitymap::m_entityMap =  Entitymap::Create_map();
 
 #include "entity/EntityMacroEnd.hpp"
