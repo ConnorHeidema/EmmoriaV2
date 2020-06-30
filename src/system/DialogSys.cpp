@@ -51,7 +51,10 @@ void DialogSys::UpdateWaitingState_()
 
 void DialogSys::UpdateProducingState_()
 {
-	m_rReg.view<DialogChainComp, RandomComp, TextComp, SizeComp>().each([&](auto entity, auto& textComp, auto& sizeComp)
+	m_rReg.view<DialogChainComp, RandomComp, TextComp, SizeComp>().each([&]
+		(auto entity,
+		auto& textComp,
+		auto& sizeComp)
 	{
 		auto fragmentEntity = m_rReg.create();
 		m_rReg.emplace<DialogChainFragmentComp>(fragmentEntity);

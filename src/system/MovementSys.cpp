@@ -6,7 +6,7 @@
 
 #include "util/ApplicationParameters.hpp"
 
-#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 
 #include <entt/entt.hpp>
 

@@ -5,7 +5,7 @@
 
 #include <entt/entt.hpp>
 
-#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 
 class ClickableSys
 	: public ISystem

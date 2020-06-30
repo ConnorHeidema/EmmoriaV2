@@ -6,6 +6,7 @@
 #include "component/tag/DialogChainComp.hpp"
 
 #include "component/functional/RenderableComp.hpp"
+#include "component/functional/HealthComp.hpp"
 #include "component/functional/PositionComp.hpp"
 #include "component/functional/SizeComp.hpp"
 #include "component/functional/TextComp.hpp"
@@ -111,6 +112,10 @@ void EntityLoaderFactory::LoadPlayer(entt::registry& rReg, std::istringstream& r
 	auto& spriteComp = rReg.emplace<SpriteComp>(entity);
 	reader >> token;
 	spriteComp.m_filePath = ApplicationParameters::k_spritePath + token + ".png";
+
+	auto& healthComp = rReg.emplace<HealthComp>(entity);
+	reader >> token;
+	healthComp.m_health = std::stoi(token);
 }
 
 std::string EntityLoaderFactory::ReadString_(std::istringstream& reader)

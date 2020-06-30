@@ -31,6 +31,7 @@
                 "${workspaceFolder}/src/system/ClickableSys.cpp",
                 "${workspaceFolder}/src/system/DialogSys.cpp",
                 "${workspaceFolder}/src/system/PersistentSys.cpp",
+                "${workspaceFolder}/src/system/HealthSys.cpp",
 
                 "${workspaceFolder}/src/entity/EntityLoaderFactory.cpp",
 
@@ -38,7 +39,7 @@
                 "-I", "${workspaceFolder}/ext/inc",
                 "-L", "${workspaceFolder}/ext/bin/SFML",
                 "-L", "${workspaceFolder}/ext/bin/sfemovie",
-                "-l","stdc++fs",
+                "-l", "stdc++fs",
                 "-l", "avcodec",
                 "-l", "sfeMovie",
                 "-l", "avdevice",
