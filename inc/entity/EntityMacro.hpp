@@ -5,4 +5,5 @@
 	macroToUse(File) \
 	macroToUse(Background) \
 	macroToUse(RandomDialog) \
-	macroToUse(Player)
+	macroToUse(Player) \
+	macroToUse(HealingPad)

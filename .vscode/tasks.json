@@ -32,6 +32,7 @@
                 "${workspaceFolder}/src/system/DialogSys.cpp",
                 "${workspaceFolder}/src/system/PersistentSys.cpp",
                 "${workspaceFolder}/src/system/HealthSys.cpp",
+                "${workspaceFolder}/src/system/InteractingSys.cpp",
 
                 "${workspaceFolder}/src/entity/EntityLoaderFactory.cpp",
 

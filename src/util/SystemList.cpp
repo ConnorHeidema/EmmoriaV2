@@ -10,6 +10,7 @@
 #include "system/DialogSys.hpp"
 #include "system/PersistentSys.hpp"
 #include "system/HealthSys.hpp"
+#include "system/InteractingSys.hpp"
 
 std::list<std::shared_ptr<ISystem>> SystemList::CreateSystemList(entt::registry& m_reg, sf::RenderWindow& m_renderWindow)
 {
@@ -24,7 +25,8 @@ std::list<std::shared_ptr<ISystem>> SystemList::CreateSystemList(entt::registry&
 		std::make_unique<ClickableSys>(m_reg),
 		std::make_unique<DialogSys>(m_reg),
 		std::make_unique<PersistentSys>(m_reg),
-		std::make_unique<HealthSys>(m_reg)
+		std::make_unique<HealthSys>(m_reg),
+		std::make_unique<InteractingSys>(m_reg)
 	};
 	return m_sysRunningOrder;
 }
