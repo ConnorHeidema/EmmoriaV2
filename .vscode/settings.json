@@ -66,8 +66,6 @@
 		"*.ipp": "cpp"
 	},
 	"editor.tabSize": 4,
-	"editor.formatOnPaste": true,
-	"editor.formatOnSave": true,
 	"search.exclude": {
 		"ext/": true
 	}
