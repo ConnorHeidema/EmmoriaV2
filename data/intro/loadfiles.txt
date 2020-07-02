@@ -1,3 +1,3 @@
-Background OpeningScreen
-File 50 75 4 New Game
-File 50 85 4 Load Game
+Fullscreen OpeningScreen
+ButtonComp Renderable Xposition 50 Yposition 75 Height 4 Text New Game *
+ButtonComp Renderable Xposition 50 Yposition 85 Height 4 Text Load Game *

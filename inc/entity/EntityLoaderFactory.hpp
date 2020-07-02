@@ -8,9 +8,11 @@
 class EntityLoaderFactory
 {
 public:
+
 	#define LOAD_DECL(name) \
-		static void Load##name(entt::registry& reg, std::istringstream& reader);
-	ALL_ENTITY_MACRO(LOAD_DECL)
+		static void Load##name(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader);
+	ALL_COMPONENT_PIECE_MACRO(LOAD_DECL)
+	ALL_TAG_MACRO(LOAD_DECL)
 	#undef LOAD_DEF
 private:
 	static std::string ReadString_(std::istringstream& reader);

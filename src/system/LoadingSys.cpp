@@ -19,15 +19,20 @@ void LoadingSys::Update()
 {
 	m_rReg.view<LoadComp>().each([&](auto entity, auto& loadComp)
 	{
-		std::string token; 
+		std::string token;
 		std::ifstream file(ApplicationParameters::k_dataPath + loadComp.m_filePath);
-		std::cout << ApplicationParameters::k_dataPath + loadComp.m_filePath;
+		std::cout << "Loading entity from file " + loadComp.m_filePath << std::endl;
 		while(std::getline(file, token))
 		{
+			std::cout << "Loading new entity" << std::endl;
+			auto loadEntity = m_rReg.create();
 			std::istringstream line(token);
-			line >> token;
-			std::cout << "Loading from file: " + ApplicationParameters::k_dataPath + loadComp.m_filePath << std::endl;
-			Entitymap::m_entityMap.at(token)(m_rReg, line);
+			while (!line.eof())
+			{
+				line >> token;
+				std::cout << "Attaching " + token + " parameter to entity" << std::endl;
+				Entitymap::m_entityMap.at(token)(m_rReg, loadEntity, line);
+			}
 		}
 		m_rReg.destroy(entity);
 	});
