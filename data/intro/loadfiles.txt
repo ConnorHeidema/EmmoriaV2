@@ -1,3 +1,3 @@
 Fullscreen OpeningScreen
-ButtonComp Renderable Xposition 50 Yposition 75 Height 4 Text New Game *
-ButtonComp Renderable Xposition 50 Yposition 85 Height 4 Text Load Game *
+Button NewGame 50 75 4 New Game *
+Button LoadGame 50 85 4 Load Game *
