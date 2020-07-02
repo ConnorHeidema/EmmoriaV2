@@ -129,7 +129,8 @@ void EntityLoaderFactory::LoadTextComp(entt::registry& rReg, entt::entity& rEnti
 	auto& textComp = rReg.get_or_emplace<TextComp>(rEntity);
 	std::string token;
 	reader >> token;
-	while (token != ApplicationParameters::k_dialogEscape) { textComp.m_text += token; reader >> token; }
+	while (token != ApplicationParameters::k_dialogEscape) { textComp.m_text += token + " "; reader >> token; }
+	textComp.m_text.pop_back();
 	reader >> token;
 }
 
@@ -193,7 +194,10 @@ void EntityLoaderFactory::LoadButton(entt::registry& rReg, entt::entity& rEntity
 
 void EntityLoaderFactory::LoadRandomDialog(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
-	// todo
+ 	rReg.emplace<DialogChainComp>(rEntity);
+ 	rReg.emplace<RandomComp>(rEntity);
+	LoadHeight(rReg, rEntity, reader);
+	LoadTextComp(rReg, rEntity, reader);
 }
 
 #include "entity/EntityMacroEnd.hpp"
