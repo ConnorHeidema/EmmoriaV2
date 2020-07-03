@@ -20,7 +20,8 @@
 	macroToUse(RenderableComp) \
 	macroToUse(SizeComp) \
 	macroToUse(SpriteComp) \
-	macroToUse(TextComp)
+	macroToUse(TextComp) \
+	macroToUse(TileMapComp)
 
 #define ALL_COMPONENT_PIECE_MACRO(macroToUse) \
 	macroToUse(Xposition) \

@@ -21,6 +21,7 @@ struct ApplicationParameters
 	static std::string const k_fontPath;
 	static std::string const k_dialogDelimiter;
 	static std::string const k_dialogEscape;
+	static std::string const k_pictureExt;
 
 	static char const k_dialogEscapeChar;
 	static float const k_textFactor;

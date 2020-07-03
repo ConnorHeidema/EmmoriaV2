@@ -18,6 +18,7 @@
 #include "component/functional/SizeComp.hpp"
 #include "component/functional/SpriteComp.hpp"
 #include "component/functional/TextComp.hpp"
+#include "component/functional/TileMapComp.hpp"
 
 #include "util/ApplicationParameters.hpp"
 #include "util/EntityLoaderUtils.hpp"
@@ -25,15 +26,15 @@
 #include <string>
 #include <iostream>
 
-#include "entity/EntityMacro.hpp"
-
 /* Tag loaders */
 
+#include "entity/EntityMacro.hpp"
 #define LOAD_DEF_TAG(name) \
 void EntityLoaderFactory::Load##name(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader) \
 { rReg.emplace_or_replace< name >(rEntity); }
 ALL_TAG_MACRO(LOAD_DEF_TAG)
 #undef LOAD_DEF
+#include "entity/EntityMacroEnd.hpp"
 
 /* Individual component Loaders */
 
@@ -121,7 +122,7 @@ void EntityLoaderFactory::LoadSpriteComp(entt::registry& rReg, entt::entity& rEn
 	std::string token;
 	reader >> token;
 	auto& spriteComp = rReg.get_or_emplace<SpriteComp>(rEntity);
-	spriteComp.m_filePath = ApplicationParameters::k_spritePath + token + ".png";
+	spriteComp.m_filePath = ApplicationParameters::k_spritePath + token + ApplicationParameters::k_pictureExt;
 }
 
 void EntityLoaderFactory::LoadTextComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -132,6 +133,15 @@ void EntityLoaderFactory::LoadTextComp(entt::registry& rReg, entt::entity& rEnti
 	while (token != ApplicationParameters::k_dialogEscape) { textComp.m_text += token + " "; reader >> token; }
 	textComp.m_text.pop_back();
 	reader >> token;
+}
+
+void EntityLoaderFactory::LoadTileMapComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
+{
+	// TODO
+	auto& tileMapComp = rReg.get_or_emplace<TilemapComp>(rEntity);
+	std::string token;
+	reader >> token;
+	tileMapComp.m_tilemapIndex = 0;
 }
 
 /* Component aggregate loaders */
@@ -199,82 +209,3 @@ void EntityLoaderFactory::LoadRandomDialog(entt::registry& rReg, entt::entity& r
 	LoadHeight(rReg, rEntity, reader);
 	LoadTextComp(rReg, rEntity, reader);
 }
-
-#include "entity/EntityMacroEnd.hpp"
-
-// void EntityLoaderFactory::LoadRandomDialog(entt::registry& rReg, std::istringstream& reader)
-// {
-// 	auto entity = rReg.create();
-// 	rReg.emplace<DialogChainComp>(entity);
-// 	rReg.emplace<RandomComp>(entity);
-
-// 	auto& sizeComp = rReg.emplace<SizeComp>(entity);
-// 	auto& textComp = rReg.emplace<TextComp>(entity);
-
-// 	std::string token;
-// 	reader >> token;
-// 	sizeComp.m_size.height = std::stoi(token) * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
-// 	sizeComp.m_size.width = EntityLoaderUtils::GetTextWidth(textComp.m_text, sizeComp.m_size.height);
-// 	textComp.m_text = ReadString_(reader);
-// }
-
-// void EntityLoaderFactory::LoadPlayer(entt::registry& rReg, std::istringstream& reader)
-// {
-// 	std::cout << "loading player" << std::endl;
-// 	std::string token;
-
-// 	auto entity = rReg.create();
-// 	rReg.emplace<PlayerComp>(entity);
-
-// 	auto& positionComp = rReg.emplace<PositionComp>(entity);
-// 	reader >> token;
-// 	positionComp.m_position.x = std::stoi(token) * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
-// 	reader >> token;
-// 	positionComp.m_position.y = std::stoi(token) * ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;
-
-// 	auto& renderableComp = rReg.emplace<RenderableComp>(entity);
-// 	renderableComp.m_bRendered = false;
-
-// 	auto& sizeComp = rReg.emplace<SizeComp>(entity);
-// 	reader >> token;
-// 	sizeComp.m_size.width = std::stoi(token) * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
-// 	reader >> token;
-// 	sizeComp.m_size.height = std::stoi(token) * ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;
-
-// 	auto& spriteComp = rReg.emplace<SpriteComp>(entity);
-// 	reader >> token;
-// 	spriteComp.m_filePath = ApplicationParameters::k_spritePath + token + ".png";
-
-// 	auto& healthComp = rReg.emplace<HealthComp>(entity);
-// 	reader >> token;
-// 	healthComp.m_health = std::stoi(token);
-// }
-
-// void EntityLoaderFactory::LoadHealingPad(entt::registry& rReg, std::istringstream& reader)
-// {
-// 	std::cout << "loading healing pad" << std::endl;
-// 	std::string token;
-
-// 	auto entity = rReg.create();
-// 	auto& interactableComp = rReg.emplace<InteractableComp>(entity);
-// 	interactableComp.interactionType = "heal";
-
-// 	auto& positionComp = rReg.emplace<PositionComp>(entity);
-// 	reader >> token;
-// 	positionComp.m_position.x = std::stoi(token) * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
-// 	reader >> token;
-// 	positionComp.m_position.y = std::stoi(token) * ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;
-
-// 	auto& renderableComp = rReg.emplace<RenderableComp>(entity);
-// 	renderableComp.m_bRendered = false;
-
-// 	auto& sizeComp = rReg.emplace<SizeComp>(entity);
-// 	reader >> token;
-// 	sizeComp.m_size.width = std::stoi(token) * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
-// 	reader >> token;
-// 	sizeComp.m_size.height = std::stoi(token) * ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;
-
-// 	auto& spriteComp = rReg.emplace<SpriteComp>(entity);
-// 	reader >> token;
-// 	spriteComp.m_filePath = ApplicationParameters::k_spritePath + token + ".png";
-// }

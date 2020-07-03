@@ -11,7 +11,7 @@
 
 struct SystemList
 {
-    static std::list<std::shared_ptr<ISystem>> CreateSystemList(entt::registry& m_reg, sf::RenderWindow& m_renderWindow);
+    static std::list<std::shared_ptr<ISystem>> CreateSystemList(entt::registry& rReg, sf::RenderWindow& rRenderWindow);
     static std::list<std::shared_ptr<ISystem>> m_pSystemList;
 };
 

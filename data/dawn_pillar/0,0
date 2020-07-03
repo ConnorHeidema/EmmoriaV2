@@ -1,2 +1,3 @@
 PlayerComp PositionComp 50 50 SizeComp 5 5 SpriteComp Player HealthComp 255 RenderableComp InteractorComp player InteractableComp
 InteractableComp player-regen PositionComp 60 60 SizeComp 5 5 SpriteComp HealingPad RenderableComp
+TilemapComp GRASS PositionComp 5 5 SizeComp 5 5 RenderableComp
