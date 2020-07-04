@@ -9,6 +9,8 @@
 
 #include "component/InteractType.hpp"
 
+#include "component/InteractStringMap.hpp"
+
 #include "util/OverlapUtils.hpp"
 
 #include <iostream>
@@ -31,10 +33,19 @@ void InteractingSys::Update()
 				interactorPositionComp.m_position,
 				interactorSizeComp.m_size))
 			{
-				if (interactableComp.m_interactType == InteractType_t::DialogChainComp_t &&
-					interactorComp.m_interactType == InteractType_t::NUM_INTERACTOR_TYPE)
+				#define INDEX(interactor, interactable) \
+					static_cast<int>(interactor) * \
+					static_cast<int>(InteractType_t::NUM_INTERACTOR_TYPE) + \
+					static_cast<int>(interactable)
+				try
 				{
-					std::cout << "overlap detected between playercomp and healingpad comp" << std::endl;
+					InteractStringMap::fnInteractionMap.at(
+						INDEX(interactorComp.m_interactType, interactableComp.m_interactType))
+							(m_rReg, interactorEntity, interactableEntity);
+				}
+				catch (std::out_of_range const& /*e*/)
+				{
+					std::cout << "Cannot interact between components" << std::endl;
 				}
 			}
 		});

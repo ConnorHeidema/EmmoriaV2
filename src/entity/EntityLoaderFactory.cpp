@@ -16,6 +16,8 @@
 #include "component/functional/TextComp.hpp"
 #include "component/functional/TileMapComp.hpp"
 
+#include "component/InteractStringMap.hpp"
+
 #include "util/ApplicationParameters.hpp"
 #include "util/EntityLoaderUtils.hpp"
 
@@ -59,14 +61,19 @@ void EntityLoaderFactory::LoadHealthComp(entt::registry& rReg, entt::entity& rEn
 
 void EntityLoaderFactory::LoadInteractableComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
+	std::string token;
+	reader >> token;
 	auto& interactableComp = rReg.get_or_emplace<InteractableComp>(rEntity);
-	interactableComp.m_interactType = InteractType_t::NUM_INTERACTOR_TYPE; // todo
+	interactableComp.m_interactType = InteractStringMap::s_interactStringToType.at(token); // todo
+
 }
 
 void EntityLoaderFactory::LoadInteractorComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
+	std::string token;
+	reader >> token;
 	auto& interactorComp = rReg.get_or_emplace<InteractorComp>(rEntity);
-	interactorComp.m_interactType = InteractType_t::DialogChainComp_t; // todo
+	interactorComp.m_interactType = InteractStringMap::s_interactStringToType.at(token); // todo
 }
 
 void EntityLoaderFactory::LoadLoadComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)

@@ -13,6 +13,8 @@
 
                 "${workspaceFolder}/src/core/Application.cpp",
 
+                "${workspaceFolder}/src/component/InteractStringMap.cpp",
+
                 "${workspaceFolder}/src/util/Mediamap.cpp",
                 "${workspaceFolder}/src/util/Entitymap.cpp",
                 "${workspaceFolder}/src/util/MediatoEntitymap.cpp",
