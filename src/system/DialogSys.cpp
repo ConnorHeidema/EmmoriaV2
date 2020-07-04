@@ -1,8 +1,6 @@
 #include "system/DialogSys.hpp"
 
-#include "component/tag/DialogChainFragmentComp.hpp"
-#include "component/tag/DialogChainComp.hpp"
-#include "component/tag/RandomComp.hpp"
+#include "component/tag/AllTagComp.hpp"
 
 #include "component/functional/LoadComp.hpp"
 #include "component/functional/SizeComp.hpp"

@@ -1,12 +1,6 @@
 #include "entity/EntityLoaderFactory.hpp"
 
-#include "component/tag/DialogChainComp.hpp"
-#include "component/tag/DialogChainFragmentComp.hpp"
-#include "component/tag/HealingPadComp.hpp"
-#include "component/tag/InteractableComp.hpp"
-#include "component/tag/PersistentComp.hpp"
-#include "component/tag/PlayerComp.hpp"
-#include "component/tag/RandomComp.hpp"
+#include "component/tag/AllTagComp.hpp"
 
 #include "component/functional/ButtonComp.hpp"
 #include "component/functional/ClickableComp.hpp"

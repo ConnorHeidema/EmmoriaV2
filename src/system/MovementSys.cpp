@@ -1,6 +1,6 @@
 #include "system/MovementSys.hpp"
 
-#include "component/tag/PlayerComp.hpp"
+#include "component/tag/AllTagComp.hpp"
 
 #include "component/functional/PositionComp.hpp"
 

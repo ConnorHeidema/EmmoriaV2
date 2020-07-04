@@ -1,8 +1,7 @@
 #include "system/InteractingSys.hpp"
 
-#include "component/tag/InteractableComp.hpp"
-#include "component/tag/PlayerComp.hpp"
-#include "component/tag/HealingPadComp.hpp"
+#include "component/tag/AllTagComp.hpp"
+
 
 #include "component/functional/SizeComp.hpp"
 #include "component/functional/PositionComp.hpp"

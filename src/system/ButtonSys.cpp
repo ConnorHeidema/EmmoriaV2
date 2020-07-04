@@ -1,6 +1,6 @@
 #include "system/ButtonSys.hpp"
 
-#include "component/tag/PersistentComp.hpp"
+#include "component/tag/AllTagComp.hpp"
 
 #include "component/functional/ButtonComp.hpp"
 #include "component/functional/ClickableComp.hpp"

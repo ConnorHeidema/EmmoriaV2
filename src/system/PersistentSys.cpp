@@ -1,6 +1,6 @@
 #include "system/PersistentSys.hpp"
 
-#include "component/tag/PersistentComp.hpp"
+#include "component/tag/AllTagComp.hpp"
 
 #include "component/functional/PositionComp.hpp"
 
