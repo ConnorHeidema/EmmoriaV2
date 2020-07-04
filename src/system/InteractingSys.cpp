@@ -1,6 +1,15 @@
 #include "system/InteractingSys.hpp"
 
+#include "component/tag/InteractableComp.hpp"
+#include "component/tag/PlayerComp.hpp"
+#include "component/tag/HealingPadComp.hpp"
+
+#include "component/functional/SizeComp.hpp"
 #include "component/functional/PositionComp.hpp"
+
+#include "component/functional/InteractorComp.hpp"
+
+#include "util/OverlapUtils.hpp"
 
 #include <iostream>
 
@@ -10,11 +19,23 @@ InteractingSys::InteractingSys(entt::registry& rReg)
 
 void InteractingSys::Update()
 {
-	// reg.view<PositionComp>().each([](auto entity, auto& posComp) {
-	// 	std::cout << "(" <<
-	// 		std::to_string(posComp.position.x) <<
-	// 		", " <<
-	// 		std::to_string(posComp.position.y) << ")" <<
-	// 		std::endl;
-	// });
+	m_rReg.view<PositionComp, SizeComp, InteractableComp>().each([&]
+		(auto interactableEntity, auto& interactablePositionComp, auto& interactableSizeComp)
+	{
+		m_rReg.view<PositionComp, SizeComp, InteractorComp>().each([&]
+			(auto interactorEntity, auto& interactorPositionComp, auto& interactorSizeComp, auto& interactorComp)
+		{
+			if (OverlapUtils::Overlapping(
+				interactablePositionComp.m_position,
+				interactableSizeComp.m_size,
+				interactorPositionComp.m_position,
+				interactorSizeComp.m_size))
+			{
+				if (m_rReg.any<PlayerComp>(interactorEntity) && m_rReg.any<HealingPadComp>(interactableEntity))
+				{
+					std::cout << "overlap detected between playercomp and healingpad comp" << std::endl;
+				}
+			}
+		});
+	});
 }

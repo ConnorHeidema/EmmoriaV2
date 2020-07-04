@@ -16,16 +16,10 @@ void HealthSys::Update()
 {
 	m_rReg.view<HealthComp>().each([](auto entity, auto& healthComp) {
 		std::cout <<  std::to_string(healthComp.m_health) << std::endl;
-	});
-
-
-	m_rReg.view<HealthComp>().each([](auto entity, auto& healthComp) {
-
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		{
 			healthComp.m_health -= 1;
 		}
-		std::cout <<  std::to_string(healthComp.m_health) << std::endl;
 	});
 
 	m_rReg.view<PlayerComp, HealthComp>().each([&](auto entity, auto& healthComp) {
@@ -33,7 +27,6 @@ void HealthSys::Update()
 		if (healthComp.m_health == 0)
 		{
 			std::cout << "game over" << std::endl;
-			// game over
 			m_rReg.destroy(entity);
 		}
 	});

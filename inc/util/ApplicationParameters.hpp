@@ -18,6 +18,9 @@ struct ApplicationParameters
 	static int const k_heightUnits;
 	static int const k_debounceFrames;
 
+	static int const k_widthAdjustment;
+	static int const k_heightAdjustment;
+
 	static std::string const k_fontPath;
 	static std::string const k_dialogDelimiter;
 	static std::string const k_dialogEscape;

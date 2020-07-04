@@ -2,6 +2,8 @@
 
 #include "component/tag/DialogChainComp.hpp"
 #include "component/tag/DialogChainFragmentComp.hpp"
+#include "component/tag/HealingPadComp.hpp"
+#include "component/tag/InteractableComp.hpp"
 #include "component/tag/PersistentComp.hpp"
 #include "component/tag/PlayerComp.hpp"
 #include "component/tag/RandomComp.hpp"
@@ -9,7 +11,6 @@
 #include "component/functional/ButtonComp.hpp"
 #include "component/functional/ClickableComp.hpp"
 #include "component/functional/HealthComp.hpp"
-#include "component/functional/InteractableComp.hpp"
 #include "component/functional/InteractorComp.hpp"
 #include "component/functional/LoadComp.hpp"
 #include "component/functional/MovieComp.hpp"
@@ -61,20 +62,9 @@ void EntityLoaderFactory::LoadHealthComp(entt::registry& rReg, entt::entity& rEn
 	healthComp.m_health = std::stoi(token);
 }
 
-void EntityLoaderFactory::LoadInteractableComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
-{
-	std::string token;
-	reader >> token;
-	auto& interactableComp = rReg.get_or_emplace<InteractableComp>(rEntity);
-	interactableComp.interactionType = token;
-}
-
 void EntityLoaderFactory::LoadInteractorComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
-	std::string token;
-	reader >> token;
-	auto& interactableComp = rReg.get_or_emplace<InteractableComp>(rEntity);
-	interactableComp.interactionType = token;
+	auto& interactorComp = rReg.get_or_emplace<InteractorComp>(rEntity);
 }
 
 void EntityLoaderFactory::LoadLoadComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -96,9 +86,9 @@ void EntityLoaderFactory::LoadPositionComp(entt::registry& rReg, entt::entity& r
 	std::string token;
 	auto& positionComp = rReg.get_or_emplace<PositionComp>(rEntity);
 	reader >> token;
-	positionComp.m_position.x = std::stoi(token) * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
+	positionComp.m_position.x = std::stoi(token) * ApplicationParameters::k_widthAdjustment;
 	reader >> token;
-	positionComp.m_position.y = std::stoi(token) * ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;
+	positionComp.m_position.y = std::stoi(token) * ApplicationParameters::k_heightAdjustment;
 }
 
 void EntityLoaderFactory::LoadRenderableComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -112,9 +102,9 @@ void EntityLoaderFactory::LoadSizeComp(entt::registry& rReg, entt::entity& rEnti
 	std::string token;
 	auto& sizeComp = rReg.get_or_emplace<SizeComp>(rEntity);
 	reader >> token;
-	sizeComp.m_size.width = std::stoi(token) * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
+	sizeComp.m_size.width = std::stoi(token) * ApplicationParameters::k_widthAdjustment;
 	reader >> token;
-	sizeComp.m_size.height = std::stoi(token) * ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;
+	sizeComp.m_size.height = std::stoi(token) * ApplicationParameters::k_heightAdjustment;
 }
 
 void EntityLoaderFactory::LoadSpriteComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -151,7 +141,7 @@ void EntityLoaderFactory::LoadXposition(entt::registry& rReg, entt::entity& rEnt
 	std::string token;
 	reader >> token;
 	auto& positionComp = rReg.get_or_emplace<PositionComp>(rEntity);
-	positionComp.m_position.x = std::stoi(token) * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
+	positionComp.m_position.x = std::stoi(token) * ApplicationParameters::k_widthAdjustment;
 }
 
 void EntityLoaderFactory::LoadYposition(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -159,7 +149,7 @@ void EntityLoaderFactory::LoadYposition(entt::registry& rReg, entt::entity& rEnt
 	std::string token;
 	reader >> token;
 	auto& positionComp = rReg.get_or_emplace<PositionComp>(rEntity);
-	positionComp.m_position.y = std::stoi(token) * ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;
+	positionComp.m_position.y = std::stoi(token) * ApplicationParameters::k_heightAdjustment;
 }
 
 void EntityLoaderFactory::LoadWidth(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -167,7 +157,7 @@ void EntityLoaderFactory::LoadWidth(entt::registry& rReg, entt::entity& rEntity,
 	std::string token;
 	reader >> token;
 	auto& sizeComp = rReg.get_or_emplace<SizeComp>(rEntity);
-	sizeComp.m_size.width = std::stoi(token) * ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
+	sizeComp.m_size.width = std::stoi(token) * ApplicationParameters::k_widthAdjustment;
 }
 
 void EntityLoaderFactory::LoadHeight(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -175,7 +165,7 @@ void EntityLoaderFactory::LoadHeight(entt::registry& rReg, entt::entity& rEntity
 	std::string token;
 	reader >> token;
 	auto& sizeComp = rReg.get_or_emplace<SizeComp>(rEntity);
-	sizeComp.m_size.height = std::stoi(token) * ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;
+	sizeComp.m_size.height = std::stoi(token) * ApplicationParameters::k_heightAdjustment;
 }
 
 void EntityLoaderFactory::LoadFullscreen(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)

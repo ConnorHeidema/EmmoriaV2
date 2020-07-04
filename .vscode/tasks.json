@@ -21,6 +21,7 @@
                 "${workspaceFolder}/src/util/EntityLoaderUtils.cpp",
                 "${workspaceFolder}/src/util/Helper.cpp",
                 "${workspaceFolder}/src/util/SystemList.cpp",
+                "${workspaceFolder}/src/util/OverlapUtils.cpp",
 
                 "${workspaceFolder}/src/system/MovementSys.cpp",
                 "${workspaceFolder}/src/system/PrintMovementSys.cpp",

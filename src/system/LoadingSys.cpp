@@ -21,7 +21,7 @@ void LoadingSys::Update()
 	{
 		std::string token;
 		std::ifstream file(ApplicationParameters::k_dataPath + loadComp.m_filePath);
-		std::cout << "Loading entity from file " + loadComp.m_filePath << std::endl;
+		std::cout << "Loading entity from file " << loadComp.m_filePath << std::endl;
 		while(std::getline(file, token))
 		{
 			std::cout << "Loading new entity" << std::endl;
@@ -30,8 +30,15 @@ void LoadingSys::Update()
 			while (!line.eof())
 			{
 				line >> token;
-				std::cout << "Attaching " + token + " parameter to entity" << std::endl;
-				Entitymap::m_entityMap.at(token)(m_rReg, loadEntity, line);
+				std::cout << "Attaching " << token << " parameter to entity" << std::endl;
+				try
+				{
+					Entitymap::m_entityMap.at(token)(m_rReg, loadEntity, line);
+				}
+				catch (std::out_of_range const& /*e*/)
+				{
+					std::cout << "Could not attach " << token << " parameter to entity" << std::endl;
+				}
 			}
 		}
 		m_rReg.destroy(entity);

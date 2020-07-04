@@ -10,6 +10,7 @@
 struct InteractorComp
 {
 	std::list<std::string> m_currentInteractablesList;
+	std::string m_interactorType;
 };
 
 #endif

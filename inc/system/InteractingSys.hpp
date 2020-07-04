@@ -5,6 +5,10 @@
 
 #include <entt/entt.hpp>
 
+
+/**
+ * This system handles interactions between 2 objects
+ */
 class InteractingSys
 	: public ISystem
 {

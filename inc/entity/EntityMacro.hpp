@@ -4,6 +4,8 @@
 #define ALL_TAG_MACRO(macroToUse) \
 	macroToUse(DialogChainComp) \
 	macroToUse(DialogChainFragmentComp) \
+	macroToUse(HealingPadComp) \
+	macroToUse(InteractableComp) \
 	macroToUse(PersistentComp) \
 	macroToUse(PlayerComp) \
 	macroToUse(RandomComp)
@@ -12,7 +14,6 @@
 	macroToUse(ButtonComp) \
 	macroToUse(ClickableComp) \
 	macroToUse(HealthComp) \
-	macroToUse(InteractableComp) \
 	macroToUse(InteractorComp) \
 	macroToUse(LoadComp) \
 	macroToUse(MovieComp) \
