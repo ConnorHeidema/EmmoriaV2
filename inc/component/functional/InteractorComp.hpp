@@ -1,6 +1,8 @@
 #ifndef __INTERACTOR_COMP__
 #define __INTERACTOR_COMP__
 
+#include "component/InteractType.hpp"
+
 #include <list>
 #include <string>
 
@@ -10,7 +12,7 @@
 struct InteractorComp
 {
 	std::list<std::string> m_currentInteractablesList;
-	std::string m_interactorType;
+	InteractType_t m_interactType;
 };
 
 #endif

@@ -5,6 +5,7 @@
 #include "component/functional/ButtonComp.hpp"
 #include "component/functional/ClickableComp.hpp"
 #include "component/functional/HealthComp.hpp"
+#include "component/functional/InteractableComp.hpp"
 #include "component/functional/InteractorComp.hpp"
 #include "component/functional/LoadComp.hpp"
 #include "component/functional/MovieComp.hpp"
@@ -56,9 +57,16 @@ void EntityLoaderFactory::LoadHealthComp(entt::registry& rReg, entt::entity& rEn
 	healthComp.m_health = std::stoi(token);
 }
 
+void EntityLoaderFactory::LoadInteractableComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
+{
+	auto& interactableComp = rReg.get_or_emplace<InteractableComp>(rEntity);
+	interactableComp.m_interactType = InteractType_t::NUM_INTERACTOR_TYPE; // todo
+}
+
 void EntityLoaderFactory::LoadInteractorComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
 	auto& interactorComp = rReg.get_or_emplace<InteractorComp>(rEntity);
+	interactorComp.m_interactType = InteractType_t::DialogChainComp_t; // todo
 }
 
 void EntityLoaderFactory::LoadLoadComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
