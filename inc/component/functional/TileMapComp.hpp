@@ -2,11 +2,11 @@
 #define __TILEMAP_COMP__
 
 /**
- * This component should be used for anything in a tilemap
+ * This component should be used for the tilemap itself
  */
-struct TilemapComp
+struct TileMapComp
 {
-	int m_tilemapIndex;
+	std::string m_tileMapBase;
 };
 
 #endif

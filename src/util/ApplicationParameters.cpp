@@ -11,8 +11,8 @@ std::string const ApplicationParameters::k_dataPath = "data/";
 std::string const ApplicationParameters::k_spritePath = "sprite/";
 
 int const ApplicationParameters::k_playerMovementSpeed = 3;
-int const ApplicationParameters::k_widthUnits = 100;
-int const ApplicationParameters::k_heightUnits = 100;
+int const ApplicationParameters::k_widthUnits = 120;
+int const ApplicationParameters::k_heightUnits = 108;
 int const ApplicationParameters::k_debounceFrames = 10;
 
 int const ApplicationParameters::k_widthAdjustment = ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
@@ -25,3 +25,13 @@ std::string const ApplicationParameters::k_pictureExt = ".png";
 
 char const ApplicationParameters::k_dialogEscapeChar = '*';
 float const ApplicationParameters::k_textFactor = 0.75f;
+
+int const ApplicationParameters::k_tileUnitSize = 6;
+
+std::string const ApplicationParameters::k_tilemapPath = "sprite/tilemap/";
+
+int const ApplicationParameters::k_tileMapUnitSizeInFile = 100;
+
+int const ApplicationParameters::k_tileScreenWidthSize = ApplicationParameters::k_widthAdjustment * ApplicationParameters::k_tileUnitSize;
+
+int const ApplicationParameters::k_tileScreenHeightSize = ApplicationParameters::k_heightAdjustment * ApplicationParameters::k_tileUnitSize;

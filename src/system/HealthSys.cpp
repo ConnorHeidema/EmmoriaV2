@@ -15,7 +15,7 @@ HealthSys::HealthSys(entt::registry& rReg)
 void HealthSys::Update()
 {
 	m_rReg.view<HealthComp>().each([](auto entity, auto& healthComp) {
-		std::cout <<  std::to_string(healthComp.m_health) << std::endl;
+		//std::cout <<  std::to_string(healthComp.m_health) << std::endl;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		{
 			healthComp.m_health -= 1;

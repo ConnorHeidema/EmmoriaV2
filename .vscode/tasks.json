@@ -12,8 +12,11 @@
                 "${workspaceFolder}/main.cpp",
 
                 "${workspaceFolder}/src/core/Application.cpp",
+                "${workspaceFolder}/src/core/TileMap.cpp",
 
                 "${workspaceFolder}/src/component/InteractStringMap.cpp",
+
+                "${workspaceFolder}/src/TileMap/TileMapIndexes.cpp",
 
                 "${workspaceFolder}/src/util/Mediamap.cpp",
                 "${workspaceFolder}/src/util/Entitymap.cpp",
@@ -36,6 +39,7 @@
                 "${workspaceFolder}/src/system/PersistentSys.cpp",
                 "${workspaceFolder}/src/system/HealthSys.cpp",
                 "${workspaceFolder}/src/system/InteractingSys.cpp",
+                "${workspaceFolder}/src/system/TileMapSys.cpp",
 
                 "${workspaceFolder}/src/entity/EntityLoaderFactory.cpp",
 
@@ -43,6 +47,7 @@
                 "-I", "${workspaceFolder}/ext/inc",
                 "-L", "${workspaceFolder}/ext/bin/SFML",
                 "-L", "${workspaceFolder}/ext/bin/sfemovie",
+
                 "-l", "stdc++fs",
                 "-l", "avcodec",
                 "-l", "sfeMovie",
@@ -52,11 +57,13 @@
                 "-l", "avutil",
                 "-l", "swresample",
                 "-l", "swscale",
+
                 "-l", "sfml-graphics",
                 "-l", "sfml-window",
                 "-l", "sfml-system",
                 "-l", "sfml-audio",
                 "-l", "sfml-network",
+
                 "-o", "${workspaceFolder}/output/emmoria.out"
             ],
             "options": { "cwd": "${workspaceFolder}" },

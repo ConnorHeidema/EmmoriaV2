@@ -8,12 +8,18 @@
 #include "component/functional/InteractorComp.hpp"
 
 #include "component/InteractType.hpp"
-
 #include "component/InteractStringMap.hpp"
 
 #include "util/OverlapUtils.hpp"
 
+#include "TileMap/TileMapIndexes.hpp"
+
 #include <iostream>
+
+#define INDEX() \
+	static_cast<int>(interactorComp.m_interactType) * \
+	static_cast<int>(InteractType_t::NUM_INTERACTOR_TYPE) + \
+	static_cast<int>(interactableComp.m_interactType)
 
 InteractingSys::InteractingSys(entt::registry& rReg)
 	: m_rReg(rReg)
@@ -21,6 +27,7 @@ InteractingSys::InteractingSys(entt::registry& rReg)
 
 void InteractingSys::Update()
 {
+	int a = DAWN_PILLAR_GRASS_1;
 	m_rReg.view<PositionComp, SizeComp, InteractableComp>().each([&]
 		(auto interactableEntity, auto& interactablePositionComp, auto& interactableSizeComp, auto& interactableComp)
 	{
@@ -33,21 +40,17 @@ void InteractingSys::Update()
 				interactorPositionComp.m_position,
 				interactorSizeComp.m_size))
 			{
-				#define INDEX(interactor, interactable) \
-					static_cast<int>(interactor) * \
-					static_cast<int>(InteractType_t::NUM_INTERACTOR_TYPE) + \
-					static_cast<int>(interactable)
-				try
+				if (InteractStringMap::fnInteractionMap.find(INDEX()) !=
+					InteractStringMap::fnInteractionMap.end())
 				{
-					InteractStringMap::fnInteractionMap.at(
-						INDEX(interactorComp.m_interactType, interactableComp.m_interactType))
-							(m_rReg, interactorEntity, interactableEntity);
-				}
-				catch (std::out_of_range const& /*e*/)
-				{
-					std::cout << "Cannot interact between components" << std::endl;
+					InteractStringMap::fnInteractionMap.at(INDEX())(
+						m_rReg,
+						interactorEntity,
+						interactableEntity);
 				}
 			}
 		});
 	});
 }
+
+#undef INDEX

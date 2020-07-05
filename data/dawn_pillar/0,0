@@ -1,2 +1,0 @@
-PlayerComp PositionComp 50 50 SizeComp 5 5 SpriteComp Player HealthComp 255 RenderableComp InteractorComp PlayerComp InteractableComp PlayerComp
-InteractableComp HealingPadComp PositionComp 60 60 SizeComp 5 5 SpriteComp HealingPad RenderableComp HealingPadComp

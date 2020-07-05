@@ -15,8 +15,11 @@
 #include "component/functional/SpriteComp.hpp"
 #include "component/functional/TextComp.hpp"
 #include "component/functional/TileMapComp.hpp"
+#include "component/functional/TileMapPieceComp.hpp"
 
 #include "component/InteractStringMap.hpp"
+
+#include "TileMap/TileMapIndexes.hpp"
 
 #include "util/ApplicationParameters.hpp"
 #include "util/EntityLoaderUtils.hpp"
@@ -64,8 +67,14 @@ void EntityLoaderFactory::LoadInteractableComp(entt::registry& rReg, entt::entit
 	std::string token;
 	reader >> token;
 	auto& interactableComp = rReg.get_or_emplace<InteractableComp>(rEntity);
-	interactableComp.m_interactType = InteractStringMap::s_interactStringToType.at(token); // todo
-
+	try
+	{
+		interactableComp.m_interactType = InteractStringMap::s_interactStringToType.at(token);
+	}
+	catch (std::out_of_range /*e*/)
+	{
+		std::cout << "Could not load interactable " << token << " parameter." << std::endl;
+	}
 }
 
 void EntityLoaderFactory::LoadInteractorComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -73,7 +82,14 @@ void EntityLoaderFactory::LoadInteractorComp(entt::registry& rReg, entt::entity&
 	std::string token;
 	reader >> token;
 	auto& interactorComp = rReg.get_or_emplace<InteractorComp>(rEntity);
-	interactorComp.m_interactType = InteractStringMap::s_interactStringToType.at(token); // todo
+	try
+	{
+		interactorComp.m_interactType = InteractStringMap::s_interactStringToType.at(token);
+	}
+	catch (std::out_of_range /*e*/)
+	{
+		std::cout << "Could not load interactor " << token << " parameter." << std::endl;
+	}
 }
 
 void EntityLoaderFactory::LoadLoadComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -136,11 +152,25 @@ void EntityLoaderFactory::LoadTextComp(entt::registry& rReg, entt::entity& rEnti
 
 void EntityLoaderFactory::LoadTileMapComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
-	// TODO
-	auto& tileMapComp = rReg.get_or_emplace<TilemapComp>(rEntity);
+	auto& tileMapComp = rReg.get_or_emplace<TileMapComp>(rEntity);
 	std::string token;
 	reader >> token;
-	tileMapComp.m_tilemapIndex = 0;
+	tileMapComp.m_tileMapBase = token;
+}
+
+void EntityLoaderFactory::LoadTileMapPieceComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
+{
+	auto& tileMapPieceComp = rReg.get_or_emplace<TileMapPieceComp>(rEntity);
+	std::string token;
+	reader >> token;
+	try
+	{
+		tileMapPieceComp.m_index = TileMapIndexes::stringToEnumTileMap.at(token);
+	}
+	catch (std::out_of_range /*e*/)
+	{
+		std::cout << "Could not load tilemap piece: " << token << std::endl;
+	}
 }
 
 /* Component aggregate loaders */
@@ -181,7 +211,11 @@ void EntityLoaderFactory::LoadFullscreen(entt::registry& rReg, entt::entity& rEn
 {
 	LoadRenderableComp(rReg, rEntity, reader);
 	LoadSpriteComp(rReg, rEntity, reader);
-	std::istringstream shallowReader("50 50 100 100");
+	std::string widthUnits = std::to_string(ApplicationParameters::k_widthUnits / 2);
+	std::string heightUnits = std::to_string(ApplicationParameters::k_heightUnits / 2);
+	std::string widthScreen = std::to_string(ApplicationParameters::k_widthUnits);
+	std::string heightScreen = std::to_string(ApplicationParameters::k_heightUnits);
+	std::istringstream shallowReader(widthUnits + " " + heightUnits + " " + widthScreen + " " + heightScreen);
 	LoadPositionComp(rReg, rEntity, shallowReader);
 	LoadSizeComp(rReg, rEntity, shallowReader);
 }
@@ -207,4 +241,17 @@ void EntityLoaderFactory::LoadRandomDialog(entt::registry& rReg, entt::entity& r
  	rReg.emplace<RandomComp>(rEntity);
 	LoadHeight(rReg, rEntity, reader);
 	LoadTextComp(rReg, rEntity, reader);
+}
+
+void EntityLoaderFactory::LoadIndexedPosition(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
+{
+	LoadPositionComp(rReg, rEntity, reader);
+	auto& positionComp = rReg.get_or_emplace<PositionComp>(rEntity);
+	positionComp.m_position.x =
+		(positionComp.m_position.x + ApplicationParameters::k_widthAdjustment/2) * ApplicationParameters::k_tileUnitSize;
+	positionComp.m_position.y =
+		(positionComp.m_position.y + ApplicationParameters::k_heightAdjustment/2) * ApplicationParameters::k_tileUnitSize;
+	auto& sizeComp = rReg.get_or_emplace<SizeComp>(rEntity);
+	sizeComp.m_size.width = ApplicationParameters::k_tileScreenWidthSize;
+	sizeComp.m_size.height = ApplicationParameters::k_tileScreenHeightSize;
 }

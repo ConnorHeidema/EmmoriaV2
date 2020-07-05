@@ -1,5 +1,7 @@
 #include "component/InteractStringMap.hpp"
 
+#include "component/functional/HealthComp.hpp"
+
 #include <iostream>
 
 #include "entity/EntityMacro.hpp"
@@ -20,12 +22,14 @@ std::unordered_map<InteractType_t, std::string> InteractStringMap::s_interactTyp
 	{ InteractType_t::NUM_INTERACTOR_TYPE, "INVALID" }
 };
 
+#undef INTERACT_STRING_TO_TYPE_MAPPING
+#undef INTERACT_TYPE_TO_STRING_MAPPING
+#include "entity/EntityMacroEnd.hpp"
 
-#include "entity/EntityMacro.hpp"
-
-void InteractStringMap::InteractPlayerCompHealingPadComp(entt::registry& rReg, entt::entity& rinteractorEntity, entt::entity& rinteractableEntity)
+void InteractStringMap::InteractPlayerCompHealingPadComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
 {
-	std::cout << "player interacting with healing pad" << std::endl;
+	auto& healthComp = rReg.get<HealthComp>(rInteractorEntity);
+	healthComp.m_health += 1;
 }
 
 std::unordered_map<int, fnEntityInteractor> InteractStringMap::CreateInteractionFnList()

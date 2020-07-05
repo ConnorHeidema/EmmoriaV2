@@ -30,14 +30,14 @@ void LoadingSys::Update()
 			while (!line.eof())
 			{
 				line >> token;
-				std::cout << "Attaching " << token << " parameter to entity" << std::endl;
-				try
+				std::cout << "\tAttaching " << token << " parameter to entity" << std::endl;
+				if (Entitymap::m_entityMap.find(token) != Entitymap::m_entityMap.end())
 				{
 					Entitymap::m_entityMap.at(token)(m_rReg, loadEntity, line);
 				}
-				catch (std::out_of_range const& /*e*/)
+				else
 				{
-					std::cout << "Could not attach " << token << " parameter to entity" << std::endl;
+					std::cout << "\tCould not attach " << token << " parameter to entity" << std::endl;
 				}
 			}
 		}

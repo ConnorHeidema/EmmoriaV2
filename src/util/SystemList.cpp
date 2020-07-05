@@ -11,6 +11,7 @@
 #include "system/PersistentSys.hpp"
 #include "system/HealthSys.hpp"
 #include "system/InteractingSys.hpp"
+#include "system/TileMapSys.hpp"
 
 std::list<std::shared_ptr<ISystem>> SystemList::CreateSystemList(entt::registry& rReg, sf::RenderWindow& rRenderWindow)
 {
@@ -18,6 +19,7 @@ std::list<std::shared_ptr<ISystem>> SystemList::CreateSystemList(entt::registry&
 	{
 		std::make_unique<MovementSys>(rReg),
 		std::make_unique<PrintMovementSys>(rReg),
+		std::make_unique<TileMapSys>(rReg, rRenderWindow),
 		std::make_unique<MovieRenderSys>(rReg, rRenderWindow),
 		std::make_unique<GameRenderSys>(rReg, rRenderWindow),
 		std::make_unique<LoadingSys>(rReg),

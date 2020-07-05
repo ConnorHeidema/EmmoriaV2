@@ -22,7 +22,8 @@
 	macroToUse(SizeComp) \
 	macroToUse(SpriteComp) \
 	macroToUse(TextComp) \
-	macroToUse(TileMapComp)
+	macroToUse(TileMapComp) \
+	macroToUse(TileMapPieceComp)
 
 #define ALL_COMPONENT_PIECE_MACRO(macroToUse) \
 	macroToUse(Xposition) \
@@ -31,4 +32,5 @@
 	macroToUse(Width) \
 	macroToUse(Fullscreen) \
 	macroToUse(Button) \
-	macroToUse(RandomDialog)
+	macroToUse(RandomDialog) \
+	macroToUse(IndexedPosition)

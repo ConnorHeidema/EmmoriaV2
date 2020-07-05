@@ -28,6 +28,15 @@ struct ApplicationParameters
 
 	static char const k_dialogEscapeChar;
 	static float const k_textFactor;
+
+	static int const k_tileUnitSize;
+
+	static std::string const k_tilemapPath;
+
+	static int const k_tileMapUnitSizeInFile;
+
+	static int const k_tileScreenWidthSize;
+	static int const k_tileScreenHeightSize;
 };
 
 #endif
