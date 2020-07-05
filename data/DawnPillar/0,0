@@ -1,6 +1,6 @@
 TileMapComp DawnPillar RenderableComp
-PlayerComp PositionComp 60 70 SizeComp 5 5 SpriteComp Player HealthComp 255 RenderableComp InteractorComp PlayerComp InteractableComp PlayerComp
-InteractableComp HealingPadComp PositionComp 70 80 SizeComp 5 5 SpriteComp HealingPad RenderableComp HealingPadComp
+PlayerComp PositionComp 60 33 SizeComp 5 5 SpriteComp Player HealthComp 255 RenderableComp InteractorComp PlayerComp InteractableComp PlayerComp
+InteractableComp HealingPadComp PositionComp 70 60 SizeComp 5 5 SpriteComp HealingPad RenderableComp HealingPadComp
 
 WallTile DAWN_PILLAR_INACCESSIBLE 0 0
 WallTile DAWN_PILLAR_BOTTOM_WALL 1 0
@@ -99,7 +99,7 @@ TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp IndexedPosition 9 4
 TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp IndexedPosition 10 4
 TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp IndexedPosition 11 4
 TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp IndexedPosition 12 4
-WallTile DAWN_PILLAR_LEFT_WALL 13 4
+WallTile DAWN_PILLAR_RIGHT_WALL 13 4
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 14 4
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 15 4
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 16 4
@@ -120,7 +120,7 @@ TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp IndexedPosition 9 5
 TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp IndexedPosition 10 5
 TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp IndexedPosition 11 5
 TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp IndexedPosition 12 5
-WallTile DAWN_PILLAR_LEFT_WALL 13 5
+WallTile DAWN_PILLAR_RIGHT_WALL 13 5
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 14 5
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 15 5
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 16 5
@@ -141,7 +141,7 @@ TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp IndexedPosition 9 6
 TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp IndexedPosition 10 6
 TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp IndexedPosition 11 6
 TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp IndexedPosition 12 6
-WallTile DAWN_PILLAR_LEFT_WALL 13 6
+WallTile DAWN_PILLAR_RIGHT_WALL 13 6
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 14 6
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 15 6
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 16 6

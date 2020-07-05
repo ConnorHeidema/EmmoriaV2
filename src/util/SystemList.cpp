@@ -12,6 +12,7 @@
 #include "system/HealthSys.hpp"
 #include "system/InteractingSys.hpp"
 #include "system/TileMapSys.hpp"
+#include "system/AnimationSys.hpp"
 
 std::list<std::shared_ptr<ISystem>> SystemList::CreateSystemList(entt::registry& rReg, sf::RenderWindow& rRenderWindow)
 {
@@ -21,14 +22,15 @@ std::list<std::shared_ptr<ISystem>> SystemList::CreateSystemList(entt::registry&
 		std::make_unique<PrintMovementSys>(rReg),
 		std::make_unique<TileMapSys>(rReg),
 		std::make_unique<InteractingSys>(rReg),
-		std::make_unique<MovieRenderSys>(rReg, rRenderWindow),
-		std::make_unique<GameRenderSys>(rReg, rRenderWindow),
+		std::make_unique<AnimationSys>(rReg),
 		std::make_unique<LoadingSys>(rReg),
 		std::make_unique<ButtonSys>(rReg),
 		std::make_unique<ClickableSys>(rReg),
 		std::make_unique<DialogSys>(rReg),
 		std::make_unique<PersistentSys>(rReg),
-		std::make_unique<HealthSys>(rReg)
+		std::make_unique<HealthSys>(rReg),
+		std::make_unique<GameRenderSys>(rReg, rRenderWindow),
+		std::make_unique<MovieRenderSys>(rReg, rRenderWindow)
 	};
 	return m_sysRunningOrder;
 }

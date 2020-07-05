@@ -40,6 +40,7 @@
                 "${workspaceFolder}/src/system/HealthSys.cpp",
                 "${workspaceFolder}/src/system/InteractingSys.cpp",
                 "${workspaceFolder}/src/system/TileMapSys.cpp",
+                "${workspaceFolder}/src/system/AnimationSys.cpp",
 
                 "${workspaceFolder}/src/entity/EntityLoaderFactory.cpp",
 

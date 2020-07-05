@@ -35,3 +35,5 @@ int const ApplicationParameters::k_tileMapUnitSizeInFile = 100;
 int const ApplicationParameters::k_tileScreenWidthSize = ApplicationParameters::k_widthAdjustment * ApplicationParameters::k_tileUnitSize;
 
 int const ApplicationParameters::k_tileScreenHeightSize = ApplicationParameters::k_heightAdjustment * ApplicationParameters::k_tileUnitSize;
+
+int const ApplicationParameters::k_overlapBuffer = 4;

@@ -37,6 +37,9 @@ struct ApplicationParameters
 
 	static int const k_tileScreenWidthSize;
 	static int const k_tileScreenHeightSize;
+
+
+	static int const k_overlapBuffer;
 };
 
 #endif
