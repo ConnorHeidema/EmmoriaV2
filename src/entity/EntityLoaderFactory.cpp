@@ -7,6 +7,7 @@
 #include "component/functional/HealthComp.hpp"
 #include "component/functional/InteractableComp.hpp"
 #include "component/functional/InteractorComp.hpp"
+#include "component/functional/LastPositionComp.hpp"
 #include "component/functional/LoadComp.hpp"
 #include "component/functional/MovieComp.hpp"
 #include "component/functional/PositionComp.hpp"
@@ -90,6 +91,16 @@ void EntityLoaderFactory::LoadInteractorComp(entt::registry& rReg, entt::entity&
 	{
 		std::cout << "Could not load interactor " << token << " parameter." << std::endl;
 	}
+}
+
+void EntityLoaderFactory::LoadLastPositionComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
+{
+	std::string token;
+	auto& positionComp = rReg.get_or_emplace<LastPositionComp>(rEntity);
+	reader >> token;
+	positionComp.m_lastPosition.x = std::stoi(token) * ApplicationParameters::k_widthAdjustment;
+	reader >> token;
+	positionComp.m_lastPosition.y = std::stoi(token) * ApplicationParameters::k_heightAdjustment;
 }
 
 void EntityLoaderFactory::LoadLoadComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -254,4 +265,14 @@ void EntityLoaderFactory::LoadIndexedPosition(entt::registry& rReg, entt::entity
 	auto& sizeComp = rReg.get_or_emplace<SizeComp>(rEntity);
 	sizeComp.m_size.width = ApplicationParameters::k_tileScreenWidthSize;
 	sizeComp.m_size.height = ApplicationParameters::k_tileScreenHeightSize;
+}
+
+void EntityLoaderFactory::LoadWallTile(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
+{
+	rReg.emplace<WallComp>(rEntity);
+ 	rReg.emplace<RenderableComp>(rEntity);
+	LoadTileMapPieceComp(rReg, rEntity, reader);
+	LoadIndexedPosition(rReg, rEntity, reader);
+	auto& interactableComp = rReg.emplace<InteractableComp>(rEntity);
+	interactableComp.m_interactType = InteractType_t::WallComp_t;
 }

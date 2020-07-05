@@ -7,7 +7,8 @@
 	macroToUse(HealingPadComp) \
 	macroToUse(PersistentComp) \
 	macroToUse(PlayerComp) \
-	macroToUse(RandomComp)
+	macroToUse(RandomComp) \
+	macroToUse(WallComp)
 
 #define ALL_FUNCTIONAL_MACRO(macroToUse) \
 	macroToUse(ButtonComp) \
@@ -15,6 +16,7 @@
 	macroToUse(HealthComp) \
 	macroToUse(InteractableComp) \
 	macroToUse(InteractorComp) \
+	macroToUse(LastPositionComp) \
 	macroToUse(LoadComp) \
 	macroToUse(MovieComp) \
 	macroToUse(PositionComp) \
@@ -33,4 +35,5 @@
 	macroToUse(Fullscreen) \
 	macroToUse(Button) \
 	macroToUse(RandomDialog) \
-	macroToUse(IndexedPosition)
+	macroToUse(IndexedPosition) \
+	macroToUse(WallTile)

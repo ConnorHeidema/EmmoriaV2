@@ -27,7 +27,6 @@ InteractingSys::InteractingSys(entt::registry& rReg)
 
 void InteractingSys::Update()
 {
-	int a = DAWN_PILLAR_GRASS_1;
 	m_rReg.view<PositionComp, SizeComp, InteractableComp>().each([&]
 		(auto interactableEntity, auto& interactablePositionComp, auto& interactableSizeComp, auto& interactableComp)
 	{

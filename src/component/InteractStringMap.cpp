@@ -1,6 +1,13 @@
 #include "component/InteractStringMap.hpp"
 
+#include "util/ApplicationParameters.hpp"
+
 #include "component/functional/HealthComp.hpp"
+#include "component/functional/LastPositionComp.hpp"
+#include "component/functional/PositionComp.hpp"
+#include "component/functional/SizeComp.hpp"
+
+#include "util/OverlapUtils.hpp"
 
 #include <iostream>
 
@@ -32,6 +39,37 @@ void InteractStringMap::InteractPlayerCompHealingPadComp(entt::registry& rReg, e
 	healthComp.m_health += 1;
 }
 
+void InteractStringMap::InteractPlayerCompWallComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
+{
+	auto& wallPositionComp = rReg.get<PositionComp>(rInteractableEntity);
+	auto& wallSizeComp = rReg.get<SizeComp>(rInteractableEntity);
+
+	auto& playerLastPositionComp = rReg.get<LastPositionComp>(rInteractorEntity);
+	auto& playerPositionComp = rReg.get<PositionComp>(rInteractorEntity);
+	auto& playerSizeComp = rReg.get<SizeComp>(rInteractorEntity);
+
+	Position lastPlayerXposition = {playerLastPositionComp.m_lastPosition.x, playerPositionComp.m_position.y};
+	Position lastPlayerYposition = {playerPositionComp.m_position.x, playerLastPositionComp.m_lastPosition.y};
+
+
+	if (OverlapUtils::Overlapping(
+		wallPositionComp.m_position,
+		wallSizeComp.m_size,
+		lastPlayerXposition,
+		playerSizeComp.m_size))
+	{
+		playerPositionComp.m_position.y = playerLastPositionComp.m_lastPosition.y;
+	}
+	if (OverlapUtils::Overlapping(
+		wallPositionComp.m_position,
+		wallSizeComp.m_size,
+		lastPlayerYposition,
+		playerSizeComp.m_size))
+	{
+		playerPositionComp.m_position.x = playerLastPositionComp.m_lastPosition.x;
+	}
+}
+
 std::unordered_map<int, fnEntityInteractor> InteractStringMap::CreateInteractionFnList()
 {
 	#define INSERT(interactor, interactable) fn[ \
@@ -41,6 +79,7 @@ std::unordered_map<int, fnEntityInteractor> InteractStringMap::CreateInteraction
 			= InteractStringMap:: Interact ## interactor ## interactable;
 	std::unordered_map<int, fnEntityInteractor> fn;
 	INSERT(PlayerComp, HealingPadComp)
+	INSERT(PlayerComp, WallComp)
 	#undef INSERT
 	return fn;
 }

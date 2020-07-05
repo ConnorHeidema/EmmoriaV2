@@ -19,7 +19,8 @@ std::list<std::shared_ptr<ISystem>> SystemList::CreateSystemList(entt::registry&
 	{
 		std::make_unique<MovementSys>(rReg),
 		std::make_unique<PrintMovementSys>(rReg),
-		std::make_unique<TileMapSys>(rReg, rRenderWindow),
+		std::make_unique<TileMapSys>(rReg),
+		std::make_unique<InteractingSys>(rReg),
 		std::make_unique<MovieRenderSys>(rReg, rRenderWindow),
 		std::make_unique<GameRenderSys>(rReg, rRenderWindow),
 		std::make_unique<LoadingSys>(rReg),
@@ -27,8 +28,7 @@ std::list<std::shared_ptr<ISystem>> SystemList::CreateSystemList(entt::registry&
 		std::make_unique<ClickableSys>(rReg),
 		std::make_unique<DialogSys>(rReg),
 		std::make_unique<PersistentSys>(rReg),
-		std::make_unique<HealthSys>(rReg),
-		std::make_unique<InteractingSys>(rReg)
+		std::make_unique<HealthSys>(rReg)
 	};
 	return m_sysRunningOrder;
 }

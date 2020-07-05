@@ -6,14 +6,14 @@ bool OverlapUtils::Overlapping(
 	Position& rPosition2,
 	Size& rSize2)
 {
-	if (rPosition1.x > rPosition2.x + rSize2.width ||
-		rPosition2.x > rPosition1.x + rSize1.width)
+	if (rPosition1.x - rSize1.width/2 > rPosition2.x + rSize2.width/2 ||
+		rPosition2.x - rSize2.width/2 > rPosition1.x + rSize1.width/2)
 	{
 		return false;
 	}
 
-	if (rPosition1.y > rPosition2.y + rSize2.height ||
-		rPosition2.y > rPosition1.y + rSize1.height)
+	if (rPosition1.y - rSize1.height/2 > rPosition2.y + rSize2.height/2 ||
+		rPosition2.y - rSize1.height/2 > rPosition1.y + rSize1.height/2)
 	{
 		return false;
 	}

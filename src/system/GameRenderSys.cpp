@@ -5,6 +5,7 @@
 #include "component/functional/SpriteComp.hpp"
 #include "component/functional/SizeComp.hpp"
 #include "component/functional/TextComp.hpp"
+#include "component/functional/TileMapPtrComp.hpp"
 
 #include "util/Mediamap.hpp"
 #include "util/ApplicationParameters.hpp"
@@ -25,6 +26,18 @@ void GameRenderSys::Update()
 	auto& renderableComp)
 	{
 		renderableComp.m_bRendered = false;
+	});
+
+	m_rReg.view<TileMapPtrComp, RenderableComp>().each([&](
+		auto entity,
+		auto& tileMapPtrComp,
+		auto& renderableComp)
+	{
+		if (tileMapPtrComp.m_pTileMap != nullptr)
+		{
+			m_rRenderWindow.draw(*tileMapPtrComp.m_pTileMap);
+			renderableComp.m_bRendered = true;
+		}
 	});
 
 	m_rReg.view<RenderableComp, PositionComp, SizeComp, SpriteComp>().each([&](
