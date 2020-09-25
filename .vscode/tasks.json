@@ -11,13 +11,17 @@
                 "-g",
                 "${workspaceFolder}/main.cpp",
 
+                // Core
                 "${workspaceFolder}/src/core/Application.cpp",
                 "${workspaceFolder}/src/core/TileMap.cpp",
 
+                // Component map
                 "${workspaceFolder}/src/component/InteractStringMap.cpp",
 
+                // Tilemap
                 "${workspaceFolder}/src/TileMap/TileMapIndexes.cpp",
 
+                // Utility classes
                 "${workspaceFolder}/src/util/Mediamap.cpp",
                 "${workspaceFolder}/src/util/Entitymap.cpp",
                 "${workspaceFolder}/src/util/MediatoEntitymap.cpp",
@@ -29,6 +33,7 @@
                 "${workspaceFolder}/src/util/OverlapUtils.cpp",
                 "${workspaceFolder}/src/util/AnimationMappings.cpp",
 
+                // System implementations
                 "${workspaceFolder}/src/system/MovementSys.cpp",
                 "${workspaceFolder}/src/system/PrintMovementSys.cpp",
                 "${workspaceFolder}/src/system/MovieRenderSys.cpp",
@@ -44,16 +49,24 @@
                 "${workspaceFolder}/src/system/AnimationSys.cpp",
                 "${workspaceFolder}/src/system/SceneLoadSys.cpp",
 
+                // Entity factory
                 "${workspaceFolder}/src/entity/EntityLoaderFactory.cpp",
 
+
+                // Internal libraries
                 "-I", "${workspaceFolder}/inc",
                 "-I", "${workspaceFolder}/ext/inc",
+
+                // External libraries
                 "-L", "${workspaceFolder}/ext/bin/SFML",
                 "-L", "${workspaceFolder}/ext/bin/sfemovie",
 
+                // c++ 17
                 "-l", "stdc++fs",
-                "-l", "avcodec",
+
+                // sfemovie
                 "-l", "sfeMovie",
+                "-l", "avcodec",
                 "-l", "avdevice",
                 "-l", "avfilter",
                 "-l", "avformat",
@@ -61,6 +74,7 @@
                 "-l", "swresample",
                 "-l", "swscale",
 
+                // SFML
                 "-l", "sfml-graphics",
                 "-l", "sfml-window",
                 "-l", "sfml-system",

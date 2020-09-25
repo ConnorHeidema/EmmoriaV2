@@ -16,8 +16,6 @@ public:
 
 private:
 	entt::registry& m_rReg;
-
-	LocationComp m_lastLocation;
 };
 
 #endif

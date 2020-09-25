@@ -8,6 +8,7 @@
 #include "component/functional/PositionComp.hpp"
 #include "component/functional/RenderableComp.hpp"
 #include "component/functional/ClickableComp.hpp"
+#include "component/functional/LocationComp.hpp"
 
 #include "util/ApplicationParameters.hpp"
 #include "util/EntityLoaderUtils.hpp"
@@ -54,9 +55,6 @@ void DialogSys::UpdateProducingState_()
 		auto& textComp,
 		auto& sizeComp)
 	{
-		auto fragmentEntity = m_rReg.create();
-		m_rReg.emplace<DialogChainFragmentComp>(fragmentEntity);
-
 		std::string textFragment = textComp.m_text.substr(0, textComp.m_text.find(ApplicationParameters::k_dialogDelimiter));
 		textComp.m_text = (textComp.m_text.find(ApplicationParameters::k_dialogDelimiter) == std::string::npos) ?
 			"" :
@@ -65,11 +63,20 @@ void DialogSys::UpdateProducingState_()
 		if (textFragment.at(0) == ApplicationParameters::k_dialogEscapeChar &&
 			textFragment.at(textFragment.length() - 1) == ApplicationParameters::k_dialogEscapeChar)
 		{
-			auto& fragmentLoadComp = m_rReg.emplace<LoadComp>(fragmentEntity);
-			fragmentLoadComp.m_filePath = textFragment.substr(1, textFragment.length() - 2);
+			auto locationEntity = m_rReg.create();
+			auto& locationComp = m_rReg.emplace<LocationComp>(locationEntity);
+			std::string fullLocation = textFragment.substr(1, textFragment.length() - 2);
+			locationComp.area =	fullLocation.substr(0, fullLocation.find("/"));
+			std::string xLocationStr =
+				fullLocation.substr(fullLocation.find("/") + 1, fullLocation.find(",") - fullLocation.find("/") - 1);
+			std::string yLocationStr = fullLocation.substr(fullLocation.find(",") + 1);
+			locationComp.xLocation = std::stoi(xLocationStr);
+			locationComp.yLocation = std::stoi(yLocationStr);
 			m_dialogSysState = DialogSysState_t::LOADING;
 			return;
 		}
+		auto fragmentEntity = m_rReg.create();
+		m_rReg.emplace<DialogChainFragmentComp>(fragmentEntity);
 
 		auto& fragmentTextComp = m_rReg.emplace<TextComp>(fragmentEntity);
 		fragmentTextComp.m_text = textFragment;

@@ -53,7 +53,7 @@ void GameRenderSys::Update()
 			sf::Texture texture;
 			texture.loadFromFile(spriteComp.m_filePath); // this should be stored somehow
 			genericSprite.setTexture(&texture);
-			genericSprite.setPosition(positionComp.m_position.x - sizeComp.m_size.width/2, positionComp.m_position.y - sizeComp.m_size.height/2);
+			genericSprite.setPosition((positionComp.m_position.x - sizeComp.m_size.width/2) % ApplicationParameters::k_rightOfScreen, (positionComp.m_position.y - sizeComp.m_size.height/2) % ApplicationParameters::k_bottomOfScreen);
 			m_rRenderWindow.draw(genericSprite);
 			renderableComp.m_bRendered = true;
 		}
