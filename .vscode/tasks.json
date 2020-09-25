@@ -27,6 +27,7 @@
                 "${workspaceFolder}/src/util/Helper.cpp",
                 "${workspaceFolder}/src/util/SystemList.cpp",
                 "${workspaceFolder}/src/util/OverlapUtils.cpp",
+                "${workspaceFolder}/src/util/AnimationMappings.cpp",
 
                 "${workspaceFolder}/src/system/MovementSys.cpp",
                 "${workspaceFolder}/src/system/PrintMovementSys.cpp",
@@ -41,6 +42,7 @@
                 "${workspaceFolder}/src/system/InteractingSys.cpp",
                 "${workspaceFolder}/src/system/TileMapSys.cpp",
                 "${workspaceFolder}/src/system/AnimationSys.cpp",
+                "${workspaceFolder}/src/system/SceneLoadSys.cpp",
 
                 "${workspaceFolder}/src/entity/EntityLoaderFactory.cpp",
 

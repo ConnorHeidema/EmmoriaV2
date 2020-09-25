@@ -37,3 +37,9 @@ int const ApplicationParameters::k_tileScreenWidthSize = ApplicationParameters::
 int const ApplicationParameters::k_tileScreenHeightSize = ApplicationParameters::k_heightAdjustment * ApplicationParameters::k_tileUnitSize;
 
 int const ApplicationParameters::k_overlapBuffer = 4;
+
+int const ApplicationParameters::k_widthTiles = 20;
+int const ApplicationParameters::k_heightTiles = 15;
+
+int const ApplicationParameters::k_bottomOfScreen = k_heightTiles * k_tileScreenHeightSize;
+int const ApplicationParameters::k_rightOfScreen = k_widthTiles * k_tileScreenWidthSize;

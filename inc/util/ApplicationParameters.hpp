@@ -40,6 +40,12 @@ struct ApplicationParameters
 
 
 	static int const k_overlapBuffer;
+
+	static int const k_heightTiles;
+	static int const k_widthTiles;
+
+	static int const k_bottomOfScreen;
+	static int const k_rightOfScreen;
 };
 
 #endif
