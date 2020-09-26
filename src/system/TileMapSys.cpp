@@ -26,6 +26,9 @@ void TileMapSys::Update()
 
 	m_rReg.view<TileMapPieceComp, PositionComp, RenderableComp>().each([&](auto entity, auto& tileMapPieceComp, auto& positionComp, auto& renderableComp)
 	{
-		m_pTileMap->PopulateQuad(positionComp.m_position.x, positionComp.m_position.y, tileMapPieceComp.m_index);
+		m_pTileMap->PopulateQuad(
+			positionComp.m_position.x % ApplicationParameters::k_rightOfScreen,
+			positionComp.m_position.y % ApplicationParameters::k_bottomOfScreen,
+			tileMapPieceComp.m_index);
 	});
 }

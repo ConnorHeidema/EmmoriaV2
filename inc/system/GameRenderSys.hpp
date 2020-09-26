@@ -14,6 +14,8 @@ public:
 
 	void Update() override;
 
+	void RenderHealth_();
+
 private:
 	entt::registry& m_rReg;
 	sf::RenderWindow& m_rRenderWindow;

@@ -8,7 +8,8 @@
 	macroToUse(PersistentComp) \
 	macroToUse(PlayerComp) \
 	macroToUse(RandomComp) \
-	macroToUse(WallComp)
+	macroToUse(WallComp) \
+	macroToUse(DeloadableComp)
 
 #define ALL_FUNCTIONAL_MACRO(macroToUse) \
 	macroToUse(ButtonComp) \
@@ -25,7 +26,8 @@
 	macroToUse(SpriteComp) \
 	macroToUse(TextComp) \
 	macroToUse(TileMapComp) \
-	macroToUse(TileMapPieceComp)
+	macroToUse(TileMapPieceComp) \
+	macroToUse(LocationComp)
 
 #define ALL_COMPONENT_PIECE_MACRO(macroToUse) \
 	macroToUse(Xposition) \

@@ -1,0 +1,2 @@
+LocationComp DawnPillar 0 0
+PlayerComp PositionComp 60 33 SizeComp 5 5 SpriteComp Player HealthComp 255 RenderableComp InteractorComp PlayerComp InteractableComp PlayerComp

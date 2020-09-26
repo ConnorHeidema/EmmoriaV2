@@ -6,6 +6,7 @@
 #include "component/functional/SizeComp.hpp"
 #include "component/functional/TextComp.hpp"
 #include "component/functional/TileMapPtrComp.hpp"
+#include "component/functional/HealthComp.hpp"
 
 #include "util/Mediamap.hpp"
 #include "util/ApplicationParameters.hpp"
@@ -53,7 +54,9 @@ void GameRenderSys::Update()
 			sf::Texture texture;
 			texture.loadFromFile(spriteComp.m_filePath); // this should be stored somehow
 			genericSprite.setTexture(&texture);
-			genericSprite.setPosition((positionComp.m_position.x - sizeComp.m_size.width/2) % ApplicationParameters::k_rightOfScreen, (positionComp.m_position.y - sizeComp.m_size.height/2) % ApplicationParameters::k_bottomOfScreen);
+			genericSprite.setPosition(
+				(positionComp.m_position.x % ApplicationParameters::k_rightOfScreen) - (int)sizeComp.m_size.width/2,
+				(positionComp.m_position.y % ApplicationParameters::k_bottomOfScreen) - (int)sizeComp.m_size.height/2);
 			m_rRenderWindow.draw(genericSprite);
 			renderableComp.m_bRendered = true;
 		}
@@ -89,5 +92,24 @@ void GameRenderSys::Update()
 			m_rRenderWindow.draw(text);
 			renderableComp.m_bRendered = true;
 		}
+	});
+	RenderHealth_();
+}
+
+void GameRenderSys::RenderHealth_()
+{
+	m_rReg.view<HealthComp>().each([&](
+		auto entity,
+		auto& healthComp)
+	{
+		sf::Text text;
+		sf::Font font;
+		font.loadFromFile(ApplicationParameters::k_fontPath);
+		text.setFont(font);
+		text.setFillColor(sf::Color::White);
+		text.setCharacterSize(20);
+		text.setString(std::string("Health: ") + std::to_string(healthComp.m_health));
+		text.setPosition(sf::Vector2f(50, 1000));
+		m_rRenderWindow.draw(text);
 	});
 }

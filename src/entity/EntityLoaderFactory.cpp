@@ -17,6 +17,7 @@
 #include "component/functional/TextComp.hpp"
 #include "component/functional/TileMapComp.hpp"
 #include "component/functional/TileMapPieceComp.hpp"
+#include "component/functional/LocationComp.hpp"
 
 #include "component/InteractStringMap.hpp"
 
@@ -122,9 +123,17 @@ void EntityLoaderFactory::LoadPositionComp(entt::registry& rReg, entt::entity& r
 	std::string token;
 	auto& positionComp = rReg.get_or_emplace<PositionComp>(rEntity);
 	reader >> token;
-	positionComp.m_position.x = std::stoi(token) * ApplicationParameters::k_widthAdjustment;
+	int x = 0;
+	int y = 0;
+	rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
+	{
+		x = locationComp.xLocation * ApplicationParameters::k_rightOfScreen;
+		y = locationComp.yLocation * ApplicationParameters::k_bottomOfScreen;
+	});
+
+	positionComp.m_position.x = std::stoi(token) * ApplicationParameters::k_widthAdjustment + x;
 	reader >> token;
-	positionComp.m_position.y = std::stoi(token) * ApplicationParameters::k_heightAdjustment;
+	positionComp.m_position.y = std::stoi(token) * ApplicationParameters::k_heightAdjustment + y;
 }
 
 void EntityLoaderFactory::LoadRenderableComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -184,22 +193,50 @@ void EntityLoaderFactory::LoadTileMapPieceComp(entt::registry& rReg, entt::entit
 	}
 }
 
+void EntityLoaderFactory::LoadLocationComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
+{
+	rReg.clear<LocationComp>();
+	auto& locationComp = rReg.get_or_emplace<LocationComp>(rEntity);
+	std::string token;
+	reader >> token;
+	locationComp.area = token;
+	reader >> token;
+	locationComp.xLocation = std::stoi(token);
+	reader >> token;
+	locationComp.yLocation = std::stoi(token);
+	std::cout << "Loaded location comp" << std::endl;
+}
+
 /* Component aggregate loaders */
 
 void EntityLoaderFactory::LoadXposition(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
 	std::string token;
 	reader >> token;
+
+	int x = 0;
+	rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
+	{
+		x = locationComp.xLocation * ApplicationParameters::k_rightOfScreen;
+	});
+
 	auto& positionComp = rReg.get_or_emplace<PositionComp>(rEntity);
-	positionComp.m_position.x = std::stoi(token) * ApplicationParameters::k_widthAdjustment;
+	positionComp.m_position.x = std::stoi(token) * ApplicationParameters::k_widthAdjustment + x;
 }
 
 void EntityLoaderFactory::LoadYposition(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
 	std::string token;
 	reader >> token;
+
+	int y = 0;
+	rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
+	{
+		y = locationComp.xLocation * ApplicationParameters::k_bottomOfScreen;
+	});
+
 	auto& positionComp = rReg.get_or_emplace<PositionComp>(rEntity);
-	positionComp.m_position.y = std::stoi(token) * ApplicationParameters::k_heightAdjustment;
+	positionComp.m_position.y = std::stoi(token) * ApplicationParameters::k_heightAdjustment + y;
 }
 
 void EntityLoaderFactory::LoadWidth(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -256,12 +293,26 @@ void EntityLoaderFactory::LoadRandomDialog(entt::registry& rReg, entt::entity& r
 
 void EntityLoaderFactory::LoadIndexedPosition(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
-	LoadPositionComp(rReg, rEntity, reader);
+	std::string token;
 	auto& positionComp = rReg.get_or_emplace<PositionComp>(rEntity);
+
+	reader >> token;
+	positionComp.m_position.x = std::stoi(token) * ApplicationParameters::k_widthAdjustment;
+	reader >> token;
+	positionComp.m_position.y = std::stoi(token) * ApplicationParameters::k_heightAdjustment;
+
+	int x = 0;
+	int y = 0;
+	rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
+	{
+		x = locationComp.xLocation * ApplicationParameters::k_rightOfScreen;
+		y = locationComp.yLocation * ApplicationParameters::k_bottomOfScreen;
+	});
+
 	positionComp.m_position.x =
-		(positionComp.m_position.x + ApplicationParameters::k_widthAdjustment/2) * ApplicationParameters::k_tileUnitSize;
+		(positionComp.m_position.x + ApplicationParameters::k_widthAdjustment/2) * ApplicationParameters::k_tileUnitSize + x;
 	positionComp.m_position.y =
-		(positionComp.m_position.y + ApplicationParameters::k_heightAdjustment/2) * ApplicationParameters::k_tileUnitSize;
+		(positionComp.m_position.y + ApplicationParameters::k_heightAdjustment/2) * ApplicationParameters::k_tileUnitSize + y;
 	auto& sizeComp = rReg.get_or_emplace<SizeComp>(rEntity);
 	sizeComp.m_size.width = ApplicationParameters::k_tileScreenWidthSize;
 	sizeComp.m_size.height = ApplicationParameters::k_tileScreenHeightSize;

@@ -16,6 +16,7 @@ public:
 
 private:
 	entt::registry& m_rReg;
+	std::string m_lastArea;
 };
 
 #endif
