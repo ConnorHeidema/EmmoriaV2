@@ -15,6 +15,8 @@
 #include "system/AnimationSys.hpp"
 #include "system/SceneLoadSys.hpp"
 
+#include "system/enemy/BlobSys.hpp"
+
 std::list<std::shared_ptr<ISystem>> SystemList::CreateSystemList(entt::registry& rReg, sf::RenderWindow& rRenderWindow)
 {
 	std::list<std::shared_ptr<ISystem>> m_sysRunningOrder
@@ -32,7 +34,8 @@ std::list<std::shared_ptr<ISystem>> SystemList::CreateSystemList(entt::registry&
 		std::make_unique<HealthSys>(rReg),
 		std::make_unique<SceneLoadSys>(rReg),
 		std::make_unique<GameRenderSys>(rReg, rRenderWindow),
-		std::make_unique<MovieRenderSys>(rReg, rRenderWindow)
+		std::make_unique<MovieRenderSys>(rReg, rRenderWindow),
+		std::make_unique<BlobSys>(rReg)
 	};
 	return m_sysRunningOrder;
 }

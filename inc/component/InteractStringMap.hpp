@@ -19,8 +19,9 @@ public:
 	static std::unordered_map<int, fnEntityInteractor> fnInteractionMap;
 
 	static void InteractPlayerCompHealingPadComp(entt::registry& rReg, entt::entity& rinteractorEntity, entt::entity& rinteractableEntity);
+	static void InteractPlayerCompBlobComp(entt::registry& rReg, entt::entity& rinteractorEntity, entt::entity& rinteractableEntity);
 	static void InteractPlayerCompWallComp(entt::registry& rReg, entt::entity& rinteractorEntity, entt::entity& rinteractableEntity);
-	
+
 	static std::unordered_map<int, fnEntityInteractor> CreateInteractionFnList();
 };
 

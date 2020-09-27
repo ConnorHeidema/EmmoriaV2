@@ -1,5 +1,6 @@
 TileMapComp DawnPillar RenderableComp DeloadableComp
 InteractableComp HealingPadComp PositionComp 70 60 SizeComp 5 5 SpriteComp HealingPad RenderableComp HealingPadComp DeloadableComp
+InteractableComp BlobComp PositionComp 100 60 SizeComp 5 5 SpriteComp Blob RenderableComp BlobComp DeloadableComp
 
 WallTile DAWN_PILLAR_INACCESSIBLE 0 0 DeloadableComp
 WallTile DAWN_PILLAR_BOTTOM_WALL 1 0 DeloadableComp

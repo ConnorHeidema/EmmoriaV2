@@ -39,6 +39,12 @@ void InteractStringMap::InteractPlayerCompHealingPadComp(entt::registry& rReg, e
 	healthComp.m_health += 1;
 }
 
+void InteractStringMap::InteractPlayerCompBlobComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
+{
+	auto& healthComp = rReg.get<HealthComp>(rInteractorEntity);
+	healthComp.m_health -= 1;
+}
+
 void InteractStringMap::InteractPlayerCompWallComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
 {
 	auto& wallPositionComp = rReg.get<PositionComp>(rInteractableEntity);
@@ -79,6 +85,7 @@ std::unordered_map<int, fnEntityInteractor> InteractStringMap::CreateInteraction
 			= InteractStringMap:: Interact ## interactor ## interactable;
 	std::unordered_map<int, fnEntityInteractor> fn;
 	INSERT(PlayerComp, HealingPadComp)
+	INSERT(PlayerComp, BlobComp)
 	INSERT(PlayerComp, WallComp)
 	#undef INSERT
 	return fn;

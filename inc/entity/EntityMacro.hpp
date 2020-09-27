@@ -9,7 +9,8 @@
 	macroToUse(PlayerComp) \
 	macroToUse(RandomComp) \
 	macroToUse(WallComp) \
-	macroToUse(DeloadableComp)
+	macroToUse(DeloadableComp) \
+	macroToUse(BlobComp)
 
 #define ALL_FUNCTIONAL_MACRO(macroToUse) \
 	macroToUse(ButtonComp) \
