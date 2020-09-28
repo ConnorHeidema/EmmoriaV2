@@ -259,6 +259,11 @@ void EntityLoaderFactory::LoadFullscreen(entt::registry& rReg, entt::entity& rEn
 {
 	LoadRenderableComp(rReg, rEntity, reader);
 	LoadSpriteComp(rReg, rEntity, reader);
+	auto& spriteComp = rReg.get<SpriteComp>(rEntity);
+
+	spriteComp.m_height = 1080;
+	spriteComp.m_width = 1920;
+
 	std::string widthUnits = std::to_string(ApplicationParameters::k_widthUnits / 2);
 	std::string heightUnits = std::to_string(ApplicationParameters::k_heightUnits / 2);
 	std::string widthScreen = std::to_string(ApplicationParameters::k_widthUnits);

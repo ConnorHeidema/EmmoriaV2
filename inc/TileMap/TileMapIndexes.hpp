@@ -30,6 +30,15 @@ enum enum_name \
 
 REGION_ENUM(DawnPillar, ALL_DAWN_PILLAR_MACRO)
 
+enum Blob
+{
+	BLOB_1,
+	BLOB_2,
+	BLOB_3,
+	BLOB_4,
+	NUM_BLOB
+};
+
 class TileMapIndexes
 {
 public:

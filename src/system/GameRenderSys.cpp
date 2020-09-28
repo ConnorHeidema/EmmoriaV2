@@ -57,6 +57,14 @@ void GameRenderSys::Update()
 			genericSprite.setPosition(
 				(positionComp.m_position.x % ApplicationParameters::k_rightOfScreen) - (int)sizeComp.m_size.width/2,
 				(positionComp.m_position.y % ApplicationParameters::k_bottomOfScreen) - (int)sizeComp.m_size.height/2);
+
+			genericSprite.setTextureRect(
+				sf::IntRect(
+					spriteComp.m_spriteIndex * spriteComp.m_width,
+					0,
+					spriteComp.m_width,
+					spriteComp.m_height));
+
 			m_rRenderWindow.draw(genericSprite);
 			renderableComp.m_bRendered = true;
 		}

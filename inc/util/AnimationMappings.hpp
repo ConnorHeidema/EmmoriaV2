@@ -14,6 +14,8 @@ public:
     static std::unordered_map<std::string, fnAnimationMapping> const m_animationMap;
 
 	static void DawnPillarMapping(entt::registry& rReg, entt::entity& rEntity, int& animation);
+	static void BlobMapping(entt::registry& rReg, entt::entity& rEntity, int& animation);
+	static void PlayerMapping(entt::registry& rReg, entt::entity& rEntity, int& animation);
 };
 
 #endif
