@@ -10,6 +10,7 @@
 #include "util/AnimationMappings.hpp"
 
 #include <string.h>
+#include <iostream>
 
 int const AnimationSys::mk_animationSpeed = 12;
 
@@ -46,25 +47,27 @@ void AnimationSys::Update()
 		});
 	}
 
-	m_rReg.view<BlobComp, SpriteComp>().each([&](
-		auto entity,
-		auto& spriteComp)
-	{
-		if (AnimationMappings::m_animationMap.find("Blob") != AnimationMappings::m_animationMap.end())
-		{
-			AnimationMappings::m_animationMap.at("Blob")(m_rReg, entity, spriteComp.m_spriteIndex);
-		}
+#include "util/animation/AnimationMacro.hpp"
+	#define SPRITE_ANIMATION_MAP(name) \
+	m_rReg.view< name##Comp , SpriteComp>().each([&]( \
+		auto entity, \
+		auto& spriteComp) \
+	{ \
+		if (AnimationMappings::m_animationMap.find( #name ) != AnimationMappings::m_animationMap.end()) \
+		{ \
+			AnimationMappings::m_animationMap.at( #name )(m_rReg, entity, spriteComp.m_spriteIndex); \
+		} else \
+		{ \
+			std::cout << \
+				std::string("Could not find ") << \
+				std::string( #name ) << \
+				std::string(" animation mapping") << \
+				std::endl; \
+		} \
 	});
 
-	m_rReg.view<PlayerComp, SpriteComp>().each([&](
-		auto entity,
-		auto& spriteComp)
-	{
-		if (AnimationMappings::m_animationMap.find("Player") != AnimationMappings::m_animationMap.end())
-		{
-			AnimationMappings::m_animationMap.at("Player")(m_rReg, entity, spriteComp.m_spriteIndex);
-		}
-	});
+	ALL_COMP_ANIMATION_MACRO(SPRITE_ANIMATION_MAP)
+#include "util/animation/AnimationMacroEnd.hpp"
 
 	m_currentAnimationCycle = 0;
 }

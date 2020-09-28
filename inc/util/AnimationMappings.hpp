@@ -13,9 +13,10 @@ public:
     static std::unordered_map<std::string, fnAnimationMapping> Create_map();
     static std::unordered_map<std::string, fnAnimationMapping> const m_animationMap;
 
-	static void DawnPillarMapping(entt::registry& rReg, entt::entity& rEntity, int& animation);
-	static void BlobMapping(entt::registry& rReg, entt::entity& rEntity, int& animation);
-	static void PlayerMapping(entt::registry& rReg, entt::entity& rEntity, int& animation);
+#include "util/animation/AnimationMacro.hpp"
+#define DEFINE_ANIMATION_MAPPINGS(name) static void name##Mapping(entt::registry& rReg, entt::entity& rEntity, int& animation);
+	ALL_ANIMATION_MACRO(DEFINE_ANIMATION_MAPPINGS)
+#include "util/animation/AnimationMacroEnd.hpp"
 };
 
 #endif

@@ -6,10 +6,10 @@
 std::unordered_map<std::string, fnAnimationMapping> AnimationMappings::Create_map()
 {
 	std::unordered_map<std::string, fnAnimationMapping> m;
+#include "util/animation/AnimationMacro.hpp"
 	#define ANIMATION_MAP(name) m[#name] = AnimationMappings::name##Mapping;
-	ANIMATION_MAP(DawnPillar)
-	ANIMATION_MAP(Blob)
-	ANIMATION_MAP(Player)
+	ALL_ANIMATION_MACRO(ANIMATION_MAP)
+#include "util/animation/AnimationMacroEnd.hpp"
 	return m;
 }
 
