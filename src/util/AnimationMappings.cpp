@@ -2,6 +2,10 @@
 
 #include "TileMap/TileMapIndexes.hpp"
 
+#include "component/functional/PositionComp.hpp"
+#include "component/tag/AllTagComp.hpp"
+
+#include <SFML/Window.hpp>
 
 std::unordered_map<std::string, fnAnimationMapping> AnimationMappings::Create_map()
 {
@@ -39,7 +43,60 @@ void AnimationMappings::BlobMapping(entt::registry& rReg, entt::entity& rEntity,
 
 void AnimationMappings::PlayerMapping(entt::registry& rReg, entt::entity& rEntity, int& animation)
 {
-	animation = 0;
+	rReg.view<PlayerComp, PositionComp>().each([&](auto entity, auto& positionComp)
+	{
+		{
+			using namespace sf;
+			if (Keyboard::isKeyPressed(Keyboard::A))
+			{
+				switch (animation)
+				{
+					case Player::PLAYER_1: animation = Player::PLAYER_2; break;
+					case Player::PLAYER_2: animation = Player::PLAYER_3; break;
+					case Player::PLAYER_3: animation = Player::PLAYER_4; break;
+					case Player::PLAYER_4: animation = Player::PLAYER_1; break;
+					default: animation = Player::PLAYER_2; break;
+				}
+			}
+			else if (Keyboard::isKeyPressed(Keyboard::W))
+			{
+				switch (animation)
+				{
+					case Player::PLAYER_5: animation = Player::PLAYER_6; break;
+					case Player::PLAYER_6: animation = Player::PLAYER_7; break;
+					case Player::PLAYER_7: animation = Player::PLAYER_8; break;
+					case Player::PLAYER_8: animation = Player::PLAYER_5; break;
+					default: animation = Player::PLAYER_6; break;
+				}
+			}
+			else if (Keyboard::isKeyPressed(Keyboard::D))
+			{
+				switch (animation)
+				{
+					case Player::PLAYER_9: animation = Player::PLAYER_10; break;
+					case Player::PLAYER_10: animation = Player::PLAYER_11; break;
+					case Player::PLAYER_11: animation = Player::PLAYER_12; break;
+					case Player::PLAYER_12: animation = Player::PLAYER_9; break;
+					default: animation = Player::PLAYER_10; break;
+				}
+			}
+			else if (Keyboard::isKeyPressed(Keyboard::S))
+			{
+				switch (animation)
+				{
+					case Player::PLAYER_13: animation = Player::PLAYER_14; break;
+					case Player::PLAYER_14: animation = Player::PLAYER_15; break;
+					case Player::PLAYER_15: animation = Player::PLAYER_16; break;
+					case Player::PLAYER_16: animation = Player::PLAYER_13; break;
+					default: animation = Player::PLAYER_14; break;
+				}
+			}
+			else
+			{
+				animation = 0;
+			}
+		}
+	});
 }
 
 std::unordered_map<std::string, fnAnimationMapping> const AnimationMappings::m_animationMap =  AnimationMappings::Create_map();

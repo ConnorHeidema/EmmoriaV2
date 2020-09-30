@@ -149,7 +149,7 @@ TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 17 6 Deloadab
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 18 6 DeloadableComp
 WallTile DAWN_PILLAR_LEFT_WALL 19 6 DeloadableComp
 
-TileMapPieceComp DAWN_PILLAR_RIGHT_WALL RenderableComp IndexedPosition 0 7 DeloadableComp
+WallTile DAWN_PILLAR_RIGHT_WALL 0 7 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 1 7 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 2 7 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 3 7 DeloadableComp
