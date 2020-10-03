@@ -16,13 +16,18 @@ bool ConfigItems::LoadConfigFile(std::string configFilePath)
 			bool value;
 			if (line.find("=") == std::string::npos)
 			{
-				std::cout << "Malformed ini file" << std::endl;
+				std::cout << "Malformed ini file: no equals character" << std::endl;
 			}
 			else
 			{
 				int equalsPosition = line.find("=");
 				key = line.substr(0, equalsPosition);
-				value = line.substr(equalsPosition + 1) == "true" ? true : false;
+				std::string stringValue = line.substr(equalsPosition + 1);
+				if (!(stringValue == "true" || stringValue == "false"))
+				{
+					std::cout << "Malformed ini file: value not true or false" << std::endl;
+				}
+				value = stringValue == "true" ? true : false;
 				if (value)
 					m_setConfigItems.insert(key);
 			}

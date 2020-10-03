@@ -28,9 +28,20 @@ void MovieRenderSys::Update_()
 	{
 		if (m_lastMedia == Media_t::NONE && movieComp.m_currentMedia != Media_t::NONE)
 		{
-			m_lastMedia = movieComp.m_currentMedia;
-			m_movie.openFromFile(Mediamap::m_mediamap.at(movieComp.m_currentMedia));
-			m_movie.play();
+
+			std::string const media = Mediamap::m_mediamap.at(movieComp.m_currentMedia);
+			auto mediaConfig =
+				std::string("Disable") +
+				std::string(
+					media.substr(media.find_last_of('/') + 1,
+					media.find(".") - media.find_last_of('/') - 1));
+			if (ConfigItems::m_setConfigItems.find(mediaConfig)
+				== ConfigItems::m_setConfigItems.end())
+			{
+				m_lastMedia = movieComp.m_currentMedia;
+				m_movie.openFromFile(media);
+				m_movie.play();
+			}
 		}
 
 		if (m_movie.getStatus() != sfe::Stopped)
