@@ -10,11 +10,12 @@
 int const BlobSys::mk_sightDistance = 300;
 int const BlobSys::mk_blobSpeed = 1;
 
-BlobSys::BlobSys(entt::registry& rReg)
-	: m_rReg(rReg)
+BlobSys::BlobSys(std::string systemConfigItem, entt::registry& rReg)
+	: System(systemConfigItem)
+	, m_rReg(rReg)
 { }
 
-void BlobSys::Update()
+void BlobSys::Update_()
 {
 	m_rReg.view<PlayerComp, PositionComp>().each([&](auto playerEntity, auto& playerPositionComp)
 	{

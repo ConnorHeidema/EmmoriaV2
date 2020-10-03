@@ -1,19 +1,19 @@
 #ifndef __CLICKABLE_SYS__
 #define __CLICKABLE_SYS__
 
-#include "system/ISystem.hpp"
+#include "system/System.hpp"
 
 #include <entt/entt.hpp>
 
 #include <SFML/Window.hpp>
 
 class ClickableSys
-	: public ISystem
+	: public System
 {
 public:
-	ClickableSys(entt::registry& rReg);
-	void Update() override;
+	ClickableSys(std::string systemConfigItem, entt::registry& rReg);
 private:
+	void Update_() override;
 
 	void CheckClick_(sf::Mouse::Button click);
 

@@ -15,12 +15,13 @@
 
 #include <SFML/Graphics.hpp>
 
-GameRenderSys::GameRenderSys(entt::registry& rReg, sf::RenderWindow& rRenderWindow)
-	: m_rReg(rReg)
+GameRenderSys::GameRenderSys(std::string systemConfigItem, entt::registry& rReg, sf::RenderWindow& rRenderWindow)
+	: System(systemConfigItem)
+	, m_rReg(rReg)
 	, m_rRenderWindow(rRenderWindow)
 { }
 
-void GameRenderSys::Update()
+void GameRenderSys::Update_()
 {
 	m_rReg.view<RenderableComp>().each([&](
 	auto entity,

@@ -1,7 +1,7 @@
 #ifndef __MOVIE_RENDER_SYS__
 #define __MOVIE_RENDER_SYS__
 
-#include "system/ISystem.hpp"
+#include "system/System.hpp"
 
 #include "util/Mediamap.hpp"
 
@@ -12,13 +12,14 @@
 #include <memory>
 
 class MovieRenderSys
-	: public ISystem
+	: public System
 {
 public:
-	MovieRenderSys(entt::registry& rReg, sf::RenderWindow& rRenderWindow);
-	void Update() override;
+	MovieRenderSys(std::string systemConfigItem, entt::registry& rReg, sf::RenderWindow& rRenderWindow);
 
 private:
+	void Update_() override;
+
 	sf::RenderWindow& m_rRenderWindow;
 	entt::registry& m_rReg;
 

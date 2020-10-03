@@ -1,7 +1,7 @@
 #ifndef __TILE_MAP_SYS__
 #define __TILE_MAP_SYS__
 
-#include "system/ISystem.hpp"
+#include "system/System.hpp"
 
 #include "core/TileMap.hpp"
 
@@ -11,13 +11,14 @@
 #include <memory>
 
 class TileMapSys
-	: public ISystem
+	: public System
 {
 public:
-	TileMapSys(entt::registry& reg);
-	void Update() override;
+	TileMapSys(std::string systemConfigItem, entt::registry& reg);
 
 private:
+	void Update_() override;
+
 	entt::registry& m_rReg;
 
 	std::shared_ptr<TileMap> m_pTileMap;

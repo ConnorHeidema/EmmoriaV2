@@ -14,12 +14,13 @@
 
 int const AnimationSys::mk_animationSpeed = 12;
 
-AnimationSys::AnimationSys(entt::registry& rReg)
-	: m_rReg(rReg)
+AnimationSys::AnimationSys(std::string systemConfigItem, entt::registry& rReg)
+	: System(systemConfigItem)
+	, m_rReg(rReg)
 	, m_currentAnimationCycle(0)
 { }
 
-void AnimationSys::Update()
+void AnimationSys::Update_()
 {
 	if (m_currentAnimationCycle != mk_animationSpeed)
 	{

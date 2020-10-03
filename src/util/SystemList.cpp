@@ -1,5 +1,6 @@
 #include "util/SystemList.hpp"
 
+#include "system/ConfigSys.hpp"
 #include "system/MovementSys.hpp"
 #include "system/PrintMovementSys.hpp"
 #include "system/MovieRenderSys.hpp"
@@ -17,30 +18,47 @@
 
 #include "system/enemy/BlobSys.hpp"
 
-std::list<std::shared_ptr<ISystem>> SystemList::CreateSystemList(entt::registry& rReg, sf::RenderWindow& rRenderWindow)
+#define REGULAR_SYSTEM_NAME_INPUT(System) std::make_unique< System##Sys>( \
+	std::string("Disable") + \
+	std::string(#System) + \
+	std::string("Sys"), \
+	rReg)
+
+#define ANIMATION_SYSTEM_NAME_INPUT(System)	std::make_unique< System##Sys>( \
+	std::string("Disable") + \
+	std::string(#System) + \
+	std::string("Sys"), \
+	rReg, \
+	rRenderWindow)
+
+std::list<std::shared_ptr<System>> SystemList::CreateSystemList(entt::registry& rReg, sf::RenderWindow& rRenderWindow)
 {
-	std::list<std::shared_ptr<ISystem>> m_sysRunningOrder
+	std::list<std::shared_ptr<System>> m_sysRunningOrder
 	{
-		std::make_unique<MovementSys>(rReg),
-		std::make_unique<PrintMovementSys>(rReg),
-		std::make_unique<TileMapSys>(rReg),
-		std::make_unique<InteractingSys>(rReg),
-		std::make_unique<AnimationSys>(rReg),
-		std::make_unique<LoadingSys>(rReg),
-		std::make_unique<ButtonSys>(rReg),
-		std::make_unique<ClickableSys>(rReg),
-		std::make_unique<DialogSys>(rReg),
-		std::make_unique<PersistentSys>(rReg),
-		std::make_unique<HealthSys>(rReg),
-		std::make_unique<SceneLoadSys>(rReg),
-		std::make_unique<GameRenderSys>(rReg, rRenderWindow),
-		std::make_unique<MovieRenderSys>(rReg, rRenderWindow),
-		std::make_unique<BlobSys>(rReg)
+		REGULAR_SYSTEM_NAME_INPUT(Config),
+		REGULAR_SYSTEM_NAME_INPUT(Movement),
+		REGULAR_SYSTEM_NAME_INPUT(PrintMovement),
+		REGULAR_SYSTEM_NAME_INPUT(TileMap),
+		REGULAR_SYSTEM_NAME_INPUT(Interacting),
+		REGULAR_SYSTEM_NAME_INPUT(Animation),
+		REGULAR_SYSTEM_NAME_INPUT(Loading),
+		REGULAR_SYSTEM_NAME_INPUT(Button),
+		REGULAR_SYSTEM_NAME_INPUT(Clickable),
+		REGULAR_SYSTEM_NAME_INPUT(Dialog),
+		REGULAR_SYSTEM_NAME_INPUT(Persistent),
+		REGULAR_SYSTEM_NAME_INPUT(Health),
+		REGULAR_SYSTEM_NAME_INPUT(SceneLoad),
+		ANIMATION_SYSTEM_NAME_INPUT(GameRender),
+		ANIMATION_SYSTEM_NAME_INPUT(MovieRender),
+		REGULAR_SYSTEM_NAME_INPUT(Blob)
 	};
 	return m_sysRunningOrder;
 }
 
-std::list<std::shared_ptr<ISystem>> SystemList::m_pSystemList =
+#undef ANIMATION_SYSTEM_NAME_INPUT
+#undef REGULAR_SYSTEM_NAME_INPUT
+
+std::list<std::shared_ptr<System>> SystemList::m_pSystemList =
 {
 
 };

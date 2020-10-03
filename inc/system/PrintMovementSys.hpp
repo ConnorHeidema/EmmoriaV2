@@ -1,18 +1,18 @@
 #ifndef __PRINT_MOVEMENT_SYS__
 #define __PRINT_MOVEMENT_SYS__
 
-#include "system/ISystem.hpp"
+#include "system/System.hpp"
 
 #include <entt/entt.hpp>
 
 class PrintMovementSys
-	: public ISystem
+	: public System
 {
 public:
-	PrintMovementSys(entt::registry& reg);
-	void Update() override;
+	PrintMovementSys(std::string systemConfigItem, entt::registry& reg);
 
 private:
+	void Update_() override;
 	entt::registry& m_rReg;
 };
 

@@ -4,11 +4,12 @@
 
 #include <iostream>
 
-PrintMovementSys::PrintMovementSys(entt::registry& rReg)
-	: m_rReg(rReg)
+PrintMovementSys::PrintMovementSys(std::string systemConfigItem, entt::registry& rReg)
+	: System(systemConfigItem)
+	, m_rReg(rReg)
 { }
 
-void PrintMovementSys::Update()
+void PrintMovementSys::Update_()
 {
 	// reg.view<PositionComp>().each([](auto entity, auto& posComp) {
 	// 	std::cout << "(" <<

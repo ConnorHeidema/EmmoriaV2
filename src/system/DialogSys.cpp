@@ -20,12 +20,13 @@
 
 #include <iostream>
 
-DialogSys::DialogSys(entt::registry& rReg)
-	: m_rReg(rReg)
+DialogSys::DialogSys(std::string systemConfigItem, entt::registry& rReg)
+	: System(systemConfigItem)
+	, m_rReg(rReg)
 	, m_dialogSysState(DialogSysState_t::WAITING)
 {}
 
-void DialogSys::Update()
+void DialogSys::Update_()
 {
 	switch (m_dialogSysState)
 	{

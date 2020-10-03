@@ -1,18 +1,19 @@
 #ifndef __PERSISTENT_SYS__
 #define __PERSISTENT_SYS__
 
-#include "system/ISystem.hpp"
+#include "system/System.hpp"
 
 #include <entt/entt.hpp>
 
 class PersistentSys
-	: public ISystem
+	: public System
 {
 public:
-	PersistentSys(entt::registry& reg);
-	void Update() override;
+	PersistentSys(std::string systemConfigItem, entt::registry& reg);
 
 private:
+	void Update_() override;
+
 	int m_framesToLive;
 	int const m_kMaxFrameToLive;
 	entt::registry& m_rReg;

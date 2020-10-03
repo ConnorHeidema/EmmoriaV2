@@ -11,11 +11,12 @@
 
 #include <SFML/Graphics.hpp>
 
-ButtonSys::ButtonSys(entt::registry& rReg)
-	: m_rReg(rReg)
+ButtonSys::ButtonSys(std::string systemConfigItem, entt::registry& rReg)
+	: System(systemConfigItem)
+	, m_rReg(rReg)
 { }
 
-void ButtonSys::Update()
+void ButtonSys::Update_()
 {
 	Media_t movieToPlay = Media_t::NONE;
 	m_rReg.view<ButtonComp, ClickableComp>().each([&](

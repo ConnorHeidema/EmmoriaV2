@@ -8,13 +8,14 @@
 
 #include <iostream>
 
-ClickableSys::ClickableSys(entt::registry& rReg)
-	: m_rReg(rReg)
+ClickableSys::ClickableSys(std::string systemConfigItem, entt::registry& rReg)
+	: System(systemConfigItem)
+	, m_rReg(rReg)
 	, m_bLeftClicked(false)
 	, m_bRightClicked(false)
 { }
 
-void ClickableSys::Update()
+void ClickableSys::Update_()
 {
 	CheckClick_(sf::Mouse::Left);
 	CheckClick_(sf::Mouse::Right);

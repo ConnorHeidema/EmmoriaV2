@@ -1,7 +1,7 @@
 #ifndef __MOVEMENT_SYS__
 #define __MOVEMENT_SYS__
 
-#include "system/ISystem.hpp"
+#include "system/System.hpp"
 
 #include <entt/entt.hpp>
 
@@ -12,13 +12,14 @@
  * 		MovementComp
  */
 class MovementSys
-	: public ISystem
+	: public System
 {
 public:
-	MovementSys(entt::registry& rReg);
-	void Update() override;
+	MovementSys(std::string systemConfigItem, entt::registry& rReg);
 
 private:
+	void Update_() override;
+
 	entt::registry& m_rReg;
 
 	int const& m_speed;

@@ -11,11 +11,12 @@
 #include <fstream>
 #include <sstream>
 
-LoadingSys::LoadingSys(entt::registry& rReg)
-	: m_rReg(rReg)
+LoadingSys::LoadingSys(std::string systemConfigItem, entt::registry& rReg)
+	: System(systemConfigItem)
+	, m_rReg(rReg)
 {}
 
-void LoadingSys::Update()
+void LoadingSys::Update_()
 {
 	m_rReg.view<LoadComp>().each([&](auto entity, auto& loadComp)
 	{

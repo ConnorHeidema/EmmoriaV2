@@ -15,6 +15,9 @@
                 "${workspaceFolder}/src/core/Application.cpp",
                 "${workspaceFolder}/src/core/TileMap.cpp",
 
+                // Config Items
+                "${workspaceFolder}/src/config/ConfigItems.cpp",
+
                 // Component map
                 "${workspaceFolder}/src/component/InteractStringMap.cpp",
 
@@ -34,6 +37,7 @@
                 "${workspaceFolder}/src/util/AnimationMappings.cpp",
 
                 // System implementations
+                "${workspaceFolder}/src/system/ConfigSys.cpp",
                 "${workspaceFolder}/src/system/MovementSys.cpp",
                 "${workspaceFolder}/src/system/PrintMovementSys.cpp",
                 "${workspaceFolder}/src/system/MovieRenderSys.cpp",

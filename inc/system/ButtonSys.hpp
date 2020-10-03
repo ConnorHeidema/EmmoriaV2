@@ -1,17 +1,18 @@
 #ifndef __BUTTON_SYS__
 #define __BUTTON_SYS__
 
-#include "system/ISystem.hpp"
+#include "system/System.hpp"
 
 #include <entt/entt.hpp>
 
 class ButtonSys
-	: public ISystem
+	: public System
 {
 public:
-	ButtonSys(entt::registry& rReg);
-	void Update() override;
+	ButtonSys(std::string systemConfigItem, entt::registry& rReg);
 private:
+	void Update_() override;
+
 	entt::registry& m_rReg;
 
 	entt::entity m_entity;

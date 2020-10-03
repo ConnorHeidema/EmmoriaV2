@@ -4,13 +4,14 @@
 
 #include "component/functional/PositionComp.hpp"
 
-PersistentSys::PersistentSys(entt::registry& rReg)
-	: m_rReg(rReg)
+PersistentSys::PersistentSys(std::string systemConfigItem, entt::registry& rReg)
+	: System(systemConfigItem)
+	, m_rReg(rReg)
 	, m_framesToLive(0)
 	, m_kMaxFrameToLive(24)
 { }
 
-void PersistentSys::Update()
+void PersistentSys::Update_()
 {
 	bool m_bPersistentCompExists = false;
 	m_rReg.view<PersistentComp>().each([&](auto entity)

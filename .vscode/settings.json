@@ -63,7 +63,8 @@
 		"typeindex": "cpp",
 		"typeinfo": "cpp",
 		"filesystem": "cpp",
-		"*.ipp": "cpp"
+		"*.ipp": "cpp",
+		"unordered_set": "cpp"
 	},
 	"editor.tabSize": 4,
 	"search.exclude": {

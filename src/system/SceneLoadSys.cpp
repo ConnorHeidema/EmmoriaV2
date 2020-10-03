@@ -9,12 +9,13 @@
 #include <limits>
 #include <iostream>
 
-SceneLoadSys::SceneLoadSys(entt::registry& rReg)
-	: m_rReg(rReg)
+SceneLoadSys::SceneLoadSys(std::string systemConfigItem, entt::registry& rReg)
+	: System(systemConfigItem)
+	, m_rReg(rReg)
 {
 }
 
-void SceneLoadSys::Update()
+void SceneLoadSys::Update_()
 {
 	bool bPlayerOnScreen = false;
 	m_rReg.view<PlayerComp, PositionComp>().each([&](auto entity, auto& positionComp)

@@ -21,11 +21,12 @@
 	static_cast<int>(InteractType_t::NUM_INTERACTOR_TYPE) + \
 	static_cast<int>(interactableComp.m_interactType)
 
-InteractingSys::InteractingSys(entt::registry& rReg)
-	: m_rReg(rReg)
+InteractingSys::InteractingSys(std::string systemConfigItem, entt::registry& rReg)
+	: System(systemConfigItem)
+	, m_rReg(rReg)
 { }
 
-void InteractingSys::Update()
+void InteractingSys::Update_()
 {
 	m_rReg.view<PositionComp, SizeComp, InteractableComp>().each([&]
 		(auto interactableEntity, auto& interactablePositionComp, auto& interactableSizeComp, auto& interactableComp)

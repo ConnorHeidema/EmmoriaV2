@@ -1,18 +1,19 @@
 #ifndef __LOADING_SYS__
 #define __LOADING_SYS__
 
-#include "system/ISystem.hpp"
+#include "system/System.hpp"
 
 
 #include <entt/entt.hpp>
 
 class LoadingSys
-	: public ISystem
+	: public System
 {
 public:
-	LoadingSys(entt::registry& reg);
-	void Update() override;
+	LoadingSys(std::string systemConfigItem, entt::registry& reg);
 private:
+	void Update_() override;
+
 	entt::registry& m_rReg;
 };
 

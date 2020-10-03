@@ -8,13 +8,14 @@
 #include "component/functional/TileMapPtrComp.hpp"
 #include "component/functional/RenderableComp.hpp"
 
-TileMapSys::TileMapSys(entt::registry& rReg)
-	: m_rReg(rReg)
+TileMapSys::TileMapSys(std::string systemConfigItem, entt::registry& rReg)
+	: System(systemConfigItem)
+	, m_rReg(rReg)
 	, m_pTileMap(std::make_shared<TileMap>())
 {
 }
 
-void TileMapSys::Update()
+void TileMapSys::Update_()
 {
 	m_rReg.view<TileMapComp>().each([&](auto entity, auto& tileMapComp)
 	{

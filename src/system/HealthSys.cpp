@@ -8,11 +8,12 @@
 
 #include <iostream>
 
-HealthSys::HealthSys(entt::registry& rReg)
-	: m_rReg(rReg)
+HealthSys::HealthSys(std::string systemConfigItem, entt::registry& rReg)
+	: System(systemConfigItem)
+	, m_rReg(rReg)
 { }
 
-void HealthSys::Update()
+void HealthSys::Update_()
 {
 	m_rReg.view<HealthComp>().each([](auto entity, auto& healthComp) {
 		//std::cout <<  std::to_string(healthComp.m_health) << std::endl;

@@ -1,7 +1,7 @@
 #ifndef __DIALOG_SYS__
 #define __DIALOG_SYS__
 
-#include "system/ISystem.hpp"
+#include "system/System.hpp"
 
 #include <entt/entt.hpp>
 
@@ -15,13 +15,14 @@ enum DialogSysState_t
 };
 
 class DialogSys
-	: public ISystem
+	: public System
 {
 public:
-	DialogSys(entt::registry& reg);
-	void Update() override;
+	DialogSys(std::string systemConfigItem, entt::registry& reg);
 
 private:
+	void Update_() override;
+
 	void UpdateWaitingState_();
 	void UpdateProducingState_();
 	void UpdatePendingState_();

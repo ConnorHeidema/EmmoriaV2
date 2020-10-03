@@ -11,12 +11,13 @@
 
 #include <entt/entt.hpp>
 
-MovementSys::MovementSys(entt::registry& rReg)
-	: m_rReg(rReg)
+MovementSys::MovementSys(std::string systemConfigItem, entt::registry& rReg)
+	: System(systemConfigItem)
+	, m_rReg(rReg)
 	, m_speed(ApplicationParameters::k_playerMovementSpeed)
 { }
 
-void MovementSys::Update()
+void MovementSys::Update_()
 {
 	m_rReg.view<PlayerComp, PositionComp>().each([&](auto entity, auto& positionComp) {
 		{

@@ -1,20 +1,20 @@
 #ifndef __SCENE_LOAD_SYS__
 #define __SCENE_LOAD_SYS__
 
-#include "system/ISystem.hpp"
+#include "system/System.hpp"
 
 #include "component/functional/LocationComp.hpp"
 
 #include <entt/entt.hpp>
 
 class SceneLoadSys
-	: public ISystem
+	: public System
 {
 public:
-	SceneLoadSys(entt::registry& reg);
-	void Update() override;
+	SceneLoadSys(std::string systemConfigItem, entt::registry& reg);
 
 private:
+	void Update_() override;
 	entt::registry& m_rReg;
 	std::string m_lastArea;
 };

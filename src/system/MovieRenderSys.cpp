@@ -11,8 +11,9 @@
 #include <SFML/Graphics.hpp>
 
 
-MovieRenderSys::MovieRenderSys(entt::registry& rReg, sf::RenderWindow& rRenderWindow)
-	: m_rRenderWindow(rRenderWindow)
+MovieRenderSys::MovieRenderSys(std::string systemConfigItem, entt::registry& rReg, sf::RenderWindow& rRenderWindow)
+	: System(systemConfigItem)
+	, m_rRenderWindow(rRenderWindow)
 	, m_rReg(rReg)
 {
 	auto movie = m_rReg.create();
@@ -21,7 +22,7 @@ MovieRenderSys::MovieRenderSys(entt::registry& rReg, sf::RenderWindow& rRenderWi
 	m_lastMedia = Media_t::NONE;
 }
 
-void MovieRenderSys::Update()
+void MovieRenderSys::Update_()
 {
 	m_rReg.view<MovieComp>().each([&](auto entity, auto& movieComp)
 	{

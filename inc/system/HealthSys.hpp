@@ -1,18 +1,18 @@
 #ifndef __HEALTH_SYS__
 #define __HEALTH_SYS__
 
-#include "system/ISystem.hpp"
+#include "system/System.hpp"
 
 #include <entt/entt.hpp>
 
 class HealthSys
-	: public ISystem
+	: public System
 {
 public:
-	HealthSys(entt::registry& reg);
-	void Update() override;
+	HealthSys(std::string systemConfigItem, entt::registry& reg);
 
 private:
+	void Update_() override;
 	entt::registry& m_rReg;
 };
 
