@@ -56,8 +56,8 @@ void GameRenderSys::Update_()
 			texture.loadFromFile(spriteComp.m_filePath); // this should be stored somehow
 			genericSprite.setTexture(&texture);
 			genericSprite.setPosition(
-				(positionComp.m_position.x % ApplicationParameters::k_rightOfScreen) - (int)sizeComp.m_size.width/2,
-				(positionComp.m_position.y % ApplicationParameters::k_bottomOfScreen) - (int)sizeComp.m_size.height/2);
+				(int(positionComp.m_position.x) % ApplicationParameters::k_rightOfScreen) - (int)sizeComp.m_size.width/2,
+				(int(positionComp.m_position.y) % ApplicationParameters::k_bottomOfScreen) - (int)sizeComp.m_size.height/2);
 
 			genericSprite.setTextureRect(
 				sf::IntRect(

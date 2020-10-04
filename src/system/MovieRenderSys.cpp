@@ -10,7 +10,6 @@
 
 #include <SFML/Graphics.hpp>
 
-
 MovieRenderSys::MovieRenderSys(std::string systemConfigItem, entt::registry& rReg, sf::RenderWindow& rRenderWindow)
 	: System(systemConfigItem)
 	, m_rRenderWindow(rRenderWindow)

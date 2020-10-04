@@ -13,7 +13,7 @@ struct ApplicationParameters
 	static std::string const k_dataPath;
 	static std::string const k_spritePath;
 
-	static int const k_playerMovementSpeed;
+	static float const k_playerMovementSpeed;
 	static int const k_widthUnits;
 	static int const k_heightUnits;
 	static int const k_debounceFrames;

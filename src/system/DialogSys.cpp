@@ -71,8 +71,8 @@ void DialogSys::UpdateProducingState_()
 			std::string xLocationStr =
 				fullLocation.substr(fullLocation.find("/") + 1, fullLocation.find(",") - fullLocation.find("/") - 1);
 			std::string yLocationStr = fullLocation.substr(fullLocation.find(",") + 1);
-			locationComp.xLocation = std::stoi(xLocationStr);
-			locationComp.yLocation = std::stoi(yLocationStr);
+			locationComp.xLocation = float(std::stoi(xLocationStr));
+			locationComp.yLocation = float(std::stoi(yLocationStr));
 			m_dialogSysState = DialogSysState_t::LOADING;
 			return;
 		}
@@ -88,13 +88,13 @@ void DialogSys::UpdateProducingState_()
 
 		auto& fragmentPositionComp = m_rReg.emplace<PositionComp>(fragmentEntity);
 		fragmentPositionComp.m_position.x =
-			Helper::Rand(
+			float(Helper::Rand(
 				fragmentSizeComp.m_size.width/2,
-				ApplicationParameters::k_screenWidth - fragmentSizeComp.m_size.width/2);
+				ApplicationParameters::k_screenWidth - fragmentSizeComp.m_size.width/2));
 		fragmentPositionComp.m_position.y =
-			Helper::Rand(
+			float(Helper::Rand(
 				fragmentSizeComp.m_size.height/2,
-				ApplicationParameters::k_screenHeight - fragmentSizeComp.m_size.height/2);
+				ApplicationParameters::k_screenHeight - fragmentSizeComp.m_size.height/2));
 
 		auto& fragmentRenderableComp = m_rReg.emplace<RenderableComp>(fragmentEntity);
 		fragmentRenderableComp.m_bRendered = false;

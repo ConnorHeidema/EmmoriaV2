@@ -99,9 +99,9 @@ void EntityLoaderFactory::LoadLastPositionComp(entt::registry& rReg, entt::entit
 	std::string token;
 	auto& positionComp = rReg.get_or_emplace<LastPositionComp>(rEntity);
 	reader >> token;
-	positionComp.m_lastPosition.x = std::stoi(token) * ApplicationParameters::k_widthAdjustment;
+	positionComp.m_lastPosition.x = float(std::stoi(token) * ApplicationParameters::k_widthAdjustment);
 	reader >> token;
-	positionComp.m_lastPosition.y = std::stoi(token) * ApplicationParameters::k_heightAdjustment;
+	positionComp.m_lastPosition.y = float(std::stoi(token) * ApplicationParameters::k_heightAdjustment);
 }
 
 void EntityLoaderFactory::LoadLoadComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -123,17 +123,17 @@ void EntityLoaderFactory::LoadPositionComp(entt::registry& rReg, entt::entity& r
 	std::string token;
 	auto& positionComp = rReg.get_or_emplace<PositionComp>(rEntity);
 	reader >> token;
-	int x = 0;
-	int y = 0;
+	float x = 0;
+	float y = 0;
 	rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
 	{
-		x = locationComp.xLocation * ApplicationParameters::k_rightOfScreen;
-		y = locationComp.yLocation * ApplicationParameters::k_bottomOfScreen;
+		x = float(locationComp.xLocation * ApplicationParameters::k_rightOfScreen);
+		y = float(locationComp.yLocation * ApplicationParameters::k_bottomOfScreen);
 	});
 
-	positionComp.m_position.x = std::stoi(token) * ApplicationParameters::k_widthAdjustment + x;
+	positionComp.m_position.x = float(std::stoi(token) * ApplicationParameters::k_widthAdjustment + x);
 	reader >> token;
-	positionComp.m_position.y = std::stoi(token) * ApplicationParameters::k_heightAdjustment + y;
+	positionComp.m_position.y = float(std::stoi(token) * ApplicationParameters::k_heightAdjustment + y);
 }
 
 void EntityLoaderFactory::LoadRenderableComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -214,14 +214,14 @@ void EntityLoaderFactory::LoadXposition(entt::registry& rReg, entt::entity& rEnt
 	std::string token;
 	reader >> token;
 
-	int x = 0;
+	float x = 0;
 	rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
 	{
-		x = locationComp.xLocation * ApplicationParameters::k_rightOfScreen;
+		x = float(locationComp.xLocation * ApplicationParameters::k_rightOfScreen);
 	});
 
 	auto& positionComp = rReg.get_or_emplace<PositionComp>(rEntity);
-	positionComp.m_position.x = std::stoi(token) * ApplicationParameters::k_widthAdjustment + x;
+	positionComp.m_position.x = float(std::stoi(token) * ApplicationParameters::k_widthAdjustment + x);
 }
 
 void EntityLoaderFactory::LoadYposition(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -229,14 +229,14 @@ void EntityLoaderFactory::LoadYposition(entt::registry& rReg, entt::entity& rEnt
 	std::string token;
 	reader >> token;
 
-	int y = 0;
+	float y = 0;
 	rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
 	{
-		y = locationComp.xLocation * ApplicationParameters::k_bottomOfScreen;
+		y = float(locationComp.xLocation * ApplicationParameters::k_bottomOfScreen);
 	});
 
 	auto& positionComp = rReg.get_or_emplace<PositionComp>(rEntity);
-	positionComp.m_position.y = std::stoi(token) * ApplicationParameters::k_heightAdjustment + y;
+	positionComp.m_position.y = float(std::stoi(token) * ApplicationParameters::k_heightAdjustment + y);
 }
 
 void EntityLoaderFactory::LoadWidth(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -302,12 +302,12 @@ void EntityLoaderFactory::LoadIndexedPosition(entt::registry& rReg, entt::entity
 	auto& positionComp = rReg.get_or_emplace<PositionComp>(rEntity);
 
 	reader >> token;
-	positionComp.m_position.x = std::stoi(token) * ApplicationParameters::k_widthAdjustment;
+	positionComp.m_position.x = float(std::stoi(token) * ApplicationParameters::k_widthAdjustment);
 	reader >> token;
-	positionComp.m_position.y = std::stoi(token) * ApplicationParameters::k_heightAdjustment;
+	positionComp.m_position.y = float(std::stoi(token) * ApplicationParameters::k_heightAdjustment);
 
-	int x = 0;
-	int y = 0;
+	float x = 0;
+	float y = 0;
 	rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
 	{
 		x = locationComp.xLocation * ApplicationParameters::k_rightOfScreen;
@@ -315,9 +315,9 @@ void EntityLoaderFactory::LoadIndexedPosition(entt::registry& rReg, entt::entity
 	});
 
 	positionComp.m_position.x =
-		(positionComp.m_position.x + ApplicationParameters::k_widthAdjustment/2) * ApplicationParameters::k_tileUnitSize + x;
+		float((positionComp.m_position.x + ApplicationParameters::k_widthAdjustment/2) * ApplicationParameters::k_tileUnitSize + x);
 	positionComp.m_position.y =
-		(positionComp.m_position.y + ApplicationParameters::k_heightAdjustment/2) * ApplicationParameters::k_tileUnitSize + y;
+		float((positionComp.m_position.y + ApplicationParameters::k_heightAdjustment/2) * ApplicationParameters::k_tileUnitSize + y);
 	auto& sizeComp = rReg.get_or_emplace<SizeComp>(rEntity);
 	sizeComp.m_size.width = ApplicationParameters::k_tileScreenWidthSize;
 	sizeComp.m_size.height = ApplicationParameters::k_tileScreenHeightSize;

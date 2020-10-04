@@ -22,7 +22,7 @@ private:
 
 	entt::registry& m_rReg;
 
-	int const& m_speed;
+	float const& m_speed;
 };
 
 #endif

@@ -28,8 +28,8 @@ void SceneLoadSys::Update_()
 		{
 			m_rReg.view<LocationComp>().each([&](auto locationEntity, auto& locationComp)
 			{
-				if (locationComp.xLocation != positionComp.m_position.x / ApplicationParameters::k_rightOfScreen ||
-					locationComp.yLocation != positionComp.m_position.y / ApplicationParameters::k_bottomOfScreen ||
+				if (locationComp.xLocation != (int)positionComp.m_position.x / ApplicationParameters::k_rightOfScreen ||
+					locationComp.yLocation != (int)positionComp.m_position.y / ApplicationParameters::k_bottomOfScreen ||
 					locationComp.area != m_lastArea)
 				{
 					locationComp.xLocation = positionComp.m_position.x / ApplicationParameters::k_rightOfScreen;
@@ -45,8 +45,8 @@ void SceneLoadSys::Update_()
 					auto& fragmentLoadComp = m_rReg.emplace<LoadComp>(loadEntity);
 					fragmentLoadComp.m_filePath =
 						locationComp.area + "/" +
-						std::to_string(locationComp.xLocation) + "," +
-						std::to_string(locationComp.yLocation);
+						std::to_string(int(locationComp.xLocation)) + "," +
+						std::to_string(int(locationComp.yLocation));
 				}
 				m_lastArea = locationComp.area;
 			});
@@ -60,7 +60,7 @@ void SceneLoadSys::Update_()
 		auto& fragmentLoadComp = m_rReg.emplace<LoadComp>(loadEntity);
 		fragmentLoadComp.m_filePath =
 			locationComp.area + "/" +
-			std::to_string(locationComp.xLocation) + "," +
-			std::to_string(locationComp.yLocation);
+			std::to_string(int(locationComp.xLocation)) + "," +
+			std::to_string(int(locationComp.yLocation));
 	});
 }

@@ -14,8 +14,8 @@ public:
 private:
 	void Update_() override;
 	entt::registry& m_rReg;
-	static int const mk_sightDistance;
-	static int const mk_blobSpeed;
+	static float const mk_sightDistance;
+	static float const mk_blobSpeed;
 };
 
 #endif
