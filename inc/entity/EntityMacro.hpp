@@ -13,7 +13,9 @@
 	macroToUse(BlobComp) \
 	macroToUse(BowComp) \
 	macroToUse(ItemActionAreaComp) \
-	macroToUse(ArrowComp)
+	macroToUse(ArrowComp) \
+	macroToUse(WallInteractorComp) \
+	macroToUse(DeleteAfterInteractionComp)
 
 #define ALL_FUNCTIONAL_MACRO(macroToUse) \
 	macroToUse(ButtonComp) \

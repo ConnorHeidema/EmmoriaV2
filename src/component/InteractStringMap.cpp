@@ -2,6 +2,7 @@
 
 #include "util/ApplicationParameters.hpp"
 
+#include "component/tag/AllTagComp.hpp"
 #include "component/functional/HealthComp.hpp"
 #include "component/functional/LastPositionComp.hpp"
 #include "component/functional/PositionComp.hpp"
@@ -45,8 +46,9 @@ void InteractStringMap::InteractPlayerCompBlobComp(entt::registry& rReg, entt::e
 	healthComp.m_health -= 1;
 }
 
-void InteractStringMap::InteractPlayerCompWallComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
+void InteractStringMap::InteractWallInteractorCompWallComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
 {
+	std::cout << "here" << std::endl;
 	auto& wallPositionComp = rReg.get<PositionComp>(rInteractableEntity);
 	auto& wallSizeComp = rReg.get<SizeComp>(rInteractableEntity);
 
@@ -78,9 +80,8 @@ void InteractStringMap::InteractPlayerCompWallComp(entt::registry& rReg, entt::e
 
 void InteractStringMap::InteractArrowCompBlobComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
 {
-	std::cout << "here" << std::endl;
-	rReg.destroy(rInteractableEntity);
-	rReg.destroy(rInteractorEntity);
+	rReg.emplace_or_replace<DeleteAfterInteractionComp>(rInteractorEntity);
+	rReg.emplace_or_replace<DeleteAfterInteractionComp>(rInteractableEntity);
 }
 
 std::unordered_map<int, fnEntityInteractor> InteractStringMap::CreateInteractionFnList()
@@ -93,7 +94,7 @@ std::unordered_map<int, fnEntityInteractor> InteractStringMap::CreateInteraction
 	std::unordered_map<int, fnEntityInteractor> fn;
 	INSERT(PlayerComp, HealingPadComp)
 	INSERT(PlayerComp, BlobComp)
-	INSERT(PlayerComp, WallComp)
+	INSERT(WallInteractorComp, WallComp)
 	INSERT(ArrowComp, BlobComp)
 	#undef INSERT
 	return fn;

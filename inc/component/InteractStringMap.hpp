@@ -20,7 +20,7 @@ public:
 
 	static void InteractPlayerCompHealingPadComp(entt::registry& rReg, entt::entity& rinteractorEntity, entt::entity& rinteractableEntity);
 	static void InteractPlayerCompBlobComp(entt::registry& rReg, entt::entity& rinteractorEntity, entt::entity& rinteractableEntity);
-	static void InteractPlayerCompWallComp(entt::registry& rReg, entt::entity& rinteractorEntity, entt::entity& rinteractableEntity);
+	static void InteractWallInteractorCompWallComp(entt::registry& rReg, entt::entity& rinteractorEntity, entt::entity& rinteractableEntity);
 	static void InteractArrowCompBlobComp(entt::registry& rReg, entt::entity& rinteractorEntity, entt::entity& rinteractableEntity);
 
 	static std::unordered_map<int, fnEntityInteractor> CreateInteractionFnList();

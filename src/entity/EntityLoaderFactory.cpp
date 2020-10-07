@@ -72,7 +72,7 @@ void EntityLoaderFactory::LoadInteractableComp(entt::registry& rReg, entt::entit
 	auto& interactableComp = rReg.get_or_emplace<InteractableComp>(rEntity);
 	try
 	{
-		interactableComp.m_interactType = InteractStringMap::s_interactStringToType.at(token);
+		interactableComp.m_interactType.emplace_back(InteractStringMap::s_interactStringToType.at(token));
 	}
 	catch (std::out_of_range /*e*/)
 	{
@@ -87,7 +87,7 @@ void EntityLoaderFactory::LoadInteractorComp(entt::registry& rReg, entt::entity&
 	auto& interactorComp = rReg.get_or_emplace<InteractorComp>(rEntity);
 	try
 	{
-		interactorComp.m_interactType = InteractStringMap::s_interactStringToType.at(token);
+		interactorComp.m_interactType.emplace_back(InteractStringMap::s_interactStringToType.at(token));
 	}
 	catch (std::out_of_range /*e*/)
 	{
@@ -336,6 +336,6 @@ void EntityLoaderFactory::LoadWallTile(entt::registry& rReg, entt::entity& rEnti
  	rReg.emplace<RenderableComp>(rEntity);
 	LoadTileMapPieceComp(rReg, rEntity, reader);
 	LoadIndexedPosition(rReg, rEntity, reader);
-	auto& interactableComp = rReg.emplace<InteractableComp>(rEntity);
-	interactableComp.m_interactType = InteractType_t::WallComp_t;
+	auto& interactableComp = rReg.get_or_emplace<InteractableComp>(rEntity);
+	interactableComp.m_interactType.emplace_back(InteractType_t::WallComp_t);
 }

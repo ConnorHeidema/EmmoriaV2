@@ -40,7 +40,6 @@ std::list<std::shared_ptr<System>> SystemList::CreateSystemList(entt::registry& 
 		REGULAR_SYSTEM_NAME_INPUT(Movement),
 		REGULAR_SYSTEM_NAME_INPUT(PrintMovement),
 		REGULAR_SYSTEM_NAME_INPUT(TileMap),
-		REGULAR_SYSTEM_NAME_INPUT(Interacting),
 		REGULAR_SYSTEM_NAME_INPUT(Animation),
 		REGULAR_SYSTEM_NAME_INPUT(Loading),
 		REGULAR_SYSTEM_NAME_INPUT(Button),
@@ -52,7 +51,8 @@ std::list<std::shared_ptr<System>> SystemList::CreateSystemList(entt::registry& 
 		ANIMATION_SYSTEM_NAME_INPUT(GameRender),
 		ANIMATION_SYSTEM_NAME_INPUT(MovieRender),
 		REGULAR_SYSTEM_NAME_INPUT(Blob),
-		REGULAR_SYSTEM_NAME_INPUT(Bow)
+		REGULAR_SYSTEM_NAME_INPUT(Bow),
+		REGULAR_SYSTEM_NAME_INPUT(Interacting)
 	};
 	return m_sysRunningOrder;
 }

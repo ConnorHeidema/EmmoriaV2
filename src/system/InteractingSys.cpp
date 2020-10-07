@@ -17,15 +17,16 @@
 #include <iostream>
 
 #define INDEX() \
-	static_cast<int>(interactorComp.m_interactType) * \
+	static_cast<int>(interactorType) * \
 	static_cast<int>(InteractType_t::NUM_INTERACTOR_TYPE) + \
-	static_cast<int>(interactableComp.m_interactType)
+	static_cast<int>(interactableType)
 
 InteractingSys::InteractingSys(std::string systemConfigItem, entt::registry& rReg)
 	: System(systemConfigItem)
 	, m_rReg(rReg)
 { }
 
+// Have to deal with segfault where interact entities are destroyed in map but we are trying to iterate over them still
 void InteractingSys::Update_()
 {
 	m_rReg.view<PositionComp, SizeComp, InteractableComp>().each([&]
@@ -34,23 +35,35 @@ void InteractingSys::Update_()
 		m_rReg.view<PositionComp, SizeComp, InteractorComp>().each([&]
 			(auto interactorEntity, auto& interactorPositionComp, auto& interactorSizeComp, auto& interactorComp)
 		{
-			if (OverlapUtils::Overlapping(
-				interactablePositionComp.m_position,
-				interactableSizeComp.m_size,
-				interactorPositionComp.m_position,
-				interactorSizeComp.m_size))
+			for (auto& interactableType : interactableComp.m_interactType)
 			{
-				if (InteractStringMap::fnInteractionMap.find(INDEX()) !=
-					InteractStringMap::fnInteractionMap.end())
+				for (auto& interactorType : interactorComp.m_interactType)
 				{
-					InteractStringMap::fnInteractionMap.at(INDEX())(
-						m_rReg,
-						interactorEntity,
-						interactableEntity);
+					if (OverlapUtils::Overlapping(
+						interactablePositionComp.m_position,
+						interactableSizeComp.m_size,
+						interactorPositionComp.m_position,
+						interactorSizeComp.m_size))
+					{
+						if (InteractStringMap::fnInteractionMap.find(INDEX()) !=
+							InteractStringMap::fnInteractionMap.end())
+						{
+							InteractStringMap::fnInteractionMap.at(INDEX())(
+								m_rReg,
+								interactorEntity,
+								interactableEntity);
+						}
+					}
 				}
 			}
 		});
 	});
+	m_rReg.view<DeleteAfterInteractionComp>().each([&]
+	(auto deleteAfterInteractionEntity)
+	{
+		m_rReg.destroy(deleteAfterInteractionEntity);
+	});
+
 }
 
 #undef INDEX

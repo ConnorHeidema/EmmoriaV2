@@ -3,9 +3,11 @@
 
 #include "component/InteractType.hpp"
 
+#include <list>
+
 struct InteractableComp
 {
-	InteractType_t m_interactType;
+	std::list<InteractType_t> m_interactType;
 };
 
 #endif
