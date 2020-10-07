@@ -19,8 +19,8 @@
 #include <iostream>
 
 const int BowSys::mk_frequency = 30;
-const int BowSys::mk_arrowWidthUnits = 10;
-const int BowSys::mk_arrowHeightUnits = 40;
+const int BowSys::mk_arrowWidthUnits = 2;
+const int BowSys::mk_arrowHeightUnits = 5;
 
 BowSys::BowSys(std::string systemConfigItem, entt::registry& rReg)
 	: System(systemConfigItem)
@@ -68,10 +68,18 @@ void BowSys::Update_()
 					}
 
 					auto& sizeComp = m_rReg.emplace<SizeComp>(bowArrowEntity);
-					sizeComp.m_size.width = std::abs(mk_arrowWidthUnits * ApplicationParameters::k_widthAdjustment * cos(rotationComp.m_angle)) +
-						std::abs(mk_arrowWidthUnits * ApplicationParameters::k_heightAdjustment * sin(rotationComp.m_angle));
-					sizeComp.m_size.height = std::abs(mk_arrowHeightUnits * ApplicationParameters::k_heightAdjustment * cos(rotationComp.m_angle)) +
-						std::abs(mk_arrowHeightUnits * ApplicationParameters::k_widthAdjustment * sin(rotationComp.m_angle));
+					sizeComp.m_size.width =
+						std::sqrt(
+							std::pow(
+								mk_arrowWidthUnits * ApplicationParameters::k_widthAdjustment * sin(rotationComp.m_angle),2) +
+							std::pow(
+								mk_arrowWidthUnits * ApplicationParameters::k_heightAdjustment * cos(rotationComp.m_angle),2));
+					sizeComp.m_size.height =
+						std::sqrt(
+							std::pow(
+								mk_arrowHeightUnits * ApplicationParameters::k_heightAdjustment * sin(rotationComp.m_angle), 2) +
+							std::pow(
+								mk_arrowHeightUnits * ApplicationParameters::k_widthAdjustment * cos(rotationComp.m_angle),2));
 					std::cout << "(" << sizeComp.m_size.width << ", " << sizeComp.m_size.height << ")" << std::endl;
 					m_bowCllickLatch--;
 				}

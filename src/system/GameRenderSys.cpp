@@ -59,8 +59,8 @@ void GameRenderSys::Update_()
 			sf::Texture texture;
 			texture.loadFromFile(spriteComp.m_filePath); // this should be stored somehow
 			genericSprite.setTexture(&texture);
-
-			genericSprite.setRotation(rotationComp.m_angle * 90 / tan(1) + 90);
+			sf::Transform transform;
+        	transform.rotate(rotationComp.m_angle * 90 / tan(1) + 90, sf::Vector2f(positionComp.m_position.x, positionComp.m_position.y));
 
 			genericSprite.setPosition(
 				(int(positionComp.m_position.x) % ApplicationParameters::k_rightOfScreen) - (int)sizeComp.m_size.width/2,
@@ -74,7 +74,7 @@ void GameRenderSys::Update_()
 					spriteComp.m_height));
 
 
-			m_rRenderWindow.draw(genericSprite);
+			m_rRenderWindow.draw(genericSprite, transform);
 			renderableComp.m_bRendered = true;
 		}
 	});
