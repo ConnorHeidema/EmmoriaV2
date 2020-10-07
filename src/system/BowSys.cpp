@@ -60,7 +60,7 @@ void BowSys::Update_()
 					m_rReg.emplace_or_replace<DeloadableComp>(bowArrowEntity);
 
 					auto& interactorComp = m_rReg.get_or_emplace<InteractorComp>(bowArrowEntity);
-					interactorComp.m_interactType.emplace_back(InteractType_t::ArrowComp_t);
+					interactorComp.m_interactTypeList.emplace_back(InteractType_t::ArrowComp_t);
 
 					auto& rotationComp = m_rReg.emplace<RotationComp>(bowArrowEntity);
 

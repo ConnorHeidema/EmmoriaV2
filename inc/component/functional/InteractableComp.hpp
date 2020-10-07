@@ -7,7 +7,7 @@
 
 struct InteractableComp
 {
-	std::list<InteractType_t> m_interactType;
+	std::list<InteractType_t> m_interactTypeList;
 };
 
 #endif

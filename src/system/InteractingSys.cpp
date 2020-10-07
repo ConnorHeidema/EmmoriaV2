@@ -35,9 +35,9 @@ void InteractingSys::Update_()
 		m_rReg.view<PositionComp, SizeComp, InteractorComp>().each([&]
 			(auto interactorEntity, auto& interactorPositionComp, auto& interactorSizeComp, auto& interactorComp)
 		{
-			for (auto& interactableType : interactableComp.m_interactType)
+			for (auto& interactableType : interactableComp.m_interactTypeList)
 			{
-				for (auto& interactorType : interactorComp.m_interactType)
+				for (auto& interactorType : interactorComp.m_interactTypeList)
 				{
 					if (OverlapUtils::Overlapping(
 						interactablePositionComp.m_position,
@@ -58,8 +58,7 @@ void InteractingSys::Update_()
 			}
 		});
 	});
-	m_rReg.view<DeleteAfterInteractionComp>().each([&]
-	(auto deleteAfterInteractionEntity)
+	m_rReg.view<DeleteAfterInteractionComp>().each([&](auto deleteAfterInteractionEntity)
 	{
 		m_rReg.destroy(deleteAfterInteractionEntity);
 	});
