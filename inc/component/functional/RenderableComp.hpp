@@ -7,6 +7,9 @@
 struct RenderableComp
 {
 	bool m_bRendered;
+	RenderableComp()
+		: m_bRendered(false)
+	{}
 };
 
 #endif

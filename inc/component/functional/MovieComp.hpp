@@ -10,6 +10,9 @@
 struct MovieComp
 {
 	Media_t m_currentMedia;
+	MovieComp()
+		: m_currentMedia(Media_t::NONE)
+	{}
 };
 
 #endif

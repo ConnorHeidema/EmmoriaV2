@@ -16,6 +16,9 @@ public:
 	ALL_COMPONENT_PIECE_MACRO(LOAD_DECL)
 	#undef LOAD_DEF
 	#include "entity/EntityMacroEnd.hpp"
+
+private:
+	static std::vector<std::string> ReadTokenList_(int wordsToIngest, std::istringstream& reader);
 };
 
 

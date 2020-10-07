@@ -56,6 +56,9 @@ void BowSys::Update_()
 					spriteComp.m_filePath = ApplicationParameters::k_spritePath + "Arrow" + ApplicationParameters::k_pictureExt;
 					m_rReg.emplace<ArrowComp>(bowArrowEntity);
 
+
+					m_rReg.emplace_or_replace<DeloadableComp>(bowArrowEntity);
+
 					auto& interactorComp = m_rReg.get_or_emplace<InteractorComp>(bowArrowEntity);
 					interactorComp.m_interactType.emplace_back(InteractType_t::ArrowComp_t);
 
