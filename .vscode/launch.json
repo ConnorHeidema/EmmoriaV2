@@ -39,13 +39,6 @@
 			"args": [],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
-			// "environment":
-			// [
-			// 	{
-            //         "name": "LD_LIBRARY_PATH",
-            //         "value": "${workspaceFolder}/ext/bin/SFML"
-            //     }
-			// ],
 			"externalConsole": false,
 			"MIMode": "gdb",
 			"setupCommands": [
@@ -65,13 +58,6 @@
 			"args": [],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
-			// "environment":
-			// [
-			// 	{
-            //         "name": "LD_LIBRARY_PATH",
-            //         "value": "${workspaceFolder}/ext/bin/SFML"
-            //     }
-			// ],
 			"externalConsole": false,
 			"MIMode": "gdb",
 			"setupCommands": [
