@@ -18,6 +18,7 @@
 #include "component/functional/TileMapComp.hpp"
 #include "component/functional/TileMapPieceComp.hpp"
 #include "component/functional/LocationComp.hpp"
+#include "component/functional/RotationComp.hpp"
 
 #include "component/InteractStringMap.hpp"
 
@@ -207,7 +208,13 @@ void EntityLoaderFactory::LoadLocationComp(entt::registry& rReg, entt::entity& r
 	std::cout << "Loaded location comp" << std::endl;
 }
 
-/* Component aggregate loaders */
+void EntityLoaderFactory::LoadRotationComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
+{
+	std::string token;
+	reader >> token;
+	auto& rotationComp = rReg.get_or_emplace<RotationComp>(rEntity);
+	rotationComp.m_angle = std::stof(token);
+}
 
 void EntityLoaderFactory::LoadXposition(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {

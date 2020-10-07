@@ -52,6 +52,7 @@
                 "${workspaceFolder}/src/system/TileMapSys.cpp",
                 "${workspaceFolder}/src/system/AnimationSys.cpp",
                 "${workspaceFolder}/src/system/SceneLoadSys.cpp",
+                "${workspaceFolder}/src/system/BowSys.cpp",
 
                 // Enemy system implementations
                 "${workspaceFolder}/src/system/enemy/BlobSys.cpp",
@@ -59,6 +60,53 @@
                 // Entity factory
                 "${workspaceFolder}/src/entity/EntityLoaderFactory.cpp",
 
+
+                // Internal libraries
+                "-I", "${workspaceFolder}/inc",
+                "-I", "${workspaceFolder}/ext/inc",
+
+                // External libraries
+                "-L", "${workspaceFolder}/ext/bin/SFML",
+                "-L", "${workspaceFolder}/ext/bin/sfemovie",
+
+                // c++ 17
+                "-l", "stdc++fs",
+
+                // sfemovie
+                "-l", "sfeMovie",
+                "-l", "avcodec",
+                "-l", "avdevice",
+                "-l", "avfilter",
+                "-l", "avformat",
+                "-l", "avutil",
+                "-l", "swresample",
+                "-l", "swscale",
+
+                // SFML
+                "-l", "sfml-graphics",
+                "-l", "sfml-window",
+                "-l", "sfml-system",
+                "-l", "sfml-audio",
+                "-l", "sfml-network",
+
+                "-o", "${workspaceFolder}/output/emmoria.out"
+            ],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": [ "$gcc" ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "shell",
+            "label": "BuildMain",
+            "command": "/usr/bin/g++-7",
+            "args": [
+                "-std=c++17",
+
+                "-g",
+                "${workspaceFolder}/main.cpp",
 
                 // Internal libraries
                 "-I", "${workspaceFolder}/inc",

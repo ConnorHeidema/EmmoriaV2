@@ -15,6 +15,7 @@
 #include "system/TileMapSys.hpp"
 #include "system/AnimationSys.hpp"
 #include "system/SceneLoadSys.hpp"
+#include "system/BowSys.hpp"
 
 #include "system/enemy/BlobSys.hpp"
 
@@ -50,7 +51,8 @@ std::list<std::shared_ptr<System>> SystemList::CreateSystemList(entt::registry& 
 		REGULAR_SYSTEM_NAME_INPUT(SceneLoad),
 		ANIMATION_SYSTEM_NAME_INPUT(GameRender),
 		ANIMATION_SYSTEM_NAME_INPUT(MovieRender),
-		REGULAR_SYSTEM_NAME_INPUT(Blob)
+		REGULAR_SYSTEM_NAME_INPUT(Blob),
+		REGULAR_SYSTEM_NAME_INPUT(Bow)
 	};
 	return m_sysRunningOrder;
 }

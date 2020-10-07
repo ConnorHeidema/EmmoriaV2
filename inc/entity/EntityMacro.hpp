@@ -10,7 +10,10 @@
 	macroToUse(RandomComp) \
 	macroToUse(WallComp) \
 	macroToUse(DeloadableComp) \
-	macroToUse(BlobComp)
+	macroToUse(BlobComp) \
+	macroToUse(BowComp) \
+	macroToUse(ItemActionAreaComp) \
+	macroToUse(ArrowComp)
 
 #define ALL_FUNCTIONAL_MACRO(macroToUse) \
 	macroToUse(ButtonComp) \
@@ -28,7 +31,8 @@
 	macroToUse(TextComp) \
 	macroToUse(TileMapComp) \
 	macroToUse(TileMapPieceComp) \
-	macroToUse(LocationComp)
+	macroToUse(LocationComp) \
+	macroToUse(RotationComp)
 
 #define ALL_COMPONENT_PIECE_MACRO(macroToUse) \
 	macroToUse(Xposition) \

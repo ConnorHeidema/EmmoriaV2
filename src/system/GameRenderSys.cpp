@@ -7,6 +7,7 @@
 #include "component/functional/TextComp.hpp"
 #include "component/functional/TileMapPtrComp.hpp"
 #include "component/functional/HealthComp.hpp"
+#include "component/functional/RotationComp.hpp"
 
 #include "util/Mediamap.hpp"
 #include "util/ApplicationParameters.hpp"
@@ -14,6 +15,8 @@
 #include <entt/entt.hpp>
 
 #include <SFML/Graphics.hpp>
+
+#include <math.h>
 
 GameRenderSys::GameRenderSys(std::string systemConfigItem, entt::registry& rReg, sf::RenderWindow& rRenderWindow)
 	: System(systemConfigItem)
@@ -38,6 +41,40 @@ void GameRenderSys::Update_()
 		if (tileMapPtrComp.m_pTileMap != nullptr)
 		{
 			m_rRenderWindow.draw(*tileMapPtrComp.m_pTileMap);
+			renderableComp.m_bRendered = true;
+		}
+	});
+
+	m_rReg.view<RenderableComp, PositionComp, SizeComp, SpriteComp, RotationComp>().each([&](
+		auto entity,
+		auto& renderableComp,
+		auto& positionComp,
+		auto& sizeComp,
+		auto& spriteComp,
+		auto& rotationComp)
+	{
+		if (renderableComp.m_bRendered == false)
+		{
+			auto genericSprite = sf::RectangleShape(sf::Vector2f(sizeComp.m_size.width, sizeComp.m_size.height));
+			sf::Texture texture;
+			texture.loadFromFile(spriteComp.m_filePath); // this should be stored somehow
+			genericSprite.setTexture(&texture);
+
+			genericSprite.setRotation(rotationComp.m_angle * 90 / tan(1) + 90);
+
+			genericSprite.setPosition(
+				(int(positionComp.m_position.x) % ApplicationParameters::k_rightOfScreen) - (int)sizeComp.m_size.width/2,
+				(int(positionComp.m_position.y) % ApplicationParameters::k_bottomOfScreen) - (int)sizeComp.m_size.height/2);
+
+			genericSprite.setTextureRect(
+				sf::IntRect(
+					spriteComp.m_spriteIndex * spriteComp.m_width,
+					0,
+					spriteComp.m_width,
+					spriteComp.m_height));
+
+
+			m_rRenderWindow.draw(genericSprite);
 			renderableComp.m_bRendered = true;
 		}
 	});

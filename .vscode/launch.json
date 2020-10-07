@@ -12,13 +12,13 @@
 			"args": [],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
-			"environment":
-			[
-				{
-                    "name": "LD_LIBRARY_PATH",
-                    "value": "${workspaceFolder}/ext/bin/SFML"
-                }
-			],
+			// "environment":
+			// [
+			// 	{
+            //         "name": "LD_LIBRARY_PATH",
+            //         "value": "${workspaceFolder}/ext/bin/SFML"
+            //     }
+			// ],
 			"externalConsole": false,
 			"MIMode": "gdb",
 			"setupCommands": [
@@ -29,6 +29,59 @@
 				}
 			],
 			"preLaunchTask": "BuildAll",
+			"miDebuggerPath": "/usr/bin/gdb"
+		},
+		{
+			"name": "g++-7 - debug all",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/output/emmoria.out",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			// "environment":
+			// [
+			// 	{
+            //         "name": "LD_LIBRARY_PATH",
+            //         "value": "${workspaceFolder}/ext/bin/SFML"
+            //     }
+			// ],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"setupCommands": [
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				}
+			],
+			"miDebuggerPath": "/usr/bin/gdb"
+		},
+		{
+			"name": "g++-7 - build and debug main",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/output/emmoria.out",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			// "environment":
+			// [
+			// 	{
+            //         "name": "LD_LIBRARY_PATH",
+            //         "value": "${workspaceFolder}/ext/bin/SFML"
+            //     }
+			// ],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"setupCommands": [
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				}
+			],
+			"preLaunchTask": "BuildMain",
 			"miDebuggerPath": "/usr/bin/gdb"
 		}
 	]

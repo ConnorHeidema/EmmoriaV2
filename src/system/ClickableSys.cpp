@@ -1,5 +1,7 @@
 #include "system/ClickableSys.hpp"
 
+#include "util/ApplicationParameters.hpp"
+
 #include "component/functional/ClickableComp.hpp"
 #include "component/functional/SizeComp.hpp"
 #include "component/functional/PositionComp.hpp"
@@ -63,6 +65,10 @@ void ClickableSys::CheckClick_(sf::Mouse::Button click)
 		{
 			bool& compClicked = (click == sf::Mouse::Left ? clickableComp.m_bLeftClicked : clickableComp.m_bRightClicked);
 			std::cout << "Clicked on clickable object" << std::endl;
+			clickableComp.m_x = sf::Mouse::getPosition().x / ApplicationParameters::k_widthAdjustment;
+			clickableComp.m_y = sf::Mouse::getPosition().y / ApplicationParameters::k_heightAdjustment;
+			std::cout << "Clicked on clickable component at unit: (" << clickableComp.m_x
+				<< ", " << clickableComp.m_y << ")" << std::endl;
 			compClicked = true;
 		}
 	});
