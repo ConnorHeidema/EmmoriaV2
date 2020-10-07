@@ -81,6 +81,7 @@ void BowSys::Update_()
 							std::pow(
 								mk_arrowHeightUnits * ApplicationParameters::k_widthAdjustment * cos(rotationComp.m_angle),2));
 					std::cout << "(" << sizeComp.m_size.width << ", " << sizeComp.m_size.height << ")" << std::endl;
+
 					m_bowCllickLatch--;
 				}
 			});
@@ -90,4 +91,9 @@ void BowSys::Update_()
 	{
 		m_bowCllickLatch--;
 	}
+	m_rReg.view<ArrowComp, PositionComp, RotationComp>().each([&](auto entity, auto& positionComp, auto& rotationComp)
+	{
+		positionComp.m_position.x += 4 * cos(rotationComp.m_angle);
+		positionComp.m_position.y += 4 * sin(rotationComp.m_angle);
+	});
 }
