@@ -10,6 +10,9 @@
 #include "component/functional/SpriteComp.hpp"
 #include "component/functional/SizeComp.hpp"
 #include "component/functional/RotationComp.hpp"
+#include "component/functional/InteractorComp.hpp"
+
+#include "component/InteractType.hpp"
 
 #include "util/Mediamap.hpp"
 
@@ -52,12 +55,16 @@ void BowSys::Update_()
 					auto& spriteComp = m_rReg.emplace<SpriteComp>(bowArrowEntity);
 					spriteComp.m_filePath = ApplicationParameters::k_spritePath + "Arrow" + ApplicationParameters::k_pictureExt;
 					m_rReg.emplace<ArrowComp>(bowArrowEntity);
+
+					auto& interactorComp = m_rReg.emplace<InteractorComp>(bowArrowEntity);
+					interactorComp.m_interactType = InteractType_t::ArrowComp_t;
+
 					auto& rotationComp = m_rReg.emplace<RotationComp>(bowArrowEntity);
 
 					std::cout << "PLAYER POSITION: (" << playerPositionComp.m_position.x
 						<< ", " << playerPositionComp.m_position.y << ")" << std::endl;
-					int adjustedPlayerPositionX = playerPositionComp.m_position.x / ApplicationParameters::k_widthAdjustment;
-					int adjustedPlayerPositionY = playerPositionComp.m_position.y / ApplicationParameters::k_heightAdjustment;
+					double adjustedPlayerPositionX = playerPositionComp.m_position.x / ApplicationParameters::k_widthAdjustment;
+					double adjustedPlayerPositionY = playerPositionComp.m_position.y / ApplicationParameters::k_heightAdjustment;
 
 					using namespace sf;
 					float xPos = clickableActionArea.m_x - adjustedPlayerPositionX;

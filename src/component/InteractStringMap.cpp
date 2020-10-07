@@ -76,6 +76,13 @@ void InteractStringMap::InteractPlayerCompWallComp(entt::registry& rReg, entt::e
 	}
 }
 
+void InteractStringMap::InteractArrowCompBlobComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
+{
+	std::cout << "here" << std::endl;
+	rReg.destroy(rInteractableEntity);
+	rReg.destroy(rInteractorEntity);
+}
+
 std::unordered_map<int, fnEntityInteractor> InteractStringMap::CreateInteractionFnList()
 {
 	#define INSERT(interactor, interactable) fn[ \
@@ -87,6 +94,7 @@ std::unordered_map<int, fnEntityInteractor> InteractStringMap::CreateInteraction
 	INSERT(PlayerComp, HealingPadComp)
 	INSERT(PlayerComp, BlobComp)
 	INSERT(PlayerComp, WallComp)
+	INSERT(ArrowComp, BlobComp)
 	#undef INSERT
 	return fn;
 }
