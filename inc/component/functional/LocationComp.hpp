@@ -11,6 +11,13 @@ struct LocationComp
 	std::string area;
 	int xLocation;
 	int yLocation;
+	bool m_bLoaded;
+	LocationComp()
+		: area("")
+		, xLocation(-1)
+		, yLocation(-1)
+		, m_bLoaded(false)
+	{ }
 };
 
 #endif

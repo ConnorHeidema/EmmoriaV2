@@ -15,7 +15,9 @@
 	macroToUse(ItemActionAreaComp) \
 	macroToUse(ArrowComp) \
 	macroToUse(WallInteractorComp) \
-	macroToUse(DeleteAfterInteractionComp)
+	macroToUse(DeleteAfterInteractionComp) \
+	macroToUse(RebootComp) \
+	macroToUse(AnimationRebootComp)
 
 #define ALL_FUNCTIONAL_MACRO(macroToUse) \
 	macroToUse(ButtonComp) \

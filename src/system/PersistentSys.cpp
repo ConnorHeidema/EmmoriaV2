@@ -28,6 +28,7 @@ void PersistentSys::Update_()
 		{
 			m_rReg.destroy(entity);
 		});
+		m_framesToLive = 0;
 		// Should find any other entities that need destroying as well...
 		// May need to work with other components in the future
 	}

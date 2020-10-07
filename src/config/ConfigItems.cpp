@@ -34,6 +34,7 @@ bool ConfigItems::LoadConfigFile(std::string configFilePath)
 		}
 		configFile.close();
 	}
+	return true;
 }
 
 std::unordered_set<std::string> ConfigItems::m_setConfigItems = {};

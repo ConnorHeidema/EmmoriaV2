@@ -48,7 +48,6 @@ void InteractStringMap::InteractPlayerCompBlobComp(entt::registry& rReg, entt::e
 
 void InteractStringMap::InteractWallInteractorCompWallComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
 {
-	std::cout << "here" << std::endl;
 	auto& wallPositionComp = rReg.get<PositionComp>(rInteractableEntity);
 	auto& wallSizeComp = rReg.get<SizeComp>(rInteractableEntity);
 

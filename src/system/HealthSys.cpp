@@ -23,12 +23,16 @@ void HealthSys::Update_()
 		}
 	});
 
+	bool bRestart = false;
 	m_rReg.view<PlayerComp, HealthComp>().each([&](auto entity, auto& healthComp) {
-
 		if (healthComp.m_health == 0)
 		{
-			std::cout << "game over" << std::endl;
-			m_rReg.destroy(entity);
+			bRestart = true;
 		}
 	});
+	if (bRestart)
+	{
+		auto reboot = m_rReg.create();
+		m_rReg.emplace<RebootComp>(reboot);
+	}
 }

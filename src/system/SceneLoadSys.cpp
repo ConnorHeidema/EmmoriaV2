@@ -30,8 +30,10 @@ void SceneLoadSys::Update_()
 			{
 				if (locationComp.xLocation != (int)positionComp.m_position.x / ApplicationParameters::k_rightOfScreen ||
 					locationComp.yLocation != (int)positionComp.m_position.y / ApplicationParameters::k_bottomOfScreen ||
-					locationComp.area != m_lastArea)
+					locationComp.area != m_lastArea ||
+					!locationComp.m_bLoaded)
 				{
+					locationComp.m_bLoaded = true;
 					locationComp.xLocation = positionComp.m_position.x / ApplicationParameters::k_rightOfScreen;
 					locationComp.yLocation = positionComp.m_position.y / ApplicationParameters::k_bottomOfScreen;
 					std::cout << "Changing location to: " << locationComp.area <<
