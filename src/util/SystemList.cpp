@@ -2,7 +2,6 @@
 
 #include "system/ConfigSys.hpp"
 #include "system/MovementSys.hpp"
-#include "system/PrintMovementSys.hpp"
 #include "system/MovieRenderSys.hpp"
 #include "system/GameRenderSys.hpp"
 #include "system/LoadingSys.hpp"
@@ -38,7 +37,6 @@ std::list<std::shared_ptr<System>> SystemList::CreateSystemList(entt::registry& 
 	{
 		REGULAR_SYSTEM_NAME_INPUT(Config),
 		REGULAR_SYSTEM_NAME_INPUT(Movement),
-		REGULAR_SYSTEM_NAME_INPUT(PrintMovement),
 		REGULAR_SYSTEM_NAME_INPUT(TileMap),
 		REGULAR_SYSTEM_NAME_INPUT(Animation),
 		REGULAR_SYSTEM_NAME_INPUT(Loading),

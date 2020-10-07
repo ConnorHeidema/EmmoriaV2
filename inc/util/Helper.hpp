@@ -13,12 +13,7 @@ class Helper
 public:
 	Helper();
 	static int Rand(int const& lowest, int const& highest);
-};
-
-class HelperHelper
-{
-private:
-	static Helper m_helper;
+	static bool m_firstInitialization;
 };
 
 #endif
