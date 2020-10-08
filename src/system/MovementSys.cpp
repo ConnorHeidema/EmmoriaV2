@@ -4,6 +4,7 @@
 
 #include "component/functional/LastPositionComp.hpp"
 #include "component/functional/PositionComp.hpp"
+#include "component/functional/RotationComp.hpp"
 
 #include "util/ApplicationParameters.hpp"
 
@@ -39,6 +40,18 @@ void MovementSys::Update_()
 				positionComp.m_position.x += m_speed * cos(angle);
 				positionComp.m_position.y += m_speed * sin(angle);
 			}
+		}
+	});
+
+
+	m_rReg.view<ArrowComp, PositionComp, RotationComp>().each([&](auto entity, auto& positionComp, auto& rotationComp)
+	{
+		positionComp.m_position.x += 4 * cos(rotationComp.m_angle);
+		positionComp.m_position.y += 4 * sin(rotationComp.m_angle);
+		if (positionComp.m_position.x < 0 || positionComp.m_position.x > ApplicationParameters::k_rightOfScreen ||
+			positionComp.m_position.y < 0 || positionComp.m_position.y > ApplicationParameters::k_bottomOfScreen)
+		{
+			m_rReg.destroy(entity);
 		}
 	});
 }

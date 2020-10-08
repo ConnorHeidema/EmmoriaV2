@@ -3,6 +3,9 @@
 
 #include "system/System.hpp"
 
+#include "component/functional/PositionComp.hpp"
+#include "component/functional/ClickableComp.hpp"
+
 #include <entt/entt.hpp>
 
 class BowSys
@@ -12,6 +15,9 @@ public:
 	BowSys(std::string systemConfigItem, entt::registry& rReg);
 private:
 	void Update_() override;
+	void CreateArrow_(
+		PositionComp& playerPositionComp,
+		ClickableComp& clickableActionArea);
 
 	entt::registry& m_rReg;
 
