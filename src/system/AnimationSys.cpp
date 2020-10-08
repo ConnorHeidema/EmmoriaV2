@@ -17,12 +17,12 @@ int const AnimationSys::mk_animationSpeed = 12;
 AnimationSys::AnimationSys(std::string systemConfigItem, entt::registry& rReg)
 	: System(systemConfigItem)
 	, m_rReg(rReg)
-	, m_latch(mk_animationSpeed)
+	, m_animationProgressionlatch(mk_animationSpeed)
 { }
 
 void AnimationSys::Update_()
 {
-	if (m_latch.CheckLatch())
+	if (m_animationProgressionlatch.CheckLatch())
 	{
 		AnimateTileMapPieces_();
 		AnimateSprites_();

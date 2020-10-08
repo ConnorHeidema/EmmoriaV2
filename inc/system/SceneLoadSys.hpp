@@ -15,8 +15,11 @@ public:
 
 private:
 	void Update_() override;
+	void CreateLoadCompFromLocationCompWithPlayer_();
+	void CreateLoadCompFromLocationComp_();
 	entt::registry& m_rReg;
 	std::string m_lastArea;
 };
+
 
 #endif

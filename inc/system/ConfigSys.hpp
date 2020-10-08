@@ -3,6 +3,8 @@
 
 #include "system/System.hpp"
 
+#include "util/Latch.hpp"
+
 #include <entt/entt.hpp>
 
 #include <SFML/Window.hpp>
@@ -15,9 +17,9 @@ public:
 private:
 	void Update_() override;
 
+	Latch m_configUpdateLatch;
 	entt::registry& m_rReg;
 	static int const updateRate;
-	int currentFrame;
 };
 
 #endif

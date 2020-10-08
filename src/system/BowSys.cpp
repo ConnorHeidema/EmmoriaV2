@@ -26,15 +26,12 @@ const int BowSys::mk_arrowHeightUnits = 5;
 BowSys::BowSys(std::string systemConfigItem, entt::registry& rReg)
 	: System(systemConfigItem)
 	, m_rReg(rReg)
-	, m_bowCllickLatch(30)
+	, m_bowFrequencyLatch(mk_frequency)
 { }
 
 void BowSys::Update_()
 {
-	if (m_bowCllickLatch == 0)
-		m_bowCllickLatch = mk_frequency;
-
-	if (m_bowCllickLatch == mk_frequency)
+	if (m_bowFrequencyLatch.Peek())
 	{
 		m_rReg.view<PlayerComp, PositionComp>().each([&](auto entity, auto& playerPositionComp)
 		{
@@ -44,14 +41,14 @@ void BowSys::Update_()
 				if (clickableActionArea.m_bLeftClicked)
 				{
 					CreateArrow_(playerPositionComp, clickableActionArea);
-					m_bowCllickLatch--;
+					m_bowFrequencyLatch.Reset();
 				}
 			});
 		});
 	}
 	else
 	{
-		m_bowCllickLatch--;
+		m_bowFrequencyLatch.CheckLatch();
 	}
 }
 

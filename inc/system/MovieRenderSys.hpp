@@ -19,7 +19,7 @@ public:
 
 private:
 	void Update_() override;
-
+	void CreateMovieEntity_();
 	sf::RenderWindow& m_rRenderWindow;
 	entt::registry& m_rReg;
 

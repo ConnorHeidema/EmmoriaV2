@@ -3,6 +3,8 @@
 
 #include "system/System.hpp"
 
+#include "util/Latch.hpp"
+
 #include <entt/entt.hpp>
 
 class ReloadSys
@@ -13,8 +15,10 @@ public:
 
 private:
 	void Update_() override;
+	void ReloadOnP_();
+	void ReloadPerSecond_();
 	entt::registry& m_rReg;
-	int m_currentFrame;
+	Latch m_reloadLatch;
 	static int const mk_restartFrame;
 };
 

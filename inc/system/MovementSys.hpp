@@ -19,6 +19,9 @@ public:
 
 private:
 	void Update_() override;
+	void UpdateLastPositions_();
+	void UpdatePlayerPosition_();
+	void UpdateArrowPosition_();
 
 	entt::registry& m_rReg;
 

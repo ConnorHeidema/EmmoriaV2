@@ -3,6 +3,8 @@
 
 #include "system/System.hpp"
 
+#include "util/Latch.hpp"
+
 #include <entt/entt.hpp>
 
 class PersistentSys
@@ -14,9 +16,10 @@ public:
 private:
 	void Update_() override;
 
-	int m_framesToLive;
-	int const m_kMaxFrameToLive;
 	entt::registry& m_rReg;
+	Latch m_frameToLiveLatch;
+
+	static int const mk_MaxFramesToLive;
 };
 
 #endif

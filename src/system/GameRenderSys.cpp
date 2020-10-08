@@ -26,13 +26,27 @@ GameRenderSys::GameRenderSys(std::string systemConfigItem, entt::registry& rReg,
 
 void GameRenderSys::Update_()
 {
+	ResetRenderState_();
+	RenderTileMapPieces_();
+	RenderRotatableSprites_();
+	RenderBasicSprites_();
+	RenderText_();
+	RenderHealth_();
+}
+
+void GameRenderSys::ResetRenderState_()
+{
 	m_rReg.view<RenderableComp>().each([&](
 	auto entity,
 	auto& renderableComp)
 	{
 		renderableComp.m_bRendered = false;
 	});
+}
 
+
+void GameRenderSys::RenderTileMapPieces_()
+{
 	m_rReg.view<TileMapPtrComp, RenderableComp>().each([&](
 		auto entity,
 		auto& tileMapPtrComp,
@@ -44,7 +58,11 @@ void GameRenderSys::Update_()
 			renderableComp.m_bRendered = true;
 		}
 	});
+}
 
+
+void GameRenderSys::RenderRotatableSprites_()
+{
 	m_rReg.view<RenderableComp, PositionComp, SizeComp, SpriteComp, RotationComp>().each([&](
 		auto entity,
 		auto& renderableComp,
@@ -78,7 +96,11 @@ void GameRenderSys::Update_()
 			renderableComp.m_bRendered = true;
 		}
 	});
+}
 
+
+void GameRenderSys::RenderBasicSprites_()
+{
 	m_rReg.view<RenderableComp, PositionComp, SizeComp, SpriteComp>().each([&](
 		auto entity,
 		auto& renderableComp,
@@ -107,7 +129,11 @@ void GameRenderSys::Update_()
 			renderableComp.m_bRendered = true;
 		}
 	});
+}
 
+
+void GameRenderSys::RenderText_()
+{
 	m_rReg.view<RenderableComp, PositionComp, SizeComp, TextComp>().each([&](
 		auto entity,
 		auto& renderableComp,
@@ -139,7 +165,6 @@ void GameRenderSys::Update_()
 			renderableComp.m_bRendered = true;
 		}
 	});
-	RenderHealth_();
 }
 
 void GameRenderSys::RenderHealth_()

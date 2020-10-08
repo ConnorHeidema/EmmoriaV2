@@ -22,11 +22,22 @@ MovementSys::MovementSys(std::string systemConfigItem, entt::registry& rReg)
 
 void MovementSys::Update_()
 {
+	UpdateLastPositions_();
+	UpdatePlayerPosition_();
+	UpdateArrowPosition_();
+}
+
+void MovementSys::UpdateLastPositions_()
+{
 	m_rReg.view<PositionComp>().each([&](auto entity, auto& positionComp) {
 		auto& lastPositionComp = m_rReg.get_or_emplace<LastPositionComp>(entity);
 		lastPositionComp.m_lastPosition.x = positionComp.m_position.x;
 		lastPositionComp.m_lastPosition.y = positionComp.m_position.y;
 	});
+}
+
+void MovementSys::UpdatePlayerPosition_()
+{
 	m_rReg.view<PlayerComp, PositionComp>().each([&](auto entity, auto& positionComp) {
 		{
 			using namespace sf;
@@ -42,8 +53,10 @@ void MovementSys::Update_()
 			}
 		}
 	});
+}
 
-
+void MovementSys::UpdateArrowPosition_()
+{
 	m_rReg.view<ArrowComp, PositionComp, RotationComp>().each([&](auto entity, auto& positionComp, auto& rotationComp)
 	{
 		positionComp.m_position.x += 4 * cos(rotationComp.m_angle);

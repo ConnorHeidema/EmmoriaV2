@@ -14,10 +14,16 @@ int const ReloadSys::mk_restartFrame = 60;
 ReloadSys::ReloadSys(std::string systemConfigItem, entt::registry& rReg)
 	: System(systemConfigItem)
 	, m_rReg(rReg)
-	, m_currentFrame(0)
+	, m_reloadLatch(mk_restartFrame)
 {}
 
 void ReloadSys::Update_()
+{
+	ReloadOnP_();
+	ReloadPerSecond_();
+}
+
+void ReloadSys::ReloadOnP_()
 {
 	if (ConfigItems::m_setConfigItems.find("ReloadOnP") != ConfigItems::m_setConfigItems.end())
 	{
@@ -38,12 +44,14 @@ void ReloadSys::Update_()
 			});
 		}
 	}
+}
 
+void ReloadSys::ReloadPerSecond_()
+{
 	if (ConfigItems::m_setConfigItems.find("ReloadPerSecond") != ConfigItems::m_setConfigItems.end())
 	{
-		if (m_currentFrame == mk_restartFrame)
+		if (m_reloadLatch.CheckLatch())
 		{
-			m_currentFrame = 0;
 			m_rReg.view<DeloadableComp>().each([&](auto entity)
 			{
 				m_rReg.destroy(entity);
@@ -58,10 +66,5 @@ void ReloadSys::Update_()
 					std::to_string(int(locationComp.yLocation));
 			});
 		}
-		else
-		{
-			m_currentFrame++;
-		}
 	}
-
 }

@@ -15,6 +15,11 @@ public:
 private:
 	void Update_() override;
 	void RenderHealth_();
+	void ResetRenderState_();
+	void RenderTileMapPieces_();
+	void RenderRotatableSprites_();
+	void RenderBasicSprites_();
+	void RenderText_();
 
 	entt::registry& m_rReg;
 	sf::RenderWindow& m_rRenderWindow;

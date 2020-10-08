@@ -16,7 +16,12 @@ bool Latch::CheckLatch()
 	return false;
 }
 
+bool Latch::Peek()
+{
+	return !m_currentCall;
+}
+
 void Latch::Reset()
 {
-	m_currentCall = 0;
+	m_currentCall = mk_numberOfCalls;
 }

@@ -19,7 +19,7 @@ private:
 
 	entt::registry& m_rReg;
 
-	Latch m_latch;
+	Latch m_animationProgressionlatch;
 
 	static int const mk_animationSpeed;
 };

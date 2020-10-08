@@ -19,23 +19,14 @@ MovieRenderSys::MovieRenderSys(std::string systemConfigItem, entt::registry& rRe
 	, m_rRenderWindow(rRenderWindow)
 	, m_rReg(rReg)
 {
-	auto movie = m_rReg.create();
-	auto& media = m_rReg.emplace<MovieComp>(movie);
-	m_rReg.emplace<PersistentComp>(movie);
-	media.m_currentMedia = Media_t::INTRO_MOVIE;
-	m_lastMedia = Media_t::NONE;
+	CreateMovieEntity_();
 }
 
 void MovieRenderSys::Update_()
 {
-	bool bRebooted = false;
 	m_rReg.view<AnimationRebootComp>().each([&](auto entity)
 	{
-		auto movie = m_rReg.create();
-		auto& media = m_rReg.emplace<MovieComp>(movie);
-		m_rReg.emplace<PersistentComp>(movie);
-		media.m_currentMedia = Media_t::INTRO_MOVIE;
-		m_lastMedia = Media_t::NONE;
+		CreateMovieEntity_();
 		m_rReg.destroy(entity);
 	});
 
@@ -72,4 +63,13 @@ void MovieRenderSys::Update_()
 			m_lastMedia = Media_t::NONE;
 		}
 	});
+}
+
+void MovieRenderSys::CreateMovieEntity_()
+{
+	auto movie = m_rReg.create();
+	auto& media = m_rReg.emplace<MovieComp>(movie);
+	m_rReg.emplace<PersistentComp>(movie);
+	media.m_currentMedia = Media_t::INTRO_MOVIE;
+	m_lastMedia = Media_t::NONE;
 }

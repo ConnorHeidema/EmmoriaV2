@@ -6,6 +6,8 @@
 #include "component/functional/PositionComp.hpp"
 #include "component/functional/ClickableComp.hpp"
 
+#include "util/Latch.hpp"
+
 #include <entt/entt.hpp>
 
 class BowSys
@@ -23,7 +25,7 @@ private:
 
 	entt::entity m_entity;
 
-	int m_bowCllickLatch;
+	Latch m_bowFrequencyLatch;
 
 	static const int mk_frequency;
 	static const int mk_arrowWidthUnits;

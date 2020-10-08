@@ -16,6 +16,8 @@ public:
 	InteractingSys(std::string systemConfigItem, entt::registry& rReg);
 private:
 	void Update_() override;
+	void PerformObjectInteractions_();
+	void DestroyDeletedObjectsFromInteractions_();
 
 	entt::registry& m_rReg;
 };

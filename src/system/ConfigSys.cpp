@@ -2,22 +2,20 @@
 
 #include "config/ConfigItems.hpp"
 
+
+int const ConfigSys::updateRate = 60;
+
 ConfigSys::ConfigSys(std::string systemConfigItem, entt::registry& rReg)
 	: System(systemConfigItem)
 	, m_rReg(rReg)
-	, currentFrame(0)
+	, m_configUpdateLatch(updateRate)
 { }
 
 void ConfigSys::Update_()
 {
-	if (currentFrame != updateRate)
+	if (m_configUpdateLatch.CheckLatch())
 	{
-		currentFrame++;
-		return;
+		ConfigItems::m_setConfigItems.clear();
+		ConfigItems::LoadConfigFile("data/Config/config.ini");
 	}
-	currentFrame = 0;
-	ConfigItems::m_setConfigItems.clear();
-	ConfigItems::LoadConfigFile("data/Config/config.ini");
 }
-
-int const ConfigSys::updateRate = 60;

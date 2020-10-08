@@ -29,6 +29,13 @@ InteractingSys::InteractingSys(std::string systemConfigItem, entt::registry& rRe
 // Have to deal with segfault where interact entities are destroyed in map but we are trying to iterate over them still
 void InteractingSys::Update_()
 {
+	PerformObjectInteractions_();
+	DestroyDeletedObjectsFromInteractions_();
+
+}
+
+void InteractingSys::PerformObjectInteractions_()
+{
 	m_rReg.view<PositionComp, SizeComp, InteractableComp>().each([&]
 		(auto interactableEntity, auto& interactablePositionComp, auto& interactableSizeComp, auto& interactableComp)
 	{
@@ -58,11 +65,14 @@ void InteractingSys::Update_()
 			}
 		});
 	});
+}
+
+void InteractingSys::DestroyDeletedObjectsFromInteractions_()
+{
 	m_rReg.view<DeleteAfterInteractionComp>().each([&](auto deleteAfterInteractionEntity)
 	{
 		m_rReg.destroy(deleteAfterInteractionEntity);
 	});
-
 }
 
 #undef INDEX
