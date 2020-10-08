@@ -20,13 +20,13 @@
 
 #include "system/enemy/BlobSys.hpp"
 
-#define REGULAR_SYSTEM_NAME_INPUT(System) std::make_unique< System##Sys>( \
+#define STD_MAKE_UNIQUE_SYS(System) std::make_unique< System##Sys>( \
 	std::string("Disable") + \
 	std::string(#System) + \
 	std::string("Sys"), \
 	rReg)
 
-#define ANIMATION_SYSTEM_NAME_INPUT(System)	std::make_unique< System##Sys>( \
+#define STD_MAKE_UNIQUE_ANIMATION_SYS(System)	std::make_unique< System##Sys>( \
 	std::string("Disable") + \
 	std::string(#System) + \
 	std::string("Sys"), \
@@ -37,24 +37,24 @@ std::list<std::shared_ptr<System>> SystemList::CreateSystemList(entt::registry& 
 {
 	std::list<std::shared_ptr<System>> m_sysRunningOrder
 	{
-		REGULAR_SYSTEM_NAME_INPUT(Reboot),
-		REGULAR_SYSTEM_NAME_INPUT(Config),
-		REGULAR_SYSTEM_NAME_INPUT(Reload),
-		REGULAR_SYSTEM_NAME_INPUT(Movement),
-		REGULAR_SYSTEM_NAME_INPUT(TileMap),
-		REGULAR_SYSTEM_NAME_INPUT(Animation),
-		REGULAR_SYSTEM_NAME_INPUT(Loading),
-		REGULAR_SYSTEM_NAME_INPUT(Button),
-		REGULAR_SYSTEM_NAME_INPUT(Clickable),
-		REGULAR_SYSTEM_NAME_INPUT(Dialog),
-		REGULAR_SYSTEM_NAME_INPUT(Persistent),
-		REGULAR_SYSTEM_NAME_INPUT(Health),
-		REGULAR_SYSTEM_NAME_INPUT(SceneLoad),
-		ANIMATION_SYSTEM_NAME_INPUT(GameRender),
-		ANIMATION_SYSTEM_NAME_INPUT(MovieRender),
-		REGULAR_SYSTEM_NAME_INPUT(Blob),
-		REGULAR_SYSTEM_NAME_INPUT(Bow),
-		REGULAR_SYSTEM_NAME_INPUT(Interacting)
+		STD_MAKE_UNIQUE_SYS(Reboot),
+		STD_MAKE_UNIQUE_SYS(Config),
+		STD_MAKE_UNIQUE_SYS(Reload),
+		STD_MAKE_UNIQUE_SYS(Movement),
+		STD_MAKE_UNIQUE_SYS(TileMap),
+		STD_MAKE_UNIQUE_SYS(Animation),
+		STD_MAKE_UNIQUE_SYS(Loading),
+		STD_MAKE_UNIQUE_SYS(Button),
+		STD_MAKE_UNIQUE_SYS(Clickable),
+		STD_MAKE_UNIQUE_SYS(Dialog),
+		STD_MAKE_UNIQUE_SYS(Persistent),
+		STD_MAKE_UNIQUE_SYS(Health),
+		STD_MAKE_UNIQUE_SYS(SceneLoad),
+		STD_MAKE_UNIQUE_ANIMATION_SYS(GameRender),
+		STD_MAKE_UNIQUE_ANIMATION_SYS(MovieRender),
+		STD_MAKE_UNIQUE_SYS(Blob),
+		STD_MAKE_UNIQUE_SYS(Bow),
+		STD_MAKE_UNIQUE_SYS(Interacting)
 	};
 	return m_sysRunningOrder;
 }

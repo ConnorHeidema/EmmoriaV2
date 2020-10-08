@@ -5,6 +5,8 @@
 #include "util/ApplicationParameters.hpp"
 #include "util/SystemList.hpp"
 
+#include <iostream>
+
 Application::Application()
 	: m_reg()
 	, m_renderWindow(
