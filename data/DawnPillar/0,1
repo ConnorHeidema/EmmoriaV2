@@ -4,7 +4,7 @@ ItemActionAreaComp PositionComp 50 50 SizeComp 100 100 ClickableComp DeloadableC
 WallTile DAWN_PILLAR_INACCESSIBLE 0 0 DeloadableComp
 WallTile DAWN_PILLAR_BOTTOM_WALL 1 0 DeloadableComp
 WallTile DAWN_PILLAR_BOTTOM_WALL 2 0 DeloadableComp
-WallTile DAWN_PILLAR_SIGN 3 0 DeloadableComp
+WallTile DAWN_PILLAR_BOTTOM_WALL 3 0 DeloadableComp
 WallTile DAWN_PILLAR_BOTTOM_WALL 4 0 DeloadableComp
 WallTile DAWN_PILLAR_BOTTOM_WALL 5 0 DeloadableComp
 WallTile DAWN_PILLAR_BOTTOM_WALL 6 0 DeloadableComp
@@ -30,13 +30,13 @@ TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 4 1 Deloadabl
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 5 1 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 6 1 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 7 1 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 8 1 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 8 1 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 9 1 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 10 1 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 11 1 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 11 1 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 12 1 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 13 1 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 14 1 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 14 1 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 15 1 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 16 1 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 17 1 DeloadableComp
@@ -51,13 +51,13 @@ TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 4 2 Deloadabl
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 5 2 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 6 2 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 7 2 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 8 2 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 8 2 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 9 2 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 10 2 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 11 2 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 11 2 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 12 2 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 13 2 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 14 2 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 14 2 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 15 2 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 16 2 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 17 2 DeloadableComp
@@ -68,17 +68,17 @@ WallTile DAWN_PILLAR_RIGHT_WALL 0 3 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 1 3 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 2 3 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 3 3 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 4 3 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 5 3 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 4 3 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 5 3 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 6 3 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 7 3 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 8 3 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 7 3 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 8 3 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 9 3 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 10 3 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 11 3 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 12 3 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 11 3 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 12 3 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 13 3 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 14 3 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 14 3 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 15 3 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 16 3 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 17 3 DeloadableComp
@@ -90,16 +90,16 @@ TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 1 4 Deloadabl
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 2 4 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 3 4 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 4 4 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 5 4 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 5 4 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 6 4 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 7 4 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 8 4 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 8 4 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 9 4 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 10 4 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 11 4 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 11 4 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 12 4 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 13 4 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 14 4 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 14 4 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 15 4 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 16 4 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 17 4 DeloadableComp
@@ -107,20 +107,20 @@ TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 18 4 Deloadab
 WallTile DAWN_PILLAR_LEFT_WALL 19 4 DeloadableComp
 
 WallTile DAWN_PILLAR_RIGHT_WALL 0 5 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 1 5 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 2 5 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 1 5 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 2 5 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 3 5 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 4 5 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 5 5 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 4 5 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 5 5 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 6 5 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 7 5 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 8 5 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 7 5 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 8 5 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 9 5 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 10 5 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 11 5 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 12 5 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 11 5 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 12 5 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 13 5 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 14 5 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 14 5 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 15 5 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 16 5 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 17 5 DeloadableComp
@@ -128,18 +128,18 @@ TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 18 5 Deloadab
 WallTile DAWN_PILLAR_LEFT_WALL 19 5 DeloadableComp
 
 WallTile DAWN_PILLAR_RIGHT_WALL 0 6 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 1 6 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 2 6 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 1 6 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 2 6 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 3 6 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 4 6 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 5 6 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 4 6 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 5 6 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 6 6 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 7 6 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 7 6 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 8 6 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 9 6 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 10 6 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 11 6 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 12 6 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 12 6 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 13 6 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 14 6 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 15 6 DeloadableComp
@@ -148,40 +148,39 @@ TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 17 6 Deloadab
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 18 6 DeloadableComp
 WallTile DAWN_PILLAR_LEFT_WALL 19 6 DeloadableComp
 
-
 WallTile DAWN_PILLAR_RIGHT_WALL 0 7 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 1 7 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 2 7 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 1 7 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 2 7 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 3 7 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 4 7 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 5 7 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 4 7 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 5 7 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 6 7 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 7 7 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 7 7 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 8 7 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 9 7 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 10 7 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 11 7 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 12 7 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 12 7 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 13 7 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 14 7 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 15 7 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 16 7 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 17 7 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 18 7 DeloadableComp
-WallTile DAWN_PILLAR_LEFT_WALL 19 7 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 19 7 DeloadableComp
 
 WallTile DAWN_PILLAR_RIGHT_WALL 0 8 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 1 8 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 2 8 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 3 8 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 4 8 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 4 8 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 5 8 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 6 8 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 6 8 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 7 8 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 8 8 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 9 8 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 10 8 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 11 8 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 8 8 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 9 8 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 10 8 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 11 8 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 12 8 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 13 8 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 14 8 DeloadableComp
@@ -189,14 +188,14 @@ TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 15 8 Deloadab
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 16 8 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 17 8 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 18 8 DeloadableComp
-WallTile DAWN_PILLAR_LEFT_WALL 19 8 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 19 8 DeloadableComp
 
 WallTile DAWN_PILLAR_RIGHT_WALL 0 9 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 1 9 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 2 9 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 3 9 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 4 9 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 5 9 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 5 9 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 6 9 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 7 9 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 8 9 DeloadableComp
@@ -204,7 +203,7 @@ TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 9 9 Deloadabl
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 10 9 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 11 9 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 12 9 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 13 9 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 13 9 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 14 9 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 15 9 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 16 9 DeloadableComp
@@ -217,7 +216,7 @@ TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 1 10 Deloadab
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 2 10 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 3 10 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 4 10 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 5 10 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 5 10 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 6 10 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 7 10 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 8 10 DeloadableComp
@@ -225,7 +224,7 @@ TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 9 10 Deloadab
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 10 10 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 11 10 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 12 10 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 13 10 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 13 10 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 14 10 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 15 10 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 16 10 DeloadableComp
@@ -238,7 +237,7 @@ TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 1 11 Deloadab
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 2 11 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 3 11 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 4 11 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 5 11 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 5 11 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 6 11 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 7 11 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 8 11 DeloadableComp
@@ -246,7 +245,7 @@ TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 9 11 Deloadab
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 10 11 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 11 11 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 12 11 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 13 11 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 13 11 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 14 11 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 15 11 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 16 11 DeloadableComp
@@ -267,7 +266,7 @@ TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 9 12 Deloadab
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 10 12 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 11 12 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 12 12 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 13 12 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 13 12 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 14 12 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 15 12 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 16 12 DeloadableComp
@@ -288,7 +287,7 @@ TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 9 13 Deloadab
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 10 13 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 11 13 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 12 13 DeloadableComp
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 13 13 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_HOLE RenderableComp IndexedPosition 13 13 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 14 13 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 15 13 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 16 13 DeloadableComp
@@ -305,8 +304,8 @@ WallTile DAWN_PILLAR_TOP_WALL 5 14 DeloadableComp
 WallTile DAWN_PILLAR_TOP_WALL 6 14 DeloadableComp
 WallTile DAWN_PILLAR_TOP_WALL 7 14 DeloadableComp
 WallTile DAWN_PILLAR_TOP_WALL 8 14 DeloadableComp
-WallTile DAWN_PILLAR_TOP_WALL 9 14 DeloadableComp
-WallTile DAWN_PILLAR_TOP_WALL 10 14 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 9 14 DeloadableComp
+TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 10 14 DeloadableComp
 WallTile DAWN_PILLAR_TOP_WALL 11 14 DeloadableComp
 WallTile DAWN_PILLAR_TOP_WALL 12 14 DeloadableComp
 WallTile DAWN_PILLAR_TOP_WALL 13 14 DeloadableComp

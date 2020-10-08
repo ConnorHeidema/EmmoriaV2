@@ -1,6 +1,7 @@
 #include "util/SystemList.hpp"
 
 #include "system/RebootSys.hpp"
+#include "system/ReloadSys.hpp"
 #include "system/ConfigSys.hpp"
 #include "system/MovementSys.hpp"
 #include "system/MovieRenderSys.hpp"
@@ -38,6 +39,7 @@ std::list<std::shared_ptr<System>> SystemList::CreateSystemList(entt::registry& 
 	{
 		REGULAR_SYSTEM_NAME_INPUT(Reboot),
 		REGULAR_SYSTEM_NAME_INPUT(Config),
+		REGULAR_SYSTEM_NAME_INPUT(Reload),
 		REGULAR_SYSTEM_NAME_INPUT(Movement),
 		REGULAR_SYSTEM_NAME_INPUT(TileMap),
 		REGULAR_SYSTEM_NAME_INPUT(Animation),

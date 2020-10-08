@@ -38,6 +38,7 @@
 
                 // System implementations
                 "${workspaceFolder}/src/system/RebootSys.cpp",
+                "${workspaceFolder}/src/system/ReloadSys.cpp",
                 "${workspaceFolder}/src/system/ConfigSys.cpp",
                 "${workspaceFolder}/src/system/MovementSys.cpp",
                 "${workspaceFolder}/src/system/MovieRenderSys.cpp",
@@ -182,6 +183,7 @@
 
                 // System implementations
                 "${workspaceFolder}/src/system/RebootSys.cpp",
+                "${workspaceFolder}/src/system/ReloadSys.cpp",
                 "${workspaceFolder}/src/system/ConfigSys.cpp",
                 "${workspaceFolder}/src/system/MovementSys.cpp",
                 "${workspaceFolder}/src/system/MovieRenderSys.cpp",
