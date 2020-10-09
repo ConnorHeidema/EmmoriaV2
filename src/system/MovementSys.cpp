@@ -17,6 +17,8 @@
 
 #include <math.h>
 
+#include <iostream>
+
 MovementSys::MovementSys(std::string systemConfigItem, entt::registry& rReg)
 	: System(systemConfigItem)
 	, m_rReg(rReg)
@@ -28,6 +30,7 @@ void MovementSys::Update_()
 	UpdatePlayerPosition_();
 	UpdateArrowPosition_();
 	UpdateBlobPosition_();
+	DeleteRolloverObjects_();
 }
 
 void MovementSys::UpdateLastPositions_()
@@ -65,13 +68,13 @@ void MovementSys::UpdateArrowPosition_()
 		auto& rotationComp,
 		auto& speedComp)
 	{
+		PositionUtils::PrintPosition(positionComp.m_position, "Arrow");
 		PositionUtils::CalculateNewPosition(positionComp.m_position, speedComp.m_speed, rotationComp.m_angle);
 	});
 }
 
 void MovementSys::UpdateBlobPosition_()
 {
-
 	m_rReg.view<PlayerComp, PositionComp>().each([&](auto playerEntity, auto& playerPositionComp)
 	{
 		m_rReg.view<PositionComp, SpeedComp, TrackingComp>().each([&](
@@ -80,6 +83,7 @@ void MovementSys::UpdateBlobPosition_()
 			auto& speedComp,
 			auto& trackingComp)
 		{
+			PositionUtils::PrintPosition(positionComp.m_position, "Blob");
 			if (std::abs(playerPositionComp.m_position.x - positionComp.m_position.x) < trackingComp.m_sight &&
 				std::abs(playerPositionComp.m_position.y - positionComp.m_position.y) < trackingComp.m_sight)
 			{
@@ -90,4 +94,23 @@ void MovementSys::UpdateBlobPosition_()
 			}
 		});
 	});
+}
+
+
+void MovementSys::DeleteRolloverObjects_()
+{
+	m_rReg.view<PositionComp, LastPositionComp>(entt::exclude<PlayerComp>).each([&](auto entity, auto& positionComp, auto& lastPositionComp)
+	{
+		int currentRegionX = (int)positionComp.m_position.x / ApplicationParameters::k_rightOfScreen;
+		int nextRegionX = (int)lastPositionComp.m_lastPosition.x / ApplicationParameters::k_rightOfScreen;
+		int currentRegionY = (int)positionComp.m_position.y / ApplicationParameters::k_bottomOfScreen;
+		int nextRegionY = (int)lastPositionComp.m_lastPosition.y / ApplicationParameters::k_bottomOfScreen;
+
+		if (currentRegionX != nextRegionX ||
+			currentRegionY != nextRegionY)
+		{
+			m_rReg.destroy(entity);
+		}
+	});
+
 }

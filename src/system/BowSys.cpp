@@ -67,9 +67,17 @@ void BowSys::CreateArrow_(
 	auto& lifespanComp = m_rReg.emplace<LifespanComp>(bowArrowEntity);
 	lifespanComp.m_framesToLive = 120;
 
+	double xPos2 = 0;
+	double yPos2 = 0;
+	m_rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
+	{
+		xPos2 += locationComp.xLocation * ApplicationParameters::k_rightOfScreen;
+		yPos2 += locationComp.yLocation * ApplicationParameters::k_bottomOfScreen;
+	});
+
 	auto& bowArrowPositionComp = m_rReg.emplace<PositionComp>(bowArrowEntity);
-	bowArrowPositionComp.m_position.x = (int)playerPositionComp.m_position.x % ApplicationParameters::k_rightOfScreen;
-	bowArrowPositionComp.m_position.y = (int)playerPositionComp.m_position.y % ApplicationParameters::k_bottomOfScreen;
+	bowArrowPositionComp.m_position.x = ((int)playerPositionComp.m_position.x % ApplicationParameters::k_rightOfScreen) + xPos2;
+	bowArrowPositionComp.m_position.y = ((int)playerPositionComp.m_position.y % ApplicationParameters::k_bottomOfScreen) + yPos2;
 
 	auto& renderable = m_rReg.emplace<RenderableComp>(bowArrowEntity);
 	renderable.m_bRendered = false;

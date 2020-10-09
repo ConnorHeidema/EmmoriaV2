@@ -3,10 +3,13 @@
 
 #include "util/Position.hpp"
 
+#include <string>
+
 class PositionUtils
 {
 public:
 	static void CalculateNewPosition(Position& position, double const& speed, double const& angle);
+	static void PrintPosition(Position const& position, std::string const& prefix = "");
 };
 
 #endif

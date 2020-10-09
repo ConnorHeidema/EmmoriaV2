@@ -71,7 +71,9 @@ void ClickableSys::CheckClick_(sf::Mouse::Button click)
 		m_rReg.view<ClickableComp, SizeComp, PositionComp>()
 			.each([&](auto entity, auto& clickableComp, auto& sizeComp, auto& positionComp)
 		{
-			bool& compClicked = (click == sf::Mouse::Left ? clickableComp.m_bLeftClicked : clickableComp.m_bRightClicked);
+			bool& compClicked = (click == sf::Mouse::Left ?
+				clickableComp.m_bLeftClicked :
+				clickableComp.m_bRightClicked);
 			compClicked = false;
 		});
 		buttonClicked = false;

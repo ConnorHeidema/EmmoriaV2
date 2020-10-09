@@ -62,7 +62,6 @@ void GameRenderSys::RenderTileMapPieces_()
 	});
 }
 
-
 void GameRenderSys::RenderRotatableSprites_()
 {
 	m_rReg.view<RenderableComp, PositionComp, SizeComp, SpriteComp, RotationComp>().each([&](
@@ -80,7 +79,11 @@ void GameRenderSys::RenderRotatableSprites_()
 			texture.loadFromFile(spriteComp.m_filePath); // this should be stored somehow
 			genericSprite.setTexture(&texture);
 			sf::Transform transform;
-        	transform.rotate(rotationComp.m_angle * 90 / tan(1) + 90, sf::Vector2f(positionComp.m_position.x, positionComp.m_position.y));
+        	transform.rotate(
+				rotationComp.m_angle * 90 / tan(1) + 90,
+				sf::Vector2f(
+					(int)positionComp.m_position.x % ApplicationParameters::k_rightOfScreen,
+					(int)positionComp.m_position.y % ApplicationParameters::k_bottomOfScreen));
 
 			genericSprite.setPosition(
 				(int(positionComp.m_position.x) % ApplicationParameters::k_rightOfScreen) - (int)sizeComp.m_size.width/2,

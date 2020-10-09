@@ -23,6 +23,7 @@ private:
 	void UpdatePlayerPosition_();
 	void UpdateArrowPosition_();
 	void UpdateBlobPosition_();
+	void DeleteRolloverObjects_();
 
 	entt::registry& m_rReg;
 };

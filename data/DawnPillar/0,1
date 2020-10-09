@@ -1,6 +1,8 @@
 TileMapComp DawnPillar RenderableComp DeloadableComp
 ItemActionAreaComp PositionComp 60 45 SizeComp 120 90 ClickableComp DeloadableComp
 
+Blob 80 60
+
 WallTile DAWN_PILLAR_INACCESSIBLE 0 0 DeloadableComp
 WallTile DAWN_PILLAR_BOTTOM_WALL 1 0 DeloadableComp
 WallTile DAWN_PILLAR_BOTTOM_WALL 2 0 DeloadableComp
