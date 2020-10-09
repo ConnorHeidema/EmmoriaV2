@@ -19,7 +19,6 @@
 MovementSys::MovementSys(std::string systemConfigItem, entt::registry& rReg)
 	: System(systemConfigItem)
 	, m_rReg(rReg)
-	, m_speed(ApplicationParameters::k_playerMovementSpeed)
 { }
 
 void MovementSys::Update_()
@@ -41,7 +40,7 @@ void MovementSys::UpdateLastPositions_()
 
 void MovementSys::UpdatePlayerPosition_()
 {
-	m_rReg.view<PlayerComp, PositionComp>().each([&](auto entity, auto& positionComp) {
+	m_rReg.view<PlayerComp, PositionComp, SpeedComp>().each([&](auto entity, auto& positionComp, auto& speedComp) {
 		{
 			using namespace sf;
 			float xPos = (static_cast<int>(Keyboard::isKeyPressed(Keyboard::D)) -
@@ -51,8 +50,8 @@ void MovementSys::UpdatePlayerPosition_()
 			if (xPos != 0 || yPos != 0)
 			{
 				float angle = atan2(yPos, xPos);
-				positionComp.m_position.x += m_speed * cos(angle);
-				positionComp.m_position.y += m_speed * sin(angle);
+				positionComp.m_position.x += speedComp.m_speed * cos(angle);
+				positionComp.m_position.y += speedComp.m_speed * sin(angle);
 			}
 		}
 	});
@@ -60,10 +59,14 @@ void MovementSys::UpdatePlayerPosition_()
 
 void MovementSys::UpdateArrowPosition_()
 {
-	m_rReg.view<ArrowComp, PositionComp, RotationComp>().each([&](auto entity, auto& positionComp, auto& rotationComp)
+	m_rReg.view<ArrowComp, PositionComp, RotationComp, SpeedComp>().each([&](
+		auto entity,
+		auto& positionComp,
+		auto& rotationComp,
+		auto& speedComp)
 	{
-		positionComp.m_position.x += 4 * cos(rotationComp.m_angle);
-		positionComp.m_position.y += 4 * sin(rotationComp.m_angle);
+		positionComp.m_position.x += speedComp.m_speed * cos(rotationComp.m_angle);
+		positionComp.m_position.y += speedComp.m_speed * sin(rotationComp.m_angle);
 		if (positionComp.m_position.x < 0 || positionComp.m_position.x > ApplicationParameters::k_rightOfScreen ||
 			positionComp.m_position.y < 0 || positionComp.m_position.y > ApplicationParameters::k_bottomOfScreen)
 		{

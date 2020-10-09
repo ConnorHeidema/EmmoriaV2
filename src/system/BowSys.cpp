@@ -9,6 +9,7 @@
 #include "component/functional/SizeComp.hpp"
 #include "component/functional/RotationComp.hpp"
 #include "component/functional/InteractorComp.hpp"
+#include "component/functional/SpeedComp.hpp"
 
 #include "component/InteractType.hpp"
 
@@ -57,6 +58,10 @@ void BowSys::CreateArrow_(
 	ClickableComp& clickableActionArea)
 {
 	auto bowArrowEntity = m_rReg.create();
+
+	auto& speedComp = m_rReg.emplace<SpeedComp>(bowArrowEntity);
+	speedComp.m_speed = 4;
+
 	auto& bowArrowPositionComp = m_rReg.emplace<PositionComp>(bowArrowEntity);
 	bowArrowPositionComp.m_position.x = playerPositionComp.m_position.x;
 	bowArrowPositionComp.m_position.y = playerPositionComp.m_position.y;
@@ -65,7 +70,6 @@ void BowSys::CreateArrow_(
 	auto& spriteComp = m_rReg.emplace<SpriteComp>(bowArrowEntity);
 	spriteComp.m_filePath = ApplicationParameters::k_spritePath + "Arrow" + ApplicationParameters::k_pictureExt;
 	m_rReg.emplace<ArrowComp>(bowArrowEntity);
-
 
 	m_rReg.emplace_or_replace<DeloadableComp>(bowArrowEntity);
 

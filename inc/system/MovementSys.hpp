@@ -25,8 +25,6 @@ private:
 	void UpdateBlobPosition_();
 
 	entt::registry& m_rReg;
-
-	float const& m_speed;
 };
 
 #endif
