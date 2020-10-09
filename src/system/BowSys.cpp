@@ -39,7 +39,7 @@ void BowSys::Update_()
 			bool bPerformAction = false;
 			m_rReg.view<ItemActionAreaComp, ClickableComp>().each([&](auto entity, auto& clickableActionArea)
 			{
-				if (clickableActionArea.m_bLeftClicked)
+				if (clickableActionArea.m_bLeftDown)
 				{
 					CreateArrow_(playerPositionComp, clickableActionArea);
 					m_bowFrequencyLatch.Reset();
@@ -78,15 +78,13 @@ void BowSys::CreateArrow_(
 
 	auto& rotationComp = m_rReg.emplace<RotationComp>(bowArrowEntity);
 
-	double adjustedPlayerPositionX = playerPositionComp.m_position.x /
-		ApplicationParameters::k_widthAdjustment;
-	double adjustedPlayerPositionY = playerPositionComp.m_position.y /
-		ApplicationParameters::k_heightAdjustment;
+	double adjustedPlayerPositionX = playerPositionComp.m_position.x;
+	double adjustedPlayerPositionY = playerPositionComp.m_position.y;
 
 	{
 		using namespace sf;
-		float xPos = clickableActionArea.m_x - adjustedPlayerPositionX;
-		float yPos = clickableActionArea.m_y - adjustedPlayerPositionY;
+		double xPos = clickableActionArea.m_x * ApplicationParameters::k_widthAdjustment - adjustedPlayerPositionX;
+		double yPos = clickableActionArea.m_y * ApplicationParameters::k_heightAdjustment - adjustedPlayerPositionY;
 		if (xPos != 0 || yPos != 0)
 		{
 			rotationComp.m_angle = atan2(yPos, xPos);

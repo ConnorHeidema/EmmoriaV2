@@ -8,14 +8,18 @@ struct ClickableComp
 {
 	bool m_bLeftClicked;
 	bool m_bRightClicked;
-	int m_x;
-	int m_y;
+	double m_x;
+	double m_y;
+	bool m_bLeftDown;
+	bool m_bRightDown;
 
 	ClickableComp()
 		: m_bLeftClicked(false)
 		, m_bRightClicked(false)
 		, m_x(-1)
 		, m_y(-1)
+		, m_bLeftDown(false)
+		, m_bRightDown(false)
 	{}
 };
 

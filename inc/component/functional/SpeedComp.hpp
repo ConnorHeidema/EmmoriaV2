@@ -8,7 +8,7 @@
  */
 struct SpeedComp
 {
-	int m_speed;
+	float m_speed;
 };
 
 #endif

@@ -36,6 +36,7 @@
                 "${workspaceFolder}/src/util/OverlapUtils.cpp",
                 "${workspaceFolder}/src/util/AnimationMappings.cpp",
                 "${workspaceFolder}/src/util/Latch.cpp",
+                "${workspaceFolder}/src/util/PositionUtils.cpp",
 
                 // System implementations
                 "${workspaceFolder}/src/system/RebootSys.cpp",

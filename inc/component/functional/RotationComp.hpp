@@ -6,7 +6,7 @@
  */
 struct RotationComp
 {
-	float m_angle;
+	double m_angle;
 };
 
 #endif

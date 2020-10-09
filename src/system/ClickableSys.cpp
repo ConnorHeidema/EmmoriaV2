@@ -19,12 +19,21 @@ ClickableSys::ClickableSys(std::string systemConfigItem, entt::registry& rReg)
 
 void ClickableSys::Update_()
 {
+	m_rReg.view<ClickableComp, SizeComp, PositionComp>()
+		.each([&](auto entity, auto& clickableComp, auto& sizeComp, auto& positionComp)
+	{
+		clickableComp.m_x = (double)sf::Mouse::getPosition().x / (double)ApplicationParameters::k_widthAdjustment;
+		clickableComp.m_y = (double)sf::Mouse::getPosition().y / (double)ApplicationParameters::k_heightAdjustment;
+		clickableComp.m_bLeftDown = sf::Mouse::isButtonPressed(sf::Mouse::Left);
+		clickableComp.m_bRightDown = sf::Mouse::isButtonPressed(sf::Mouse::Right);
+	});
 	CheckClick_(sf::Mouse::Left);
 	CheckClick_(sf::Mouse::Right);
 }
 
 void ClickableSys::CheckClick_(sf::Mouse::Button click)
 {
+
 	bool& buttonClicked = ((click == sf::Mouse::Left ? m_bLeftClicked : m_bRightClicked));
 
 	if (buttonClicked && sf::Mouse::isButtonPressed(click))
@@ -64,11 +73,6 @@ void ClickableSys::CheckClick_(sf::Mouse::Button click)
 				sf::Mouse::getPosition().y))
 		{
 			bool& compClicked = (click == sf::Mouse::Left ? clickableComp.m_bLeftClicked : clickableComp.m_bRightClicked);
-			std::cout << "Clicked on clickable object" << std::endl;
-			clickableComp.m_x = sf::Mouse::getPosition().x / ApplicationParameters::k_widthAdjustment;
-			clickableComp.m_y = sf::Mouse::getPosition().y / ApplicationParameters::k_heightAdjustment;
-			std::cout << "Clicked on clickable component at unit: (" << clickableComp.m_x
-				<< ", " << clickableComp.m_y << ")" << std::endl;
 			compClicked = true;
 		}
 	});

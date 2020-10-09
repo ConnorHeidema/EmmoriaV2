@@ -9,6 +9,7 @@
 #include "component/functional/TrackingComp.hpp"
 
 #include "util/ApplicationParameters.hpp"
+#include "util/PositionUtils.hpp"
 
 #include <SFML/Window.hpp>
 
@@ -50,8 +51,7 @@ void MovementSys::UpdatePlayerPosition_()
 			if (xPos != 0 || yPos != 0)
 			{
 				float angle = atan2(yPos, xPos);
-				positionComp.m_position.x += speedComp.m_speed * cos(angle);
-				positionComp.m_position.y += speedComp.m_speed * sin(angle);
+				PositionUtils::CalculateNewPosition(positionComp.m_position, speedComp.m_speed, angle);
 			}
 		}
 	});
@@ -65,8 +65,7 @@ void MovementSys::UpdateArrowPosition_()
 		auto& rotationComp,
 		auto& speedComp)
 	{
-		positionComp.m_position.x += speedComp.m_speed * cos(rotationComp.m_angle);
-		positionComp.m_position.y += speedComp.m_speed * sin(rotationComp.m_angle);
+		PositionUtils::CalculateNewPosition(positionComp.m_position, speedComp.m_speed, rotationComp.m_angle);
 		if (positionComp.m_position.x < 0 || positionComp.m_position.x > ApplicationParameters::k_rightOfScreen ||
 			positionComp.m_position.y < 0 || positionComp.m_position.y > ApplicationParameters::k_bottomOfScreen)
 		{
@@ -92,8 +91,7 @@ void MovementSys::UpdateBlobPosition_()
 				float angle = atan2(
 					playerPositionComp.m_position.y - positionComp.m_position.y,
 					playerPositionComp.m_position.x - positionComp.m_position.x);
-				positionComp.m_position.x += speedComp.m_speed * cos(angle);
-				positionComp.m_position.y += speedComp.m_speed * sin(angle);
+				PositionUtils::CalculateNewPosition(positionComp.m_position, speedComp.m_speed, angle);
 			}
 		});
 	});
