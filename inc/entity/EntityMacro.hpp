@@ -17,7 +17,8 @@
 	macroToUse(DeleteAfterInteractionComp) \
 	macroToUse(RebootComp) \
 	macroToUse(AnimationRebootComp) \
-	macroToUse(BlobComp)
+	macroToUse(BlobComp) \
+	macroToUse(HoleComp)
 
 #define ALL_FUNCTIONAL_MACRO(macroToUse) \
 	macroToUse(ButtonComp) \
@@ -51,4 +52,5 @@
 	macroToUse(RandomDialog) \
 	macroToUse(IndexedPosition) \
 	macroToUse(WallTile) \
-	macroToUse(Blob)
+	macroToUse(Blob) \
+	macroToUse(HoleTile)

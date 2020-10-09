@@ -322,10 +322,22 @@ void EntityLoaderFactory::LoadWallTile(entt::registry& rReg, entt::entity& rEnti
 {
 	rReg.emplace<WallComp>(rEntity);
  	rReg.emplace<RenderableComp>(rEntity);
+ 	rReg.emplace<DeloadableComp>(rEntity);
 	LoadTileMapPieceComp(rReg, rEntity, reader);
 	LoadIndexedPosition(rReg, rEntity, reader);
 	auto& interactableComp = rReg.get_or_emplace<InteractableComp>(rEntity);
 	interactableComp.m_interactTypeList.emplace_back(InteractType_t::WallComp_t);
+}
+
+void EntityLoaderFactory::LoadHoleTile(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
+{
+	rReg.emplace<HoleComp>(rEntity);
+ 	rReg.emplace<RenderableComp>(rEntity);
+ 	rReg.emplace<DeloadableComp>(rEntity);
+	LoadTileMapPieceComp(rReg, rEntity, reader);
+	LoadIndexedPosition(rReg, rEntity, reader);
+	auto& interactableComp = rReg.get_or_emplace<InteractableComp>(rEntity);
+	interactableComp.m_interactTypeList.emplace_back(InteractType_t::HoleComp_t);
 }
 
 void EntityLoaderFactory::LoadBlob(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
