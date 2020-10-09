@@ -56,13 +56,13 @@
                 "${workspaceFolder}/src/system/AnimationSys.cpp",
                 "${workspaceFolder}/src/system/SceneLoadSys.cpp",
                 "${workspaceFolder}/src/system/BowSys.cpp",
+                "${workspaceFolder}/src/system/LifespanSys.cpp",
 
                 // Enemy system implementations
                 "${workspaceFolder}/src/system/enemy/BlobSys.cpp",
 
                 // Entity factory
                 "${workspaceFolder}/src/entity/EntityLoaderFactory.cpp",
-
 
                 // Internal libraries
                 "-I", "${workspaceFolder}/inc",

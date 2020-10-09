@@ -10,6 +10,8 @@
 #include "component/functional/RotationComp.hpp"
 #include "component/functional/InteractorComp.hpp"
 #include "component/functional/SpeedComp.hpp"
+#include "component/functional/LocationComp.hpp"
+#include "component/functional/LifespanComp.hpp"
 
 #include "component/InteractType.hpp"
 
@@ -20,7 +22,7 @@
 #include <math.h>
 #include <iostream>
 
-const int BowSys::mk_frequency = 30;
+const int BowSys::mk_frequency = 60;
 const int BowSys::mk_arrowWidthUnits = 2;
 const int BowSys::mk_arrowHeightUnits = 5;
 
@@ -62,14 +64,21 @@ void BowSys::CreateArrow_(
 	auto& speedComp = m_rReg.emplace<SpeedComp>(bowArrowEntity);
 	speedComp.m_speed = 4;
 
+	auto& lifespanComp = m_rReg.emplace<LifespanComp>(bowArrowEntity);
+	lifespanComp.m_framesToLive = 120;
+
 	auto& bowArrowPositionComp = m_rReg.emplace<PositionComp>(bowArrowEntity);
-	bowArrowPositionComp.m_position.x = playerPositionComp.m_position.x;
-	bowArrowPositionComp.m_position.y = playerPositionComp.m_position.y;
+	bowArrowPositionComp.m_position.x = (int)playerPositionComp.m_position.x % ApplicationParameters::k_rightOfScreen;
+	bowArrowPositionComp.m_position.y = (int)playerPositionComp.m_position.y % ApplicationParameters::k_bottomOfScreen;
+
 	auto& renderable = m_rReg.emplace<RenderableComp>(bowArrowEntity);
 	renderable.m_bRendered = false;
 	auto& spriteComp = m_rReg.emplace<SpriteComp>(bowArrowEntity);
 	spriteComp.m_filePath = ApplicationParameters::k_spritePath + "Arrow" + ApplicationParameters::k_pictureExt;
 	m_rReg.emplace<ArrowComp>(bowArrowEntity);
+
+	std::cout << "Creating arrow at (" << bowArrowPositionComp.m_position.x <<
+		", " << bowArrowPositionComp.m_position.y << ")" << std::endl;
 
 	m_rReg.emplace_or_replace<DeloadableComp>(bowArrowEntity);
 
@@ -85,6 +94,11 @@ void BowSys::CreateArrow_(
 		using namespace sf;
 		double xPos = clickableActionArea.m_x * ApplicationParameters::k_widthAdjustment - adjustedPlayerPositionX;
 		double yPos = clickableActionArea.m_y * ApplicationParameters::k_heightAdjustment - adjustedPlayerPositionY;
+		m_rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
+		{
+			xPos += locationComp.xLocation * ApplicationParameters::k_rightOfScreen;
+			yPos += locationComp.yLocation * ApplicationParameters::k_bottomOfScreen;
+		});
 		if (xPos != 0 || yPos != 0)
 		{
 			rotationComp.m_angle = atan2(yPos, xPos);

@@ -17,6 +17,7 @@
 #include "system/AnimationSys.hpp"
 #include "system/SceneLoadSys.hpp"
 #include "system/BowSys.hpp"
+#include "system/LifespanSys.hpp"
 
 #include "system/enemy/BlobSys.hpp"
 
@@ -54,7 +55,8 @@ std::list<std::shared_ptr<System>> SystemList::CreateSystemList(entt::registry& 
 		STD_MAKE_UNIQUE_ANIMATION_SYS(MovieRender),
 		STD_MAKE_UNIQUE_SYS(Blob),
 		STD_MAKE_UNIQUE_SYS(Bow),
-		STD_MAKE_UNIQUE_SYS(Interacting)
+		STD_MAKE_UNIQUE_SYS(Interacting),
+		STD_MAKE_UNIQUE_SYS(Lifespan)
 	};
 	return m_sysRunningOrder;
 }

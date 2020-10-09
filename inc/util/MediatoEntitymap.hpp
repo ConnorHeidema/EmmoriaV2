@@ -10,7 +10,7 @@
 struct MediatoEntitymap
 {
     static std::unordered_map<Media_t, std::string> Create_map();
-    static const std::unordered_map<Media_t, std::string> m_mediatoEntitymap;
+    static std::unordered_map<Media_t, std::string> m_mediatoEntitymap;
 };
 
 #endif

@@ -66,11 +66,6 @@ void MovementSys::UpdateArrowPosition_()
 		auto& speedComp)
 	{
 		PositionUtils::CalculateNewPosition(positionComp.m_position, speedComp.m_speed, rotationComp.m_angle);
-		if (positionComp.m_position.x < 0 || positionComp.m_position.x > ApplicationParameters::k_rightOfScreen ||
-			positionComp.m_position.y < 0 || positionComp.m_position.y > ApplicationParameters::k_bottomOfScreen)
-		{
-			m_rReg.destroy(entity);
-		}
 	});
 }
 

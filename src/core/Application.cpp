@@ -5,6 +5,8 @@
 #include "util/ApplicationParameters.hpp"
 #include "util/SystemList.hpp"
 
+#include "util/MediatoEntitymap.hpp"
+
 #include <iostream>
 
 Application::Application()
@@ -26,6 +28,7 @@ bool Application::Start()
 
 void Application::Initialize_()
 {
+	MediatoEntitymap::m_mediatoEntitymap = MediatoEntitymap::Create_map();
 	m_renderWindow.setFramerateLimit(ApplicationParameters::k_framerate);
 	SystemList::m_pSystemList = SystemList::CreateSystemList(m_reg, m_renderWindow);
 }

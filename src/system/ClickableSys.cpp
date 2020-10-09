@@ -5,6 +5,7 @@
 #include "component/functional/ClickableComp.hpp"
 #include "component/functional/SizeComp.hpp"
 #include "component/functional/PositionComp.hpp"
+#include "component/functional/LocationComp.hpp"
 
 #include "util/MouseUtils.hpp"
 
@@ -22,10 +23,28 @@ void ClickableSys::Update_()
 	m_rReg.view<ClickableComp, SizeComp, PositionComp>()
 		.each([&](auto entity, auto& clickableComp, auto& sizeComp, auto& positionComp)
 	{
+		int x = 0;
+		int y = 0;
+		m_rReg.view<LocationComp>()
+			.each([&](auto entity, auto& locationComp)
+		{
+			x = ApplicationParameters::k_rightOfScreen * locationComp.xLocation;
+			y = ApplicationParameters::k_bottomOfScreen * locationComp.yLocation;
+		});
 		clickableComp.m_x = (double)sf::Mouse::getPosition().x / (double)ApplicationParameters::k_widthAdjustment;
 		clickableComp.m_y = (double)sf::Mouse::getPosition().y / (double)ApplicationParameters::k_heightAdjustment;
-		clickableComp.m_bLeftDown = sf::Mouse::isButtonPressed(sf::Mouse::Left);
-		clickableComp.m_bRightDown = sf::Mouse::isButtonPressed(sf::Mouse::Right);
+
+		if (MouseUtils::IsCollisionDetected_(
+				positionComp.m_position.x - sizeComp.m_size.width/2,
+				positionComp.m_position.y - sizeComp.m_size.height/2,
+				sizeComp.m_size.width,
+				sizeComp.m_size.height,
+				sf::Mouse::getPosition().x + x,
+				sf::Mouse::getPosition().y + y))
+		{
+			clickableComp.m_bLeftDown = sf::Mouse::isButtonPressed(sf::Mouse::Left);
+			clickableComp.m_bRightDown = sf::Mouse::isButtonPressed(sf::Mouse::Right);
+		}
 	});
 	CheckClick_(sf::Mouse::Left);
 	CheckClick_(sf::Mouse::Right);
@@ -60,6 +79,15 @@ void ClickableSys::CheckClick_(sf::Mouse::Button click)
 	}
 
 	buttonClicked = true;
+
+	int x = 0;
+	int y = 0;
+	m_rReg.view<LocationComp>()
+		.each([&](auto entity, auto& locationComp)
+	{
+		x = ApplicationParameters::k_rightOfScreen * locationComp.xLocation;
+		y = ApplicationParameters::k_bottomOfScreen * locationComp.yLocation;
+	});
 	m_rReg.view<ClickableComp, SizeComp, PositionComp>()
 		.each([&](auto entity, auto& clickableComp, auto& sizeComp, auto& positionComp)
 	{
@@ -69,8 +97,8 @@ void ClickableSys::CheckClick_(sf::Mouse::Button click)
 				positionComp.m_position.y - sizeComp.m_size.height/2,
 				sizeComp.m_size.width,
 				sizeComp.m_size.height,
-				sf::Mouse::getPosition().x,
-				sf::Mouse::getPosition().y))
+				sf::Mouse::getPosition().x + x,
+				sf::Mouse::getPosition().y + y))
 		{
 			bool& compClicked = (click == sf::Mouse::Left ? clickableComp.m_bLeftClicked : clickableComp.m_bRightClicked);
 			compClicked = true;
