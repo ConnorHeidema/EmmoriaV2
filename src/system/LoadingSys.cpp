@@ -36,9 +36,14 @@ void LoadingSys::Update_()
 				{
 					Entitymap::m_entityMap.at(token)(m_rReg, loadEntity, line);
 				}
-				else if (token != "")
+				else
 				{
-					std::cout << "\tCould not attach " << token << " parameter to entity" << std::endl;
+					m_rReg.destroy(loadEntity);
+					if (token != "")
+					{
+						std::cout << "\tCould not attach " << token << " parameter to entity" << std::endl;
+					}
+					break;
 				}
 			}
 		}

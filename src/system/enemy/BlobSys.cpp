@@ -19,19 +19,4 @@ BlobSys::BlobSys(std::string systemConfigItem, entt::registry& rReg)
 
 void BlobSys::Update_()
 {
-	m_rReg.view<PlayerComp, PositionComp>().each([&](auto playerEntity, auto& playerPositionComp)
-	{
-		m_rReg.view<BlobComp, PositionComp>().each([&](auto blobEntity, auto& blobPositionComp)
-		{
-			if (std::abs(playerPositionComp.m_position.x - blobPositionComp.m_position.x) < mk_sightDistance &&
-				std::abs(playerPositionComp.m_position.y - blobPositionComp.m_position.y) < mk_sightDistance)
-			{
-				float angle = atan2(
-					playerPositionComp.m_position.y - blobPositionComp.m_position.y,
-					playerPositionComp.m_position.x - blobPositionComp.m_position.x);
-				blobPositionComp.m_position.x += mk_blobSpeed * cos(angle);
-				blobPositionComp.m_position.y += mk_blobSpeed * sin(angle);
-			}
-		});
-	});
 }

@@ -80,7 +80,8 @@ void InteractStringMap::InteractWallInteractorCompWallComp(entt::registry& rReg,
 void InteractStringMap::InteractArrowCompBlobComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
 {
 	rReg.emplace_or_replace<DeleteAfterInteractionComp>(rInteractorEntity);
-	rReg.emplace_or_replace<DeleteAfterInteractionComp>(rInteractableEntity);
+	auto& blobHealthComp = rReg.get_or_emplace<HealthComp>(rInteractableEntity);
+	blobHealthComp.m_health -= 5;
 }
 
 std::unordered_map<int, fnEntityInteractor> InteractStringMap::CreateInteractionFnList()

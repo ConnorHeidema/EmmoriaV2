@@ -15,24 +15,19 @@ HealthSys::HealthSys(std::string systemConfigItem, entt::registry& rReg)
 
 void HealthSys::Update_()
 {
-	m_rReg.view<HealthComp>().each([](auto entity, auto& healthComp) {
-		//std::cout <<  std::to_string(healthComp.m_health) << std::endl;
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	m_rReg.view<PlayerComp, HealthComp>().each([&](auto entity, auto& healthComp) {
+		if (healthComp.m_health <= 0)
 		{
-			healthComp.m_health -= 1;
+			auto reboot = m_rReg.create();
+			m_rReg.emplace<RebootComp>(reboot);
 		}
 	});
 
-	bool bRestart = false;
-	m_rReg.view<PlayerComp, HealthComp>().each([&](auto entity, auto& healthComp) {
-		if (healthComp.m_health == 0)
+	m_rReg.view<HealthComp>().each([&](auto entity, auto& healthComp) {
+		if (healthComp.m_health <= 0)
 		{
-			bRestart = true;
+			m_rReg.destroy(entity);
 		}
 	});
-	if (bRestart)
-	{
-		auto reboot = m_rReg.create();
-		m_rReg.emplace<RebootComp>(reboot);
-	}
+
 }

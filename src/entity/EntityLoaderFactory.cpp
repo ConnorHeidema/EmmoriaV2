@@ -19,6 +19,8 @@
 #include "component/functional/TileMapPieceComp.hpp"
 #include "component/functional/LocationComp.hpp"
 #include "component/functional/RotationComp.hpp"
+#include "component/functional/SpeedComp.hpp"
+#include "component/functional/TrackingComp.hpp"
 
 #include "component/InteractStringMap.hpp"
 
@@ -153,6 +155,20 @@ void EntityLoaderFactory::LoadTextComp(entt::registry& rReg, entt::entity& rEnti
 	while (token != ApplicationParameters::k_dialogEscape) { textComp.m_text += token + " "; reader >> token; }
 	textComp.m_text.pop_back();
 	reader >> token;
+}
+
+void EntityLoaderFactory::LoadTrackingComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
+{
+	auto tokens = ReadTokenList_(1, reader);
+	auto& trackingComp = rReg.get_or_emplace<TrackingComp>(rEntity);
+	trackingComp.m_sight = std::stoi(tokens[0]);
+}
+
+void EntityLoaderFactory::LoadSpeedComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
+{
+	auto tokens = ReadTokenList_(1, reader);
+	auto& speedComp = rReg.get_or_emplace<SpeedComp>(rEntity);
+	speedComp.m_speed = std::stoi(tokens[0]);
 }
 
 void EntityLoaderFactory::LoadTileMapComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -310,6 +326,35 @@ void EntityLoaderFactory::LoadWallTile(entt::registry& rReg, entt::entity& rEnti
 	LoadIndexedPosition(rReg, rEntity, reader);
 	auto& interactableComp = rReg.get_or_emplace<InteractableComp>(rEntity);
 	interactableComp.m_interactTypeList.emplace_back(InteractType_t::WallComp_t);
+}
+
+void EntityLoaderFactory::LoadBlob(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
+{
+	rReg.emplace<BlobComp>(rEntity);
+	rReg.emplace<RenderableComp>(rEntity);
+	rReg.emplace<DeloadableComp>(rEntity);
+	rReg.emplace<WallInteractorComp>(rEntity);
+
+	LoadPositionComp(rReg, rEntity, reader);
+	auto& sizeComp = rReg.get_or_emplace<SizeComp>(rEntity);
+	sizeComp.m_size.width = 5 * ApplicationParameters::k_widthAdjustment;
+	sizeComp.m_size.height = 5 * ApplicationParameters::k_heightAdjustment;
+
+	auto& speedComp = rReg.get_or_emplace<SpeedComp>(rEntity);
+	speedComp.m_speed = 1;
+	auto& trackingComp = rReg.get_or_emplace<TrackingComp>(rEntity);
+	trackingComp.m_sight = 300;
+
+	auto& interactableComp = rReg.get_or_emplace<InteractableComp>(rEntity);
+	interactableComp.m_interactTypeList.emplace_back(InteractStringMap::s_interactStringToType.at("BlobComp"));
+	auto& interactorComp = rReg.get_or_emplace<InteractorComp>(rEntity);
+	interactorComp.m_interactTypeList.emplace_back(InteractStringMap::s_interactStringToType.at("WallInteractorComp"));
+
+	auto& healthComp = rReg.get_or_emplace<HealthComp>(rEntity);
+	healthComp.m_health = 10;
+
+	auto& spriteComp = rReg.get_or_emplace<SpriteComp>(rEntity);
+	spriteComp.m_filePath = ApplicationParameters::k_spritePath + std::string("Blob") + ApplicationParameters::k_pictureExt;
 }
 
 std::vector<std::string> EntityLoaderFactory::ReadTokenList_(int wordsToIngest, std::istringstream& reader)

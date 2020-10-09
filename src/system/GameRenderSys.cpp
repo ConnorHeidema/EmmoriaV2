@@ -1,5 +1,7 @@
 #include "system/GameRenderSys.hpp"
 
+#include "component/tag/AllTagComp.hpp"
+
 #include "component/functional/RenderableComp.hpp"
 #include "component/functional/PositionComp.hpp"
 #include "component/functional/SpriteComp.hpp"
@@ -169,7 +171,7 @@ void GameRenderSys::RenderText_()
 
 void GameRenderSys::RenderHealth_()
 {
-	m_rReg.view<HealthComp>().each([&](
+	m_rReg.view<PlayerComp, HealthComp>().each([&](
 		auto entity,
 		auto& healthComp)
 	{

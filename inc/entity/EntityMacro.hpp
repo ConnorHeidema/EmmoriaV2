@@ -10,14 +10,14 @@
 	macroToUse(RandomComp) \
 	macroToUse(WallComp) \
 	macroToUse(DeloadableComp) \
-	macroToUse(BlobComp) \
 	macroToUse(BowComp) \
 	macroToUse(ItemActionAreaComp) \
 	macroToUse(ArrowComp) \
 	macroToUse(WallInteractorComp) \
 	macroToUse(DeleteAfterInteractionComp) \
 	macroToUse(RebootComp) \
-	macroToUse(AnimationRebootComp)
+	macroToUse(AnimationRebootComp) \
+	macroToUse(BlobComp)
 
 #define ALL_FUNCTIONAL_MACRO(macroToUse) \
 	macroToUse(ButtonComp) \
@@ -36,7 +36,10 @@
 	macroToUse(TileMapComp) \
 	macroToUse(TileMapPieceComp) \
 	macroToUse(LocationComp) \
-	macroToUse(RotationComp)
+	macroToUse(RotationComp) \
+	macroToUse(SpeedComp) \
+	macroToUse(TrackingComp)
+
 
 #define ALL_COMPONENT_PIECE_MACRO(macroToUse) \
 	macroToUse(Xposition) \
@@ -47,4 +50,5 @@
 	macroToUse(Button) \
 	macroToUse(RandomDialog) \
 	macroToUse(IndexedPosition) \
-	macroToUse(WallTile)
+	macroToUse(WallTile) \
+	macroToUse(Blob)

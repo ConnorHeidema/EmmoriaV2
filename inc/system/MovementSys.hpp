@@ -22,6 +22,7 @@ private:
 	void UpdateLastPositions_();
 	void UpdatePlayerPosition_();
 	void UpdateArrowPosition_();
+	void UpdateBlobPosition_();
 
 	entt::registry& m_rReg;
 

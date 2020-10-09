@@ -5,6 +5,8 @@
 #include "component/functional/LastPositionComp.hpp"
 #include "component/functional/PositionComp.hpp"
 #include "component/functional/RotationComp.hpp"
+#include "component/functional/SpeedComp.hpp"
+#include "component/functional/TrackingComp.hpp"
 
 #include "util/ApplicationParameters.hpp"
 
@@ -25,6 +27,7 @@ void MovementSys::Update_()
 	UpdateLastPositions_();
 	UpdatePlayerPosition_();
 	UpdateArrowPosition_();
+	UpdateBlobPosition_();
 }
 
 void MovementSys::UpdateLastPositions_()
@@ -66,5 +69,29 @@ void MovementSys::UpdateArrowPosition_()
 		{
 			m_rReg.destroy(entity);
 		}
+	});
+}
+
+void MovementSys::UpdateBlobPosition_()
+{
+
+	m_rReg.view<PlayerComp, PositionComp>().each([&](auto playerEntity, auto& playerPositionComp)
+	{
+		m_rReg.view<PositionComp, SpeedComp, TrackingComp>().each([&](
+			auto blobEntity,
+			auto& positionComp,
+			auto& speedComp,
+			auto& trackingComp)
+		{
+			if (std::abs(playerPositionComp.m_position.x - positionComp.m_position.x) < trackingComp.m_sight &&
+				std::abs(playerPositionComp.m_position.y - positionComp.m_position.y) < trackingComp.m_sight)
+			{
+				float angle = atan2(
+					playerPositionComp.m_position.y - positionComp.m_position.y,
+					playerPositionComp.m_position.x - positionComp.m_position.x);
+				positionComp.m_position.x += speedComp.m_speed * cos(angle);
+				positionComp.m_position.y += speedComp.m_speed * sin(angle);
+			}
+		});
 	});
 }
