@@ -45,17 +45,15 @@ void MovementSys::UpdateLastPositions_()
 void MovementSys::UpdatePlayerPosition_()
 {
 	m_rReg.view<PlayerComp, PositionComp, SpeedComp>().each([&](auto entity, auto& positionComp, auto& speedComp) {
+		using namespace sf;
+		float xPos = (static_cast<int>(Keyboard::isKeyPressed(Keyboard::D)) -
+					static_cast<int>(Keyboard::isKeyPressed(Keyboard::A)));
+		float yPos = (static_cast<int>(Keyboard::isKeyPressed(Keyboard::S)) -
+					static_cast<int>(Keyboard::isKeyPressed(Keyboard::W)));
+		if (xPos != 0 || yPos != 0)
 		{
-			using namespace sf;
-			float xPos = (static_cast<int>(Keyboard::isKeyPressed(Keyboard::D)) -
-						static_cast<int>(Keyboard::isKeyPressed(Keyboard::A)));
-			float yPos = (static_cast<int>(Keyboard::isKeyPressed(Keyboard::S)) -
-						static_cast<int>(Keyboard::isKeyPressed(Keyboard::W)));
-			if (xPos != 0 || yPos != 0)
-			{
-				float angle = atan2(yPos, xPos);
-				PositionUtils::CalculateNewPosition(positionComp.m_position, speedComp.m_speed, angle);
-			}
+			float angle = atan2(yPos, xPos);
+			PositionUtils::CalculateNewPosition(positionComp.m_position, speedComp.m_speed, angle);
 		}
 	});
 }

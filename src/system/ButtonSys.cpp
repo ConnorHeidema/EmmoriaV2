@@ -4,12 +4,9 @@
 
 #include "component/functional/ButtonComp.hpp"
 #include "component/functional/ClickableComp.hpp"
-#include "component/functional/TextComp.hpp"
 #include "component/functional/MovieComp.hpp"
 
 #include "util/Mediamap.hpp"
-
-#include <SFML/Graphics.hpp>
 
 ButtonSys::ButtonSys(std::string systemConfigItem, entt::registry& rReg)
 	: System(systemConfigItem)

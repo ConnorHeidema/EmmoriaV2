@@ -25,13 +25,11 @@ void LoadingSys::Update_()
 		std::cout << "Loading entity from file " << loadComp.m_filePath << std::endl;
 		while(std::getline(file, token))
 		{
-			//std::cout << "Loading new entity" << std::endl;
 			auto loadEntity = m_rReg.create();
 			std::istringstream line(token);
 			while (!line.eof())
 			{
 				line >> token;
-				//std::cout << "\tAttaching " << token << " parameter to entity" << std::endl;
 				if (Entitymap::m_entityMap.find(token) != Entitymap::m_entityMap.end())
 				{
 					Entitymap::m_entityMap.at(token)(m_rReg, loadEntity, line);
