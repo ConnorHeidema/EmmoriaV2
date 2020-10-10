@@ -68,7 +68,4 @@ std::list<std::shared_ptr<System>> SystemList::CreateSystemList(entt::registry& 
 #undef ANIMATION_SYSTEM_NAME_INPUT
 #undef REGULAR_SYSTEM_NAME_INPUT
 
-std::list<std::shared_ptr<System>> SystemList::m_pSystemList =
-{
-
-};
+std::list<std::shared_ptr<System>> SystemList::m_pSystemList = {};

@@ -1,20 +1,23 @@
 #ifndef __SYSTEM__
 #define __SYSTEM__
 
-#include <string>
-
 #include "config/ConfigItems.hpp"
 
+#include <string>
+
+/**
+ * Purpose:
+ * 	This abstract class acts as a facade for all systems to allow each system
+ * 	to be disabled with a config setting.
+ */
 class System
 {
 public:
-	System(std::string systemConfigItem)
-		: m_systemConfigItem(systemConfigItem)
-	{};
+	System(std::string systemConfigItem) : m_systemConfigItem(systemConfigItem) {};
 	virtual ~System() {};
 	void Update()
 	{
-		if (ConfigItems::m_setConfigItems.find(m_systemConfigItem) == ConfigItems::m_setConfigItems.end())
+		if (IsSystemEnabled_())
 		{
 			Update_();
 		}
@@ -23,7 +26,13 @@ public:
 private:
 	virtual void Update_() = 0;
 
-	std::string m_systemConfigItem;
+	bool IsSystemEnabled_()
+	{
+		return ConfigItems::m_setConfigItems.find(m_systemConfigItem) ==
+			ConfigItems::m_setConfigItems.end();
+	}
+
+	std::string const m_systemConfigItem;
 };
 
 #endif

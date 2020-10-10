@@ -5,6 +5,13 @@
 
 #include <entt/entt.hpp>
 
+/**
+ * Primary Components: RebootComp
+ * Purpose:
+ * 	The RebootSys will reboot everything whenever a RebootComponent
+ *  has been created. For instance, on gameover, a reboot component
+ *  will be created and consumed here.
+ */
 class RebootSys
 	: public System
 {

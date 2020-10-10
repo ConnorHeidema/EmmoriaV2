@@ -9,7 +9,6 @@
 
 int main() {
 	Application app;
-    ConfigItems::LoadConfigFile("data/Config/config.ini");
     app.Start() ?
         std::cout << "Successfully exited game." :
         std::cout << "Error occurred while exiting game";
