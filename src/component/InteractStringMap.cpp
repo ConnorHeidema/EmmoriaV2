@@ -8,6 +8,8 @@
 #include "component/functional/PositionComp.hpp"
 #include "component/functional/SizeComp.hpp"
 #include "component/functional/LocationComp.hpp"
+#include "component/functional/SwitchComp.hpp"
+#include "component/functional/DoorComp.hpp"
 
 #include "util/OverlapUtils.hpp"
 
@@ -112,6 +114,19 @@ void InteractStringMap::InteractBlobCompHoleComp(entt::registry& rReg, entt::ent
 	}
 }
 
+void InteractStringMap::InteractDepressableCompWeightComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
+{
+	auto& switchComp = rReg.get_or_emplace<SwitchComp>(rInteractorEntity);
+	switchComp.m_bPressed = true;
+	rReg.view<DoorComp>().each([&](auto entity, auto& doorComp)
+	{
+		if (switchComp.m_action == doorComp.m_action)
+		{
+			doorComp.m_bOpen = true;
+		}
+	});
+}
+
 std::unordered_map<int, fnEntityInteractor> InteractStringMap::CreateInteractionFnList()
 {
 	#define INSERT(interactor, interactable) fn[ \
@@ -126,6 +141,7 @@ std::unordered_map<int, fnEntityInteractor> InteractStringMap::CreateInteraction
 	INSERT(ArrowComp, BlobComp)
 	INSERT(PlayerComp, HoleComp)
 	INSERT(BlobComp, HoleComp)
+	INSERT(DepressableComp, WeightComp)
 	#undef INSERT
 	return fn;
 }

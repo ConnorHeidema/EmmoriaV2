@@ -45,6 +45,8 @@ TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 17 1 Deloadab
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 18 1 DeloadableComp
 WallTile DAWN_PILLAR_LEFT_WALL 19 1 DeloadableComp
 
+SpriteComp Button DepressableComp RenderableComp IndexedPosition 10 1 DeloadableComp InteractorComp DepressableComp SwitchComp
+
 WallTile DAWN_PILLAR_RIGHT_WALL 0 2 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 1 2 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 2 2 DeloadableComp
@@ -193,6 +195,8 @@ TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 16 8 Deloadab
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 17 8 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 18 8 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 19 8 DeloadableComp
+
+SpriteComp LockedDoor DoorComp RenderableComp IndexedPosition 19 8 DeloadableComp
 
 WallTile DAWN_PILLAR_RIGHT_WALL 0 9 DeloadableComp
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp IndexedPosition 1 9 DeloadableComp

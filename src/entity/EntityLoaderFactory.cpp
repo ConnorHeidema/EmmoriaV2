@@ -2,6 +2,7 @@
 
 #include "component/tag/AllTagComp.hpp"
 
+#include "component/functional/SwitchComp.hpp"
 #include "component/functional/ButtonComp.hpp"
 #include "component/functional/ClickableComp.hpp"
 #include "component/functional/HealthComp.hpp"
@@ -21,6 +22,7 @@
 #include "component/functional/RotationComp.hpp"
 #include "component/functional/SpeedComp.hpp"
 #include "component/functional/TrackingComp.hpp"
+#include "component/functional/DoorComp.hpp"
 
 #include "component/InteractStringMap.hpp"
 
@@ -372,14 +374,13 @@ void EntityLoaderFactory::LoadBlob(entt::registry& rReg, entt::entity& rEntity, 
 
 void EntityLoaderFactory::LoadSwitchComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
-	auto& buttonComp = rReg.get_or_emplace<SwitchComp>(rEntity);
-	rReg.emplace<DepressableComp>(rEntity);
+	auto& switchComp = rReg.get_or_emplace<SwitchComp>(rEntity);
 }
 
 void EntityLoaderFactory::LoadDoorComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
 
-	auto& doorComp = rReg.get_or_emplace<DoorComp>(rEntity);
+	rReg.get_or_emplace<DoorComp>(rEntity);
 }
 
 std::vector<std::string> EntityLoaderFactory::ReadTokenList_(int wordsToIngest, std::istringstream& reader)
