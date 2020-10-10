@@ -18,6 +18,8 @@
 #include "system/SceneLoadSys.hpp"
 #include "system/BowSys.hpp"
 #include "system/LifespanSys.hpp"
+#include "system/DoorSys.hpp"
+#include "system/SwitchSys.hpp"
 
 #include "system/enemy/BlobSys.hpp"
 
@@ -43,7 +45,6 @@ std::list<std::shared_ptr<System>> SystemList::CreateSystemList(entt::registry& 
 		STD_MAKE_UNIQUE_SYS(Reload),
 		STD_MAKE_UNIQUE_SYS(Movement),
 		STD_MAKE_UNIQUE_SYS(TileMap),
-		STD_MAKE_UNIQUE_SYS(Animation),
 		STD_MAKE_UNIQUE_SYS(Loading),
 		STD_MAKE_UNIQUE_SYS(Button),
 		STD_MAKE_UNIQUE_SYS(Clickable),
@@ -51,12 +52,15 @@ std::list<std::shared_ptr<System>> SystemList::CreateSystemList(entt::registry& 
 		STD_MAKE_UNIQUE_SYS(Persistent),
 		STD_MAKE_UNIQUE_SYS(Health),
 		STD_MAKE_UNIQUE_SYS(SceneLoad),
+		STD_MAKE_UNIQUE_SYS(Interacting),
+		STD_MAKE_UNIQUE_SYS(Animation),
 		STD_MAKE_UNIQUE_ANIMATION_SYS(GameRender),
 		STD_MAKE_UNIQUE_ANIMATION_SYS(MovieRender),
 		STD_MAKE_UNIQUE_SYS(Blob),
 		STD_MAKE_UNIQUE_SYS(Bow),
-		STD_MAKE_UNIQUE_SYS(Interacting),
-		STD_MAKE_UNIQUE_SYS(Lifespan)
+		STD_MAKE_UNIQUE_SYS(Lifespan),
+		STD_MAKE_UNIQUE_SYS(Door),
+		STD_MAKE_UNIQUE_SYS(Switch)
 	};
 	return m_sysRunningOrder;
 }

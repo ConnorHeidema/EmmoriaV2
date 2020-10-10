@@ -2,10 +2,14 @@
 
 #include "TileMap/TileMapIndexes.hpp"
 
+#include "component/functional/DoorComp.hpp"
+#include "component/functional/SwitchComp.hpp"
 #include "component/functional/PositionComp.hpp"
 #include "component/tag/AllTagComp.hpp"
 
 #include <SFML/Window.hpp>
+
+#include <iostream>
 
 std::unordered_map<std::string, fnAnimationMapping> AnimationMappings::Create_map()
 {
@@ -97,6 +101,32 @@ void AnimationMappings::PlayerMapping(entt::registry& rReg, entt::entity& rEntit
 			}
 		}
 	});
+}
+
+void AnimationMappings::DepressableMapping(entt::registry& rReg, entt::entity& rEntity, int& animation)
+{
+	auto& switchComp = rReg.get<SwitchComp>(rEntity);
+	if (switchComp.m_bPressed && animation < 3)
+	{
+		animation++;
+	}
+	else if (!switchComp.m_bPressed && animation > 0)
+	{
+		animation--;
+	}
+}
+
+void AnimationMappings::DoorLookingMapping(entt::registry& rReg, entt::entity& rEntity, int& animation)
+{
+	auto& doorComp = rReg.get<DoorComp>(rEntity);
+	if (doorComp.m_bOpen && animation < 3)
+	{
+		animation++;
+	}
+	else if (!doorComp.m_bOpen && animation > 0)
+	{
+		animation--;
+	}
 }
 
 std::unordered_map<std::string, fnAnimationMapping> const AnimationMappings::m_animationMap =  AnimationMappings::Create_map();

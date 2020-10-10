@@ -71,7 +71,7 @@ void EntityLoaderFactory::LoadInteractableComp(entt::registry& rReg, entt::entit
 	auto& interactableComp = rReg.get_or_emplace<InteractableComp>(rEntity);
 	try
 	{
-		interactableComp.m_interactTypeList.emplace_back(InteractStringMap::s_interactStringToType.at(tokens.at(0)));
+		interactableComp.m_interactTypeList.insert(InteractStringMap::s_interactStringToType.at(tokens.at(0)));
 	}
 	catch (std::out_of_range /*e*/)
 	{
@@ -85,7 +85,7 @@ void EntityLoaderFactory::LoadInteractorComp(entt::registry& rReg, entt::entity&
 	auto& interactorComp = rReg.get_or_emplace<InteractorComp>(rEntity);
 	try
 	{
-		interactorComp.m_interactTypeList.emplace_back(InteractStringMap::s_interactStringToType.at(tokens.at(0)));
+		interactorComp.m_interactTypeList.insert(InteractStringMap::s_interactStringToType.at(tokens.at(0)));
 	}
 	catch (std::out_of_range /*e*/)
 	{
@@ -328,7 +328,7 @@ void EntityLoaderFactory::LoadWallTile(entt::registry& rReg, entt::entity& rEnti
 	LoadTileMapPieceComp(rReg, rEntity, reader);
 	LoadIndexedPosition(rReg, rEntity, reader);
 	auto& interactableComp = rReg.get_or_emplace<InteractableComp>(rEntity);
-	interactableComp.m_interactTypeList.emplace_back(InteractType_t::WallComp_t);
+	interactableComp.m_interactTypeList.insert(InteractType_t::WallComp_t);
 }
 
 void EntityLoaderFactory::LoadHoleTile(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -339,7 +339,7 @@ void EntityLoaderFactory::LoadHoleTile(entt::registry& rReg, entt::entity& rEnti
 	LoadTileMapPieceComp(rReg, rEntity, reader);
 	LoadIndexedPosition(rReg, rEntity, reader);
 	auto& interactableComp = rReg.get_or_emplace<InteractableComp>(rEntity);
-	interactableComp.m_interactTypeList.emplace_back(InteractType_t::HoleComp_t);
+	interactableComp.m_interactTypeList.insert(InteractType_t::HoleComp_t);
 }
 
 void EntityLoaderFactory::LoadBlob(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -348,6 +348,7 @@ void EntityLoaderFactory::LoadBlob(entt::registry& rReg, entt::entity& rEntity, 
 	rReg.emplace<RenderableComp>(rEntity);
 	rReg.emplace<DeloadableComp>(rEntity);
 	rReg.emplace<WallInteractorComp>(rEntity);
+	rReg.emplace<WeightComp>(rEntity);
 
 	LoadPositionComp(rReg, rEntity, reader);
 	auto& sizeComp = rReg.get_or_emplace<SizeComp>(rEntity);
@@ -360,10 +361,11 @@ void EntityLoaderFactory::LoadBlob(entt::registry& rReg, entt::entity& rEntity, 
 	trackingComp.m_sight = 300;
 
 	auto& interactableComp = rReg.get_or_emplace<InteractableComp>(rEntity);
-	interactableComp.m_interactTypeList.emplace_back(InteractStringMap::s_interactStringToType.at("BlobComp"));
+	interactableComp.m_interactTypeList.insert(InteractStringMap::s_interactStringToType.at("BlobComp"));
+	interactableComp.m_interactTypeList.insert(InteractStringMap::s_interactStringToType.at("WeightComp"));
 	auto& interactorComp = rReg.get_or_emplace<InteractorComp>(rEntity);
-	interactorComp.m_interactTypeList.emplace_back(InteractStringMap::s_interactStringToType.at("WallInteractorComp"));
-	interactorComp.m_interactTypeList.emplace_back(InteractStringMap::s_interactStringToType.at("BlobComp"));
+	interactorComp.m_interactTypeList.insert(InteractStringMap::s_interactStringToType.at("WallInteractorComp"));
+	interactorComp.m_interactTypeList.insert(InteractStringMap::s_interactStringToType.at("BlobComp"));
 
 	auto& healthComp = rReg.get_or_emplace<HealthComp>(rEntity);
 	healthComp.m_health = 10;

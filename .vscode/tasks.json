@@ -57,6 +57,8 @@
                 "${workspaceFolder}/src/system/SceneLoadSys.cpp",
                 "${workspaceFolder}/src/system/BowSys.cpp",
                 "${workspaceFolder}/src/system/LifespanSys.cpp",
+                "${workspaceFolder}/src/system/DoorSys.cpp",
+                "${workspaceFolder}/src/system/SwitchSys.cpp",
 
                 // Enemy system implementations
                 "${workspaceFolder}/src/system/enemy/BlobSys.cpp",

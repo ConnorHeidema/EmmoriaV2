@@ -20,7 +20,8 @@
 	macroToUse(BlobComp) \
 	macroToUse(HoleComp) \
 	macroToUse(WeightComp) \
-	macroToUse(DepressableComp)
+	macroToUse(DepressableComp) \
+	macroToUse(DoorLookingComp)
 
 #define ALL_FUNCTIONAL_MACRO(macroToUse) \
 	macroToUse(ButtonComp) \

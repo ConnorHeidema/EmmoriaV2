@@ -3,11 +3,11 @@
 
 #include "component/InteractType.hpp"
 
-#include <list>
+#include <unordered_set>
 
 struct InteractableComp
 {
-	std::list<InteractType_t> m_interactTypeList;
+	std::unordered_set<InteractType_t> m_interactTypeList;
 };
 
 #endif
