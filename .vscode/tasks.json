@@ -37,6 +37,7 @@
                 "${workspaceFolder}/src/util/AnimationMappings.cpp",
                 "${workspaceFolder}/src/util/Latch.cpp",
                 "${workspaceFolder}/src/util/PositionUtils.cpp",
+                "${workspaceFolder}/src/util/EnttUtils.cpp",
 
                 // System implementations
                 "${workspaceFolder}/src/system/RebootSys.cpp",

@@ -25,46 +25,37 @@ void ReloadSys::Update_()
 
 void ReloadSys::ReloadOnP_()
 {
-	if (ConfigItems::m_setConfigItems.find("ReloadOnP") != ConfigItems::m_setConfigItems.end())
+	if (ConfigItems::m_setConfigItems.find("ReloadOnP") == ConfigItems::m_setConfigItems.end() ||
+		!sf::Keyboard::isKeyPressed(sf::Keyboard::P))
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
-		{
-			m_rReg.view<DeloadableComp>().each([&](auto entity)
-			{
-				m_rReg.destroy(entity);
-			});
-			m_rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
-			{
-				auto loadEntity = m_rReg.create();
-				auto& fragmentLoadComp = m_rReg.emplace<LoadComp>(loadEntity);
-				fragmentLoadComp.m_filePath =
-					locationComp.area + "/" +
-					std::to_string(int(locationComp.xLocation)) + "," +
-					std::to_string(int(locationComp.yLocation));
-			});
-		}
+		return;
 	}
+	ReloadEverything_();
 }
 
 void ReloadSys::ReloadPerSecond_()
 {
-	if (ConfigItems::m_setConfigItems.find("ReloadPerSecond") != ConfigItems::m_setConfigItems.end())
+	if (ConfigItems::m_setConfigItems.find("ReloadPerSecond") == ConfigItems::m_setConfigItems.end() ||
+		!m_reloadLatch.CheckLatch())
 	{
-		if (m_reloadLatch.CheckLatch())
-		{
-			m_rReg.view<DeloadableComp>().each([&](auto entity)
-			{
-				m_rReg.destroy(entity);
-			});
-			m_rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
-			{
-				auto loadEntity = m_rReg.create();
-				auto& fragmentLoadComp = m_rReg.emplace<LoadComp>(loadEntity);
-				fragmentLoadComp.m_filePath =
-					locationComp.area + "/" +
-					std::to_string(int(locationComp.xLocation)) + "," +
-					std::to_string(int(locationComp.yLocation));
-			});
-		}
+		return;
 	}
+	ReloadEverything_();
+}
+
+void ReloadSys::ReloadEverything_()
+{
+	m_rReg.view<DeloadableComp>().each([&](auto entity)
+	{
+		m_rReg.destroy(entity);
+	});
+	m_rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
+	{
+		auto loadEntity = m_rReg.create();
+		auto& fragmentLoadComp = m_rReg.emplace<LoadComp>(loadEntity);
+		fragmentLoadComp.m_filePath =
+			locationComp.area + "/" +
+			std::to_string(int(locationComp.xLocation)) + "," +
+			std::to_string(int(locationComp.yLocation));
+	});
 }

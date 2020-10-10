@@ -17,8 +17,9 @@ public:
 private:
 	void Update_() override;
 
-	Latch m_configUpdateLatch;
 	entt::registry& m_rReg;
+	Latch m_configUpdateLatch;
+
 	static int const updateRate;
 };
 

@@ -17,6 +17,9 @@ private:
 	void Update_() override;
 	void ReloadOnP_();
 	void ReloadPerSecond_();
+
+	void ReloadEverything_();
+
 	entt::registry& m_rReg;
 	Latch m_reloadLatch;
 	static int const mk_restartFrame;

@@ -1,6 +1,9 @@
 #include "system/RebootSys.hpp"
 
 #include "component/tag/AllTagComp.hpp"
+
+#include "util/EnttUtils.hpp"
+
 #include <entt/entt.hpp>
 
 #include <iostream>
@@ -16,12 +19,7 @@ void RebootSys::Update_()
 	{
 		std::cout << "Current number of entities:" << m_rReg.alive() << std::endl;
 	}
-	bool bReboot = false;
-	m_rReg.view<RebootComp>().each([&](auto entity)
-	{
-		bReboot = true;
-	});
-	if (bReboot)
+	if (EnttUtils<RebootComp>::ComponentExists(m_rReg))
 	{
 		m_rReg.clear();
 		auto animationEntity = m_rReg.create();

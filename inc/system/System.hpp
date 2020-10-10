@@ -17,10 +17,7 @@ public:
 	virtual ~System() {};
 	void Update()
 	{
-		if (IsSystemEnabled_())
-		{
-			Update_();
-		}
+		if (IsSystemEnabled_()) { Update_(); }
 	}
 
 private:
