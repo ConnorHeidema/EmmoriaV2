@@ -7,6 +7,7 @@
 #include "component/functional/LastPositionComp.hpp"
 #include "component/functional/PositionComp.hpp"
 #include "component/functional/SizeComp.hpp"
+#include "component/functional/LocationComp.hpp"
 
 #include "util/OverlapUtils.hpp"
 
@@ -48,40 +49,67 @@ void InteractStringMap::InteractPlayerCompBlobComp(entt::registry& rReg, entt::e
 
 void InteractStringMap::InteractWallInteractorCompWallComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
 {
-	auto& wallPositionComp = rReg.get<PositionComp>(rInteractableEntity);
-	auto& wallSizeComp = rReg.get<SizeComp>(rInteractableEntity);
+	auto& wallPosition = rReg.get<PositionComp>(rInteractableEntity).m_position;
+	auto& wallSize = rReg.get<SizeComp>(rInteractableEntity).m_size;
 
-	auto& playerLastPositionComp = rReg.get<LastPositionComp>(rInteractorEntity);
-	auto& playerPositionComp = rReg.get<PositionComp>(rInteractorEntity);
-	auto& playerSizeComp = rReg.get<SizeComp>(rInteractorEntity);
+	auto& playerLastPosition = rReg.get<LastPositionComp>(rInteractorEntity).m_lastPosition;
+	auto& playerPosition = rReg.get<PositionComp>(rInteractorEntity).m_position;
+	auto& playerSize = rReg.get<SizeComp>(rInteractorEntity).m_size;
 
-	Position lastPlayerXposition = {playerLastPositionComp.m_lastPosition.x, playerPositionComp.m_position.y};
-	Position lastPlayerYposition = {playerPositionComp.m_position.x, playerLastPositionComp.m_lastPosition.y};
+	Position lastPlayerXposition = {playerLastPosition.x, playerPosition.y};
+	Position lastPlayerYposition = {playerPosition.x, playerLastPosition.y};
 
-
-	if (OverlapUtils::Overlapping(
-		wallPositionComp.m_position,
-		wallSizeComp.m_size,
-		lastPlayerXposition,
-		playerSizeComp.m_size))
+	if (OverlapUtils::Overlapping(wallPosition, wallSize, lastPlayerYposition, playerSize))
 	{
-		playerPositionComp.m_position.y = playerLastPositionComp.m_lastPosition.y;
+		playerPosition.x = playerLastPosition.x;
 	}
-	if (OverlapUtils::Overlapping(
-		wallPositionComp.m_position,
-		wallSizeComp.m_size,
-		lastPlayerYposition,
-		playerSizeComp.m_size))
+	if (OverlapUtils::Overlapping(wallPosition, wallSize, lastPlayerXposition, playerSize))
 	{
-		playerPositionComp.m_position.x = playerLastPositionComp.m_lastPosition.x;
+		playerPosition.y = playerLastPosition.y;
 	}
 }
 
 void InteractStringMap::InteractArrowCompBlobComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
 {
 	rReg.emplace_or_replace<DeleteAfterInteractionComp>(rInteractorEntity);
-	auto& blobHealthComp = rReg.get_or_emplace<HealthComp>(rInteractableEntity);
-	blobHealthComp.m_health -= 5;
+	auto& blobHealth = rReg.get_or_emplace<HealthComp>(rInteractableEntity).m_health;
+	blobHealth -= 5;
+}
+
+void InteractStringMap::InteractPlayerCompHoleComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
+{
+	rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
+	{
+		rReg.view<PlayerComp, PositionComp, HealthComp>().each([&](auto entity, auto& positionComp, auto& healthComp)
+		{
+			healthComp.m_health /= 2;
+			healthComp.m_health -= 1;
+			positionComp.m_position.x = locationComp.xSpawnLocation;
+			positionComp.m_position.y = locationComp.ySpawnLocation;
+		});
+	});
+}
+
+void InteractStringMap::InteractBlobCompHoleComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
+{
+	auto& wallPosition = rReg.get<PositionComp>(rInteractableEntity).m_position;
+	auto& wallSize = rReg.get<SizeComp>(rInteractableEntity).m_size;
+
+	auto& blobLastPosition = rReg.get<LastPositionComp>(rInteractorEntity).m_lastPosition;
+	auto& blobPosition = rReg.get<PositionComp>(rInteractorEntity).m_position;
+	auto& blobSize = rReg.get<SizeComp>(rInteractorEntity).m_size;
+
+	Position lastBlobXposition = {blobLastPosition.x, blobPosition.y};
+	Position lastBlobYposition = {blobPosition.x, blobLastPosition.y};
+
+	if (OverlapUtils::Overlapping(wallPosition, wallSize, lastBlobYposition, blobSize))
+	{
+		blobPosition.x = blobLastPosition.x;
+	}
+	if (OverlapUtils::Overlapping(wallPosition, wallSize, lastBlobXposition, blobSize))
+	{
+		blobPosition.y = blobLastPosition.y;
+	}
 }
 
 std::unordered_map<int, fnEntityInteractor> InteractStringMap::CreateInteractionFnList()
@@ -96,6 +124,8 @@ std::unordered_map<int, fnEntityInteractor> InteractStringMap::CreateInteraction
 	INSERT(PlayerComp, BlobComp)
 	INSERT(WallInteractorComp, WallComp)
 	INSERT(ArrowComp, BlobComp)
+	INSERT(PlayerComp, HoleComp)
+	INSERT(BlobComp, HoleComp)
 	#undef INSERT
 	return fn;
 }

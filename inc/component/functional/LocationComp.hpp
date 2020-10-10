@@ -12,11 +12,15 @@ struct LocationComp
 	int xLocation;
 	int yLocation;
 	bool m_bLoaded;
+	int xSpawnLocation;
+	int ySpawnLocation;
 	LocationComp()
 		: area("")
 		, xLocation(-1)
 		, yLocation(-1)
 		, m_bLoaded(false)
+		, xSpawnLocation(-1)
+		, ySpawnLocation(-1)
 	{ }
 };
 

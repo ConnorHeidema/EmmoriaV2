@@ -259,8 +259,8 @@ void EntityLoaderFactory::LoadFullscreen(entt::registry& rReg, entt::entity& rEn
 	LoadSpriteComp(rReg, rEntity, reader);
 	auto& spriteComp = rReg.get<SpriteComp>(rEntity);
 
-	spriteComp.m_height = 1080;
-	spriteComp.m_width = 1920;
+	spriteComp.m_width = ApplicationParameters::k_screenWidth;
+	spriteComp.m_height = ApplicationParameters::k_screenHeight;
 
 	std::string widthUnits = std::to_string(ApplicationParameters::k_widthUnits / 2);
 	std::string heightUnits = std::to_string(ApplicationParameters::k_heightUnits / 2);
@@ -361,12 +361,25 @@ void EntityLoaderFactory::LoadBlob(entt::registry& rReg, entt::entity& rEntity, 
 	interactableComp.m_interactTypeList.emplace_back(InteractStringMap::s_interactStringToType.at("BlobComp"));
 	auto& interactorComp = rReg.get_or_emplace<InteractorComp>(rEntity);
 	interactorComp.m_interactTypeList.emplace_back(InteractStringMap::s_interactStringToType.at("WallInteractorComp"));
+	interactorComp.m_interactTypeList.emplace_back(InteractStringMap::s_interactStringToType.at("BlobComp"));
 
 	auto& healthComp = rReg.get_or_emplace<HealthComp>(rEntity);
 	healthComp.m_health = 10;
 
 	auto& spriteComp = rReg.get_or_emplace<SpriteComp>(rEntity);
 	spriteComp.m_filePath = ApplicationParameters::k_spritePath + std::string("Blob") + ApplicationParameters::k_pictureExt;
+}
+
+void EntityLoaderFactory::LoadSwitchComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
+{
+	auto& buttonComp = rReg.get_or_emplace<SwitchComp>(rEntity);
+	rReg.emplace<DepressableComp>(rEntity);
+}
+
+void EntityLoaderFactory::LoadDoorComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
+{
+
+	auto& doorComp = rReg.get_or_emplace<DoorComp>(rEntity);
 }
 
 std::vector<std::string> EntityLoaderFactory::ReadTokenList_(int wordsToIngest, std::istringstream& reader)

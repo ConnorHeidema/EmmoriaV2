@@ -18,7 +18,10 @@
 	macroToUse(RebootComp) \
 	macroToUse(AnimationRebootComp) \
 	macroToUse(BlobComp) \
-	macroToUse(HoleComp)
+	macroToUse(HoleComp) \
+	macroToUse(WeightComp) \
+	macroToUse(DepressableComp) \
+	macroToUse(OpenableComp)
 
 #define ALL_FUNCTIONAL_MACRO(macroToUse) \
 	macroToUse(ButtonComp) \
@@ -39,8 +42,9 @@
 	macroToUse(LocationComp) \
 	macroToUse(RotationComp) \
 	macroToUse(SpeedComp) \
-	macroToUse(TrackingComp)
-
+	macroToUse(TrackingComp) \
+	macroToUse(SwitchComp) \
+	macroToUse(DoorComp)
 
 #define ALL_COMPONENT_PIECE_MACRO(macroToUse) \
 	macroToUse(Xposition) \

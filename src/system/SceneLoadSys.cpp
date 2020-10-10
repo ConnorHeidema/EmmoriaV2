@@ -58,6 +58,9 @@ void SceneLoadSys::CreateLoadCompFromLocationCompWithPlayer_()
 				locationComp.m_bLoaded = true;
 				locationComp.xLocation = positionComp.m_position.x / ApplicationParameters::k_rightOfScreen;
 				locationComp.yLocation = positionComp.m_position.y / ApplicationParameters::k_bottomOfScreen;
+				locationComp.xSpawnLocation = positionComp.m_position.x;
+				locationComp.ySpawnLocation = positionComp.m_position.y;
+
 				std::cout << "Changing location to: " << locationComp.area <<
 					" (" << locationComp.xLocation << "," << locationComp.yLocation << ")" << std::endl;
 

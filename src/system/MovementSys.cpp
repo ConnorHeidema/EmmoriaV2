@@ -68,7 +68,7 @@ void MovementSys::UpdateArrowPosition_()
 		auto& rotationComp,
 		auto& speedComp)
 	{
-		PositionUtils::PrintPosition(positionComp.m_position, "Arrow");
+		//PositionUtils::PrintPosition(positionComp.m_position, "Arrow");
 		PositionUtils::CalculateNewPosition(positionComp.m_position, speedComp.m_speed, rotationComp.m_angle);
 	});
 }
@@ -83,9 +83,9 @@ void MovementSys::UpdateBlobPosition_()
 			auto& speedComp,
 			auto& trackingComp)
 		{
-			PositionUtils::PrintPosition(positionComp.m_position, "Blob");
-			if (std::abs(playerPositionComp.m_position.x - positionComp.m_position.x) < trackingComp.m_sight &&
-				std::abs(playerPositionComp.m_position.y - positionComp.m_position.y) < trackingComp.m_sight)
+			//PositionUtils::PrintPosition(positionComp.m_position, "Blob");
+			if (hypot(playerPositionComp.m_position.x - positionComp.m_position.x,
+					playerPositionComp.m_position.y - positionComp.m_position.y) < trackingComp.m_sight)
 			{
 				float angle = atan2(
 					playerPositionComp.m_position.y - positionComp.m_position.y,
