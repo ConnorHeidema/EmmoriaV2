@@ -46,14 +46,21 @@ ALL_TAG_MACRO(LOAD_DEF_TAG)
 
 /* Individual functional component Loaders */
 
+#define SIMPLE_FUNCTIONAL_NO_PARAMETER(name) \
+	void EntityLoaderFactory::Load## name ## Comp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader) \
+	{ \
+		rReg.get_or_emplace< name ## Comp>(rEntity); \
+	}
+
+SIMPLE_FUNCTIONAL_NO_PARAMETER(Clickable)
+SIMPLE_FUNCTIONAL_NO_PARAMETER(Switch)
+SIMPLE_FUNCTIONAL_NO_PARAMETER(Door)
+SIMPLE_FUNCTIONAL_NO_PARAMETER(Movie)
+SIMPLE_FUNCTIONAL_NO_PARAMETER(Renderable)
+
 void EntityLoaderFactory::LoadButtonComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
 	rReg.get_or_emplace<ButtonComp>(rEntity).m_action = ReadTokenList_(1, reader).at(0);
-}
-
-void EntityLoaderFactory::LoadClickableComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
-{
-	rReg.get_or_emplace<ClickableComp>(rEntity);
 }
 
 void EntityLoaderFactory::LoadHealthComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -102,11 +109,6 @@ void EntityLoaderFactory::LoadLoadComp(entt::registry& rReg, entt::entity& rEnti
 	rReg.get_or_emplace<LoadComp>(rEntity).m_filePath = ReadTokenList_(1, reader).at(0);
 }
 
-void EntityLoaderFactory::LoadMovieComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
-{
-	auto& movieComp = rReg.get_or_emplace<MovieComp>(rEntity);
-}
-
 void EntityLoaderFactory::LoadPositionComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
 	auto& position = rReg.get_or_emplace<PositionComp>(rEntity).m_position;
@@ -120,11 +122,6 @@ void EntityLoaderFactory::LoadPositionComp(entt::registry& rReg, entt::entity& r
 	auto tokens = ReadTokenList_(2, reader);
 	position.x = float(std::stoi(tokens.at(0)) * ApplicationParameters::k_widthAdjustment + x);
 	position.y = float(std::stoi(tokens.at(1)) * ApplicationParameters::k_heightAdjustment + y);
-}
-
-void EntityLoaderFactory::LoadRenderableComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
-{
-	rReg.get_or_emplace<RenderableComp>(rEntity);
 }
 
 void EntityLoaderFactory::LoadSizeComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -352,17 +349,6 @@ void EntityLoaderFactory::LoadBlob(entt::registry& rReg, entt::entity& rEntity, 
 
 	rReg.get_or_emplace<SpriteComp>(rEntity).m_filePath =
 		ApplicationParameters::k_spritePath + std::string("Blob") + ApplicationParameters::k_pictureExt;
-}
-
-void EntityLoaderFactory::LoadSwitchComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
-{
-	rReg.get_or_emplace<SwitchComp>(rEntity);
-}
-
-void EntityLoaderFactory::LoadDoorComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
-{
-
-	rReg.get_or_emplace<DoorComp>(rEntity);
 }
 
 std::vector<std::string> EntityLoaderFactory::ReadTokenList_(int wordsToIngest, std::istringstream& reader)
