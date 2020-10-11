@@ -129,19 +129,15 @@ void InteractStringMap::InteractDepressableCompWeightComp(entt::registry& rReg, 
 
 std::unordered_map<int, fnEntityInteractor> InteractStringMap::CreateInteractionFnList()
 {
+#include "component/InteractMacro.hpp"
 	#define INSERT(interactor, interactable) fn[ \
-		static_cast<int>(InteractType_t:: interactor##_t) * \
+		static_cast<int>(InteractType_t:: interactor##Comp_t) * \
 		static_cast<int>(InteractType_t::NUM_INTERACTOR_TYPE) + \
-		static_cast<int>(InteractType_t:: interactable##_t)] \
-			= InteractStringMap:: Interact ## interactor ## interactable;
+		static_cast<int>(InteractType_t:: interactable##Comp_t)] \
+			= InteractStringMap:: Interact ## interactor ## Comp ## interactable ## Comp;
 	std::unordered_map<int, fnEntityInteractor> fn;
-	INSERT(PlayerComp, HealingPadComp)
-	INSERT(PlayerComp, BlobComp)
-	INSERT(WallInteractorComp, WallComp)
-	INSERT(ArrowComp, BlobComp)
-	INSERT(PlayerComp, HoleComp)
-	INSERT(BlobComp, HoleComp)
-	INSERT(DepressableComp, WeightComp)
+	ALL_INTERACTIONS(INSERT)
+#include "component/EndInteractMacro.hpp"
 	#undef INSERT
 	return fn;
 }

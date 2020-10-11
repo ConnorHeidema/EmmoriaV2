@@ -18,13 +18,12 @@ public:
 	static std::unordered_map<InteractType_t, std::string> s_interactTypeToString;
 	static std::unordered_map<int, fnEntityInteractor> fnInteractionMap;
 
-	static void InteractPlayerCompHealingPadComp(entt::registry& rReg, entt::entity& rinteractorEntity, entt::entity& rinteractableEntity);
-	static void InteractPlayerCompBlobComp(entt::registry& rReg, entt::entity& rinteractorEntity, entt::entity& rinteractableEntity);
-	static void InteractWallInteractorCompWallComp(entt::registry& rReg, entt::entity& rinteractorEntity, entt::entity& rinteractableEntity);
-	static void InteractArrowCompBlobComp(entt::registry& rReg, entt::entity& rinteractorEntity, entt::entity& rinteractableEntity);
-	static void InteractPlayerCompHoleComp(entt::registry& rReg, entt::entity& rinteractorEntity, entt::entity& rinteractableEntity);
-	static void InteractBlobCompHoleComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity);
-	static void InteractDepressableCompWeightComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity);
+#include "component/InteractMacro.hpp"
+#define INTERACT_DECLARATION(interactor, interactable) \
+		static void Interact ## interactor ## Comp ## interactable ## Comp(entt::registry& rReg, entt::entity& rinteractorEntity, entt::entity& rinteractableEntity);
+ALL_INTERACTIONS(INTERACT_DECLARATION)
+
+#include "component/EndInteractMacro.hpp"
 
 	static std::unordered_map<int, fnEntityInteractor> CreateInteractionFnList();
 };
