@@ -44,25 +44,21 @@ ALL_TAG_MACRO(LOAD_DEF_TAG)
 #undef LOAD_DEF
 #include "entity/EntityMacroEnd.hpp"
 
-/* Individual component Loaders */
+/* Individual functional component Loaders */
 
 void EntityLoaderFactory::LoadButtonComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
-	auto tokens = ReadTokenList_(1, reader);
-	auto& buttonComp = rReg.get_or_emplace<ButtonComp>(rEntity);
-	buttonComp.m_action = tokens.at(0);
+	rReg.get_or_emplace<ButtonComp>(rEntity).m_action = ReadTokenList_(1, reader).at(0);
 }
 
 void EntityLoaderFactory::LoadClickableComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
-	auto& clickableComp = rReg.get_or_emplace<ClickableComp>(rEntity);
+	rReg.get_or_emplace<ClickableComp>(rEntity);
 }
 
 void EntityLoaderFactory::LoadHealthComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
-	auto tokens = ReadTokenList_(1, reader);
-	auto& healthComp = rReg.get_or_emplace<HealthComp>(rEntity);
-	healthComp.m_health = std::stoi(tokens.at(0));
+	rReg.get_or_emplace<HealthComp>(rEntity).m_health = std::stoi(ReadTokenList_(1, reader).at(0));
 }
 
 void EntityLoaderFactory::LoadInteractableComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -96,16 +92,14 @@ void EntityLoaderFactory::LoadInteractorComp(entt::registry& rReg, entt::entity&
 void EntityLoaderFactory::LoadLastPositionComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
 	auto tokens = ReadTokenList_(2, reader);
-	auto& positionComp = rReg.get_or_emplace<LastPositionComp>(rEntity);
-	positionComp.m_lastPosition.x = float(std::stoi(tokens.at(0)) * ApplicationParameters::k_widthAdjustment);
-	positionComp.m_lastPosition.y = float(std::stoi(tokens.at(1)) * ApplicationParameters::k_heightAdjustment);
+	auto& position = rReg.get_or_emplace<LastPositionComp>(rEntity).m_lastPosition;
+	position.x = float(std::stoi(tokens.at(0)) * ApplicationParameters::k_widthAdjustment);
+	position.y = float(std::stoi(tokens.at(1)) * ApplicationParameters::k_heightAdjustment);
 }
 
 void EntityLoaderFactory::LoadLoadComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
-	auto tokens = ReadTokenList_(1, reader);
-	auto& loadComp = rReg.get_or_emplace<LoadComp>(rEntity);
-	loadComp.m_filePath = tokens.at(0);
+	rReg.get_or_emplace<LoadComp>(rEntity).m_filePath = ReadTokenList_(1, reader).at(0);
 }
 
 void EntityLoaderFactory::LoadMovieComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -115,7 +109,7 @@ void EntityLoaderFactory::LoadMovieComp(entt::registry& rReg, entt::entity& rEnt
 
 void EntityLoaderFactory::LoadPositionComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
-	auto& positionComp = rReg.get_or_emplace<PositionComp>(rEntity);
+	auto& position = rReg.get_or_emplace<PositionComp>(rEntity).m_position;
 	float x = 0;
 	float y = 0;
 	rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
@@ -124,67 +118,60 @@ void EntityLoaderFactory::LoadPositionComp(entt::registry& rReg, entt::entity& r
 		y = float(locationComp.yLocation * ApplicationParameters::k_bottomOfScreen);
 	});
 	auto tokens = ReadTokenList_(2, reader);
-	positionComp.m_position.x = float(std::stoi(tokens.at(0)) * ApplicationParameters::k_widthAdjustment + x);
-	positionComp.m_position.y = float(std::stoi(tokens.at(1)) * ApplicationParameters::k_heightAdjustment + y);
+	position.x = float(std::stoi(tokens.at(0)) * ApplicationParameters::k_widthAdjustment + x);
+	position.y = float(std::stoi(tokens.at(1)) * ApplicationParameters::k_heightAdjustment + y);
 }
 
 void EntityLoaderFactory::LoadRenderableComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
-	auto& renderableComp = rReg.get_or_emplace<RenderableComp>(rEntity);
+	rReg.get_or_emplace<RenderableComp>(rEntity);
 }
 
 void EntityLoaderFactory::LoadSizeComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
 	auto tokens = ReadTokenList_(2, reader);
-	auto& sizeComp = rReg.get_or_emplace<SizeComp>(rEntity);
-	sizeComp.m_size.width = std::stoi(tokens.at(0)) * ApplicationParameters::k_widthAdjustment;
-	sizeComp.m_size.height = std::stoi(tokens.at(1)) * ApplicationParameters::k_heightAdjustment;
+	auto& size = rReg.get_or_emplace<SizeComp>(rEntity).m_size;
+	size.width = std::stoi(tokens.at(0)) * ApplicationParameters::k_widthAdjustment;
+	size.height = std::stoi(tokens.at(1)) * ApplicationParameters::k_heightAdjustment;
 }
 
 void EntityLoaderFactory::LoadSpriteComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
-	auto tokens = ReadTokenList_(1, reader);
-	auto& spriteComp = rReg.get_or_emplace<SpriteComp>(rEntity);
-	spriteComp.m_filePath = ApplicationParameters::k_spritePath + tokens.at(0) + ApplicationParameters::k_pictureExt;
-
+	rReg.get_or_emplace<SpriteComp>(rEntity).m_filePath =
+		ApplicationParameters::k_spritePath +
+		ReadTokenList_(1, reader).at(0) +
+		ApplicationParameters::k_pictureExt;
 }
 
 void EntityLoaderFactory::LoadTextComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
-	auto& textComp = rReg.get_or_emplace<TextComp>(rEntity);
+	auto& text = rReg.get_or_emplace<TextComp>(rEntity).m_text;
 	std::string token;
 	reader >> token;
-	while (token != ApplicationParameters::k_dialogEscape) { textComp.m_text += token + " "; reader >> token; }
-	textComp.m_text.pop_back();
+	while (token != ApplicationParameters::k_dialogEscape) { text += token + " "; reader >> token; }
+	text.pop_back();
 	reader >> token;
 }
 
 void EntityLoaderFactory::LoadTrackingComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
-	auto tokens = ReadTokenList_(1, reader);
-	auto& trackingComp = rReg.get_or_emplace<TrackingComp>(rEntity);
-	trackingComp.m_sight = std::stoi(tokens[0]);
+	rReg.get_or_emplace<TrackingComp>(rEntity).m_sight = std::stoi(ReadTokenList_(1, reader)[0]);
 }
 
 void EntityLoaderFactory::LoadSpeedComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
-	auto tokens = ReadTokenList_(1, reader);
-	auto& speedComp = rReg.get_or_emplace<SpeedComp>(rEntity);
-	speedComp.m_speed = std::stoi(tokens[0]);
+	rReg.get_or_emplace<SpeedComp>(rEntity).m_speed = std::stoi(ReadTokenList_(1, reader)[0]);
 }
 
 void EntityLoaderFactory::LoadTileMapComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
-	auto& tileMapComp = rReg.get_or_emplace<TileMapComp>(rEntity);
-	auto tokens = ReadTokenList_(1, reader);
-	tileMapComp.m_tileMapBase = tokens.at(0);
+	rReg.get_or_emplace<TileMapComp>(rEntity).m_tileMapBase = ReadTokenList_(1, reader).at(0);
 }
 
 void EntityLoaderFactory::LoadTileMapPieceComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
 	auto& tileMapPieceComp = rReg.get_or_emplace<TileMapPieceComp>(rEntity);
 	auto tokens = ReadTokenList_(1, reader);
-
 	try
 	{
 		tileMapPieceComp.m_index = TileMapIndexes::stringToEnumTileMap.at(tokens.at(0));
@@ -208,9 +195,7 @@ void EntityLoaderFactory::LoadLocationComp(entt::registry& rReg, entt::entity& r
 
 void EntityLoaderFactory::LoadRotationComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
-	auto tokens = ReadTokenList_(1, reader);
-	auto& rotationComp = rReg.get_or_emplace<RotationComp>(rEntity);
-	rotationComp.m_angle = std::stof(tokens.at(0));
+	rReg.get_or_emplace<RotationComp>(rEntity).m_angle = std::stof(ReadTokenList_(1, reader).at(0));
 }
 
 void EntityLoaderFactory::LoadXposition(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -243,16 +228,14 @@ void EntityLoaderFactory::LoadYposition(entt::registry& rReg, entt::entity& rEnt
 
 void EntityLoaderFactory::LoadWidth(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
-	auto tokens = ReadTokenList_(1, reader);
-	auto& sizeComp = rReg.get_or_emplace<SizeComp>(rEntity);
-	sizeComp.m_size.width = std::stoi(tokens.at(0)) * ApplicationParameters::k_widthAdjustment;
+	rReg.get_or_emplace<SizeComp>(rEntity).m_size.width =
+		std::stoi(ReadTokenList_(1, reader).at(0)) * ApplicationParameters::k_widthAdjustment;
 }
 
 void EntityLoaderFactory::LoadHeight(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
-	auto tokens = ReadTokenList_(1, reader);
-	auto& sizeComp = rReg.get_or_emplace<SizeComp>(rEntity);
-	sizeComp.m_size.height = std::stoi(tokens.at(0)) * ApplicationParameters::k_heightAdjustment;
+	rReg.get_or_emplace<SizeComp>(rEntity).m_size.height =
+		std::stoi(ReadTokenList_(1, reader).at(0)) * ApplicationParameters::k_heightAdjustment;
 }
 
 void EntityLoaderFactory::LoadFullscreen(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -351,32 +334,29 @@ void EntityLoaderFactory::LoadBlob(entt::registry& rReg, entt::entity& rEntity, 
 	rReg.emplace<WeightComp>(rEntity);
 
 	LoadPositionComp(rReg, rEntity, reader);
-	auto& sizeComp = rReg.get_or_emplace<SizeComp>(rEntity);
-	sizeComp.m_size.width = 5 * ApplicationParameters::k_widthAdjustment;
-	sizeComp.m_size.height = 5 * ApplicationParameters::k_heightAdjustment;
+	auto& size = rReg.get_or_emplace<SizeComp>(rEntity).m_size;
+	size.width = 5 * ApplicationParameters::k_widthAdjustment;
+	size.height = 5 * ApplicationParameters::k_heightAdjustment;
 
-	auto& speedComp = rReg.get_or_emplace<SpeedComp>(rEntity);
-	speedComp.m_speed = 1;
-	auto& trackingComp = rReg.get_or_emplace<TrackingComp>(rEntity);
-	trackingComp.m_sight = 300;
+	rReg.get_or_emplace<SpeedComp>(rEntity).m_speed = 1;
+	rReg.get_or_emplace<TrackingComp>(rEntity).m_sight = 300;
 
-	auto& interactableComp = rReg.get_or_emplace<InteractableComp>(rEntity);
-	interactableComp.m_interactTypeList.insert(InteractStringMap::s_interactStringToType.at("BlobComp"));
-	interactableComp.m_interactTypeList.insert(InteractStringMap::s_interactStringToType.at("WeightComp"));
-	auto& interactorComp = rReg.get_or_emplace<InteractorComp>(rEntity);
-	interactorComp.m_interactTypeList.insert(InteractStringMap::s_interactStringToType.at("WallInteractorComp"));
-	interactorComp.m_interactTypeList.insert(InteractStringMap::s_interactStringToType.at("BlobComp"));
+	auto& interactables = rReg.get_or_emplace<InteractableComp>(rEntity).m_interactTypeList;
+	interactables.insert(InteractStringMap::s_interactStringToType.at("BlobComp"));
+	interactables.insert(InteractStringMap::s_interactStringToType.at("WeightComp"));
+	auto& interactors = rReg.get_or_emplace<InteractorComp>(rEntity).m_interactTypeList;
+	interactors.insert(InteractStringMap::s_interactStringToType.at("WallInteractorComp"));
+	interactors.insert(InteractStringMap::s_interactStringToType.at("BlobComp"));
 
-	auto& healthComp = rReg.get_or_emplace<HealthComp>(rEntity);
-	healthComp.m_health = 10;
+	rReg.get_or_emplace<HealthComp>(rEntity).m_health = 10;
 
-	auto& spriteComp = rReg.get_or_emplace<SpriteComp>(rEntity);
-	spriteComp.m_filePath = ApplicationParameters::k_spritePath + std::string("Blob") + ApplicationParameters::k_pictureExt;
+	rReg.get_or_emplace<SpriteComp>(rEntity).m_filePath =
+		ApplicationParameters::k_spritePath + std::string("Blob") + ApplicationParameters::k_pictureExt;
 }
 
 void EntityLoaderFactory::LoadSwitchComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
-	auto& switchComp = rReg.get_or_emplace<SwitchComp>(rEntity);
+	rReg.get_or_emplace<SwitchComp>(rEntity);
 }
 
 void EntityLoaderFactory::LoadDoorComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
