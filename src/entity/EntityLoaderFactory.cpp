@@ -23,6 +23,7 @@
 #include "component/functional/SpeedComp.hpp"
 #include "component/functional/TrackingComp.hpp"
 #include "component/functional/DoorComp.hpp"
+#include "component/functional/stats/MaxHealthComp.hpp"
 
 #include "component/InteractStringMap.hpp"
 
@@ -61,6 +62,11 @@ SIMPLE_FUNCTIONAL_NO_PARAMETER(Renderable)
 void EntityLoaderFactory::LoadButtonComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
 	rReg.get_or_emplace<ButtonComp>(rEntity).m_action = ReadTokenList_(1, reader).at(0);
+}
+
+void EntityLoaderFactory::LoadMaxHealthComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
+{
+	rReg.get_or_emplace<MaxHealthComp>(rEntity).m_maxHealth = std::stoi(ReadTokenList_(1, reader).at(0));
 }
 
 void EntityLoaderFactory::LoadHealthComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)

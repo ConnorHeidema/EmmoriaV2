@@ -10,37 +10,40 @@
 #include "component/functional/LocationComp.hpp"
 #include "component/functional/SwitchComp.hpp"
 #include "component/functional/DoorComp.hpp"
+#include "component/functional/stats/MaxHealthComp.hpp"
 
 #include "util/OverlapUtils.hpp"
 
 #include <iostream>
+#include <limits>
 
 #include "entity/EntityMacro.hpp"
 #define INTERACT_STRING_TO_TYPE_MAPPING(name) { #name , InteractType_t:: name##_t },
-#define INTERACT_TYPE_TO_STRING_MAPPING(name) { InteractType_t:: name##_t, #name },
-
 std::unordered_map<std::string, InteractType_t> InteractStringMap::s_interactStringToType =
 {
 	ALL_TAG_MACRO(INTERACT_STRING_TO_TYPE_MAPPING)
 	{ "INVALID", InteractType_t::NUM_INTERACTOR_TYPE }
 };
+#undef INTERACT_STRING_TO_TYPE_MAPPING
 
 #define INTERACT_TYPE_TO_STRING_MAPPING(name) { InteractType_t:: name##_t, #name },
-
 std::unordered_map<InteractType_t, std::string> InteractStringMap::s_interactTypeToString =
 {
 	ALL_TAG_MACRO(INTERACT_TYPE_TO_STRING_MAPPING)
 	{ InteractType_t::NUM_INTERACTOR_TYPE, "INVALID" }
 };
-
-#undef INTERACT_STRING_TO_TYPE_MAPPING
 #undef INTERACT_TYPE_TO_STRING_MAPPING
 #include "entity/EntityMacroEnd.hpp"
 
 void InteractStringMap::InteractPlayerCompHealingPadComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
 {
 	auto& healthComp = rReg.get<HealthComp>(rInteractorEntity);
-	healthComp.m_health += 1;
+	int maxHealth = INT32_MAX;
+	if (rReg.has<MaxHealthComp>(rInteractorEntity))
+	{
+		maxHealth = rReg.get<MaxHealthComp>(rInteractorEntity).m_maxHealth;
+	}
+	healthComp.m_health = std::min(healthComp.m_health + 1, maxHealth);
 }
 
 void InteractStringMap::InteractPlayerCompBlobComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)

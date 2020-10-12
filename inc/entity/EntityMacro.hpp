@@ -44,7 +44,8 @@
 	macroToUse(SpeedComp) \
 	macroToUse(TrackingComp) \
 	macroToUse(SwitchComp) \
-	macroToUse(DoorComp)
+	macroToUse(DoorComp) \
+	macroToUse(MaxHealthComp)
 
 #define ALL_COMPONENT_PIECE_MACRO(macroToUse) \
 	macroToUse(Xposition) \
