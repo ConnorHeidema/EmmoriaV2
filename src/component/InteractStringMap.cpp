@@ -10,10 +10,12 @@
 #include "component/functional/LocationComp.hpp"
 #include "component/functional/SwitchComp.hpp"
 #include "component/functional/DoorComp.hpp"
+#include "component/functional/ClickableComp.hpp"
 #include "component/functional/stats/MaxHealthComp.hpp"
 
 #include "util/OverlapUtils.hpp"
 #include "util/PositionUtils.hpp"
+#include "util/MouseUtils.hpp"
 
 #include <iostream>
 #include <limits>
@@ -112,9 +114,11 @@ void InteractStringMap::InteractDepressableCompWeightComp(entt::registry& rReg, 
 
 void InteractStringMap::InteractNearbyPlayerCompSignComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	auto& bLeftDown = rReg.get_or_emplace<ClickableComp>(rInteractableEntity).m_bLeftDown;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || bLeftDown)
 	{
-		std::cout << "Space pressed on sign" << std::endl;
+		// Pop up a dialog here in the center of the screen that doesn't close until the user closes clicks or presses space again
+		std::cout << "Interact with sign" << std::endl;
 	}
 }
 

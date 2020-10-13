@@ -50,8 +50,8 @@ void InteractingSys::CreateNearbyPlayerEntity_()
 			m_rReg.view<NearbyPlayerComp, PositionComp, SizeComp>().each([&]
 				(auto nearbyPlayerEntity, auto& nearbyPlayerPositionComp, auto& nearbyPlayerSizeComp)
 			{
-				nearbyPlayerPositionComp.m_position.x = playerPositionComp.m_position.x /*- ApplicationParameters::k_widthAdjustment*/;
-				nearbyPlayerPositionComp.m_position.y = playerPositionComp.m_position.y /*- ApplicationParameters::k_heightAdjustment*/;
+				nearbyPlayerPositionComp.m_position.x = playerPositionComp.m_position.x;
+				nearbyPlayerPositionComp.m_position.y = playerPositionComp.m_position.y;
 				nearbyPlayerSizeComp.m_size.width = playerSizeComp.m_size.width + 2 * ApplicationParameters::k_widthAdjustment;
 				nearbyPlayerSizeComp.m_size.height = playerSizeComp.m_size.height + 2 * ApplicationParameters::k_heightAdjustment;
 			});
@@ -62,8 +62,8 @@ void InteractingSys::CreateNearbyPlayerEntity_()
 			m_rReg.emplace<NearbyPlayerComp>(nearbyEntity);
 			m_rReg.get_or_emplace<PositionComp>(nearbyEntity).m_position =
 			{
-				playerPositionComp.m_position.x /*- ApplicationParameters::k_widthAdjustment*/,
-				playerPositionComp.m_position.y /*- ApplicationParameters::k_heightAdjustment*/
+				playerPositionComp.m_position.x,
+				playerPositionComp.m_position.y
 			};
 			m_rReg.get_or_emplace<SizeComp>(nearbyEntity).m_size =
 			{

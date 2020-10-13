@@ -15,7 +15,7 @@ bool OverlapUtils::Overlapping(
 	}
 
 	if (rPosition1.y - rSize1.height/2 >= rPosition2.y + rSize2.height/2 - ApplicationParameters::k_overlapBuffer ||
-		rPosition2.y - rSize1.height/2 >= rPosition1.y + rSize1.height/2 + ApplicationParameters::k_overlapBuffer)
+		rPosition2.y - rSize2.height/2 >= rPosition1.y + rSize1.height/2 + ApplicationParameters::k_overlapBuffer)
 	{
 		return false;
 	}
