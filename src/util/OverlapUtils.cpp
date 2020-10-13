@@ -8,16 +8,12 @@ bool OverlapUtils::Overlapping(
 	Position const& rPosition2,
 	Size const& rSize2)
 {
-	if (rPosition1.x - rSize1.width/2 >= rPosition2.x + rSize2.width/2 - ApplicationParameters::k_overlapBuffer ||
-		rPosition2.x - rSize2.width/2 >= rPosition1.x + rSize1.width/2 + ApplicationParameters::k_overlapBuffer)
-	{
-		return false;
-	}
+	return OverlappingOnAxis_(rPosition1.x, rPosition2.x, rSize1.width, rSize2.width) &&
+		OverlappingOnAxis_(rPosition1.y, rPosition2.y, rSize1.height, rSize2.height);
+}
 
-	if (rPosition1.y - rSize1.height/2 >= rPosition2.y + rSize2.height/2 - ApplicationParameters::k_overlapBuffer ||
-		rPosition2.y - rSize2.height/2 >= rPosition1.y + rSize1.height/2 + ApplicationParameters::k_overlapBuffer)
-	{
-		return false;
-	}
-	return true;
+bool OverlapUtils::OverlappingOnAxis_(int point1, int point2, int length1, int length2)
+{
+	return !(point1 - length1/2 >= point2 + length2/2 - ApplicationParameters::k_overlapBuffer ||
+		point2 - length2/2 >= point1 + length1/2 + ApplicationParameters::k_overlapBuffer);
 }
