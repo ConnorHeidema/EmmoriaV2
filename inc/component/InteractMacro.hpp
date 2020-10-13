@@ -5,4 +5,5 @@
 	macro(Arrow, Blob) \
 	macro(Player, Hole) \
 	macro(Blob, Hole) \
-	macro(Depressable, Weight)
+	macro(Depressable, Weight) \
+	macro(NearbyPlayer, Sign)

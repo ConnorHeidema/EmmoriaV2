@@ -16,6 +16,7 @@ public:
 	InteractingSys(std::string systemConfigItem, entt::registry& rReg);
 private:
 	void Update_() override;
+	void CreateNearbyPlayerEntity_();
 	void PerformObjectInteractions_();
 	void DestroyDeletedObjectsFromInteractions_();
 

@@ -21,7 +21,10 @@
 	macroToUse(HoleComp) \
 	macroToUse(WeightComp) \
 	macroToUse(DepressableComp) \
-	macroToUse(DoorLookingComp)
+	macroToUse(DoorLookingComp) \
+	macroToUse(SignComp) \
+	macroToUse(NearbyPlayerComp)
+
 
 #define ALL_FUNCTIONAL_MACRO(macroToUse) \
 	macroToUse(ButtonComp) \

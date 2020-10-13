@@ -7,7 +7,7 @@
 class OverlapUtils
 {
 public:
-	static bool Overlapping(Position& rPosition1, Size& rSize1, Position& rPosition2, Size& rSize2);
+	static bool Overlapping(Position const& rPosition1, Size const& rSize1, Position const& rPosition2, Size const& rSize2);
 };
 
 #endif

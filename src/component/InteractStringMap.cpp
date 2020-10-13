@@ -13,9 +13,12 @@
 #include "component/functional/stats/MaxHealthComp.hpp"
 
 #include "util/OverlapUtils.hpp"
+#include "util/PositionUtils.hpp"
 
 #include <iostream>
 #include <limits>
+
+#include <SFML/Window.hpp>
 
 #include "entity/EntityMacro.hpp"
 #define INTERACT_STRING_TO_TYPE_MAPPING(name) { #name , InteractType_t:: name##_t },
@@ -54,24 +57,12 @@ void InteractStringMap::InteractPlayerCompBlobComp(entt::registry& rReg, entt::e
 
 void InteractStringMap::InteractWallInteractorCompWallComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
 {
+	auto& playerPosition = rReg.get<PositionComp>(rInteractorEntity).m_position;
+	auto& playerLastPosition = rReg.get<LastPositionComp>(rInteractorEntity).m_lastPosition;
+	auto& playerSize = rReg.get<SizeComp>(rInteractorEntity).m_size;
 	auto& wallPosition = rReg.get<PositionComp>(rInteractableEntity).m_position;
 	auto& wallSize = rReg.get<SizeComp>(rInteractableEntity).m_size;
-
-	auto& playerLastPosition = rReg.get<LastPositionComp>(rInteractorEntity).m_lastPosition;
-	auto& playerPosition = rReg.get<PositionComp>(rInteractorEntity).m_position;
-	auto& playerSize = rReg.get<SizeComp>(rInteractorEntity).m_size;
-
-	Position lastPlayerXposition = {playerLastPosition.x, playerPosition.y};
-	Position lastPlayerYposition = {playerPosition.x, playerLastPosition.y};
-
-	if (OverlapUtils::Overlapping(wallPosition, wallSize, lastPlayerYposition, playerSize))
-	{
-		playerPosition.x = playerLastPosition.x;
-	}
-	if (OverlapUtils::Overlapping(wallPosition, wallSize, lastPlayerXposition, playerSize))
-	{
-		playerPosition.y = playerLastPosition.y;
-	}
+	PositionUtils::SetObjectToViablePosition(playerPosition, playerLastPosition, playerSize, wallPosition, wallSize);
 }
 
 void InteractStringMap::InteractArrowCompBlobComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
@@ -97,24 +88,13 @@ void InteractStringMap::InteractPlayerCompHoleComp(entt::registry& rReg, entt::e
 
 void InteractStringMap::InteractBlobCompHoleComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
 {
-	auto& wallPosition = rReg.get<PositionComp>(rInteractableEntity).m_position;
-	auto& wallSize = rReg.get<SizeComp>(rInteractableEntity).m_size;
-
 	auto& blobLastPosition = rReg.get<LastPositionComp>(rInteractorEntity).m_lastPosition;
 	auto& blobPosition = rReg.get<PositionComp>(rInteractorEntity).m_position;
 	auto& blobSize = rReg.get<SizeComp>(rInteractorEntity).m_size;
 
-	Position lastBlobXposition = {blobLastPosition.x, blobPosition.y};
-	Position lastBlobYposition = {blobPosition.x, blobLastPosition.y};
-
-	if (OverlapUtils::Overlapping(wallPosition, wallSize, lastBlobYposition, blobSize))
-	{
-		blobPosition.x = blobLastPosition.x;
-	}
-	if (OverlapUtils::Overlapping(wallPosition, wallSize, lastBlobXposition, blobSize))
-	{
-		blobPosition.y = blobLastPosition.y;
-	}
+	auto& wallPosition = rReg.get<PositionComp>(rInteractableEntity).m_position;
+	auto& wallSize = rReg.get<SizeComp>(rInteractableEntity).m_size;
+	PositionUtils::SetObjectToViablePosition(blobPosition, blobLastPosition, blobSize, wallPosition, wallSize);
 }
 
 void InteractStringMap::InteractDepressableCompWeightComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
@@ -128,6 +108,14 @@ void InteractStringMap::InteractDepressableCompWeightComp(entt::registry& rReg, 
 			doorComp.m_bOpen = true;
 		}
 	});
+}
+
+void InteractStringMap::InteractNearbyPlayerCompSignComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		std::cout << "Space pressed on sign" << std::endl;
+	}
 }
 
 std::unordered_map<int, fnEntityInteractor> InteractStringMap::CreateInteractionFnList()
