@@ -24,6 +24,7 @@ DialogSys::DialogSys(std::string systemConfigItem, entt::registry& rReg)
 	: System(systemConfigItem)
 	, m_rReg(rReg)
 	, m_dialogSysState(DialogSysState_t::WAITING)
+	, m_pDialogQueue(std::make_shared<DialogQueue>())
 {}
 
 void DialogSys::Update_()
@@ -50,6 +51,12 @@ void DialogSys::UpdateWaitingState_()
 }
 
 void DialogSys::UpdateProducingState_()
+{
+	ProduceRandomDialog_();
+	ProduceStructuredDialog_();
+}
+
+void DialogSys::ProduceRandomDialog_()
 {
 	m_rReg.view<DialogChainComp, RandomComp, TextComp, SizeComp>().each([&]
 		(auto entity,
@@ -102,6 +109,55 @@ void DialogSys::UpdateProducingState_()
 		m_rReg.emplace<ClickableComp>(fragmentEntity);
 		m_dialogSysState = DialogSysState_t::PENDING;
 	});
+}
+
+void DialogSys::ProduceStructuredDialog_()
+{	m_rReg.view<DialogChainComp, StructuredDialogComp, TextComp, SizeComp>().each([&]
+		(auto entity,
+		auto& textComp,
+		auto& sizeComp)
+	{
+		std::string textFragment = textComp.m_text.substr(0, textComp.m_text.find(ApplicationParameters::k_dialogDelimiter));
+		textComp.m_text = (textComp.m_text.find(ApplicationParameters::k_dialogDelimiter) == std::string::npos) ?
+			"" :
+			textComp.m_text.substr(textComp.m_text.find(ApplicationParameters::k_dialogDelimiter) + 1);
+
+		if (textFragment.at(0) == ApplicationParameters::k_dialogEscapeChar &&
+			textFragment.at(textFragment.length() - 1) == ApplicationParameters::k_dialogEscapeChar)
+		{
+			auto locationEntity = m_rReg.create();
+			auto& locationComp = m_rReg.emplace<LocationComp>(locationEntity);
+			std::string fullLocation = textFragment.substr(1, textFragment.length() - 2);
+			locationComp.area =	fullLocation.substr(0, fullLocation.find("/"));
+			std::string xLocationStr =
+				fullLocation.substr(fullLocation.find("/") + 1, fullLocation.find(",") - fullLocation.find("/") - 1);
+			std::string yLocationStr = fullLocation.substr(fullLocation.find(",") + 1);
+			locationComp.xLocation = float(std::stoi(xLocationStr));
+			locationComp.yLocation = float(std::stoi(yLocationStr));
+			m_dialogSysState = DialogSysState_t::LOADING;
+			return;
+		}
+		auto fragmentEntity = m_rReg.create();
+		m_rReg.emplace<DialogChainFragmentComp>(fragmentEntity);
+
+		auto& fragmentTextComp = m_rReg.emplace<TextComp>(fragmentEntity);
+		fragmentTextComp.m_text = textFragment;
+
+		auto& fragmentSizeComp = m_rReg.emplace<SizeComp>(fragmentEntity);
+		fragmentSizeComp.m_size.width = ApplicationParameters::k_screenWidth - 100;
+		fragmentSizeComp.m_size.height = sizeComp.m_size.height;
+
+		auto& fragmentPositionComp = m_rReg.emplace<PositionComp>(fragmentEntity);
+		fragmentPositionComp.m_position.x = ApplicationParameters::k_screenWidth / 2;
+		fragmentPositionComp.m_position.y = ApplicationParameters::k_screenHeight - 100;
+
+		auto& fragmentRenderableComp = m_rReg.emplace<RenderableComp>(fragmentEntity);
+		fragmentRenderableComp.m_bRendered = false;
+
+		m_rReg.emplace<ClickableComp>(fragmentEntity);
+		m_dialogSysState = DialogSysState_t::PENDING;
+	});
+
 }
 
 void DialogSys::UpdatePendingState_()

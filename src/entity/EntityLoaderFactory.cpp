@@ -282,6 +282,14 @@ void EntityLoaderFactory::LoadRandomDialog(entt::registry& rReg, entt::entity& r
 	LoadTextComp(rReg, rEntity, reader);
 }
 
+void EntityLoaderFactory::LoadBottomDialog(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
+{
+ 	rReg.emplace<DialogChainComp>(rEntity);
+	rReg.emplace<StructuredDialogComp>(rEntity);
+	LoadHeight(rReg, rEntity, reader);
+	LoadTextComp(rReg, rEntity, reader);
+}
+
 void EntityLoaderFactory::LoadIndexedPosition(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
 	auto& positionComp = rReg.get_or_emplace<PositionComp>(rEntity);

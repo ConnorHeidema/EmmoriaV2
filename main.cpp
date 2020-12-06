@@ -12,4 +12,5 @@ int main() {
     app.Start() ?
         std::cout << "Successfully exited game." :
         std::cout << "Error occurred while exiting game";
+    std::cout << std::endl;
 }

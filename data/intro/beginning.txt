@@ -1,1 +1,1 @@
-RandomDialog 5 Help!-We've been trapped for so long.-Please.-Save us!-*Files/0,0* *
+BottomDialog 5 Our tale begins in the small sacred forest by your home village. You have stumbled into a strange cavern and need to find your way out!-*Files/0,0* *

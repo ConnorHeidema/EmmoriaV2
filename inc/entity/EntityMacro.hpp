@@ -23,7 +23,8 @@
 	macroToUse(DepressableComp) \
 	macroToUse(DoorLookingComp) \
 	macroToUse(SignComp) \
-	macroToUse(NearbyPlayerComp)
+	macroToUse(NearbyPlayerComp) \
+	macroToUse(StructuredDialogComp)
 
 
 #define ALL_FUNCTIONAL_MACRO(macroToUse) \
@@ -58,6 +59,7 @@
 	macroToUse(Fullscreen) \
 	macroToUse(Button) \
 	macroToUse(RandomDialog) \
+	macroToUse(BottomDialog) \
 	macroToUse(IndexedPosition) \
 	macroToUse(WallTile) \
 	macroToUse(Blob) \
