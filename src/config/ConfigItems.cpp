@@ -10,6 +10,8 @@ bool ConfigItems::LoadConfigFile(std::string configFilePath)
 	std::ifstream configFile("data/Config/config.ini");
   	if (configFile.is_open())
 	{
+		m_setConfigItems = m_currentSetConfigItems;
+		ConfigItems::m_currentSetConfigItems.clear();
 		while (getline(configFile, line))
 		{
 			std::string key;
@@ -29,7 +31,7 @@ bool ConfigItems::LoadConfigFile(std::string configFilePath)
 				}
 				value = stringValue == "true" ? true : false;
 				if (value)
-					m_setConfigItems.insert(key);
+					m_currentSetConfigItems.insert(key);
 			}
 		}
 		configFile.close();
@@ -38,3 +40,5 @@ bool ConfigItems::LoadConfigFile(std::string configFilePath)
 }
 
 std::unordered_set<std::string> ConfigItems::m_setConfigItems = {};
+
+std::unordered_set<std::string> ConfigItems::m_currentSetConfigItems = {};

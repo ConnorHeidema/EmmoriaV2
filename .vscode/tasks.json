@@ -67,6 +67,9 @@
                 // Entity factory
                 "${workspaceFolder}/src/entity/EntityLoaderFactory.cpp",
 
+                // Adapters
+                "${workspaceFolder}/src/entity/adapter/DialogListAdapter.cpp",
+
                 // Internal libraries
                 "-I", "${workspaceFolder}/inc",
                 "-I", "${workspaceFolder}/ext/inc",
@@ -210,6 +213,9 @@
 
                 // Entity factory
                 "${workspaceFolder}/src/entity/EntityLoaderFactory.cpp",
+
+                // Adapters
+                "${workspaceFolder}/src/entity/adapter/DialogListAdapter.cpp",
 
 
                 // Internal libraries

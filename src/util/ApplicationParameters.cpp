@@ -42,3 +42,5 @@ int const ApplicationParameters::k_heightTiles = 15;
 
 int const ApplicationParameters::k_bottomOfScreen = k_heightTiles * k_tileScreenHeightSize;
 int const ApplicationParameters::k_rightOfScreen = k_widthTiles * k_tileScreenWidthSize;
+
+uint64_t ApplicationParameters::uCurrentDialogIndex = 0;

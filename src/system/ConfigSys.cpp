@@ -9,13 +9,14 @@ ConfigSys::ConfigSys(std::string systemConfigItem, entt::registry& rReg)
 	: System(systemConfigItem)
 	, m_rReg(rReg)
 	, m_configUpdateLatch(updateRate)
-{ }
+{
+	ConfigItems::LoadConfigFile("data/Config/config.ini");
+}
 
 void ConfigSys::Update_()
 {
 	if (m_configUpdateLatch.CheckLatch())
 	{
-		ConfigItems::m_setConfigItems.clear();
 		ConfigItems::LoadConfigFile("data/Config/config.ini");
 	}
 }

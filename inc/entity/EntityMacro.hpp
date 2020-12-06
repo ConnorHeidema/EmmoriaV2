@@ -30,6 +30,7 @@
 #define ALL_FUNCTIONAL_MACRO(macroToUse) \
 	macroToUse(ButtonComp) \
 	macroToUse(ClickableComp) \
+	macroToUse(DialogComp) \
 	macroToUse(HealthComp) \
 	macroToUse(InteractableComp) \
 	macroToUse(InteractorComp) \

@@ -8,12 +8,16 @@
  */
 struct DialogComp
 {
-	std::string m_action;
-	bool m_bOpen;
+	uint64_t uCurrentDialogIndex;
+	uint32_t uSpriteIndex;
+	std::string content;
+	std::string fileToLoadAfter;
 
 	DialogComp()
-		: m_action("")
-		, m_bOpen(false)
+		: uCurrentDialogIndex(0)
+		, uSpriteIndex(0)
+		, content("")
+		, fileToLoadAfter("")
 	{}
 };
 

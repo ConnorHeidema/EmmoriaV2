@@ -274,6 +274,11 @@ void EntityLoaderFactory::LoadButton(entt::registry& rReg, entt::entity& rEntity
  	sizeComp.m_size.width = EntityLoaderUtils::GetTextWidth(textComp.m_text, sizeComp.m_size.height);
 }
 
+void EntityLoaderFactory::LoadDialogComp(entt::registry&, entt::entity&, std::istringstream&)
+{
+	// @todo Connor Heidema 2020-12-5
+}
+
 void EntityLoaderFactory::LoadRandomDialog(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
  	rReg.emplace<DialogChainComp>(rEntity);

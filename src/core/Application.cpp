@@ -17,6 +17,7 @@ Application::Application()
 				ApplicationParameters::k_screenHeight),
 			ApplicationParameters::k_windowName,
 			sf::Style::Fullscreen)
+	, m_kOnlyWhenFocused("OnlyWhenFocused")
 { }
 
 bool Application::Start()
@@ -37,7 +38,13 @@ void Application::Initialize_()
 void Application::RunLoop_()
 {
 	m_renderWindow.clear();
-	for (auto system : SystemList::m_pSystemList) { system->Update(); }
+	for (auto system : SystemList::m_pSystemList)
+	{
+		if (m_renderWindow.hasFocus() || UpdateWhenNotFocused_())
+		{
+			system->Update();
+		}
+	}
 	m_renderWindow.display();
 	CheckForEvents_();
 }
@@ -55,4 +62,10 @@ void Application::CheckForEvents_()
 			default: break;
 		}
 	}
+}
+
+bool Application::UpdateWhenNotFocused_()
+{
+	return ConfigItems::m_setConfigItems.find(m_kOnlyWhenFocused) ==
+		ConfigItems::m_setConfigItems.end();
 }

@@ -46,6 +46,8 @@ struct ApplicationParameters
 
 	static int const k_bottomOfScreen;
 	static int const k_rightOfScreen;
+
+	static uint64_t uCurrentDialogIndex;
 };
 
 #endif

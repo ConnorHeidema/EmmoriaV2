@@ -69,5 +69,6 @@
 	"editor.tabSize": 4,
 	"search.exclude": {
 		"ext/": true
-	}
+	},
+	"cmake.configureOnOpen": true
 }

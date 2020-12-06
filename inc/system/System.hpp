@@ -3,6 +3,8 @@
 
 #include "config/ConfigItems.hpp"
 
+#include <SFML/Window.hpp>
+
 #include <string>
 
 /**
@@ -13,7 +15,10 @@
 class System
 {
 public:
-	System(std::string systemConfigItem) : m_systemConfigItem(systemConfigItem) {};
+	System(std::string systemConfigItem)
+		: m_systemConfigItem(systemConfigItem)
+	{};
+
 	virtual ~System() {};
 	void Update()
 	{

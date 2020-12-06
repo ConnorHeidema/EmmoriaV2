@@ -13,6 +13,7 @@ public:
 	static bool LoadConfigFile(std::string configFilePath);
 	static std::unordered_set<std::string> m_setConfigItems;
 private:
+	static std::unordered_set<std::string> m_currentSetConfigItems;
 	ConfigItems();
 };
 
