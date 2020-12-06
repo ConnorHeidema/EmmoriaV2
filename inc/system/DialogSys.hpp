@@ -1,7 +1,6 @@
 #ifndef __DIALOG_SYS__
 #define __DIALOG_SYS__
 
-#include "core/DialogQueue.hpp"
 #include "system/System.hpp"
 
 #include <entt/entt.hpp>
@@ -38,8 +37,6 @@ private:
 	entt::registry& m_rReg;
 
 	DialogSysState_t m_dialogSysState;
-
-	std::shared_ptr<DialogQueue> m_pDialogQueue;
 };
 
 #endif

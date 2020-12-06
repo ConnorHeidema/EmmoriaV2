@@ -24,7 +24,6 @@ DialogSys::DialogSys(std::string systemConfigItem, entt::registry& rReg)
 	: System(systemConfigItem)
 	, m_rReg(rReg)
 	, m_dialogSysState(DialogSysState_t::WAITING)
-	, m_pDialogQueue(std::make_shared<DialogQueue>())
 {}
 
 void DialogSys::Update_()

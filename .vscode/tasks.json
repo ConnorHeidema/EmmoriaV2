@@ -14,7 +14,6 @@
                 // Core
                 "${workspaceFolder}/src/core/Application.cpp",
                 "${workspaceFolder}/src/core/TileMap.cpp",
-                "${workspaceFolder}/src/core/DialogQueue.cpp",
 
                 // Config Items
                 "${workspaceFolder}/src/config/ConfigItems.cpp",
@@ -165,7 +164,6 @@
                 // Core
                 "${workspaceFolder}/src/core/Application.cpp",
                 "${workspaceFolder}/src/core/TileMap.cpp",
-                "${workspaceFolder}/src/core/DialogQueue.cpp",
 
                 // Config Items
                 "${workspaceFolder}/src/config/ConfigItems.cpp",
