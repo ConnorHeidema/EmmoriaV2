@@ -70,5 +70,12 @@
 	"search.exclude": {
 		"ext/": true
 	},
-	"cmake.configureOnOpen": true
+	"cmake.configureOnOpen": true,
+	"launches":
+	{
+
+		"BuildAndDebug": "g++-7 - build and debug all",
+		"Debug": "g++-7 - debug all",
+		"JustMain":"g++-7 - build and debug main"
+	}
 }
