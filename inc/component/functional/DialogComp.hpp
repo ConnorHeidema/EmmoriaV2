@@ -12,13 +12,6 @@ struct DialogComp
 	uint32_t uSpriteIndex;
 	std::string content;
 	std::string fileToLoadAfter;
-
-	DialogComp()
-		: uCurrentDialogIndex(0)
-		, uSpriteIndex(0)
-		, content("")
-		, fileToLoadAfter("")
-	{}
 };
 
 #endif
