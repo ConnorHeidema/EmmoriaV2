@@ -18,3 +18,5 @@ int Helper::Rand(int const& lowerBound, int const& higherBound)
 	}
 	return rand() % ((higherBound + 1) - lowerBound) + lowerBound;
 }
+
+int Helper::Mod(int a, int b) { return (a % b + b) % b; }

@@ -13,6 +13,7 @@
 
 #include "util/Mediamap.hpp"
 #include "util/ApplicationParameters.hpp"
+#include "util/Helper.hpp"
 
 #include <entt/entt.hpp>
 
@@ -82,12 +83,12 @@ void GameRenderSys::RenderRotatableSprites_()
         	transform.rotate(
 				rotationComp.m_angle * 90 / tan(1) + 90,
 				sf::Vector2f(
-					(int)positionComp.m_position.x % ApplicationParameters::k_rightOfScreen,
-					(int)positionComp.m_position.y % ApplicationParameters::k_bottomOfScreen));
+					Helper::Mod((int)positionComp.m_position.x, ApplicationParameters::k_rightOfScreen),
+					Helper::Mod((int)positionComp.m_position.y, ApplicationParameters::k_bottomOfScreen)));
 
 			genericSprite.setPosition(
-				(int(positionComp.m_position.x) % ApplicationParameters::k_rightOfScreen) - (int)sizeComp.m_size.width/2,
-				(int(positionComp.m_position.y) % ApplicationParameters::k_bottomOfScreen) - (int)sizeComp.m_size.height/2);
+				Helper::Mod((int)positionComp.m_position.x, ApplicationParameters::k_rightOfScreen) - (int)sizeComp.m_size.width/2,
+				Helper::Mod((int)positionComp.m_position.y, ApplicationParameters::k_bottomOfScreen) - (int)sizeComp.m_size.height/2);
 
 			genericSprite.setTextureRect(
 				sf::IntRect(
@@ -120,9 +121,8 @@ void GameRenderSys::RenderBasicSprites_()
 			texture.loadFromFile(spriteComp.m_filePath); // this should be stored somehow
 			genericSprite.setTexture(&texture);
 			genericSprite.setPosition(
-				(int(positionComp.m_position.x) % ApplicationParameters::k_rightOfScreen) - (int)sizeComp.m_size.width/2,
-				(int(positionComp.m_position.y) % ApplicationParameters::k_bottomOfScreen) - (int)sizeComp.m_size.height/2);
-
+				Helper::Mod((int)positionComp.m_position.x, ApplicationParameters::k_rightOfScreen) - (int)sizeComp.m_size.width/2,
+				Helper::Mod((int)positionComp.m_position.y, ApplicationParameters::k_bottomOfScreen) - (int)sizeComp.m_size.height/2);
 			genericSprite.setTextureRect(
 				sf::IntRect(
 					spriteComp.m_spriteIndex * spriteComp.m_width,

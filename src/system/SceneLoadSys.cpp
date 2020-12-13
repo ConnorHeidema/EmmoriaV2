@@ -6,6 +6,7 @@
 #include "component/functional/PositionComp.hpp"
 #include "component/functional/LoadComp.hpp"
 
+#include <cmath>
 #include <limits>
 #include <iostream>
 
@@ -50,14 +51,16 @@ void SceneLoadSys::CreateLoadCompFromLocationCompWithPlayer_()
 	{
 		m_rReg.view<LocationComp>().each([&](auto locationEntity, auto& locationComp)
 		{
-			if (locationComp.xLocation != (int)positionComp.m_position.x / ApplicationParameters::k_rightOfScreen ||
-				locationComp.yLocation != (int)positionComp.m_position.y / ApplicationParameters::k_bottomOfScreen ||
+			if (locationComp.xLocation != (int)floor((double)positionComp.m_position.x / ApplicationParameters::k_rightOfScreen) ||
+				locationComp.yLocation != (int)floor((double)positionComp.m_position.y / ApplicationParameters::k_bottomOfScreen) ||
 				locationComp.area != m_lastArea ||
-				!locationComp.m_bLoaded)
+				!locationComp.m_bLoaded ||
+				(locationComp.xLocation == 0 && positionComp.m_position.x < 0) ||
+				(locationComp.yLocation == 0 && positionComp.m_position.y < 0))
 			{
 				locationComp.m_bLoaded = true;
-				locationComp.xLocation = positionComp.m_position.x / ApplicationParameters::k_rightOfScreen;
-				locationComp.yLocation = positionComp.m_position.y / ApplicationParameters::k_bottomOfScreen;
+				locationComp.xLocation = floor((double)positionComp.m_position.x / ApplicationParameters::k_rightOfScreen);
+				locationComp.yLocation = floor((double)positionComp.m_position.y / ApplicationParameters::k_bottomOfScreen);
 				locationComp.xSpawnLocation = positionComp.m_position.x;
 				locationComp.ySpawnLocation = positionComp.m_position.y;
 

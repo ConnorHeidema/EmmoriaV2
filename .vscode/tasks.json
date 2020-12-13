@@ -38,6 +38,7 @@
                 "${workspaceFolder}/src/util/Latch.cpp",
                 "${workspaceFolder}/src/util/PositionUtils.cpp",
                 "${workspaceFolder}/src/util/EnttUtils.cpp",
+                "${workspaceFolder}/src/util/PortraitMapping.cpp",
 
                 // System implementations
                 "${workspaceFolder}/src/system/RebootSys.cpp",
@@ -188,6 +189,10 @@
                 "${workspaceFolder}/src/util/SystemList.cpp",
                 "${workspaceFolder}/src/util/OverlapUtils.cpp",
                 "${workspaceFolder}/src/util/AnimationMappings.cpp",
+                "${workspaceFolder}/src/util/Latch.cpp",
+                "${workspaceFolder}/src/util/PositionUtils.cpp",
+                "${workspaceFolder}/src/util/EnttUtils.cpp",
+                "${workspaceFolder}/src/util/PortraitMapping.cpp",
 
                 // System implementations
                 "${workspaceFolder}/src/system/RebootSys.cpp",

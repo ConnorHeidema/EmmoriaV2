@@ -17,6 +17,8 @@
 
 #include <math.h>
 
+#include <cmath>
+
 #include <iostream>
 
 MovementSys::MovementSys(std::string systemConfigItem, entt::registry& rReg)
@@ -99,10 +101,10 @@ void MovementSys::DeleteRolloverObjects_()
 {
 	m_rReg.view<PositionComp, LastPositionComp>(entt::exclude<PlayerComp>).each([&](auto entity, auto& positionComp, auto& lastPositionComp)
 	{
-		int currentRegionX = (int)positionComp.m_position.x / ApplicationParameters::k_rightOfScreen;
-		int nextRegionX = (int)lastPositionComp.m_lastPosition.x / ApplicationParameters::k_rightOfScreen;
-		int currentRegionY = (int)positionComp.m_position.y / ApplicationParameters::k_bottomOfScreen;
-		int nextRegionY = (int)lastPositionComp.m_lastPosition.y / ApplicationParameters::k_bottomOfScreen;
+		int currentRegionX = (int)floor((double)positionComp.m_position.x / ApplicationParameters::k_rightOfScreen);
+		int nextRegionX = (int)floor((double)lastPositionComp.m_lastPosition.x / ApplicationParameters::k_rightOfScreen);
+		int currentRegionY = (int)floor((double)positionComp.m_position.y / ApplicationParameters::k_bottomOfScreen);
+		int nextRegionY = (int)floor((double)lastPositionComp.m_lastPosition.y / ApplicationParameters::k_bottomOfScreen);
 
 		if (currentRegionX != nextRegionX ||
 			currentRegionY != nextRegionY)

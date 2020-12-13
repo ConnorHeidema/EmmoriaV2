@@ -20,7 +20,6 @@ public:
 private:
 	std::list<DialogComp> FirstPass_(std::string data);
 	std::istringstream LastPass_(std::list<DialogComp> dialogList);
-	uint32_t GetCharacterIndexFromString_(std::string token);
 };
 
 #endif
