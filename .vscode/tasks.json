@@ -38,7 +38,6 @@
                 "${workspaceFolder}/src/util/Latch.cpp",
                 "${workspaceFolder}/src/util/PositionUtils.cpp",
                 "${workspaceFolder}/src/util/EnttUtils.cpp",
-                "${workspaceFolder}/src/util/PortraitMapping.cpp",
                 "${workspaceFolder}/src/util/DialogParameters.cpp",
 
                 // System implementations
@@ -190,7 +189,6 @@
                 "${workspaceFolder}/src/util/Latch.cpp",
                 "${workspaceFolder}/src/util/PositionUtils.cpp",
                 "${workspaceFolder}/src/util/EnttUtils.cpp",
-                "${workspaceFolder}/src/util/PortraitMapping.cpp",
                 "${workspaceFolder}/src/util/DialogParameters.cpp",
 
                 // System implementations
