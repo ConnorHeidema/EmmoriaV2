@@ -17,6 +17,7 @@
 #include <entt/entt.hpp>
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 
 #include <iostream>
 
@@ -46,6 +47,7 @@ void DialogSys::UpdateWaitingState_()
 	{
 		bDialogChainFound = true;
 	});
+	// create dialog structure here...
 	m_dialogSysState = (bDialogChainFound ? DialogSysState_t::PRODUCING : DialogSysState_t::WAITING);
 }
 
@@ -138,22 +140,20 @@ void DialogSys::ProduceStructuredDialog_()
 		}
 		auto fragmentEntity = m_rReg.create();
 		m_rReg.emplace<DialogChainFragmentComp>(fragmentEntity);
-
-		auto& fragmentTextComp = m_rReg.emplace<TextComp>(fragmentEntity);
-		fragmentTextComp.m_text = textFragment;
-
-		auto& fragmentSizeComp = m_rReg.emplace<SizeComp>(fragmentEntity);
-		fragmentSizeComp.m_size.width = ApplicationParameters::k_screenWidth - 100;
-		fragmentSizeComp.m_size.height = sizeComp.m_size.height;
-
-		auto& fragmentPositionComp = m_rReg.emplace<PositionComp>(fragmentEntity);
-		fragmentPositionComp.m_position.x = ApplicationParameters::k_screenWidth / 2;
-		fragmentPositionComp.m_position.y = ApplicationParameters::k_screenHeight - 100;
-
-		auto& fragmentRenderableComp = m_rReg.emplace<RenderableComp>(fragmentEntity);
-		fragmentRenderableComp.m_bRendered = false;
-
+		m_rReg.emplace<TextComp>(fragmentEntity).m_text = textFragment;
+		m_rReg.emplace<RenderableComp>(fragmentEntity).m_bRendered = false;
 		m_rReg.emplace<ClickableComp>(fragmentEntity);
+		m_rReg.emplace<SizeComp>(fragmentEntity).m_size =
+		{
+			uint32_t(ApplicationParameters::k_screenWidth - 100),
+			sizeComp.m_size.height
+		};
+		m_rReg.emplace<PositionComp>(fragmentEntity).m_position =
+		{
+				float(ApplicationParameters::k_screenWidth / 2),
+				float(ApplicationParameters::k_screenHeight - 100)
+		};
+
 		m_dialogSysState = DialogSysState_t::PENDING;
 	});
 
@@ -165,7 +165,7 @@ void DialogSys::UpdatePendingState_()
 	bool bLiveChain = true;
 	m_rReg.view<DialogChainFragmentComp, ClickableComp>().each([&](auto entity, auto& clickableComp)
 	{
-		if (clickableComp.m_bLeftClicked)
+		if (clickableComp.m_bLeftClicked || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		{
 			m_rReg.destroy(entity);
 			bLiveFragment = false;

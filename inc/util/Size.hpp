@@ -1,10 +1,12 @@
 #ifndef __SIZE__
 #define __SIZE__
 
+ #include <stdint.h>
+
 struct Size
 {
-	unsigned int width;
-	unsigned int height;
+	uint32_t width;
+	uint32_t height;
 };
 
 #endif

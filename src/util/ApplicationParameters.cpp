@@ -20,9 +20,9 @@ int const ApplicationParameters::k_heightAdjustment = ApplicationParameters::k_s
 std::string const ApplicationParameters::k_fontPath = "/usr/share/fonts/truetype/ubuntu/Ubuntu-B.ttf"; // should be more generic in the future.
 std::string const ApplicationParameters::k_dialogDelimiter = "-";
 std::string const ApplicationParameters::k_dialogEscape = "*";
+char const ApplicationParameters::k_dialogEscapeChar = '*';
 std::string const ApplicationParameters::k_pictureExt = ".png";
 
-char const ApplicationParameters::k_dialogEscapeChar = '*';
 float const ApplicationParameters::k_textFactor = 0.75f;
 
 int const ApplicationParameters::k_tileUnitSize = 6;
