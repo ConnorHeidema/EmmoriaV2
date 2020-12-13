@@ -39,6 +39,7 @@
                 "${workspaceFolder}/src/util/PositionUtils.cpp",
                 "${workspaceFolder}/src/util/EnttUtils.cpp",
                 "${workspaceFolder}/src/util/PortraitMapping.cpp",
+                "${workspaceFolder}/src/util/DialogParameters.cpp",
 
                 // System implementations
                 "${workspaceFolder}/src/system/RebootSys.cpp",
@@ -67,9 +68,6 @@
 
                 // Entity factory
                 "${workspaceFolder}/src/entity/EntityLoaderFactory.cpp",
-
-                // Adapters
-                "${workspaceFolder}/src/entity/adapter/DialogListAdapter.cpp",
 
                 // Internal libraries
                 "-I", "${workspaceFolder}/inc",
@@ -193,6 +191,7 @@
                 "${workspaceFolder}/src/util/PositionUtils.cpp",
                 "${workspaceFolder}/src/util/EnttUtils.cpp",
                 "${workspaceFolder}/src/util/PortraitMapping.cpp",
+                "${workspaceFolder}/src/util/DialogParameters.cpp",
 
                 // System implementations
                 "${workspaceFolder}/src/system/RebootSys.cpp",
@@ -218,9 +217,6 @@
 
                 // Entity factory
                 "${workspaceFolder}/src/entity/EntityLoaderFactory.cpp",
-
-                // Adapters
-                "${workspaceFolder}/src/entity/adapter/DialogListAdapter.cpp",
 
 
                 // Internal libraries

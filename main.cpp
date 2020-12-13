@@ -13,6 +13,7 @@
 #include <cstdint>
 #include <list>
 #include <memory>
+#include <iterator>
 
 static std::string const k_actualText =
     "*person* Trained for defence, imbued with a spirit to fight. We are the last line of defence"
@@ -47,7 +48,7 @@ private:
     {
     public:
         std::string portraitName;
-        std::list<std::string> contentList;
+        std::list<std::list<std::string>> contentList;
     };
     std::list<DialogContainer> m_dialogContainerList;
     enum class State_t
@@ -56,6 +57,12 @@ private:
         PRODUCING,
         FINISHED
     } m_state;
+
+    sf::Font m_font;
+    int m_maxWidthForText;
+    int m_textHeight;
+    int mTimer;
+    int const k_mMaxTimer;
 };
 
 static DialogSysTest s_DialogSysTest;
@@ -94,6 +101,7 @@ int main(int argc, char ** argv)
             sf::VideoMode::getDesktopMode().height),
 			"test",
 			sf::Style::Fullscreen);
+    renderWindow.setFramerateLimit(60);
     while (renderWindow.isOpen()) { {RunLoop_(renderWindow);}; }
 
 	// Application app;
@@ -105,10 +113,17 @@ int main(int argc, char ** argv)
 
 DialogSysTest::DialogSysTest()
     : m_state(State_t::WAITING)
-{}
+    , m_maxWidthForText(1370)
+    , m_textHeight(50)
+    , mTimer(0)
+    , k_mMaxTimer(30)
+{
+    m_font.loadFromFile("/usr/share/fonts/truetype/ubuntu/Ubuntu-B.ttf");
+}
 
 void DialogSysTest::Process(sf::RenderWindow& rRenderWindow)
 {
+    mTimer = std::min(mTimer + 1, k_mMaxTimer);
     switch (m_state)
     {
         case State_t::WAITING: ProcessWaiting(rRenderWindow); return;
@@ -120,13 +135,8 @@ void DialogSysTest::Process(sf::RenderWindow& rRenderWindow)
 
 void DialogSysTest::ProcessWaiting(sf::RenderWindow& rRenderWindow)
 {
-    std::list<DialogContainer> firstPassDialogContainer;
     std::istringstream iss(k_testText);
     std::shared_ptr<DialogContainer> m_pDialogContainer;
-    int maxWidthForText = 1620;
-    int textHeight = 50;
-    sf::Font font;
-    font.loadFromFile("/usr/share/fonts/truetype/ubuntu/Ubuntu-B.ttf");
     do
     {
         std::string subs;
@@ -140,7 +150,7 @@ void DialogSysTest::ProcessWaiting(sf::RenderWindow& rRenderWindow)
             }
             m_pDialogContainer = std::make_shared<DialogContainer>();
             m_pDialogContainer->portraitName = subs.substr(1, subs.length() - 2);
-            m_pDialogContainer->contentList = std::list<std::string>({""});
+            m_pDialogContainer->contentList = std::list<std::list<std::string>>({{""}});
             continue;
         }
         if (subs.front() == '|' && subs.back() == '|')
@@ -148,29 +158,87 @@ void DialogSysTest::ProcessWaiting(sf::RenderWindow& rRenderWindow)
             m_dialogContainerList.emplace_back(*m_pDialogContainer);
             break;
         }
-        sf::Text testText(m_pDialogContainer->contentList.back(), font, textHeight);
+        sf::Text testText(m_pDialogContainer->contentList.back().back() + std::string(subs), m_font, m_textHeight);
         int textActualWidth = testText.getLocalBounds().width;
-        if (textActualWidth > maxWidthForText)
+        if (textActualWidth > m_maxWidthForText)
         {
-            m_pDialogContainer->contentList.push_back("");
+            if (m_pDialogContainer->contentList.back().size() > 2)
+            {
+                m_pDialogContainer->contentList.push_back({""});
+            }
+            else
+            {
+                m_pDialogContainer->contentList.back().push_back("");
+            }
         }
-        m_pDialogContainer->contentList.back() += std::string(" ") + subs;
+        m_pDialogContainer->contentList.back().back() += std::string(" ") + subs;
     }
     while (iss);
-    std::cout << m_dialogContainerList.front().contentList.back() << std::endl;
-    // Second Pass
+    std::cout << m_dialogContainerList.front().contentList.back().back() << std::endl;
+    m_state = State_t::PRODUCING;
 }
 
 void DialogSysTest::ProcessProducing(sf::RenderWindow& rRenderWindow)
 {
 
+    if (m_dialogContainerList.empty())
+    {
+        m_state = State_t::FINISHED;
+    }
+    else
+    {
+        sf::RectangleShape rect(sf::Vector2f(1714.f, 174.f));
+        rect.setFillColor(sf::Color::Blue);
+        rect.setOutlineColor(sf::Color::Red);
+        rect.setOutlineThickness(3.f);
+        rect.setPosition(sf::Vector2f(100.f, 903.f));
+        rRenderWindow.draw(rect);
 
-    //sf::Text text(k_testText, font, textHeight);
-    //uint32_t textWidth = text.getLocalBounds().width;
+        sf::RectangleShape portraitRect(sf::Vector2f(280, 134.f));
+        portraitRect.setPosition(sf::Vector2f(110.f, 923.f));
+        portraitRect.setFillColor(m_dialogContainerList.front().portraitName == "person" ? sf::Color::Black : sf::Color::Magenta);
+        rect.setOutlineColor(sf::Color::Cyan);
+        rect.setOutlineThickness(3.f);
 
+        rRenderWindow.draw(portraitRect);
+        std::string firstThingToWrite = m_dialogContainerList.front().contentList.front().front();
+        sf::Text text(firstThingToWrite, m_font, m_textHeight);
+        text.setPosition(400.f, 903.f);
+        rRenderWindow.draw(text);
+        if (m_dialogContainerList.front().contentList.front().size() == 2 || m_dialogContainerList.front().contentList.front().size() == 3)
+        {
+            std::string nextThingToWrite = *std::next(m_dialogContainerList.front().contentList.front().begin());
+            sf::Text text(nextThingToWrite, m_font, m_textHeight);
+            text.setPosition(400.f, 953.f);
+            rRenderWindow.draw(text);
+        }
+        if (m_dialogContainerList.front().contentList.front().size() == 3)
+        {
+            std::string nextThingToWrite = *std::next(std::next(m_dialogContainerList.front().contentList.front().begin()));
+            sf::Text text(nextThingToWrite, m_font, m_textHeight);
+            text.setPosition(400.f, 1003.f);
+            rRenderWindow.draw(text);
+        }
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && mTimer == k_mMaxTimer)
+    {
+        mTimer = 0;
+        if (!m_dialogContainerList.empty())
+        {
+            if (m_dialogContainerList.front().contentList.size() > 1)
+            {
+                m_dialogContainerList.front().contentList.pop_front();
+            }
+            else
+            {
+                m_dialogContainerList.pop_front();
+            }
+        }
+    }
 }
 
 void DialogSysTest::ProcessFinished(sf::RenderWindow& rRenderWindow)
 {
-
+	std::cout << "Finished" << std::endl;
+	m_state = State_t::WAITING;
 }
