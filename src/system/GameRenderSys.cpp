@@ -34,7 +34,6 @@ GameRenderSys::GameRenderSys(std::string systemConfigItem, entt::registry& rReg,
 
 void GameRenderSys::Update_()
 {
-	//std::cout << m_rReg.alive() << std::endl;
 	ResetRenderState_();
 	RenderTileMapPieces_();
 	RenderRotatableSprites_();
@@ -206,13 +205,17 @@ void GameRenderSys::RenderHealth_()
 		if (!m_rReg.has<PlayerComp>(entity))
 		{
 			sf::RectangleShape totalHealth(sf::Vector2f(float(sizeComp.m_size.width), 10.f));
-			totalHealth.setPosition(positionComp.m_position.x - float(sizeComp.m_size.width/2), positionComp.m_position.y - sizeComp.m_size.height/2 - 10);
+			totalHealth.setPosition(
+				Helper::Mod(int(positionComp.m_position.x - float(sizeComp.m_size.width/2)), ApplicationParameters::k_rightOfScreen),
+				Helper::Mod(int(positionComp.m_position.y - sizeComp.m_size.height/2 - 10), ApplicationParameters::k_bottomOfScreen));
 			totalHealth.setFillColor(sf::Color::Red);
 			m_rRenderWindow.draw(totalHealth);
 
 			float healthRatio = float(healthComp.m_health) / float(maxHealthComp.m_maxHealth);
 			sf::RectangleShape remainingHealth(sf::Vector2f(healthRatio * float(sizeComp.m_size.width), 10.f));
-			remainingHealth.setPosition(positionComp.m_position.x - float(sizeComp.m_size.width/2), positionComp.m_position.y - sizeComp.m_size.height/2- 10);
+			remainingHealth.setPosition(
+				Helper::Mod(int(positionComp.m_position.x - float(sizeComp.m_size.width/2)), ApplicationParameters::k_rightOfScreen),
+				Helper::Mod(int(positionComp.m_position.y - sizeComp.m_size.height/2- 10), ApplicationParameters::k_bottomOfScreen));
 			remainingHealth.setFillColor(sf::Color::Green);
 			m_rRenderWindow.draw(remainingHealth);
 		}
