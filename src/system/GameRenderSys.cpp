@@ -24,6 +24,8 @@
 
 #include <math.h>
 
+#include <iostream>
+
 GameRenderSys::GameRenderSys(std::string systemConfigItem, entt::registry& rReg, sf::RenderWindow& rRenderWindow)
 	: System(systemConfigItem)
 	, m_rReg(rReg)
@@ -32,6 +34,7 @@ GameRenderSys::GameRenderSys(std::string systemConfigItem, entt::registry& rReg,
 
 void GameRenderSys::Update_()
 {
+	//std::cout << m_rReg.alive() << std::endl;
 	ResetRenderState_();
 	RenderTileMapPieces_();
 	RenderRotatableSprites_();
