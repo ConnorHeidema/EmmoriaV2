@@ -12,6 +12,10 @@
 #include "component/functional/DoorComp.hpp"
 #include "component/functional/ClickableComp.hpp"
 #include "component/functional/stats/MaxHealthComp.hpp"
+#include "component/functional/SizeComp.hpp"
+#include "component/functional/RenderableComp.hpp"
+#include "component/functional/DialogComp.hpp"
+#include "component/functional/TextComp.hpp"
 
 #include "util/OverlapUtils.hpp"
 #include "util/PositionUtils.hpp"
@@ -115,10 +119,18 @@ void InteractStringMap::InteractDepressableCompWeightComp(entt::registry& rReg, 
 void InteractStringMap::InteractNearbyPlayerCompSignComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
 {
 	auto& bLeftDown = rReg.get_or_emplace<ClickableComp>(rInteractableEntity).m_bLeftDown;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || bLeftDown)
+	bool dialogExists = false;
+	rReg.view<DialogComp>().each([&](auto entity, auto& doorComp)
 	{
-		// Pop up a dialog here in the center of the screen that doesn't close until the user closes clicks or presses space again
-		std::cout << "Interact with sign" << std::endl;
+		dialogExists = true;
+	});
+	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || bLeftDown) && !dialogExists)
+	{
+		auto entity = rReg.create();
+ 		rReg.emplace<DialogChainComp>(entity);
+		rReg.emplace<StructuredDialogComp>(entity);
+		rReg.emplace<TextComp>(entity) = {std::string("*person* helloworld \\")};
+		rReg.emplace<SizeComp>(entity) = {5,5};
 	}
 }
 

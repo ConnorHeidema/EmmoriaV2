@@ -4,7 +4,7 @@ ItemActionAreaComp PositionComp 50 50 SizeComp 100 100 ClickableComp DeloadableC
 WallTile DAWN_PILLAR_INACCESSIBLE 0 0 DeloadableComp
 WallTile DAWN_PILLAR_BOTTOM_WALL 1 0 DeloadableComp
 WallTile DAWN_PILLAR_BOTTOM_WALL 2 0 DeloadableComp
-WallTile DAWN_PILLAR_SIGN 3 0 DeloadableComp
+WallTile DAWN_PILLAR_SIGN 3 0 InteractableComp SignComp SignComp ClickableComp
 WallTile DAWN_PILLAR_BOTTOM_WALL 4 0 DeloadableComp
 WallTile DAWN_PILLAR_BOTTOM_WALL 5 0 DeloadableComp
 WallTile DAWN_PILLAR_BOTTOM_WALL 6 0 DeloadableComp

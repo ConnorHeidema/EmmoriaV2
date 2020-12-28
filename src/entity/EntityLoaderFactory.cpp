@@ -24,6 +24,7 @@
 #include "component/functional/TrackingComp.hpp"
 #include "component/functional/DoorComp.hpp"
 #include "component/functional/stats/MaxHealthComp.hpp"
+#include "component/functional/SignInfoComp.hpp"
 
 #include "component/InteractStringMap.hpp"
 
@@ -149,6 +150,19 @@ void EntityLoaderFactory::LoadSpriteComp(entt::registry& rReg, entt::entity& rEn
 void EntityLoaderFactory::LoadTextComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
 	auto& text = rReg.get_or_emplace<TextComp>(rEntity).m_text;
+	std::string token;
+	reader >> token;
+	while (token != ApplicationParameters::k_dialogEscape)
+	{
+		text += token + " "; reader >> token;
+	}
+	text.pop_back();
+	reader >> token;
+}
+
+void EntityLoaderFactory::LoadSignInfoComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
+{
+	auto& text = rReg.get_or_emplace<SignInfoComp>(rEntity).m_text;
 	std::string token;
 	reader >> token;
 	while (token != ApplicationParameters::k_dialogEscape)

@@ -71,13 +71,24 @@ void DialogSys::ProcessWaiting()
 			}
 			if (subs.front() == '|' && subs.back() == '|')
 			{
-				if (m_pDialogContainer)
+				if (!m_pDialogContainer)
 				{
-					m_pDialogContainer->nextFileToLoad = subs.substr(1, subs.length() - 2);
-					m_dialogContainerList.emplace_back(*m_pDialogContainer);
+					m_pDialogContainer = std::make_shared<DialogContainer>();
 				}
+				m_pDialogContainer->nextFileToLoad = subs.substr(1, subs.length() - 2);
+				m_dialogContainerList.emplace_back(*m_pDialogContainer);
 				continue;
 			}
+			if (subs == "\\")
+			{
+				if (!m_pDialogContainer)
+				{
+					m_pDialogContainer = std::make_shared<DialogContainer>();
+				}
+				m_dialogContainerList.emplace_back(*m_pDialogContainer);
+				continue;
+			}
+
 			sf::Text testText(m_pDialogContainer->contentList.back().back() + std::string(subs), m_font, DialogParameters::k_fTextHeight);
 			int textActualWidth = testText.getLocalBounds().width;
 			if (textActualWidth > DialogParameters::k_fTextWidth)
@@ -204,6 +215,8 @@ void DialogSys::ProcessFinished()
 	{
 		m_rReg.destroy(entity);
 	});
+	m_dialogContainerList.clear();
+	m_pDialogContainer = nullptr;
 	std::cout << "Finished" << std::endl;
 	m_state = State_t::WAITING;
 }

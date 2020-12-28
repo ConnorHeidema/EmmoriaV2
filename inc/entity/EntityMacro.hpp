@@ -50,7 +50,8 @@
 	macroToUse(TrackingComp) \
 	macroToUse(SwitchComp) \
 	macroToUse(DoorComp) \
-	macroToUse(MaxHealthComp)
+	macroToUse(MaxHealthComp) \
+	macroToUse(SignInfoComp)
 
 #define ALL_COMPONENT_PIECE_MACRO(macroToUse) \
 	macroToUse(Xposition) \
