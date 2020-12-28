@@ -19,6 +19,7 @@ private:
 	void RenderTileMapPieces_();
 	void RenderRotatableSprites_();
 	void RenderBasicSprites_();
+	void RenderDialog_();
 	void RenderText_();
 
 	entt::registry& m_rReg;

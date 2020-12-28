@@ -2,16 +2,15 @@
 #define __DIALOG_COMP__
 
 #include <string>
+#include <list>
 
 /**
  * This component should be added for any dialog which should be shown on screen
  */
 struct DialogComp
 {
-	uint64_t uCurrentDialogIndex;
-	uint32_t uSpriteIndex;
-	std::string content;
-	std::string fileToLoadAfter;
+	std::list<std::string> m_dialogList;
+	std::string m_portrait;
 };
 
 #endif

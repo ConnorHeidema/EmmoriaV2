@@ -1,1 +1,1 @@
-BottomDialog 5 Our tale begins in the small sacred forest by your home village. You have stumbled into a strange cavern and need to find your way out!-*Files/0,0* *
+BottomDialog 5 *person* Trained for defence, imbued with a spirit to fight. We are the last line of defence against the demon of this world. The Vulcan. *mystery* Welcome all to the show. Today we watch  as yet another candidate fights for his life to survive the perilous pit of no return. Shall he survive? Lets watch! *person* where am I? |Files/0,0| \

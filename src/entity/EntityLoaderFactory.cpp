@@ -151,7 +151,10 @@ void EntityLoaderFactory::LoadTextComp(entt::registry& rReg, entt::entity& rEnti
 	auto& text = rReg.get_or_emplace<TextComp>(rEntity).m_text;
 	std::string token;
 	reader >> token;
-	while (token != ApplicationParameters::k_dialogEscape) { text += token + " "; reader >> token; }
+	while (token != ApplicationParameters::k_dialogEscape)
+	{
+		text += token + " "; reader >> token;
+	}
 	text.pop_back();
 	reader >> token;
 }

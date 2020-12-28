@@ -37,6 +37,7 @@ void Application::Initialize_()
 
 void Application::RunLoop_()
 {
+	CheckForEvents_();
 	m_renderWindow.clear();
 	for (auto system : SystemList::m_pSystemList)
 	{
@@ -46,7 +47,6 @@ void Application::RunLoop_()
 		}
 	}
 	m_renderWindow.display();
-	CheckForEvents_();
 }
 
 void Application::CheckForEvents_()

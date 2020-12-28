@@ -10,6 +10,8 @@
 #include "component/functional/TileMapPtrComp.hpp"
 #include "component/functional/HealthComp.hpp"
 #include "component/functional/RotationComp.hpp"
+#include "component/functional/DialogComp.hpp"
+#include "component/functional/ClickableComp.hpp"
 
 #include "util/Mediamap.hpp"
 #include "util/ApplicationParameters.hpp"
@@ -34,6 +36,7 @@ void GameRenderSys::Update_()
 	RenderRotatableSprites_();
 	RenderBasicSprites_();
 	RenderText_();
+	RenderDialog_();
 	RenderHealth_();
 }
 
@@ -187,5 +190,57 @@ void GameRenderSys::RenderHealth_()
 		text.setString(std::string("Health: ") + std::to_string(healthComp.m_health));
 		text.setPosition(sf::Vector2f(50, 1000));
 		m_rRenderWindow.draw(text);
+	});
+}
+
+void GameRenderSys::RenderDialog_()
+{	m_rReg.view<RenderableComp, DialogComp, ClickableComp, PositionComp, SizeComp>().each([&](
+		auto entity,
+		auto& renderableComp,
+		auto& dialogComp,
+		auto& clickableComp,
+		auto& positionComp,
+		auto& sizeComp)
+	{
+		if (renderableComp.m_bRendered == false)
+		{
+			sf::RectangleShape rect(sf::Vector2f(1714.f, 174.f));
+			rect.setFillColor(sf::Color::Blue);
+			rect.setOutlineColor(sf::Color::Red);
+			rect.setOutlineThickness(3.f);
+			rect.setPosition(sf::Vector2f(100.f, 903.f));
+			m_rRenderWindow.draw(rect);
+
+			sf::RectangleShape portraitRect(sf::Vector2f(280, 134.f));
+			portraitRect.setPosition(sf::Vector2f(110.f, 923.f));
+			portraitRect.setFillColor(dialogComp.m_portrait == "person" ? sf::Color::Black : sf::Color::Magenta);
+			portraitRect.setOutlineColor(sf::Color::Cyan);
+			portraitRect.setOutlineThickness(3.f);
+			m_rRenderWindow.draw(portraitRect);
+
+
+			sf::Font font;
+			font.loadFromFile(ApplicationParameters::k_fontPath);
+			std::string firstThingToWrite = dialogComp.m_dialogList.front();
+			sf::Text text(firstThingToWrite, font, 50);
+			text.setPosition(400.f, 903.f);
+			m_rRenderWindow.draw(text);
+			if (dialogComp.m_dialogList.size() == 2 ||dialogComp.m_dialogList.size() == 3)
+			{
+				std::string nextThingToWrite = *std::next(dialogComp.m_dialogList.begin());
+				sf::Text text(nextThingToWrite, font, 50);
+				text.setPosition(400.f, 953.f);
+				m_rRenderWindow.draw(text);
+			}
+			if (dialogComp.m_dialogList.size() == 3)
+			{
+				std::string nextThingToWrite = *std::next(std::next(dialogComp.m_dialogList.begin()));
+				sf::Text text(nextThingToWrite, font, 50);
+				text.setPosition(400.f, 1003.f);
+				m_rRenderWindow.draw(text);
+			}
+
+			renderableComp.m_bRendered = true;
+		}
 	});
 }

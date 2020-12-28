@@ -5,38 +5,39 @@
 
 #include <entt/entt.hpp>
 
-enum DialogSysState_t
-{
-	WAITING,
-	PRODUCING,
-	PENDING,
-	LOADING,
-	FINISHED
-};
+#include <SFML/Graphics.hpp>
 
 class DialogSys
 	: public System
 {
 public:
 	DialogSys(std::string systemConfigItem, entt::registry& reg);
-
 private:
 	void Update_() override;
 
-	void UpdateWaitingState_();
-	void UpdateProducingState_();
-	void UpdatePendingState_();
-	void UpdateLoadingState_();
-	void UpdateFinishedState_();
+	void ProcessWaiting();
+    void ProcessProducing();
+    void ProcessFinished();
 
-	void ProduceRandomDialog_();
-	void ProduceStructuredDialog_();
-
-	std::list<std::string> messageList;
-
-	entt::registry& m_rReg;
-
-	DialogSysState_t m_dialogSysState;
+    class DialogContainer
+    {
+    public:
+        std::string portraitName;
+        std::list<std::list<std::string>> contentList;
+        std::string nextFileToLoad;
+    };
+    std::list<DialogContainer> m_dialogContainerList;
+    enum class State_t
+    {
+        WAITING,
+        PRODUCING,
+        FINISHED
+    } m_state;
+    int mTimer;
+    int const k_mMaxTimer;
+ 	entt::registry& m_rReg;
+	sf::Font m_font;
+    std::shared_ptr<DialogContainer> m_pDialogContainer;
 };
 
 #endif
