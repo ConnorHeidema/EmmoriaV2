@@ -34,7 +34,13 @@ BowSys::BowSys(std::string systemConfigItem, entt::registry& rReg)
 
 void BowSys::Update_()
 {
-	if (m_bowFrequencyLatch.Peek())
+	bool playerBowExists = false;
+
+	m_rReg.view<PlayerComp, BowComp>().each([&](){
+		playerBowExists = true;
+	});
+
+	if (m_bowFrequencyLatch.Peek() && playerBowExists)
 	{
 		m_rReg.view<PlayerComp, PositionComp>().each([&](auto entity, auto& playerPositionComp)
 		{

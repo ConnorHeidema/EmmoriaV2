@@ -6,6 +6,7 @@
 #include "component/functional/ClickableComp.hpp"
 #include "component/functional/MovieComp.hpp"
 #include "entity/EntityLoaderFactory.hpp"
+#include "entity/SaveFileLoaderFactory.hpp"
 #include "util/Mediamap.hpp"
 
 #include "util/ApplicationParameters.hpp"
@@ -42,6 +43,18 @@ void ButtonSys::Update_()
 			{
 				auto reboot = m_rReg.create();
 				m_rReg.emplace<RebootComp>(reboot);
+			}
+			else if (buttonComp.m_action == "LoadFile1")
+			{
+				SaveFileLoaderFactory::LoadFile("Files/0", m_rReg);
+			}
+			else if (buttonComp.m_action == "LoadFile2")
+			{
+				SaveFileLoaderFactory::LoadFile("Files/1", m_rReg);
+			}
+			else if (buttonComp.m_action == "LoadFile3")
+			{
+				SaveFileLoaderFactory::LoadFile("Files/2", m_rReg);
 			}
 		}
 	});

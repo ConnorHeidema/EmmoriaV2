@@ -1,8 +1,2 @@
-bow:1
-stage:dawn_pillar
-xLocation:0
-yLocation:0
-health:255
-level:1
-startPositionX:50
-startPositionY:50
+LocationComp DawnPillar 0 0
+PlayerComp PositionComp 60 33 SizeComp 5 5 SpriteComp Player HealthComp 255 RenderableComp InteractorComp PlayerComp InteractableComp PlayerComp InteractorComp WallInteractorComp WallInteractorComp SpeedComp 3 WeightComp InteractableComp WeightComp MaxHealthComp 255 BowComp

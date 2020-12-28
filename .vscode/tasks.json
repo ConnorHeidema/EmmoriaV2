@@ -67,6 +67,7 @@
 
                 // Entity factory
                 "${workspaceFolder}/src/entity/EntityLoaderFactory.cpp",
+                "${workspaceFolder}/src/entity/SaveFileLoaderFactory.cpp",
 
                 // Internal libraries
                 "-I", "${workspaceFolder}/inc",
@@ -215,6 +216,7 @@
 
                 // Entity factory
                 "${workspaceFolder}/src/entity/EntityLoaderFactory.cpp",
+                "${workspaceFolder}/src/entity/SaveFileLoaderFactory.cpp",
 
 
                 // Internal libraries
