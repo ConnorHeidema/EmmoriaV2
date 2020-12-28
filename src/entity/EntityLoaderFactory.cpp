@@ -382,6 +382,7 @@ void EntityLoaderFactory::LoadBlob(entt::registry& rReg, entt::entity& rEntity, 
 	interactors.insert(InteractStringMap::s_interactStringToType.at("BlobComp"));
 
 	rReg.get_or_emplace<HealthComp>(rEntity).m_health = 10;
+	rReg.get_or_emplace<MaxHealthComp>(rEntity).m_maxHealth = 10;
 
 	rReg.get_or_emplace<SpriteComp>(rEntity).m_filePath =
 		ApplicationParameters::k_spritePath + std::string("Blob") + ApplicationParameters::k_pictureExt;

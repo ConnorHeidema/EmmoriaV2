@@ -12,6 +12,7 @@
 #include "component/functional/RotationComp.hpp"
 #include "component/functional/DialogComp.hpp"
 #include "component/functional/ClickableComp.hpp"
+#include "component/functional/stats/MaxHealthComp.hpp"
 
 #include "util/Mediamap.hpp"
 #include "util/ApplicationParameters.hpp"
@@ -190,6 +191,28 @@ void GameRenderSys::RenderHealth_()
 		text.setString(std::string("Health: ") + std::to_string(healthComp.m_health));
 		text.setPosition(sf::Vector2f(50, 1000));
 		m_rRenderWindow.draw(text);
+	});
+	// all enemies should have health above head
+	m_rReg.view<HealthComp, SizeComp, PositionComp, MaxHealthComp>().each([&](
+		auto entity,
+		auto& healthComp,
+		auto& sizeComp,
+		auto& positionComp,
+		auto& maxHealthComp)
+	{
+		if (!m_rReg.has<PlayerComp>(entity))
+		{
+			sf::RectangleShape totalHealth(sf::Vector2f(float(sizeComp.m_size.width), 10.f));
+			totalHealth.setPosition(positionComp.m_position.x - float(sizeComp.m_size.width/2), positionComp.m_position.y - sizeComp.m_size.height/2 - 10);
+			totalHealth.setFillColor(sf::Color::Red);
+			m_rRenderWindow.draw(totalHealth);
+
+			float healthRatio = float(healthComp.m_health) / float(maxHealthComp.m_maxHealth);
+			sf::RectangleShape remainingHealth(sf::Vector2f(healthRatio * float(sizeComp.m_size.width), 10.f));
+			remainingHealth.setPosition(positionComp.m_position.x - float(sizeComp.m_size.width/2), positionComp.m_position.y - sizeComp.m_size.height/2- 10);
+			remainingHealth.setFillColor(sf::Color::Green);
+			m_rRenderWindow.draw(remainingHealth);
+		}
 	});
 }
 
