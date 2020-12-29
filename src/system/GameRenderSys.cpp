@@ -180,9 +180,10 @@ void GameRenderSys::RenderText_()
 
 void GameRenderSys::RenderHealth_()
 {
-	m_rReg.view<PlayerComp, HealthComp>().each([&](
+	m_rReg.view<PlayerComp, HealthComp, MaxHealthComp>().each([&](
 		auto entity,
-		auto& healthComp)
+		auto& healthComp,
+		auto& maxHealthComp)
 	{
 		sf::Text text;
 		sf::Font font;
@@ -191,8 +192,19 @@ void GameRenderSys::RenderHealth_()
 		text.setFillColor(sf::Color::White);
 		text.setCharacterSize(20);
 		text.setString(std::string("Health: ") + std::to_string(healthComp.m_health));
-		text.setPosition(sf::Vector2f(50, 1000));
+		text.setPosition(sf::Vector2f(50, 920));
 		m_rRenderWindow.draw(text);
+
+		sf::RectangleShape totalHealth(sf::Vector2f(float(100), 10.f));
+		totalHealth.setPosition(sf::Vector2f(50, 950));
+		totalHealth.setFillColor(sf::Color::Red);
+		m_rRenderWindow.draw(totalHealth);
+
+		float healthRatio = float(healthComp.m_health) / float(maxHealthComp.m_maxHealth);
+		sf::RectangleShape remainingHealth(sf::Vector2f(healthRatio * float(100), 10.f));
+		remainingHealth.setPosition(sf::Vector2f(50, 950));
+		remainingHealth.setFillColor(sf::Color::Green);
+		m_rRenderWindow.draw(remainingHealth);
 	});
 	// all enemies should have health above head
 	m_rReg.view<HealthComp, SizeComp, PositionComp, MaxHealthComp>().each([&](
