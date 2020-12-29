@@ -12,12 +12,15 @@
 #include "component/functional/SizeComp.hpp"
 #include "component/functional/DialogComp.hpp"
 #include "component/functional/SignInfoComp.hpp"
+#include "component/functional/ChestComp.hpp"
 
 #include "entity/EntityLoaderFactory.hpp"
 #include "util/PositionUtils.hpp"
 
 #include <sstream>
 #include <limits>
+
+#include <iostream>
 
 #include <SFML/Window.hpp>
 
@@ -124,6 +127,18 @@ void InteractStringMap::InteractNearbyPlayerCompSignComp(entt::registry& rReg, e
 		std::istringstream s(rReg.get_or_emplace<SignInfoComp>(rInteractableEntity).m_text);
 		auto entity = rReg.create();
 		EntityLoaderFactory::LoadBottomDialog(rReg, entity, s);
+	}
+}
+
+void InteractStringMap::InteractNearbyPlayerCompChestTagComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
+{
+	auto& chestAlreadyOpened = rReg.get<ChestComp>(rInteractableEntity).m_bOpened;
+
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !chestAlreadyOpened)
+	{
+		std::cout << "chest opened" << std::endl;
+		chestAlreadyOpened = true;
 	}
 }
 

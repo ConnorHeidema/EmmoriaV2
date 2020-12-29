@@ -6,7 +6,8 @@
 	macroToUse(Blob) \
 	macroToUse(Player) \
 	macroToUse(Depressable) \
-	macroToUse(DoorLooking)
+	macroToUse(DoorLooking) \
+	macroToUse(ChestTag)
 
 #define ALL_TILEMAP_ANIMATION_MACRO(macroToUse) \
 	macroToUse(DawnPillar)
@@ -15,4 +16,5 @@
 	macroToUse(Blob) \
 	macroToUse(Player) \
 	macroToUse(Depressable) \
-	macroToUse(DoorLooking)
+	macroToUse(DoorLooking) \
+	macroToUse(ChestTag)

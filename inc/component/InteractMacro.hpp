@@ -6,4 +6,5 @@
 	macro(Player, Hole) \
 	macro(Blob, Hole) \
 	macro(Depressable, Weight) \
-	macro(NearbyPlayer, Sign)
+	macro(NearbyPlayer, Sign) \
+	macro(NearbyPlayer, ChestTag)

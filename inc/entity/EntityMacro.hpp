@@ -24,7 +24,8 @@
 	macroToUse(DoorLookingComp) \
 	macroToUse(SignComp) \
 	macroToUse(NearbyPlayerComp) \
-	macroToUse(StructuredDialogComp)
+	macroToUse(StructuredDialogComp) \
+	macroToUse(ChestTagComp)
 
 
 #define ALL_FUNCTIONAL_MACRO(macroToUse) \

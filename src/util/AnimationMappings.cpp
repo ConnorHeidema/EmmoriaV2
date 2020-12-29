@@ -5,6 +5,7 @@
 #include "component/functional/DoorComp.hpp"
 #include "component/functional/SwitchComp.hpp"
 #include "component/functional/PositionComp.hpp"
+#include "component/functional/ChestComp.hpp"
 #include "component/tag/AllTagComp.hpp"
 
 #include <SFML/Window.hpp>
@@ -43,6 +44,11 @@ void AnimationMappings::BlobMapping(entt::registry& rReg, entt::entity& rEntity,
 		case Blob::BLOB_4: animation = Blob::BLOB_1; break;
 		default: break;
 	}
+}
+
+void AnimationMappings::ChestTagMapping(entt::registry& rReg, entt::entity& rEntity, int& animation)
+{
+	animation = rReg.get<ChestComp>(rEntity).m_bOpened;
 }
 
 void AnimationMappings::PlayerMapping(entt::registry& rReg, entt::entity& rEntity, int& animation)

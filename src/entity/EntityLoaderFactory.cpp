@@ -94,6 +94,7 @@ void EntityLoaderFactory::LoadChestComp(entt::registry& rReg, entt::entity& rEnt
 		static_cast<float>(std::stoi(ReadTokenList_(1, reader).at(0)))
 	};
 
+	rReg.emplace<ChestTagComp>(rEntity);
 	rReg.emplace<WallComp>(rEntity);
 	rReg.emplace<DeloadableComp>(rEntity);
 	rReg.emplace<SpriteComp>(rEntity).m_filePath = ApplicationParameters::k_spritePath + std::string("chest.png");
