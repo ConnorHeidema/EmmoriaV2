@@ -6,6 +6,7 @@
 #include "util/Latch.hpp"
 
 #include <SFML/Window.hpp>
+#include <string>
 
 class ConfigSys
 	: public System
@@ -19,6 +20,7 @@ private:
 	Latch m_configUpdateLatch;
 
 	static int const updateRate;
+	static std::string const k_configFileName;
 };
 
 #endif

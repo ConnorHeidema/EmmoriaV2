@@ -52,7 +52,8 @@
 	macroToUse(SwitchComp) \
 	macroToUse(DoorComp) \
 	macroToUse(MaxHealthComp) \
-	macroToUse(SignInfoComp)
+	macroToUse(SignInfoComp) \
+	macroToUse(ChestComp)
 
 #define ALL_COMPONENT_PIECE_MACRO(macroToUse) \
 	macroToUse(Xposition) \

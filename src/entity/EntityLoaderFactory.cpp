@@ -7,6 +7,7 @@
 #include "component/functional/ClickableComp.hpp"
 #include "component/functional/HealthComp.hpp"
 #include "component/functional/InteractableComp.hpp"
+#include "component/functional/ChestComp.hpp"
 #include "component/functional/InteractorComp.hpp"
 #include "component/functional/LastPositionComp.hpp"
 #include "component/functional/LoadComp.hpp"
@@ -75,6 +76,29 @@ void EntityLoaderFactory::LoadMaxHealthComp(entt::registry& rReg, entt::entity& 
 void EntityLoaderFactory::LoadHealthComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
 	rReg.get_or_emplace<HealthComp>(rEntity).m_health = std::stoi(ReadTokenList_(1, reader).at(0));
+}
+
+void EntityLoaderFactory::LoadChestComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
+{
+	rReg.get_or_emplace<ChestComp>(rEntity).m_bOpened = std::stoi(ReadTokenList_(1, reader).at(0));
+	rReg.get_or_emplace<ChestComp>(rEntity).m_contents = ReadTokenList_(1, reader).at(0);
+	rReg.emplace<SizeComp>(rEntity).m_size =
+	{
+		static_cast<uint32_t>(ApplicationParameters::k_widthAdjustment * 5),
+		static_cast<uint32_t>(ApplicationParameters::k_heightAdjustment * 5)
+	};
+	rReg.emplace<RenderableComp>(rEntity);
+	rReg.emplace<PositionComp>(rEntity).m_position =
+	{
+		static_cast<float>(std::stoi(ReadTokenList_(1, reader).at(0))),
+		static_cast<float>(std::stoi(ReadTokenList_(1, reader).at(0)))
+	};
+
+	rReg.emplace<WallComp>(rEntity);
+	rReg.emplace<DeloadableComp>(rEntity);
+	rReg.emplace<SpriteComp>(rEntity).m_filePath = ApplicationParameters::k_spritePath + std::string("chest.png");
+	auto& interactableComp = rReg.get_or_emplace<InteractableComp>(rEntity);
+	interactableComp.m_interactTypeList.insert(InteractType_t::WallComp_t);
 }
 
 void EntityLoaderFactory::LoadInteractableComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)

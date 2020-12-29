@@ -4,21 +4,21 @@
 // todo check if this is needed
 #include <entt/entt.hpp>
 
-
 int const ConfigSys::updateRate = 60;
+std::string const ConfigSys::k_configFileName = "data/Config/config.ini";
 
 ConfigSys::ConfigSys(std::string systemConfigItem, entt::registry& rReg)
 	: System(systemConfigItem)
 	, m_rReg(rReg)
 	, m_configUpdateLatch(updateRate)
 {
-	ConfigItems::LoadConfigFile("data/Config/config.ini");
+	ConfigItems::LoadConfigFile(k_configFileName);
 }
 
 void ConfigSys::Update_()
 {
 	if (m_configUpdateLatch.CheckLatch())
 	{
-		ConfigItems::LoadConfigFile("data/Config/config.ini");
+		ConfigItems::LoadConfigFile(k_configFileName);
 	}
 }

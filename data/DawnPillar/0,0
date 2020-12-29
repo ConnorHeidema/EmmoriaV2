@@ -1,6 +1,8 @@
 TileMapComp DawnPillar RenderableComp DeloadableComp
 InteractableComp HealingPadComp PositionComp 70 60 SizeComp 5 5 SpriteComp HealingPad RenderableComp HealingPadComp DeloadableComp
 
+ChestComp 0 bow 240 240
+
 Blob 100 60
 Blob 90 80
 
