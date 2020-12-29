@@ -39,8 +39,8 @@ void GameRenderSys::Update_()
 	RenderRotatableSprites_();
 	RenderBasicSprites_();
 	RenderText_();
-	RenderDialog_();
 	RenderHealth_();
+	RenderDialog_();
 }
 
 void GameRenderSys::ResetRenderState_()
@@ -159,7 +159,7 @@ void GameRenderSys::RenderText_()
 				sf::Vector2f(
 					positionComp.m_position.x - sizeComp.m_size.width/2,
 					positionComp.m_position.y - sizeComp.m_size.height/2));
-			rectShape.setFillColor(sf::Color::Green);
+			rectShape.setFillColor(sf::Color(0,255,0,150));
 			m_rRenderWindow.draw(rectShape);
 
 			sf::Text text;
@@ -195,16 +195,7 @@ void GameRenderSys::RenderHealth_()
 		text.setPosition(sf::Vector2f(50, 920));
 		m_rRenderWindow.draw(text);
 
-		sf::RectangleShape totalHealth(sf::Vector2f(float(100), 10.f));
-		totalHealth.setPosition(sf::Vector2f(50, 950));
-		totalHealth.setFillColor(sf::Color::Red);
-		m_rRenderWindow.draw(totalHealth);
-
-		float healthRatio = float(healthComp.m_health) / float(maxHealthComp.m_maxHealth);
-		sf::RectangleShape remainingHealth(sf::Vector2f(healthRatio * float(100), 10.f));
-		remainingHealth.setPosition(sf::Vector2f(50, 950));
-		remainingHealth.setFillColor(sf::Color::Green);
-		m_rRenderWindow.draw(remainingHealth);
+		RenderHealthBar_(text.getLocalBounds().width, 50, 920, float(healthComp.m_health) / float(maxHealthComp.m_maxHealth));
 	});
 	// all enemies should have health above head
 	m_rReg.view<HealthComp, SizeComp, PositionComp, MaxHealthComp>().each([&](
@@ -216,20 +207,11 @@ void GameRenderSys::RenderHealth_()
 	{
 		if (!m_rReg.has<PlayerComp>(entity))
 		{
-			sf::RectangleShape totalHealth(sf::Vector2f(float(sizeComp.m_size.width), 10.f));
-			totalHealth.setPosition(
+			RenderHealthBar_(
+				float(sizeComp.m_size.width),
 				Helper::Mod(int(positionComp.m_position.x - float(sizeComp.m_size.width/2)), ApplicationParameters::k_rightOfScreen),
-				Helper::Mod(int(positionComp.m_position.y - sizeComp.m_size.height/2 - 10), ApplicationParameters::k_bottomOfScreen));
-			totalHealth.setFillColor(sf::Color::Red);
-			m_rRenderWindow.draw(totalHealth);
-
-			float healthRatio = float(healthComp.m_health) / float(maxHealthComp.m_maxHealth);
-			sf::RectangleShape remainingHealth(sf::Vector2f(healthRatio * float(sizeComp.m_size.width), 10.f));
-			remainingHealth.setPosition(
-				Helper::Mod(int(positionComp.m_position.x - float(sizeComp.m_size.width/2)), ApplicationParameters::k_rightOfScreen),
-				Helper::Mod(int(positionComp.m_position.y - sizeComp.m_size.height/2- 10), ApplicationParameters::k_bottomOfScreen));
-			remainingHealth.setFillColor(sf::Color::Green);
-			m_rRenderWindow.draw(remainingHealth);
+				Helper::Mod(int(positionComp.m_position.y - sizeComp.m_size.height/2 - 10), ApplicationParameters::k_bottomOfScreen),
+				float(healthComp.m_health) / float(maxHealthComp.m_maxHealth));
 		}
 	});
 }
@@ -246,8 +228,8 @@ void GameRenderSys::RenderDialog_()
 		if (renderableComp.m_bRendered == false)
 		{
 			sf::RectangleShape rect(sf::Vector2f(1714.f, 174.f));
-			rect.setFillColor(sf::Color::Blue);
-			rect.setOutlineColor(sf::Color::Red);
+			rect.setFillColor(sf::Color(0,0,255,150)); // blue
+			rect.setOutlineColor(sf::Color(0,255,0,150)); // green
 			rect.setOutlineThickness(3.f);
 			rect.setPosition(sf::Vector2f(100.f, 903.f));
 			m_rRenderWindow.draw(rect);
@@ -264,7 +246,7 @@ void GameRenderSys::RenderDialog_()
 					0,
 					100,
 					100));
-			portraitRect.setOutlineColor(sf::Color::Cyan);
+			portraitRect.setOutlineColor(sf::Color(0,255,255,150));
 			portraitRect.setOutlineThickness(3.f);
 			m_rRenderWindow.draw(portraitRect);
 
@@ -293,4 +275,24 @@ void GameRenderSys::RenderDialog_()
 			renderableComp.m_bRendered = true;
 		}
 	});
+}
+
+void GameRenderSys::RenderHealthBar_(
+	float const& spriteWidth,
+	float const& xPosition,
+	float const& yPosition,
+	float const& healthRatio)
+{
+	float const amountAboveSprite = 15.f;
+	float const heightOfBar = 10.f;
+	sf::RectangleShape totalHealth(sf::Vector2f(spriteWidth, heightOfBar));
+	totalHealth.setPosition(sf::Vector2f(xPosition, yPosition - amountAboveSprite));
+	totalHealth.setFillColor(sf::Color::Red);
+	m_rRenderWindow.draw(totalHealth);
+
+	sf::RectangleShape remainingHealth(sf::Vector2f(healthRatio * spriteWidth, heightOfBar));
+	remainingHealth.setPosition(sf::Vector2f(xPosition, yPosition - amountAboveSprite));
+	remainingHealth.setFillColor(sf::Color::Green);
+	m_rRenderWindow.draw(remainingHealth);
+
 }

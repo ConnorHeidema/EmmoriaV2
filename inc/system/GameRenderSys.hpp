@@ -21,6 +21,12 @@ private:
 	void RenderDialog_();
 	void RenderText_();
 
+	void RenderHealthBar_(
+		float const& spriteWidth,
+		float const& xPosition,
+		float const& yPosition,
+		float const& healthRatio);
+
 	entt::registry& m_rReg;
 	sf::RenderWindow& m_rRenderWindow;
 };
