@@ -17,8 +17,6 @@
 
 #include "util/Mediamap.hpp"
 
-#include <SFML/Graphics.hpp>
-
 #include <math.h>
 #include <iostream>
 

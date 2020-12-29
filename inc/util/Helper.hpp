@@ -1,12 +1,6 @@
 #ifndef __HELPER__
 #define __HELPER__
 
-#include "util/Mediamap.hpp"
-#include "util/Entitymap.hpp"
-
-#include <unordered_map>
-#include <string>
-
 class Helper
 {
 public:

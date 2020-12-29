@@ -8,19 +8,13 @@
 #include "component/functional/PositionComp.hpp"
 #include "component/functional/RenderableComp.hpp"
 #include "component/functional/ClickableComp.hpp"
-#include "component/functional/LocationComp.hpp"
 #include "component/functional/DialogComp.hpp"
 
-#include "util/ApplicationParameters.hpp"
-#include "util/EntityLoaderUtils.hpp"
-#include "util/Helper.hpp"
 #include "util/DialogParameters.hpp"
 
-#include <entt/entt.hpp>
-
-#include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
+#include <sstream>
 #include <iostream>
 
 DialogSys::DialogSys(std::string systemConfigItem, entt::registry& rReg)

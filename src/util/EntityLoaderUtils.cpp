@@ -2,8 +2,11 @@
 
 #include "util/ApplicationParameters.hpp"
 
+#include <SFML/Graphics.hpp>
+
 int EntityLoaderUtils::GetTextWidth(std::string text, int height)
-{	sf::Text dummyText;
+{
+	sf::Text dummyText;
 	sf::Font font;
 	font.loadFromFile(ApplicationParameters::k_fontPath);
 	dummyText.setFont(font);

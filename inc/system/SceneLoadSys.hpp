@@ -3,8 +3,6 @@
 
 #include "system/System.hpp"
 
-#include "component/functional/LocationComp.hpp"
-
 #include <entt/entt.hpp>
 
 class SceneLoadSys

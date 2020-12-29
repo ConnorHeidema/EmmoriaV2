@@ -1,6 +1,7 @@
 #include "util/Helper.hpp"
 
 #include <stdlib.h>
+#include <ctime>
 
 Helper::Helper()
 {

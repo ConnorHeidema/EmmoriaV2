@@ -7,7 +7,6 @@
 
 #include <unordered_map>
 #include <string>
-#include <tuple>
 
 using fnEntityInteractor = void(*)(entt::registry& rReg, entt::entity& rinteractorEntity, entt::entity& rinteractableEntity);
 

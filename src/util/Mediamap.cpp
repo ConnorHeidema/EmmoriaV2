@@ -1,9 +1,17 @@
 #include "util/Mediamap.hpp"
 
+#ifdef __linux__
+	#include <experimental/filesystem>
+#elif _WIN32
+	#include <filesystem>
+#else
+
+#endif
+
 std::unordered_map<Media_t, std::string> Mediamap::Create_map()
 {
-	
-	#ifdef __linux__ 
+
+	#ifdef __linux__
 		using namespace std::experimental;
 	#elif _WIN32
 		using namespace std;

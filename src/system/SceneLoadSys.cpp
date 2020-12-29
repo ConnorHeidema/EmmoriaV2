@@ -5,6 +5,7 @@
 #include "component/tag/AllTagComp.hpp"
 #include "component/functional/PositionComp.hpp"
 #include "component/functional/LoadComp.hpp"
+#include "component/functional/LocationComp.hpp"
 
 #include <cmath>
 #include <limits>

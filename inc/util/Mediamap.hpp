@@ -4,14 +4,6 @@
 #include <unordered_map>
 #include <string>
 
-#ifdef __linux__ 
-	#include <experimental/filesystem>
-#elif _WIN32
-	#include <filesystem>
-#else
-
-#endif
-
 enum class Media_t
 {
 	INTRO_MOVIE,

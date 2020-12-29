@@ -1,29 +1,22 @@
 #include "component/InteractStringMap.hpp"
 
-#include "util/ApplicationParameters.hpp"
-
 #include "component/tag/AllTagComp.hpp"
 #include "component/functional/HealthComp.hpp"
 #include "component/functional/LastPositionComp.hpp"
 #include "component/functional/PositionComp.hpp"
-#include "component/functional/SizeComp.hpp"
 #include "component/functional/LocationComp.hpp"
 #include "component/functional/SwitchComp.hpp"
 #include "component/functional/DoorComp.hpp"
 #include "component/functional/ClickableComp.hpp"
 #include "component/functional/stats/MaxHealthComp.hpp"
 #include "component/functional/SizeComp.hpp"
-#include "component/functional/RenderableComp.hpp"
 #include "component/functional/DialogComp.hpp"
-#include "component/functional/TextComp.hpp"
 #include "component/functional/SignInfoComp.hpp"
 
 #include "entity/EntityLoaderFactory.hpp"
-#include "util/OverlapUtils.hpp"
 #include "util/PositionUtils.hpp"
-#include "util/MouseUtils.hpp"
 
-#include <iostream>
+#include <sstream>
 #include <limits>
 
 #include <SFML/Window.hpp>

@@ -1,9 +1,4 @@
-#include "util/Size.hpp"
-
 #include "core/Application.hpp"
-#include "config/ConfigItems.hpp"
-
-#include <SFML/Graphics.hpp>
 
 #include <iostream>
 

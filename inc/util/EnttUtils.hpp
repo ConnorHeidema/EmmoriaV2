@@ -3,9 +3,6 @@
 
 #include "entt/entt.hpp"
 
-#include <unordered_map>
-#include <string>
-
 template <typename T>
 class EnttUtils
 {

@@ -1,12 +1,6 @@
 #ifndef __MOUSE_UTILS__
 #define __MOUSE_UTILS__
 
-#include "util/Mediamap.hpp"
-#include "util/Entitymap.hpp"
-
-#include <unordered_map>
-#include <string>
-
 class MouseUtils
 {
 public:

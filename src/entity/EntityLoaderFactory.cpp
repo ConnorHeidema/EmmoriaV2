@@ -35,6 +35,7 @@
 #include "util/EntityLoaderUtils.hpp"
 
 #include <string>
+#include <sstream>
 #include <iostream>
 
 /* Tag loaders */

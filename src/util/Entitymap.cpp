@@ -2,10 +2,6 @@
 
 #include "entity/EntityLoaderFactory.hpp"
 
-#include <iostream>
-#include <fstream>
-#include <sstream>
-
 std::unordered_map<std::string, fnEntityfactory> Entitymap::Create_map()
 {
 	std::unordered_map<std::string, fnEntityfactory> m;
