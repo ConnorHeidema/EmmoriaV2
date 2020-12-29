@@ -242,7 +242,16 @@ void GameRenderSys::RenderDialog_()
 
 			sf::RectangleShape portraitRect(sf::Vector2f(280, 134.f));
 			portraitRect.setPosition(sf::Vector2f(110.f, 923.f));
-			portraitRect.setFillColor(dialogComp.m_portrait == "person" ? sf::Color::Black : sf::Color::Magenta);
+
+			sf::Texture texture;
+			texture.loadFromFile(std::string("sprite/portrait/") + std::string(dialogComp.m_portrait) + std::string(".png"));
+			portraitRect.setTexture(&texture);
+			portraitRect.setTextureRect(
+				sf::IntRect(
+					0,
+					0,
+					100,
+					100));
 			portraitRect.setOutlineColor(sf::Color::Cyan);
 			portraitRect.setOutlineThickness(3.f);
 			m_rRenderWindow.draw(portraitRect);

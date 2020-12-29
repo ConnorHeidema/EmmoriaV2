@@ -1,1 +1,1 @@
-BottomDialog 5 *person* Trained for defence, imbued with a spirit to fight. We are the last line of defence against the demon of this world. The Vulcan. *mystery* Welcome all to the show. Today we watch  as yet another candidate fights for his life to survive the perilous pit of no return. Shall he survive? Lets watch! *person* where am I? |newgame_redirect| \
+BottomDialog 5 *charles* Where am I? Why have I been put in this pit. Well I guess I need to find a way out. *anonymous* Good luck :) *charles* Who is that! |newgame_redirect| \

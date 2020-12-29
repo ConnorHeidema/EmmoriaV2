@@ -47,6 +47,7 @@ void DialogSys::Update_()
 
 void DialogSys::ProcessWaiting()
 {
+	mTimer = 0;
 	m_rReg.view<DialogChainComp, StructuredDialogComp, TextComp, SizeComp>().each([&]
 		(auto entity,
 		auto& textComp,

@@ -31,6 +31,7 @@
 	macroToUse(ButtonComp) \
 	macroToUse(ClickableComp) \
 	macroToUse(DialogComp) \
+	macroToUse(DialogFacadeComp) \
 	macroToUse(HealthComp) \
 	macroToUse(InteractableComp) \
 	macroToUse(InteractorComp) \

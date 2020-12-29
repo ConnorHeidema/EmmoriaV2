@@ -6,7 +6,7 @@ Blob 90 80
 WallTile DAWN_PILLAR_INACCESSIBLE 0 0 DeloadableComp
 WallTile DAWN_PILLAR_BOTTOM_WALL 1 0 DeloadableComp
 WallTile DAWN_PILLAR_BOTTOM_WALL 2 0 DeloadableComp
-WallTile DAWN_PILLAR_SIGN 3 0 InteractableComp SignComp SignComp ClickableComp
+WallTile DAWN_PILLAR_SIGN 3 0 InteractableComp SignComp SignComp ClickableComp SignInfoComp 5 *Sign* None make it out of here alive. || \ _
 WallTile DAWN_PILLAR_BOTTOM_WALL 4 0 DeloadableComp
 WallTile DAWN_PILLAR_BOTTOM_WALL 5 0 DeloadableComp
 WallTile DAWN_PILLAR_BOTTOM_WALL 6 0 DeloadableComp

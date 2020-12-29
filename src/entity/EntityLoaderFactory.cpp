@@ -25,6 +25,7 @@
 #include "component/functional/DoorComp.hpp"
 #include "component/functional/stats/MaxHealthComp.hpp"
 #include "component/functional/SignInfoComp.hpp"
+#include "component/functional/DialogFacadeComp.hpp"
 
 #include "component/InteractStringMap.hpp"
 
@@ -165,7 +166,7 @@ void EntityLoaderFactory::LoadSignInfoComp(entt::registry& rReg, entt::entity& r
 	auto& text = rReg.get_or_emplace<SignInfoComp>(rEntity).m_text;
 	std::string token;
 	reader >> token;
-	while (token != ApplicationParameters::k_dialogEscape)
+	while (token != "_")
 	{
 		text += token + " "; reader >> token;
 	}
@@ -294,6 +295,11 @@ void EntityLoaderFactory::LoadButton(entt::registry& rReg, entt::entity& rEntity
 void EntityLoaderFactory::LoadDialogComp(entt::registry&, entt::entity&, std::istringstream&)
 {
 	// @todo Connor Heidema 2020-12-5
+}
+
+void EntityLoaderFactory::LoadDialogFacadeComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
+{
+	LoadTextComp(rReg, rEntity, reader);
 }
 
 void EntityLoaderFactory::LoadRandomDialog(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)

@@ -16,7 +16,9 @@
 #include "component/functional/RenderableComp.hpp"
 #include "component/functional/DialogComp.hpp"
 #include "component/functional/TextComp.hpp"
+#include "component/functional/SignInfoComp.hpp"
 
+#include "entity/EntityLoaderFactory.hpp"
 #include "util/OverlapUtils.hpp"
 #include "util/PositionUtils.hpp"
 #include "util/MouseUtils.hpp"
@@ -126,11 +128,9 @@ void InteractStringMap::InteractNearbyPlayerCompSignComp(entt::registry& rReg, e
 	});
 	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || bLeftDown) && !dialogExists)
 	{
+		std::istringstream s(rReg.get_or_emplace<SignInfoComp>(rInteractableEntity).m_text);
 		auto entity = rReg.create();
- 		rReg.emplace<DialogChainComp>(entity);
-		rReg.emplace<StructuredDialogComp>(entity);
-		rReg.emplace<TextComp>(entity) = {std::string("*person* helloworld \\")};
-		rReg.emplace<SizeComp>(entity) = {5,5};
+		EntityLoaderFactory::LoadBottomDialog(rReg, entity, s);
 	}
 }
 
