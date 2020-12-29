@@ -7,6 +7,8 @@
 
 #include <string>
 
+#include <entt/fwd.hpp>
+
 /**
  * Purpose:
  * 	This abstract class acts as a facade for all systems to allow each system

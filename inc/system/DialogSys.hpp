@@ -3,9 +3,10 @@
 
 #include "system/System.hpp"
 
-#include <entt/entt.hpp>
-
 #include <SFML/Graphics.hpp>
+
+#include <list>
+#include <memory>
 
 class DialogSys
 	: public System

@@ -17,6 +17,8 @@
 
 #include "util/Mediamap.hpp"
 
+#include <entt/entt.hpp>
+
 #include <math.h>
 #include <iostream>
 

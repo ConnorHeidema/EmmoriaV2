@@ -7,8 +7,6 @@
 
 #include <sfeMovie/Movie.hpp>
 
-#include <entt/entt.hpp>
-
 #include <memory>
 
 class MovieRenderSys

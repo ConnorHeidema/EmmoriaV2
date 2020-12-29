@@ -3,8 +3,6 @@
 
 #include "system/System.hpp"
 
-#include <entt/entt.hpp>
-
 class ButtonSys
 	: public System
 {

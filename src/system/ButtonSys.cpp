@@ -4,12 +4,14 @@
 
 #include "component/functional/ButtonComp.hpp"
 #include "component/functional/ClickableComp.hpp"
+#include "component/functional/LoadComp.hpp"
 #include "component/functional/MovieComp.hpp"
 #include "entity/EntityLoaderFactory.hpp"
-#include "entity/SaveFileLoaderFactory.hpp"
 #include "util/Mediamap.hpp"
 
 #include "util/ApplicationParameters.hpp"
+
+#include <entt/entt.hpp>
 
 #include <sstream>
 #include <fstream>
@@ -46,15 +48,21 @@ void ButtonSys::Update_()
 			}
 			else if (buttonComp.m_action == "LoadFile1")
 			{
-				SaveFileLoaderFactory::LoadFile("Files/0", m_rReg);
+				m_rReg.clear();
+				auto entity = m_rReg.create();
+				m_rReg.emplace<LoadComp>(entity).m_filePath = "Files/0";
 			}
 			else if (buttonComp.m_action == "LoadFile2")
 			{
-				SaveFileLoaderFactory::LoadFile("Files/1", m_rReg);
+				m_rReg.clear();
+				auto entity = m_rReg.create();
+				m_rReg.emplace<LoadComp>(entity).m_filePath = "Files/0";
 			}
 			else if (buttonComp.m_action == "LoadFile3")
 			{
-				SaveFileLoaderFactory::LoadFile("Files/2", m_rReg);
+				m_rReg.clear();
+				auto entity = m_rReg.create();
+				m_rReg.emplace<LoadComp>(entity).m_filePath = "Files/0";
 			}
 		}
 	});

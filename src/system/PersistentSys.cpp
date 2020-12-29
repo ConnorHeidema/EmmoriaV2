@@ -4,6 +4,8 @@
 
 #include "component/functional/PositionComp.hpp"
 
+#include <entt/entt.hpp>
+
 int const PersistentSys::mk_MaxFramesToLive = 24;
 
 PersistentSys::PersistentSys(std::string systemConfigItem, entt::registry& rReg)

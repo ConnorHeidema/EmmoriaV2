@@ -9,6 +9,8 @@
 
 #include <iostream>
 
+#include <entt/entt.hpp>
+
 SwitchSys::SwitchSys(std::string systemConfigItem, entt::registry& rReg)
 	: System(systemConfigItem)
 	, m_rReg(rReg)

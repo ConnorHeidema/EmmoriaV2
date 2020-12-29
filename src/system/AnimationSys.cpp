@@ -9,6 +9,8 @@
 
 #include "util/AnimationMappings.hpp"
 
+#include <entt/entt.hpp>
+
 #include <string.h>
 #include <iostream>
 

@@ -8,6 +8,8 @@
 #include "component/functional/TileMapPtrComp.hpp"
 #include "component/functional/RenderableComp.hpp"
 
+#include <entt/entt.hpp>
+
 TileMapSys::TileMapSys(std::string systemConfigItem, entt::registry& rReg)
 	: System(systemConfigItem)
 	, m_rReg(rReg)

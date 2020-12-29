@@ -67,7 +67,6 @@
 
                 // Entity factory
                 "${workspaceFolder}/src/entity/EntityLoaderFactory.cpp",
-                "${workspaceFolder}/src/entity/SaveFileLoaderFactory.cpp",
 
                 // Internal libraries
                 "-I", "${workspaceFolder}/inc",
@@ -97,7 +96,8 @@
                 "-l", "sfml-audio",
                 "-l", "sfml-network",
 
-                "-o", "${workspaceFolder}/output/emmoria.out"
+                "-o", "${workspaceFolder}/output/emmoria.out",
+                "-O0"
             ],
             "options": { "cwd": "${workspaceFolder}" },
             "problemMatcher": [ "$gcc" ],
@@ -144,7 +144,8 @@
                 "-l", "sfml-audio",
                 "-l", "sfml-network",
 
-                "-o", "${workspaceFolder}/output/emmoria.out"
+                "-o", "${workspaceFolder}/output/emmoria.out",
+                "-O0"
             ],
             "options": { "cwd": "${workspaceFolder}" },
             "problemMatcher": [ "$gcc" ],
@@ -216,7 +217,6 @@
 
                 // Entity factory
                 "${workspaceFolder}/src/entity/EntityLoaderFactory.cpp",
-                "${workspaceFolder}/src/entity/SaveFileLoaderFactory.cpp",
 
 
                 // Internal libraries
@@ -247,7 +247,8 @@
                 "-l", "sfml-audio",
                 "-l", "sfml-network",
 
-                "-o", "${workspaceFolder}/output/emmoria.out"
+                "-o", "${workspaceFolder}/output/emmoria.out",
+                "-O0"
 			],
 			"options": {
 				"cwd": "${workspaceFolder}"

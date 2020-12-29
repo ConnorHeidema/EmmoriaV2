@@ -8,6 +8,7 @@
 #include "component/functional/InteractableComp.hpp"
 
 #include <SFML/Window.hpp>
+#include <entt/entt.hpp>
 
 #include <iostream>
 

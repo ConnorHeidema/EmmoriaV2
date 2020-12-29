@@ -13,6 +13,7 @@
 #include "util/DialogParameters.hpp"
 
 #include <SFML/Window.hpp>
+#include <entt/entt.hpp>
 
 #include <sstream>
 #include <iostream>

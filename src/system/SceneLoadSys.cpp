@@ -7,6 +7,8 @@
 #include "component/functional/LoadComp.hpp"
 #include "component/functional/LocationComp.hpp"
 
+#include <entt/entt.hpp>
+
 #include <cmath>
 #include <limits>
 #include <iostream>

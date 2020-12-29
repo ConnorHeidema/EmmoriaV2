@@ -3,9 +3,6 @@
 
 #include "system/System.hpp"
 
-#include <entt/entt.hpp>
-
-
 /**
  * This system handles interactions between 2 objects
  */

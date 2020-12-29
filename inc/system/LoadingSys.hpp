@@ -3,9 +3,6 @@
 
 #include "system/System.hpp"
 
-
-#include <entt/entt.hpp>
-
 class LoadingSys
 	: public System
 {

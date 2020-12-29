@@ -5,7 +5,6 @@
 
 #include "core/TileMap.hpp"
 
-#include <entt/entt.hpp>
 #include <SFML/Graphics.hpp>
 
 #include <memory>

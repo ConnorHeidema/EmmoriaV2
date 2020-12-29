@@ -3,8 +3,6 @@
 
 #include "system/System.hpp"
 
-#include <entt/entt.hpp>
-
 /**
  * This system deals with the movement of all entities.
  * components utilised:

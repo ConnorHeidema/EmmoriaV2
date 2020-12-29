@@ -9,6 +9,8 @@
 
 #include "util/MouseUtils.hpp"
 
+#include <entt/entt.hpp>
+
 #include <iostream>
 
 ClickableSys::ClickableSys(std::string systemConfigItem, entt::registry& rReg)

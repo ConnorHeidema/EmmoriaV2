@@ -1,6 +1,5 @@
 #include "system/InteractingSys.hpp"
 
-
 #include "util/ApplicationParameters.hpp"
 
 #include "component/tag/AllTagComp.hpp"
@@ -19,6 +18,8 @@
 #include "TileMap/TileMapIndexes.hpp"
 
 #include <SFML/Window.hpp>
+
+#include <entt/entt.hpp>
 
 #include <iostream>
 

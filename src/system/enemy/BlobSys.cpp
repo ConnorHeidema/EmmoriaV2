@@ -7,6 +7,8 @@
 
 #include "util/AnimationMappings.hpp"
 
+#include <entt/entt.hpp>
+
 #include <math.h>
 
 float const BlobSys::mk_sightDistance = 300;

@@ -8,8 +8,6 @@
 
 #include "util/Latch.hpp"
 
-#include <entt/entt.hpp>
-
 class BowSys
 	: public System
 {

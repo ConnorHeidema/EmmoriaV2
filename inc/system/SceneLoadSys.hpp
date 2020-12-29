@@ -3,8 +3,6 @@
 
 #include "system/System.hpp"
 
-#include <entt/entt.hpp>
-
 class SceneLoadSys
 	: public System
 {
