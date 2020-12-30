@@ -1,6 +1,6 @@
 #include "util/ApplicationParameters.hpp"
 
-#include <SFML/Graphics.hpp>
+#include <SFML/Window/VideoMode.hpp>
 
 int const ApplicationParameters::k_screenWidth = sf::VideoMode::getDesktopMode().width;
 int const ApplicationParameters::k_screenHeight = sf::VideoMode::getDesktopMode().height;

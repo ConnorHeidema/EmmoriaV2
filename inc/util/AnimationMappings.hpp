@@ -1,9 +1,8 @@
 #ifndef __ANIMATION_MAPPINGS__
 #define __ANIMATION_MAPPINGS__
 
-#include "entt/entt.hpp"
-
 #include <unordered_map>
+#include <entt/fwd.hpp>
 
 using fnAnimationMapping = void(*)(entt::registry& rReg, entt::entity& rEntity, int& animation);
 

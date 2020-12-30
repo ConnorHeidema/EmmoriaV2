@@ -7,11 +7,6 @@
 #include "component/functional/DoorComp.hpp"
 #include "component/functional/InteractableComp.hpp"
 
-#include <SFML/Window.hpp>
-#include <entt/entt.hpp>
-
-#include <iostream>
-
 DoorSys::DoorSys(std::string systemConfigItem, entt::registry& rReg)
 	: System(systemConfigItem)
 	, m_rReg(rReg)

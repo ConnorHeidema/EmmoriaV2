@@ -17,12 +17,6 @@
 
 #include "TileMap/TileMapIndexes.hpp"
 
-#include <SFML/Window.hpp>
-
-#include <entt/entt.hpp>
-
-#include <iostream>
-
 #define INDEX() \
 	static_cast<int>(interactorType) * \
 	static_cast<int>(InteractType_t::NUM_INTERACTOR_TYPE) + \

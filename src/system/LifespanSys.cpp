@@ -9,10 +9,6 @@
 
 #include "TileMap/TileMapIndexes.hpp"
 
-#include <entt/entt.hpp>
-
-#include <iostream>
-
 LifespanSys::LifespanSys(std::string systemConfigItem, entt::registry& rReg)
 	: System(systemConfigItem)
 	, m_rReg(rReg)

@@ -1,8 +1,7 @@
 #ifndef __OVERLAP_UTILS__
 #define __OVERLAP_UTILS__
-
-#include "util/Position.hpp"
-#include "util/Size.hpp"
+class Size;
+class Position;
 
 class OverlapUtils
 {

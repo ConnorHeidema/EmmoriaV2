@@ -12,6 +12,7 @@
 #include <entt/entt.hpp>
 
 #include <iostream>
+#include <SFML/Window/Mouse.hpp>
 
 ClickableSys::ClickableSys(std::string systemConfigItem, entt::registry& rReg)
 	: System(systemConfigItem)
@@ -48,13 +49,13 @@ void ClickableSys::Update_()
 			clickableComp.m_bRightDown = sf::Mouse::isButtonPressed(sf::Mouse::Right);
 		}
 	});
-	CheckClick_(sf::Mouse::Left);
-	CheckClick_(sf::Mouse::Right);
+	CheckClick_(static_cast<int>(sf::Mouse::Left));
+	CheckClick_(static_cast<int>(sf::Mouse::Right));
 }
 
-void ClickableSys::CheckClick_(sf::Mouse::Button click)
+void ClickableSys::CheckClick_(int clickInt)
 {
-
+	sf::Mouse::Button click = static_cast<sf::Mouse::Button>(clickInt);
 	bool& buttonClicked = ((click == sf::Mouse::Left ? m_bLeftClicked : m_bRightClicked));
 
 	if (buttonClicked && sf::Mouse::isButtonPressed(click))

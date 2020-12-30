@@ -3,7 +3,6 @@
 
 #include "system/System.hpp"
 #include <entt/fwd.hpp>
-#include <SFML/Window.hpp>
 
 class ClickableSys
 	: public System
@@ -13,7 +12,7 @@ public:
 private:
 	void Update_() override;
 
-	void CheckClick_(sf::Mouse::Button click);
+	void CheckClick_(int clickInt);
 
 	entt::registry& m_rReg;
 

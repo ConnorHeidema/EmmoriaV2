@@ -5,10 +5,6 @@
 #include "component/functional/SwitchComp.hpp"
 #include "component/functional/DoorComp.hpp"
 
-#include <SFML/Window.hpp>
-
-#include <iostream>
-
 #include <entt/entt.hpp>
 
 SwitchSys::SwitchSys(std::string systemConfigItem, entt::registry& rReg)

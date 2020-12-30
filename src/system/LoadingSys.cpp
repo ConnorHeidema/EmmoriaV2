@@ -5,8 +5,6 @@
 #include "util/ApplicationParameters.hpp"
 #include "util/Entitymap.hpp"
 
-#include <entt/entt.hpp>
-
 #include <iostream>
 #include <fstream>
 #include <sstream>

@@ -2,6 +2,9 @@
 
 #include "util/ApplicationParameters.hpp"
 
+#include "util/Position.hpp"
+#include "util/Size.hpp"
+
 bool OverlapUtils::Overlapping(
 	Position const& rPosition1,
 	Size const& rSize1,

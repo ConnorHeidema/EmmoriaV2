@@ -3,7 +3,7 @@
 #include "util/ApplicationParameters.hpp"
 #include "util/FontContainer.hpp"
 
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Text.hpp>
 
 int EntityLoaderUtils::GetTextWidth(std::string text, int height)
 {

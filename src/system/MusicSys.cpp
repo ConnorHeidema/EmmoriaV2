@@ -1,7 +1,6 @@
 #include "system/MusicSys.hpp"
 
-#include <SFML/Audio.hpp>
-#include <entt/entt.hpp>
+#include <SFML/Audio/Music.hpp>
 
 MusicSys::MusicSys(std::string systemConfigItem, entt::registry& rReg)
 	: System(systemConfigItem)

@@ -1,8 +1,6 @@
 #include "system/ConfigSys.hpp"
 
 #include "config/ConfigItems.hpp"
-// todo check if this is needed
-#include <entt/entt.hpp>
 
 int const ConfigSys::updateRate = 60;
 std::string const ConfigSys::k_configFileName = "data/Config/config.ini";

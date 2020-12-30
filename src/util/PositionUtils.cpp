@@ -1,6 +1,8 @@
 #include "util/PositionUtils.hpp"
 #include "util/OverlapUtils.hpp"
 
+#include "util/Position.hpp"
+#include "util/Size.hpp"
 #include <math.h>
 
 #include <iostream>

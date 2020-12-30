@@ -4,7 +4,7 @@
 #include "system/System.hpp"
 #include <entt/fwd.hpp>
 
-#include <SFML/Graphics.hpp>
+namespace sf { class RenderWindow; }
 
 class GameRenderSys
 	: public System

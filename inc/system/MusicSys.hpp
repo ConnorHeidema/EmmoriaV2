@@ -6,7 +6,7 @@
 
 #include <memory>
 
-namespace sf {class Music;}
+namespace sf { class Music; }
 
 /**
  * This system handles interactions between 2 objects

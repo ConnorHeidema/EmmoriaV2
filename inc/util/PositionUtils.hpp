@@ -1,10 +1,10 @@
 #ifndef __POSITION_UTILS__
 #define __POSITION_UTILS__
 
-#include "util/Position.hpp"
-#include "util/Size.hpp"
-
 #include <string>
+
+class Position;
+class Size;
 
 class PositionUtils
 {

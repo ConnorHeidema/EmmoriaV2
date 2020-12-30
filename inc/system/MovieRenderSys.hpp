@@ -8,8 +8,6 @@
 #include <sfeMovie/Movie.hpp>
 #include <entt/fwd.hpp>
 
-#include <memory>
-
 class MovieRenderSys
 	: public System
 {

@@ -8,8 +8,9 @@
 #include "component/functional/ChestComp.hpp"
 #include "component/tag/AllTagComp.hpp"
 
-#include <SFML/Window.hpp>
+#include <SFML/Window/Keyboard.hpp>
 
+#include "entt/entt.hpp"
 #include <iostream>
 
 std::unordered_map<std::string, fnAnimationMapping> AnimationMappings::Create_map()

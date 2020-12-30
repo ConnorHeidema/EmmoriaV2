@@ -3,11 +3,12 @@
 
 #include "system/System.hpp"
 
-#include <entt/entt.hpp>
-#include <SFML/Graphics.hpp>
+#include <entt/fwd.hpp>
 
 #include <list>
 #include <memory>
+
+namespace sf { class RenderWindow; }
 
 struct SystemList
 {

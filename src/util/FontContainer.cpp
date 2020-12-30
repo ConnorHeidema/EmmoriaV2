@@ -1,6 +1,6 @@
 #include "util/FontContainer.hpp"
 
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Font.hpp>
 
 std::unordered_map<std::string, std::shared_ptr<sf::Font>> FontContainer::m_fontMap = {};
 

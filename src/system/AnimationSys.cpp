@@ -8,9 +8,7 @@
 #include "TileMap/TileMapIndexes.hpp"
 
 #include "util/AnimationMappings.hpp"
-
 #include <entt/entt.hpp>
-
 #include <iostream>
 
 int const AnimationSys::mk_animationSpeed = 12;

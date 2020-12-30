@@ -9,12 +9,9 @@
 
 #include "util/Entitymap.hpp"
 #include "util/MediatoEntitymap.hpp"
-
 #include <entt/entt.hpp>
 
-#include <SFML/Graphics.hpp>
-
-#include <iostream>
+namespace sf { class RenderWindow; }
 
 MovieRenderSys::MovieRenderSys(std::string systemConfigItem, entt::registry& rReg, sf::RenderWindow& rRenderWindow)
 	: System(systemConfigItem)

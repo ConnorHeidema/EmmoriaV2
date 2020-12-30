@@ -1,6 +1,6 @@
 #include "util/TextureContainer.hpp"
 
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Texture.hpp>
 
 std::unordered_map<std::string, std::shared_ptr<sf::Texture>> TextureContainer::m_textureMap = {};
 

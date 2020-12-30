@@ -4,8 +4,6 @@
 #include "system/System.hpp"
 
 #include "core/TileMap.hpp"
-
-#include <SFML/Graphics.hpp>
 #include <entt/fwd.hpp>
 
 #include <memory>

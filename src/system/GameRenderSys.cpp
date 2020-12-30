@@ -21,12 +21,9 @@
 #include "util/FontContainer.hpp"
 
 #include <entt/entt.hpp>
-
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 
 #include <math.h>
-
-#include <iostream>
 
 GameRenderSys::GameRenderSys(std::string systemConfigItem, entt::registry& rReg, sf::RenderWindow& rRenderWindow)
 	: System(systemConfigItem)

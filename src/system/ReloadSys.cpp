@@ -9,7 +9,7 @@
 #include "component/functional/LocationComp.hpp"
 
 #include <entt/entt.hpp>
-#include <SFML/Window.hpp>
+#include <SFML/Window/Keyboard.hpp>
 
 int const ReloadSys::mk_restartFrame = 60;
 

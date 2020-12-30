@@ -13,7 +13,8 @@
 #include "util/DialogParameters.hpp"
 #include "util/FontContainer.hpp"
 
-#include <SFML/Window.hpp>
+#include <SFML/Window/Keyboard.hpp>
+#include <SFML/Graphics/Text.hpp>
 #include <entt/entt.hpp>
 
 #include <sstream>

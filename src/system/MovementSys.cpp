@@ -11,15 +11,13 @@
 #include "util/ApplicationParameters.hpp"
 #include "util/PositionUtils.hpp"
 
-#include <SFML/Window.hpp>
+#include <SFML/Window/Keyboard.hpp>
 
 #include <entt/entt.hpp>
 
 #include <math.h>
 
 #include <cmath>
-
-#include <iostream>
 
 MovementSys::MovementSys(std::string systemConfigItem, entt::registry& rReg)
 	: System(systemConfigItem)

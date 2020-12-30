@@ -4,9 +4,6 @@
 
 #include "component/functional/HealthComp.hpp"
 
-#include <SFML/Window.hpp>
-
-#include <iostream>
 #include <entt/entt.hpp>
 
 HealthSys::HealthSys(std::string systemConfigItem, entt::registry& rReg)

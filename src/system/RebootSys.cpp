@@ -6,8 +6,6 @@
 
 #include "util/EnttUtils.hpp"
 
-#include <entt/entt.hpp>
-
 #include <iostream>
 
 RebootSys::RebootSys(std::string systemConfigItem, entt::registry& rReg)
