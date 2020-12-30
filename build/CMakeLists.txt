@@ -7,6 +7,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${ADDITIONAL_CFLAGS} -g")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+link_directories(../ext/bin/SFML ../ext/bin/sfemovie)
+
 add_executable(Emmoria
 				../main.cpp
 
@@ -74,9 +76,6 @@ add_executable(Emmoria
 
 target_include_directories(Emmoria PRIVATE ../ext/inc)
 target_include_directories(Emmoria PRIVATE ../inc)
-
-link_directories(../ext/bin/SFML)
-link_directories(../ext/bin/sfeMovie)
 
 target_link_libraries(Emmoria sfeMovie)
 target_link_libraries(Emmoria avcodec)
