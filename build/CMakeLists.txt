@@ -60,6 +60,7 @@ add_executable(Emmoria
                 ../src/system/LifespanSys.cpp
                 ../src/system/DoorSys.cpp
                 ../src/system/SwitchSys.cpp
+                ../src/system/MusicSys.cpp
 
                 # Enemy system implementations
                 ../src/system/enemy/BlobSys.cpp

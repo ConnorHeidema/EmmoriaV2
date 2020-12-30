@@ -20,6 +20,7 @@
 #include "system/LifespanSys.hpp"
 #include "system/DoorSys.hpp"
 #include "system/SwitchSys.hpp"
+#include "system/MusicSys.hpp"
 
 #include "system/enemy/BlobSys.hpp"
 
@@ -60,7 +61,8 @@ std::list<std::shared_ptr<System>> SystemList::CreateSystemList(entt::registry& 
 		STD_MAKE_UNIQUE_SYS(Bow),
 		STD_MAKE_UNIQUE_SYS(Lifespan),
 		STD_MAKE_UNIQUE_SYS(Door),
-		STD_MAKE_UNIQUE_SYS(Switch)
+		STD_MAKE_UNIQUE_SYS(Switch),
+		STD_MAKE_UNIQUE_SYS(Music),
 	};
 	return m_sysRunningOrder;
 }

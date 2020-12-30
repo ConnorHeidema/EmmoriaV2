@@ -8,6 +8,7 @@
 #include "component/functional/HealthComp.hpp"
 #include "component/functional/InteractableComp.hpp"
 #include "component/functional/ChestComp.hpp"
+#include "component/functional/BackgroundMusicComp.hpp"
 #include "component/functional/InteractorComp.hpp"
 #include "component/functional/LastPositionComp.hpp"
 #include "component/functional/LoadComp.hpp"
@@ -100,6 +101,11 @@ void EntityLoaderFactory::LoadChestComp(entt::registry& rReg, entt::entity& rEnt
 	rReg.emplace<SpriteComp>(rEntity).m_filePath = ApplicationParameters::k_spritePath + std::string("chest.png");
 	auto& interactableComp = rReg.get_or_emplace<InteractableComp>(rEntity);
 	interactableComp.m_interactTypeList.insert(InteractType_t::WallComp_t);
+}
+
+void EntityLoaderFactory::LoadBackgroundMusicComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
+{
+	rReg.get_or_emplace<BackgroundMusicComp>(rEntity).m_backgroundMusic = ReadTokenList_(1, reader).at(0);
 }
 
 void EntityLoaderFactory::LoadInteractableComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
