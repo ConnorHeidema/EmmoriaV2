@@ -8,6 +8,8 @@
 #include "component/functional/TileMapPtrComp.hpp"
 #include "component/functional/RenderableComp.hpp"
 
+#include "util/TextureContainer.hpp"
+
 #include <entt/entt.hpp>
 
 TileMapSys::TileMapSys(std::string systemConfigItem, entt::registry& rReg)
@@ -22,7 +24,7 @@ void TileMapSys::Update_()
 	m_rReg.view<TileMapComp>().each([&](auto entity, auto& tileMapComp)
 	{
 		m_pTileMap->m_fileToUse = tileMapComp.m_tileMapBase;
-		m_pTileMap->m_tileset.loadFromFile(ApplicationParameters::k_tilemapPath + m_pTileMap->m_fileToUse + ApplicationParameters::k_pictureExt);
+		m_pTileMap->m_tileset = *TextureContainer::GetTexture(ApplicationParameters::k_tilemapPath + m_pTileMap->m_fileToUse + ApplicationParameters::k_pictureExt);
 		auto& tileMapPtrComp = m_rReg.get_or_emplace<TileMapPtrComp>(entity);
 		tileMapPtrComp.m_pTileMap = m_pTileMap;
 	});

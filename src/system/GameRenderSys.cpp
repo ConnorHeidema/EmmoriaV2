@@ -17,6 +17,8 @@
 #include "util/Mediamap.hpp"
 #include "util/ApplicationParameters.hpp"
 #include "util/Helper.hpp"
+#include "util/TextureContainer.hpp"
+#include "util/FontContainer.hpp"
 
 #include <entt/entt.hpp>
 
@@ -83,7 +85,7 @@ void GameRenderSys::RenderRotatableSprites_()
 		{
 			auto genericSprite = sf::RectangleShape(sf::Vector2f(sizeComp.m_size.width, sizeComp.m_size.height));
 			sf::Texture texture;
-			texture.loadFromFile(spriteComp.m_filePath); // this should be stored somehow
+			texture = *TextureContainer::GetTexture(spriteComp.m_filePath); // this should be stored somehow
 			genericSprite.setTexture(&texture);
 			sf::Transform transform;
         	transform.rotate(
@@ -124,7 +126,7 @@ void GameRenderSys::RenderBasicSprites_()
 		{
 			auto genericSprite = sf::RectangleShape(sf::Vector2f(sizeComp.m_size.width, sizeComp.m_size.height));
 			sf::Texture texture;
-			texture.loadFromFile(spriteComp.m_filePath); // this should be stored somehow
+			texture = *TextureContainer::GetTexture(spriteComp.m_filePath); // this should be stored somehow
 			genericSprite.setTexture(&texture);
 			genericSprite.setPosition(
 				Helper::Mod((int)positionComp.m_position.x, ApplicationParameters::k_rightOfScreen) - (int)sizeComp.m_size.width/2,
@@ -164,7 +166,7 @@ void GameRenderSys::RenderText_()
 
 			sf::Text text;
 			sf::Font font;
-			font.loadFromFile(ApplicationParameters::k_fontPath);
+			font = *FontContainer::GetFont(ApplicationParameters::k_fontPath);
 			text.setFont(font);
 			text.setCharacterSize(sizeComp.m_size.height*ApplicationParameters::k_textFactor);
 			text.setString(textComp.m_text);
@@ -187,7 +189,7 @@ void GameRenderSys::RenderHealth_()
 	{
 		sf::Text text;
 		sf::Font font;
-		font.loadFromFile(ApplicationParameters::k_fontPath);
+		font = *FontContainer::GetFont(ApplicationParameters::k_fontPath);
 		text.setFont(font);
 		text.setFillColor(sf::Color::White);
 		text.setCharacterSize(20);
@@ -238,7 +240,7 @@ void GameRenderSys::RenderDialog_()
 			portraitRect.setPosition(sf::Vector2f(110.f, 923.f));
 
 			sf::Texture texture;
-			texture.loadFromFile(std::string("sprite/portrait/") + std::string(dialogComp.m_portrait) + std::string(".png"));
+			texture = *TextureContainer::GetTexture(std::string("sprite/portrait/") + std::string(dialogComp.m_portrait) + std::string(".png"));
 			portraitRect.setTexture(&texture);
 			portraitRect.setTextureRect(
 				sf::IntRect(
@@ -252,7 +254,7 @@ void GameRenderSys::RenderDialog_()
 
 
 			sf::Font font;
-			font.loadFromFile(ApplicationParameters::k_fontPath);
+			font = *FontContainer::GetFont(ApplicationParameters::k_fontPath);
 			std::string firstThingToWrite = dialogComp.m_dialogList.front();
 			sf::Text text(firstThingToWrite, font, 50);
 			text.setPosition(400.f, 903.f);
@@ -285,14 +287,8 @@ void GameRenderSys::RenderHealthBar_(
 {
 	float const amountAboveSprite = 15.f;
 	float const heightOfBar = 10.f;
-	sf::RectangleShape totalHealth(sf::Vector2f(spriteWidth, heightOfBar));
-	totalHealth.setPosition(sf::Vector2f(xPosition, yPosition - amountAboveSprite));
-	totalHealth.setFillColor(sf::Color::Red);
-	m_rRenderWindow.draw(totalHealth);
-
 	sf::RectangleShape remainingHealth(sf::Vector2f(healthRatio * spriteWidth, heightOfBar));
 	remainingHealth.setPosition(sf::Vector2f(xPosition, yPosition - amountAboveSprite));
 	remainingHealth.setFillColor(sf::Color::Green);
 	m_rRenderWindow.draw(remainingHealth);
-
 }

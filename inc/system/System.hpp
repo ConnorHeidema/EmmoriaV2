@@ -9,6 +9,8 @@
 
 #include <entt/fwd.hpp>
 
+#include <iostream>
+
 /**
  * Purpose:
  * 	This abstract class acts as a facade for all systems to allow each system
@@ -24,7 +26,12 @@ public:
 	virtual ~System() {};
 	void Update()
 	{
-		if (IsSystemEnabled_()) { Update_(); }
+		if (IsSystemEnabled_())
+		{
+			//sf::Clock clock;
+			Update_();
+			//std::cout << std::string("Time spent in ") << m_systemConfigItem << ":" << clock.getElapsedTime().asMilliseconds() << std::endl;
+		}
 	}
 
 private:

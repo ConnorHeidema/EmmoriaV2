@@ -38,6 +38,8 @@ add_executable(Emmoria
                 ../src/util/PositionUtils.cpp
                 ../src/util/EnttUtils.cpp
                 ../src/util/DialogParameters.cpp
+                ../src/util/TextureContainer.cpp
+                ../src/util/FontContainer.cpp
 
                 # System implementations
                 ../src/system/RebootSys.cpp

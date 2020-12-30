@@ -11,6 +11,7 @@
 #include "component/functional/DialogComp.hpp"
 
 #include "util/DialogParameters.hpp"
+#include "util/FontContainer.hpp"
 
 #include <SFML/Window.hpp>
 #include <entt/entt.hpp>
@@ -25,7 +26,7 @@ DialogSys::DialogSys(std::string systemConfigItem, entt::registry& rReg)
     , k_mMaxTimer(30)
 	, m_rReg(rReg)
 {
-	m_font.loadFromFile("/usr/share/fonts/truetype/ubuntu/Ubuntu-B.ttf");
+	m_font = *FontContainer::GetFont("/usr/share/fonts/truetype/ubuntu/Ubuntu-B.ttf");
 }
 
 void DialogSys::Update_()
