@@ -2,7 +2,7 @@
 #define __BUTTON_SYS__
 
 #include "system/System.hpp"
-
+#include <entt/fwd.hpp>
 class ButtonSys
 	: public System
 {

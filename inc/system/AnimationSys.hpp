@@ -2,7 +2,7 @@
 #define __ANIMATION_SYS__
 
 #include "system/System.hpp"
-
+#include <entt/fwd.hpp>
 #include "util/Latch.hpp"
 
 class AnimationSys

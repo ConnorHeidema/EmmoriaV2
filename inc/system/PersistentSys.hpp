@@ -2,6 +2,7 @@
 #define __PERSISTENT_SYS__
 
 #include "system/System.hpp"
+#include <entt/fwd.hpp>
 
 #include "util/Latch.hpp"
 

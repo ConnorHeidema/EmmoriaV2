@@ -42,6 +42,7 @@ add_executable(Emmoria
                 ../src/util/FontContainer.cpp
 
                 # System implementations
+                ../src/system/System.cpp
                 ../src/system/RebootSys.cpp
                 ../src/system/ReloadSys.cpp
                 ../src/system/ConfigSys.cpp

@@ -105,7 +105,6 @@ void BowSys::CreateArrow_(
 	double adjustedPlayerPositionY = playerPositionComp.m_position.y;
 
 	{
-		using namespace sf;
 		double xPos = clickableActionArea.m_x * ApplicationParameters::k_widthAdjustment - adjustedPlayerPositionX;
 		double yPos = clickableActionArea.m_y * ApplicationParameters::k_heightAdjustment - adjustedPlayerPositionY;
 		m_rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)

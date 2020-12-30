@@ -7,7 +7,7 @@
 #include "component/functional/ClickableComp.hpp"
 
 #include "util/Latch.hpp"
-
+#include <entt/fwd.hpp>
 class BowSys
 	: public System
 {

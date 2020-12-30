@@ -4,6 +4,7 @@
 #include "system/System.hpp"
 
 #include <SFML/Graphics.hpp>
+#include <entt/fwd.hpp>
 
 #include <list>
 #include <memory>

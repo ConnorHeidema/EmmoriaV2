@@ -2,6 +2,7 @@
 #define __MOVEMENT_SYS__
 
 #include "system/System.hpp"
+#include <entt/fwd.hpp>
 
 /**
  * This system deals with the movement of all entities.

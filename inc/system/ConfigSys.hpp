@@ -4,9 +4,9 @@
 #include "system/System.hpp"
 
 #include "util/Latch.hpp"
+#include <entt/fwd.hpp>
 
 #include <SFML/Window.hpp>
-#include <string>
 
 class ConfigSys
 	: public System

@@ -2,6 +2,8 @@
 
 #include "component/tag/AllTagComp.hpp"
 
+#include "config/ConfigItems.hpp"
+
 #include "util/EnttUtils.hpp"
 
 #include <entt/entt.hpp>

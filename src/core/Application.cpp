@@ -1,6 +1,7 @@
 #include "core/Application.hpp"
 
 #include "system/System.hpp"
+#include "config/ConfigItems.hpp"
 
 #include "util/ApplicationParameters.hpp"
 #include "util/SystemList.hpp"

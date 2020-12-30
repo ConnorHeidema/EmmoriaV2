@@ -2,6 +2,7 @@
 #define __RELOAD_SYS__
 
 #include "system/System.hpp"
+#include <entt/fwd.hpp>
 
 #include "util/Latch.hpp"
 

@@ -2,6 +2,7 @@
 #define __DOOR_SYS__
 
 #include "system/System.hpp"
+#include <entt/fwd.hpp>
 
 class DoorSys
 	: public System

@@ -2,6 +2,8 @@
 
 #include "util/ApplicationParameters.hpp"
 
+#include "config/ConfigItems.hpp"
+
 #include "component/tag/AllTagComp.hpp"
 #include "component/functional/LoadComp.hpp"
 #include "component/functional/LocationComp.hpp"

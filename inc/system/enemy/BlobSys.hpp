@@ -2,7 +2,7 @@
 #define __BLOB_SYS__
 
 #include "system/System.hpp"
-
+#include <entt/fwd.hpp>
 class BlobSys
 	: public System
 {

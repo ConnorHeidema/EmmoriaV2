@@ -6,6 +6,7 @@
 #include "util/Mediamap.hpp"
 
 #include <sfeMovie/Movie.hpp>
+#include <entt/fwd.hpp>
 
 #include <memory>
 

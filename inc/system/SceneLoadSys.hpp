@@ -2,6 +2,7 @@
 #define __SCENE_LOAD_SYS__
 
 #include "system/System.hpp"
+#include <entt/fwd.hpp>
 
 class SceneLoadSys
 	: public System

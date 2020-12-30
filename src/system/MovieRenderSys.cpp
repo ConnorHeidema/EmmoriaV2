@@ -2,6 +2,8 @@
 
 #include "component/tag/AllTagComp.hpp"
 
+#include "config/ConfigItems.hpp"
+
 #include "component/functional/MovieComp.hpp"
 #include "component/functional/LoadComp.hpp"
 

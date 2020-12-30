@@ -2,7 +2,7 @@
 #define __CLICKABLE_SYS__
 
 #include "system/System.hpp"
-
+#include <entt/fwd.hpp>
 #include <SFML/Window.hpp>
 
 class ClickableSys

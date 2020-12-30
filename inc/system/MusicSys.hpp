@@ -2,6 +2,7 @@
 #define __MUSIC_SYS__
 
 #include "system/System.hpp"
+#include <entt/fwd.hpp>
 
 #include <memory>
 

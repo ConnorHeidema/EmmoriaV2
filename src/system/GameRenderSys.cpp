@@ -39,7 +39,7 @@ void GameRenderSys::Update_()
 	ResetRenderState_();
 	RenderTileMapPieces_();
 	RenderRotatableSprites_();
-	RenderBasicSprites_();
+	RenderBasicSprites_(); // slowest part of program in this function
 	RenderText_();
 	RenderHealth_();
 	RenderDialog_();
@@ -85,7 +85,7 @@ void GameRenderSys::RenderRotatableSprites_()
 		{
 			auto genericSprite = sf::RectangleShape(sf::Vector2f(sizeComp.m_size.width, sizeComp.m_size.height));
 			sf::Texture texture;
-			texture = *TextureContainer::GetTexture(spriteComp.m_filePath); // this should be stored somehow
+			texture = *TextureContainer::GetTexture(spriteComp.m_filePath);
 			genericSprite.setTexture(&texture);
 			sf::Transform transform;
         	transform.rotate(
@@ -126,7 +126,7 @@ void GameRenderSys::RenderBasicSprites_()
 		{
 			auto genericSprite = sf::RectangleShape(sf::Vector2f(sizeComp.m_size.width, sizeComp.m_size.height));
 			sf::Texture texture;
-			texture = *TextureContainer::GetTexture(spriteComp.m_filePath); // this should be stored somehow
+			texture = *TextureContainer::GetTexture(spriteComp.m_filePath);
 			genericSprite.setTexture(&texture);
 			genericSprite.setPosition(
 				Helper::Mod((int)positionComp.m_position.x, ApplicationParameters::k_rightOfScreen) - (int)sizeComp.m_size.width/2,

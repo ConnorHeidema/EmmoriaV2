@@ -2,6 +2,7 @@
 #define __GAME_RENDER_SYS__
 
 #include "system/System.hpp"
+#include <entt/fwd.hpp>
 
 #include <SFML/Graphics.hpp>
 

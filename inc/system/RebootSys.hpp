@@ -2,6 +2,7 @@
 #define __REBOOT_SYS__
 
 #include "system/System.hpp"
+#include <entt/fwd.hpp>
 
 /**
  * Primary Components: RebootComp

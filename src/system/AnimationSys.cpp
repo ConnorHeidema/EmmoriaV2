@@ -11,7 +11,6 @@
 
 #include <entt/entt.hpp>
 
-#include <string.h>
 #include <iostream>
 
 int const AnimationSys::mk_animationSpeed = 12;

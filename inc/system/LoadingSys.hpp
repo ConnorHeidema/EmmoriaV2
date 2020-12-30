@@ -2,6 +2,7 @@
 #define __LOADING_SYS__
 
 #include "system/System.hpp"
+#include <entt/fwd.hpp>
 
 class LoadingSys
 	: public System

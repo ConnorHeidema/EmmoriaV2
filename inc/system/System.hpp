@@ -1,15 +1,7 @@
 #ifndef __SYSTEM__
 #define __SYSTEM__
 
-#include "config/ConfigItems.hpp"
-
-#include <SFML/Window.hpp>
-
 #include <string>
-
-#include <entt/fwd.hpp>
-
-#include <iostream>
 
 /**
  * Purpose:
@@ -19,31 +11,20 @@
 class System
 {
 public:
-	System(std::string systemConfigItem)
-		: m_systemConfigItem(systemConfigItem)
-	{};
+	System(std::string const& systemConfigItem);
 
-	virtual ~System() {};
-	void Update()
-	{
-		if (IsSystemEnabled_())
-		{
-			//sf::Clock clock;
-			Update_();
-			//std::cout << std::string("Time spent in ") << m_systemConfigItem << ":" << clock.getElapsedTime().asMilliseconds() << std::endl;
-		}
-	}
+	virtual ~System();
+	void Update();
 
 private:
 	virtual void Update_() = 0;
 
-	bool IsSystemEnabled_()
-	{
-		return ConfigItems::m_setConfigItems.find(m_systemConfigItem) ==
-			ConfigItems::m_setConfigItems.end();
-	}
+	bool IsSystemEnabled_();
+
+	bool IsSystemLogged_();
 
 	std::string const m_systemConfigItem;
+	std::string const m_kLogSystemTime;
 };
 
 #endif

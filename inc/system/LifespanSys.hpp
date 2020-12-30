@@ -2,6 +2,7 @@
 #define __LIFESPAN_SYS__
 
 #include "system/System.hpp"
+#include <entt/fwd.hpp>
 
 /**
  * This system handles interactions between 2 objects
