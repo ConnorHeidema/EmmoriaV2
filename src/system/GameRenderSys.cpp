@@ -256,23 +256,19 @@ void GameRenderSys::RenderDialog_()
 			sf::Font font;
 			font = *FontContainer::GetFont(ApplicationParameters::k_fontPath);
 			std::string firstThingToWrite = dialogComp.m_dialogList.front();
-			sf::Text text(firstThingToWrite, font, 50);
-			text.setPosition(400.f, 903.f);
-			m_rRenderWindow.draw(text);
 			if (dialogComp.m_dialogList.size() == 2 ||dialogComp.m_dialogList.size() == 3)
 			{
 				std::string nextThingToWrite = *std::next(dialogComp.m_dialogList.begin());
-				sf::Text text(nextThingToWrite, font, 50);
-				text.setPosition(400.f, 953.f);
-				m_rRenderWindow.draw(text);
+				firstThingToWrite += "\n" + nextThingToWrite;
 			}
 			if (dialogComp.m_dialogList.size() == 3)
 			{
 				std::string nextThingToWrite = *std::next(std::next(dialogComp.m_dialogList.begin()));
-				sf::Text text(nextThingToWrite, font, 50);
-				text.setPosition(400.f, 1003.f);
-				m_rRenderWindow.draw(text);
+				firstThingToWrite += "\n" + nextThingToWrite;
 			}
+			sf::Text text(firstThingToWrite, font, 50);
+			text.setPosition(400.f, 903.f);
+			m_rRenderWindow.draw(text);
 
 			renderableComp.m_bRendered = true;
 		}
