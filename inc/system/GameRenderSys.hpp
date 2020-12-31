@@ -17,7 +17,6 @@ private:
 	void RenderHealth_();
 	void ResetRenderState_();
 	void RenderTileMapPieces_();
-	void RenderRotatableSprites_();
 	void RenderBasicSprites_();
 	void RenderDialog_();
 	void RenderText_();

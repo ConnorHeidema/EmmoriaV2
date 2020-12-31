@@ -35,7 +35,6 @@ void GameRenderSys::Update_()
 {
 	ResetRenderState_();
 	RenderTileMapPieces_();
-	RenderRotatableSprites_();
 	RenderBasicSprites_(); // slowest part of program in this function
 	RenderText_();
 	RenderHealth_();
@@ -68,48 +67,6 @@ void GameRenderSys::RenderTileMapPieces_()
 	});
 }
 
-void GameRenderSys::RenderRotatableSprites_()
-{
-	m_rReg.view<RenderableComp, PositionComp, SizeComp, SpriteComp, RotationComp>().each([&](
-		auto entity,
-		auto& renderableComp,
-		auto& positionComp,
-		auto& sizeComp,
-		auto& spriteComp,
-		auto& rotationComp)
-	{
-		if (renderableComp.m_bRendered == false)
-		{
-			auto genericSprite = sf::RectangleShape(sf::Vector2f(sizeComp.m_size.width, sizeComp.m_size.height));
-			sf::Texture texture;
-			texture = *TextureContainer::GetTexture(spriteComp.m_filePath);
-			genericSprite.setTexture(&texture);
-			sf::Transform transform;
-        	transform.rotate(
-				rotationComp.m_angle * 90 / tan(1) + 90,
-				sf::Vector2f(
-					Helper::Mod((int)positionComp.m_position.x, ApplicationParameters::k_rightOfScreen),
-					Helper::Mod((int)positionComp.m_position.y, ApplicationParameters::k_bottomOfScreen)));
-
-			genericSprite.setPosition(
-				Helper::Mod((int)positionComp.m_position.x, ApplicationParameters::k_rightOfScreen) - (int)sizeComp.m_size.width/2,
-				Helper::Mod((int)positionComp.m_position.y, ApplicationParameters::k_bottomOfScreen) - (int)sizeComp.m_size.height/2);
-
-			genericSprite.setTextureRect(
-				sf::IntRect(
-					spriteComp.m_spriteIndex * spriteComp.m_width,
-					0,
-					spriteComp.m_width,
-					spriteComp.m_height));
-
-
-			m_rRenderWindow.draw(genericSprite, transform);
-			renderableComp.m_bRendered = true;
-		}
-	});
-}
-
-
 void GameRenderSys::RenderBasicSprites_()
 {
 	m_rReg.view<RenderableComp, PositionComp, SizeComp, SpriteComp>().each([&](
@@ -121,13 +78,16 @@ void GameRenderSys::RenderBasicSprites_()
 	{
 		if (renderableComp.m_bRendered == false)
 		{
-			auto genericSprite = sf::RectangleShape(sf::Vector2f(sizeComp.m_size.width, sizeComp.m_size.height));
-			sf::Texture texture;
-			texture = *TextureContainer::GetTexture(spriteComp.m_filePath);
-			genericSprite.setTexture(&texture);
+			auto& pos = positionComp.m_position;
+			auto& size = sizeComp.m_size;
+			static float const k_tan1 = tan(1);
+			auto genericSprite = sf::RectangleShape(sf::Vector2f(size.width, size.height));
+			genericSprite.setTexture(&(*TextureContainer::GetTexture(spriteComp.m_filePath)));
+
 			genericSprite.setPosition(
-				Helper::Mod((int)positionComp.m_position.x, ApplicationParameters::k_rightOfScreen) - (int)sizeComp.m_size.width/2,
-				Helper::Mod((int)positionComp.m_position.y, ApplicationParameters::k_bottomOfScreen) - (int)sizeComp.m_size.height/2);
+				Helper::Mod((int)pos.x, ApplicationParameters::k_rightOfScreen) - (int)size.width/2,
+				Helper::Mod((int)pos.y, ApplicationParameters::k_bottomOfScreen) - (int)size.height/2);
+
 			genericSprite.setTextureRect(
 				sf::IntRect(
 					spriteComp.m_spriteIndex * spriteComp.m_width,
@@ -135,12 +95,25 @@ void GameRenderSys::RenderBasicSprites_()
 					spriteComp.m_width,
 					spriteComp.m_height));
 
-			m_rRenderWindow.draw(genericSprite);
+			if (m_rReg.has<RotationComp>(entity))
+			{
+				auto& angle = m_rReg.get<RotationComp>(entity).m_angle;
+				sf::Transform transform;
+				transform.rotate(
+					angle * 90 / k_tan1 + 90,
+					sf::Vector2f(
+						Helper::Mod((int)pos.x, ApplicationParameters::k_rightOfScreen),
+						Helper::Mod((int)pos.y, ApplicationParameters::k_bottomOfScreen)));
+				m_rRenderWindow.draw(genericSprite, transform);
+			}
+			else
+			{
+				m_rRenderWindow.draw(genericSprite);
+			}
 			renderableComp.m_bRendered = true;
 		}
 	});
 }
-
 
 void GameRenderSys::RenderText_()
 {
