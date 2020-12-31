@@ -8,7 +8,7 @@
 
 #include "util/MediatoEntitymap.hpp"
 
-#include <iostream>
+#include <SFML/Window/Event.hpp>
 
 Application::Application()
 	: m_reg()

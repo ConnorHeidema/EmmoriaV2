@@ -2,8 +2,7 @@
 #define __APPLICATION__
 
 #include <entt/entt.hpp>
-
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 
 class Application
 {
