@@ -1,26 +1,11 @@
 #include "util/Mediamap.hpp"
 
-#ifdef __linux__
-	#include <experimental/filesystem>
-#elif _WIN32
-	#include <filesystem>
-#else
-
-#endif
 
 std::unordered_map<Media_t, std::string> Mediamap::Create_map()
 {
-
-	#ifdef __linux__
-		using namespace std::experimental;
-	#elif _WIN32
-		using namespace std;
-	#else
-
-	#endif
 	std::unordered_map<Media_t, std::string> m;
-	m[Media_t::INTRO_MOVIE] = filesystem::current_path().u8string() + "/media/intro.avi";
-	m[Media_t::NEW_GAME_SELECTED] = filesystem::current_path().u8string() + "/media/new_game_selected.avi";
+	m[Media_t::INTRO_MOVIE] = "media/intro.avi";
+	m[Media_t::NEW_GAME_SELECTED] = "media/new_game_selected.avi";
 	return m;
 }
 

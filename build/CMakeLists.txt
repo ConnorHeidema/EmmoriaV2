@@ -91,5 +91,3 @@ target_link_libraries(Emmoria sfml-window-d)
 target_link_libraries(Emmoria sfml-system-d)
 target_link_libraries(Emmoria sfml-audio-d)
 target_link_libraries(Emmoria sfml-network-d)
-
-target_link_libraries(Emmoria stdc++fs)
