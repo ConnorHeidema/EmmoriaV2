@@ -80,7 +80,7 @@ void GameRenderSys::RenderBasicSprites_()
 		{
 			auto& pos = positionComp.m_position;
 			auto& size = sizeComp.m_size;
-			static float const k_tan1 = tan(1);
+			float const k_tan1 = tan(1);
 			auto genericSprite = sf::RectangleShape(sf::Vector2f(size.width, size.height));
 			genericSprite.setTexture(&(*TextureContainer::GetTexture(spriteComp.m_filePath)));
 
@@ -135,9 +135,7 @@ void GameRenderSys::RenderText_()
 			m_rRenderWindow.draw(rectShape);
 
 			sf::Text text;
-			sf::Font font;
-			font = *FontContainer::GetFont(ApplicationParameters::k_fontPath);
-			text.setFont(font);
+			text.setFont(*FontContainer::GetFont(ApplicationParameters::k_fontPath));
 			text.setCharacterSize(sizeComp.m_size.height*ApplicationParameters::k_textFactor);
 			text.setString(textComp.m_text);
 			text.setPosition(
@@ -158,9 +156,7 @@ void GameRenderSys::RenderHealth_()
 		auto& maxHealthComp)
 	{
 		sf::Text text;
-		sf::Font font;
-		font = *FontContainer::GetFont(ApplicationParameters::k_fontPath);
-		text.setFont(font);
+		text.setFont(*FontContainer::GetFont(ApplicationParameters::k_fontPath));
 		text.setFillColor(sf::Color::White);
 		text.setCharacterSize(20);
 		text.setString(std::string("Health: ") + std::to_string(healthComp.m_health));
@@ -189,7 +185,11 @@ void GameRenderSys::RenderHealth_()
 }
 
 void GameRenderSys::RenderDialog_()
-{	m_rReg.view<RenderableComp, DialogComp, ClickableComp, PositionComp, SizeComp>().each([&](
+{
+	static sf::Text text("", *FontContainer::GetFont(ApplicationParameters::k_fontPath), 50);
+	text.setPosition(400.f, 903.f);
+	bool b_dialogExists = false;
+	m_rReg.view<RenderableComp, DialogComp, ClickableComp, PositionComp, SizeComp>().each([&](
 		auto entity,
 		auto& renderableComp,
 		auto& dialogComp,
@@ -197,6 +197,7 @@ void GameRenderSys::RenderDialog_()
 		auto& positionComp,
 		auto& sizeComp)
 	{
+		b_dialogExists = true;
 		if (renderableComp.m_bRendered == false)
 		{
 			sf::RectangleShape rect(sf::Vector2f(1714.f, 174.f));
@@ -208,10 +209,9 @@ void GameRenderSys::RenderDialog_()
 
 			sf::RectangleShape portraitRect(sf::Vector2f(280, 134.f));
 			portraitRect.setPosition(sf::Vector2f(110.f, 923.f));
-
-			sf::Texture texture;
-			texture = *TextureContainer::GetTexture(std::string("sprite/portrait/") + std::string(dialogComp.m_portrait) + std::string(".png"));
-			portraitRect.setTexture(&texture);
+			portraitRect.setTexture(
+				&(*TextureContainer::GetTexture(
+					std::string("sprite/portrait/") + std::string(dialogComp.m_portrait) + std::string(".png"))));
 			portraitRect.setTextureRect(
 				sf::IntRect(
 					0,
@@ -221,10 +221,6 @@ void GameRenderSys::RenderDialog_()
 			portraitRect.setOutlineColor(sf::Color(0,255,255,150));
 			portraitRect.setOutlineThickness(3.f);
 			m_rRenderWindow.draw(portraitRect);
-
-
-			sf::Font font;
-			font = *FontContainer::GetFont(ApplicationParameters::k_fontPath);
 			std::string firstThingToWrite = dialogComp.m_dialogList.front();
 			if (dialogComp.m_dialogList.size() == 2 ||dialogComp.m_dialogList.size() == 3)
 			{
@@ -236,13 +232,16 @@ void GameRenderSys::RenderDialog_()
 				std::string nextThingToWrite = *std::next(std::next(dialogComp.m_dialogList.begin()));
 				firstThingToWrite += "\n" + nextThingToWrite;
 			}
-			sf::Text text(firstThingToWrite, font, 50);
-			text.setPosition(400.f, 903.f);
+			text.setString(firstThingToWrite.substr(0, text.getString().getSize() + 1));
 			m_rRenderWindow.draw(text);
 
 			renderableComp.m_bRendered = true;
 		}
 	});
+	if (!b_dialogExists)
+	{
+		text.setString("");
+	}
 }
 
 void GameRenderSys::RenderHealthBar_(
