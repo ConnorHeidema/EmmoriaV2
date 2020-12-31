@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2017 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2020 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -30,13 +30,13 @@
 // Define the SFML version
 ////////////////////////////////////////////////////////////
 #define SFML_VERSION_MAJOR 2
-#define SFML_VERSION_MINOR 4
-#define SFML_VERSION_PATCH 2
+#define SFML_VERSION_MINOR 5
+#define SFML_VERSION_PATCH 1
 
 
 ////////////////////////////////////////////////////////////
 // Identify the operating system
-// see http://nadeausoftware.com/articles/2012/01/c_c_tip_how_use_compiler_predefined_macros_detect_operating_system
+// see https://sourceforge.net/p/predef/wiki/Home/
 ////////////////////////////////////////////////////////////
 #if defined(_WIN32)
 
@@ -86,11 +86,15 @@
         // FreeBSD
         #define SFML_SYSTEM_FREEBSD
 
-    #elif defined(__GNU__)
+    #elif defined(__OpenBSD__)
 
-        // GNU Hurd - pretend to be linux (with one exception)
-        #define SFML_SYSTEM_LINUX
-        #define SFML_SYSTEM_HURD
+        // OpenBSD
+        #define SFML_SYSTEM_OPENBSD
+
+    #elif defined(__NetBSD__)
+
+        // NetBSD
+        #define SFML_SYSTEM_NETBSD
 
     #else
 
