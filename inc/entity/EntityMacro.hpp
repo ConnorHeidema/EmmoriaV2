@@ -55,7 +55,8 @@
 	macroToUse(MaxHealthComp) \
 	macroToUse(SignInfoComp) \
 	macroToUse(ChestComp) \
-	macroToUse(BackgroundMusicComp)
+	macroToUse(BackgroundMusicComp) \
+	macroToUse(SoundComp)
 
 #define ALL_COMPONENT_PIECE_MACRO(macroToUse) \
 	macroToUse(Xposition) \

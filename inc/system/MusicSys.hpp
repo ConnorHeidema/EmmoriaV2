@@ -7,6 +7,8 @@
 #include <memory>
 
 namespace sf { class Music; }
+namespace sf { class Sound; }
+namespace sf { class SoundBuffer; }
 
 /**
  * This system handles interactions between 2 objects
@@ -20,6 +22,8 @@ private:
 	void Update_() override;
 
 	std::shared_ptr<sf::Music> m_pMusic;
+	std::shared_ptr<sf::Sound> m_pSound;
+	std::shared_ptr<sf::SoundBuffer> m_pSoundBuffer;
 	entt::registry& m_rReg;
 };
 

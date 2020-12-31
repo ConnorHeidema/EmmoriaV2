@@ -13,6 +13,7 @@
 #include "component/functional/DialogComp.hpp"
 #include "component/functional/ClickableComp.hpp"
 #include "component/functional/stats/MaxHealthComp.hpp"
+#include "component/functional/SoundComp.hpp"
 
 #include "util/Mediamap.hpp"
 #include "util/ApplicationParameters.hpp"
@@ -22,6 +23,9 @@
 
 #include <entt/entt.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
+
+
+#include <SFML/Audio/Music.hpp>
 
 #include <math.h>
 
@@ -200,6 +204,7 @@ void GameRenderSys::RenderDialog_()
 		b_dialogExists = true;
 		if (renderableComp.m_bRendered == false)
 		{
+			sf::Color a;
 			sf::RectangleShape rect(sf::Vector2f(1714.f, 174.f));
 			rect.setFillColor(sf::Color(0,0,255,150)); // blue
 			rect.setOutlineColor(sf::Color(0,255,0,150)); // green
@@ -232,7 +237,12 @@ void GameRenderSys::RenderDialog_()
 				std::string nextThingToWrite = *std::next(std::next(dialogComp.m_dialogList.begin()));
 				firstThingToWrite += "\n" + nextThingToWrite;
 			}
-			text.setString(firstThingToWrite.substr(0, text.getString().getSize() + 1));
+			if (text.getString().getSize() != firstThingToWrite.size())
+			{
+				auto entity = m_rReg.create();
+				m_rReg.emplace<SoundComp>(entity).m_sound = "dialog.wav";
+				text.setString(firstThingToWrite.substr(0, text.getString().getSize() + 1));
+			}
 			m_rRenderWindow.draw(text);
 
 			renderableComp.m_bRendered = true;

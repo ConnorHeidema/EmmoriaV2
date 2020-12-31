@@ -24,6 +24,7 @@
 #include "component/functional/RotationComp.hpp"
 #include "component/functional/SpeedComp.hpp"
 #include "component/functional/TrackingComp.hpp"
+#include "component/functional/SoundComp.hpp"
 #include "component/functional/DoorComp.hpp"
 #include "component/functional/stats/MaxHealthComp.hpp"
 #include "component/functional/SignInfoComp.hpp"
@@ -77,6 +78,11 @@ void EntityLoaderFactory::LoadMaxHealthComp(entt::registry& rReg, entt::entity& 
 void EntityLoaderFactory::LoadHealthComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
 	rReg.get_or_emplace<HealthComp>(rEntity).m_health = std::stoi(ReadTokenList_(1, reader).at(0));
+}
+
+void EntityLoaderFactory::LoadSoundComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
+{
+	rReg.get_or_emplace<SoundComp>(rEntity).m_sound = ReadTokenList_(1, reader).at(0);
 }
 
 void EntityLoaderFactory::LoadChestComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
