@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.18.4)
 
 project(Emmoria)
 
@@ -6,8 +6,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ../output)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${ADDITIONAL_CFLAGS} -g")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-
-link_directories(../ext/bin/SFML ../ext/bin/sfemovie)
 
 add_executable(Emmoria
 				../main.cpp
@@ -74,10 +72,11 @@ add_executable(Emmoria
                 ../src/entity/EntityLoaderFactory.cpp
 )
 
+target_link_directories(Emmoria PRIVATE ../ext/bin/SFML ../ext/bin/sfemovie)
+
 target_include_directories(Emmoria PRIVATE ../ext/inc)
 target_include_directories(Emmoria PRIVATE ../inc)
 
-target_link_libraries(Emmoria sfeMovie-d)
 target_link_libraries(Emmoria avcodec)
 target_link_libraries(Emmoria avdevice)
 target_link_libraries(Emmoria avfilter)
@@ -85,6 +84,7 @@ target_link_libraries(Emmoria avformat)
 target_link_libraries(Emmoria avutil)
 target_link_libraries(Emmoria swresample)
 target_link_libraries(Emmoria swscale)
+target_link_libraries(Emmoria sfeMovie-d)
 
 target_link_libraries(Emmoria sfml-graphics-d)
 target_link_libraries(Emmoria sfml-window-d)
