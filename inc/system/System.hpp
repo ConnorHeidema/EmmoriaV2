@@ -25,6 +25,9 @@ private:
 
 	std::string const m_systemConfigItem;
 	std::string const m_kLogSystemTime;
+	unsigned int m_uDisableSystemBit;
+
+	static unsigned int s_disableSystemBit;
 };
 
 #endif

@@ -7,10 +7,15 @@
 #include <iostream>
 #include <string>
 
+unsigned int System::s_disableSystemBit = 0;
+
 System::System(std::string const& systemConfigItem)
 		: m_systemConfigItem(systemConfigItem)
 		, m_kLogSystemTime(std::string("LogSystemTime"))
-{};
+		, m_uDisableSystemBit(s_disableSystemBit)
+{
+	s_disableSystemBit++;
+};
 
 System::~System() {}
 

@@ -1,0 +1,15 @@
+TileMapComp DawnPillar RenderableComp DeloadableComp
+InteractableComp HealingPadComp PositionComp 70 60 SizeComp 5 5 SpriteComp HealingPad RenderableComp HealingPadComp DeloadableComp
+ChestComp 0 bow InteractableComp ChestTagComp
+Blob
+ItemActionAreaComp PositionComp 60 45 SizeComp 120 90 ClickableComp DeloadableComp
+WallTile DAWN_PILLAR_INACCESSIBLE
+WallTile DAWN_PILLAR_SIGN InteractableComp SignComp SignComp ClickableComp SignInfoComp 5 TEXTHERE || \ _
+WallTile DAWN_PILLAR_BOTTOM_WALL
+WallTile DAWN_PILLAR_TOP_WALL
+WallTile DAWN_PILLAR_RIGHT_WALL
+WallTile DAWN_PILLAR_LEFT_WALL
+DAWN_PILLAR_GROUND RenderableComp DeloadableComp
+DAWN_PILLAR_GRASS_1 RenderableComp IndexedPosition 7 4 DeloadableComp
+DAWN_PILLAR_CARPET RenderableComp IndexedPosition 9 8 DeloadableComp
+DAWN_PILLAR_HOLE RenderableComp IndexedPosition 4 3 DeloadableComp

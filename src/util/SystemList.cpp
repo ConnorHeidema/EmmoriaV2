@@ -21,6 +21,7 @@
 #include "system/DoorSys.hpp"
 #include "system/SwitchSys.hpp"
 #include "system/MusicSys.hpp"
+#include "system/EditorSys.hpp"
 
 #include "system/enemy/BlobSys.hpp"
 
@@ -63,6 +64,7 @@ std::list<std::shared_ptr<System>> SystemList::CreateSystemList(entt::registry& 
 		STD_MAKE_UNIQUE_SYS(Door),
 		STD_MAKE_UNIQUE_SYS(Switch),
 		STD_MAKE_UNIQUE_SYS(Music),
+		STD_MAKE_UNIQUE_ANIMATION_SYS(Editor)
 	};
 	return m_sysRunningOrder;
 }
