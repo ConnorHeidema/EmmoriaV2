@@ -62,6 +62,18 @@ void EditorSys::Update_()
 	CreateCursor_();
 }
 
+void EditorSys::WriteTextureLineToTemp_(int textureIndex)
+{
+	// checks if texture exists at point, if one does, it is overriden
+}
+
+void EditorSys::WriteSpriteLineToTemp_(std::string spriteName)
+{
+	// checks if sprite exists in approximate location
+	// if not, adds to file
+	// if a different sprite exists there, replace it
+}
+
 void EditorSys::GetNewScrollPosition_()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
@@ -141,10 +153,7 @@ std::string EditorSys::GetSpriteName_()
         iss >> subs;
 		std::ifstream f(ApplicationParameters::k_spritePath + subs + ApplicationParameters::k_pictureExt);
 		if (f.good())
-		{
-			std::cout << "This is a sprite" << std::endl;
 			return subs;
-		}
     } while (iss);
 	return "";
 }
@@ -180,6 +189,10 @@ void EditorSys::CreateCursor_()
 		sizeComp.m_size.height = ApplicationParameters::k_heightAdjustment * 5;
 		auto& spriteComp = m_rReg.emplace<SpriteComp>(entity);
 		spriteComp.m_filePath = ApplicationParameters::k_spritePath + std::string(spriteName) + ApplicationParameters::k_pictureExt;
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			WriteSpriteLineToTemp_(spriteName);
+		}
 	}
 	else if (textureIndex != -1)
 	{
@@ -204,5 +217,9 @@ void EditorSys::CreateCursor_()
 		{
 			spriteComp.m_filePath = ApplicationParameters::k_spritePath + "tilemap/" + locationComp.area + ApplicationParameters::k_pictureExt;
 		});
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			WriteTextureLineToTemp_(textureIndex);
+		}
 	}
 }

@@ -22,6 +22,8 @@ private:
 	void DisableUnusefulSystems_();
 	void UpdateSetOfOptions_();
 	void CreateCursor_();
+	void WriteTextureLineToTemp_(int textureIndex);
+	void WriteSpriteLineToTemp_(std::string spriteName);
 
 	entt::registry& m_rReg;
 
