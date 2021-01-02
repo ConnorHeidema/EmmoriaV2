@@ -1,0 +1,5 @@
+Blob
+InteractableComp HealingPadComp PositionComp 70 60 SizeComp 5 5 SpriteComp HealingPad RenderableComp HealingPadComp DeloadableComp
+ChestComp 0 bow InteractableComp ChestTagComp
+ItemActionAreaComp PositionComp 60 45 SizeComp 120 90 ClickableComp DeloadableComp
+TileMapComp DawnPillar RenderableComp DeloadableComp

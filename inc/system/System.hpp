@@ -11,11 +11,12 @@
 class System
 {
 public:
-	System(std::string const& systemConfigItem);
+	System(std::string const& systemName);
 
 	virtual ~System();
+	void SetRunning(bool const bRunning);
 	void Update();
-
+	std::string GetName();
 private:
 	virtual void Update_() = 0;
 
@@ -23,11 +24,9 @@ private:
 
 	bool IsSystemLogged_();
 
-	std::string const m_systemConfigItem;
+	std::string const m_systemName;
 	std::string const m_kLogSystemTime;
-	unsigned int m_uDisableSystemBit;
-
-	static unsigned int s_disableSystemBit;
+	bool m_bEnabled;
 };
 
 #endif

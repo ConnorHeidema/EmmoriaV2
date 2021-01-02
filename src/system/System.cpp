@@ -1,27 +1,35 @@
 #include "system/System.hpp"
 
 #include "config/ConfigItems.hpp"
+#include "util/SystemList.hpp"
 
 #include <SFML/System.hpp>
 
 #include <iostream>
 #include <string>
 
-unsigned int System::s_disableSystemBit = 0;
-
-System::System(std::string const& systemConfigItem)
-		: m_systemConfigItem(systemConfigItem)
+System::System(std::string const& systemName)
+		: m_systemName(systemName)
 		, m_kLogSystemTime(std::string("LogSystemTime"))
-		, m_uDisableSystemBit(s_disableSystemBit)
+		, m_bEnabled(true)
 {
-	s_disableSystemBit++;
 };
 
 System::~System() {}
 
+void System::SetRunning(bool const bRunning)
+{
+	m_bEnabled = bRunning;
+}
+
+std::string System::GetName()
+{
+	return m_systemName;
+}
+
 void System::Update()
 {
-	if (IsSystemEnabled_())
+	if (m_bEnabled)
 	{
 		if (IsSystemLogged_())
 		{
@@ -29,7 +37,7 @@ void System::Update()
 			Update_();
 			if (clock.getElapsedTime().asMilliseconds() > 0)
 			{
-				std::cout << std::string("Time spent in ") << m_systemConfigItem.substr(7) << " (milliseconds):" << clock.getElapsedTime().asMilliseconds() << std::endl;
+				std::cout << std::string("Time spent in ") << m_systemName << " (milliseconds):" << clock.getElapsedTime().asMilliseconds() << std::endl;
 			}
 		}
 		else
@@ -37,12 +45,6 @@ void System::Update()
 			Update_();
 		}
 	}
-}
-
-bool System::IsSystemEnabled_()
-{
-	return ConfigItems::m_setConfigItems.find(m_systemConfigItem) ==
-		ConfigItems::m_setConfigItems.end();
 }
 
 bool System::IsSystemLogged_()
