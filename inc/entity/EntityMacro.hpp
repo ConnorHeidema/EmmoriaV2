@@ -25,7 +25,8 @@
 	macroToUse(SignComp) \
 	macroToUse(NearbyPlayerComp) \
 	macroToUse(StructuredDialogComp) \
-	macroToUse(ChestTagComp)
+	macroToUse(ChestTagComp) \
+	macroToUse(CursorImageComp)
 
 
 #define ALL_FUNCTIONAL_MACRO(macroToUse) \

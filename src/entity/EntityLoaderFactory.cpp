@@ -104,7 +104,7 @@ void EntityLoaderFactory::LoadChestComp(entt::registry& rReg, entt::entity& rEnt
 	rReg.emplace<ChestTagComp>(rEntity);
 	rReg.emplace<WallComp>(rEntity);
 	rReg.emplace<DeloadableComp>(rEntity);
-	rReg.emplace<SpriteComp>(rEntity).m_filePath = ApplicationParameters::k_spritePath + std::string("chest.png");
+	rReg.emplace<SpriteComp>(rEntity).m_filePath = ApplicationParameters::k_spritePath + std::string("ChestComp.png");
 	auto& interactableComp = rReg.get_or_emplace<InteractableComp>(rEntity);
 	interactableComp.m_interactTypeList.insert(InteractType_t::WallComp_t);
 }

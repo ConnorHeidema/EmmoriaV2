@@ -3,20 +3,30 @@
 
 #include "system/System.hpp"
 #include <entt/fwd.hpp>
+#include <vector>
 
-namespace sf { class RenderWindow; }
+namespace sf { class Mouse; }
 
 class EditorSys
 	: public System
 {
 public:
-	EditorSys(std::string systemConfigItem, entt::registry& rReg, sf::RenderWindow& rRenderWindow);
+	EditorSys(std::string systemConfigItem, entt::registry& rReg);
 
 private:
 	void Update_() override;
 
+	void GetNewScrollPosition_();
+	int GetTextureSubIndex_();
+	std::string GetSpriteName_();
+	void DisableUnusefulSystems_();
+	void UpdateSetOfOptions_();
+	void CreateCursor_();
+
 	entt::registry& m_rReg;
-	sf::RenderWindow& m_rRenderWindow;
+
+	std::vector<std::string> m_thingsToPlaceDownSet;
+	int m_currentSetIndex;
 };
 
 #endif

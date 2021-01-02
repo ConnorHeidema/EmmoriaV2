@@ -58,7 +58,7 @@ void GameRenderSys::ResetRenderState_()
 
 void GameRenderSys::RenderTileMapPieces_()
 {
-	m_rReg.view<TileMapPtrComp, RenderableComp>().each([&](
+	m_rReg.view<TileMapPtrComp, RenderableComp>(entt::exclude<CursorImageComp>).each([&](
 		auto entity,
 		auto& tileMapPtrComp,
 		auto& renderableComp)

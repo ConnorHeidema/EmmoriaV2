@@ -13,7 +13,7 @@
 #define DO_MACRO_FOR_ALL_SYSTEMS(m, m2) \
 	m(Reboot)\
 	m(Config)\
-	m2(Editor)\
+	m(Editor)\
 	m(Reload)\
 	m(Movement)\
 	m(TileMap)\
