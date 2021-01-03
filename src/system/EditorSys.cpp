@@ -65,9 +65,9 @@ void EditorSys::Update_()
 	}
 
 	DisableUnusefulSystems_();
-	// UpdateSetOfOptions_();
-	// GetNewScrollPosition_();
-	// CreateCursor_();
+	UpdateSetOfOptions_();
+	GetNewScrollPosition_();
+	CreateCursor_();
 }
 
 bool EditorSys::CheckIfTiledIndexExists_(std::string const& filepath, int xIndex, int yIndex)
@@ -90,8 +90,8 @@ void EditorSys::WriteTextureLineToTemp_(int textureIndex, Position const& pos)
 	std::string lineToWrite = m_thingsToPlaceDownSet.at(m_currentSetIndex) +
 		" IndexedPosition " + std::to_string(int(pos.x)) + " " + std::to_string(int(pos.y)) + "\n";
 	// checks if texture exists at point, if one does, it is overriden
-	std::ofstream tmpFile(ApplicationParameters::k_dataPath + "/builder/tmp", std::ios_base::app);
-	if (!CheckIfTiledIndexExists_(ApplicationParameters::k_dataPath + "/builder/tmp", pos.x, pos.y))
+	std::ofstream tmpFile(ApplicationParameters::k_dataPath + "/Debug/0,0", std::ios_base::app);
+	if (!CheckIfTiledIndexExists_(ApplicationParameters::k_dataPath + "/Debug/0,0", pos.x, pos.y))
 	{
 		tmpFile << lineToWrite;
 	}
@@ -107,11 +107,11 @@ void EditorSys::WriteSpriteLineToTemp_(std::string spriteName)
 
 void EditorSys::GetNewScrollPosition_()
 {
-	if (SFMLUtils::s_wheelMovement == 1)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num8))
 	{
 		m_currentSetIndex = (m_currentSetIndex + 1) % m_thingsToPlaceDownSet.size();
 	}
-	else if (SFMLUtils::s_wheelMovement == -1)
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num9))
 	{
 		m_currentSetIndex = (m_currentSetIndex == 0 ? m_thingsToPlaceDownSet.size() - 1 : m_currentSetIndex - 1);
 	}

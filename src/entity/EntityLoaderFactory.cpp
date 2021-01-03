@@ -95,11 +95,6 @@ void EntityLoaderFactory::LoadChestComp(entt::registry& rReg, entt::entity& rEnt
 		static_cast<uint32_t>(ApplicationParameters::k_heightAdjustment * 5)
 	};
 	rReg.emplace<RenderableComp>(rEntity);
-	rReg.emplace<PositionComp>(rEntity).m_position =
-	{
-		static_cast<float>(std::stoi(ReadTokenList_(1, reader).at(0))),
-		static_cast<float>(std::stoi(ReadTokenList_(1, reader).at(0)))
-	};
 
 	rReg.emplace<ChestTagComp>(rEntity);
 	rReg.emplace<WallComp>(rEntity);
@@ -209,7 +204,6 @@ void EntityLoaderFactory::LoadSignInfoComp(entt::registry& rReg, entt::entity& r
 		text += token + " "; reader >> token;
 	}
 	text.pop_back();
-	reader >> token;
 }
 
 void EntityLoaderFactory::LoadTrackingComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -407,8 +401,6 @@ void EntityLoaderFactory::LoadBlob(entt::registry& rReg, entt::entity& rEntity, 
 	rReg.emplace<DeloadableComp>(rEntity);
 	rReg.emplace<WallInteractorComp>(rEntity);
 	rReg.emplace<WeightComp>(rEntity);
-
-	LoadPositionComp(rReg, rEntity, reader);
 	auto& size = rReg.get_or_emplace<SizeComp>(rEntity).m_size;
 	size.width = 5 * ApplicationParameters::k_widthAdjustment;
 	size.height = 5 * ApplicationParameters::k_heightAdjustment;

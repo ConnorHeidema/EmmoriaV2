@@ -1,13 +1,4 @@
 TileMapComp DawnPillar RenderableComp DeloadableComp
-InteractableComp HealingPadComp SizeComp 5 5 SpriteComp HealingPad RenderableComp HealingPadComp DeloadableComp PositionComp 70 60
-ChestComp 0 bow InteractableComp ChestTagComp PositionComp 15 27
-Blob PositionComp 100 60
-Blob PositionComp 90 80
-ItemActionAreaComp SizeComp 120 90 ClickableComp DeloadableComp PositionComp 60 45
-WallTile DAWN_PILLAR_LEFT_WALL IndexedPosition 19 1
-WallTile DAWN_PILLAR_RIGHT_WALL IndexedPosition 0 1
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp DeloadableComp IndexedPosition 9 1
-TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp DeloadableComp IndexedPosition 10 1
 TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp DeloadableComp IndexedPosition 7 4
 TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp DeloadableComp IndexedPosition 8 4
 TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp DeloadableComp IndexedPosition 9 4
@@ -287,7 +278,7 @@ HoleTile DAWN_PILLAR_HOLE RenderableComp IndexedPosition 4 3
 HoleTile DAWN_PILLAR_HOLE RenderableComp IndexedPosition 4 4
 TileMapPieceComp DAWN_PILLAR_STAIRS RenderableComp DeloadableComp IndexedPosition 9 7
 TileMapPieceComp DAWN_PILLAR_STAIRS RenderableComp DeloadableComp IndexedPosition 10 7
-WallTile DAWN_PILLAR_SIGN InteractableComp SignComp SignComp ClickableComp SignInfoComp 5 *Sign* Here lie the forgotten. || \ _ IndexedPosition 3 0
+WallTile DAWN_PILLAR_SIGN InteractableComp SignComp SignComp ClickableComp SignInfoComp 5 *TEXTHERE* test || \ _ IndexedPosition 3 0
 WallTile DAWN_PILLAR_RIGHT_WALL IndexedPosition 13 6
 WallTile DAWN_PILLAR_RIGHT_WALL IndexedPosition 13 5
 WallTile DAWN_PILLAR_RIGHT_WALL IndexedPosition 13 4

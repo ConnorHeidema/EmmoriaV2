@@ -1,0 +1,4 @@
+WallTile DAWN_PILLAR_LEFT_WALL IndexedPosition 19 1
+WallTile DAWN_PILLAR_RIGHT_WALL IndexedPosition 0 1
+TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp DeloadableComp IndexedPosition 9 1
+TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp DeloadableComp IndexedPosition 10 1
