@@ -3,8 +3,8 @@
 
 struct Position
 {
-	float x;
-	float y;
+	double x;
+	double y;
 };
 
 #endif

@@ -37,10 +37,12 @@ void MovementSys::Update_()
 
 void MovementSys::GoToDebugRoom_()
 {
-	if (ConfigItems::m_setConfigItems.find("GoToTempRoom") != ConfigItems::m_setConfigItems.end())
+	static bool bBeenMoved = false; //quickfix and dirty
+	if (!bBeenMoved && ConfigItems::m_setConfigItems.find("GoToTempRoom") != ConfigItems::m_setConfigItems.end())
 	{
 		m_rReg.view<PlayerComp, PositionComp, SpeedComp>().each([&](auto entity, auto& positionComp, auto& speedComp)
 		{
+			bBeenMoved = true;
 			positionComp.m_position.x = ApplicationParameters::k_debugRoomX*ApplicationParameters::k_rightOfScreen + ApplicationParameters::k_rightOfScreen/2;
 			positionComp.m_position.y = ApplicationParameters::k_debugRoomY*ApplicationParameters::k_bottomOfScreen + ApplicationParameters::k_bottomOfScreen/2;
 		});

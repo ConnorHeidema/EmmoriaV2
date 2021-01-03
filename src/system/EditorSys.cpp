@@ -259,8 +259,8 @@ void EditorSys::CreateCursor_()
 				textureIndex,
 				Position
 				{
-					static_cast<float>(sf::Mouse::getPosition().x / ApplicationParameters::k_widthAdjustment / ApplicationParameters::k_tileUnitSize),
-					static_cast<float>(sf::Mouse::getPosition().y / ApplicationParameters::k_heightAdjustment / ApplicationParameters::k_tileUnitSize)
+					static_cast<double>(sf::Mouse::getPosition().x / ApplicationParameters::k_widthAdjustment / ApplicationParameters::k_tileUnitSize),
+					static_cast<double>(sf::Mouse::getPosition().y / ApplicationParameters::k_heightAdjustment / ApplicationParameters::k_tileUnitSize)
 				});
 		}
 	}
