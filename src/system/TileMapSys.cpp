@@ -9,6 +9,7 @@
 #include "component/functional/RenderableComp.hpp"
 
 #include "util/TextureContainer.hpp"
+#include "util/Helper.hpp"
 
 #include <entt/entt.hpp>
 
@@ -32,8 +33,8 @@ void TileMapSys::Update_()
 	m_rReg.view<TileMapPieceComp, PositionComp, RenderableComp>().each([&](auto entity, auto& tileMapPieceComp, auto& positionComp, auto& renderableComp)
 	{
 		m_pTileMap->PopulateQuad(
-			int(positionComp.m_position.x) % ApplicationParameters::k_rightOfScreen,
-			int(positionComp.m_position.y) % ApplicationParameters::k_bottomOfScreen,
+			Helper::Mod(int(positionComp.m_position.x), ApplicationParameters::k_rightOfScreen),
+			Helper::Mod(int(positionComp.m_position.y), ApplicationParameters::k_bottomOfScreen),
 			tileMapPieceComp.m_index);
 	});
 }
