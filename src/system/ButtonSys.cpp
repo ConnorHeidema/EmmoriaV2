@@ -102,7 +102,9 @@ void ButtonSys::Update_()
 			auto entity = m_rReg.create();
 			EntityLoaderFactory::LoadButton(m_rReg, entity, s);
 		}
-
+		f.close();
+		f2.close();
+		f3.close();
 		std::istringstream s("BackButton 10 5 4 Back \\");
 		auto entity = m_rReg.create();
 		EntityLoaderFactory::LoadButton(m_rReg, entity, s);

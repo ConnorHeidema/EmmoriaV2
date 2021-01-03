@@ -43,6 +43,7 @@ void LoadingSys::Update_()
 				}
 			}
 		}
+		file.close();
 		m_rReg.destroy(entity);
 	});
 }
