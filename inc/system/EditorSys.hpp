@@ -5,6 +5,8 @@
 #include <entt/fwd.hpp>
 #include <vector>
 
+class Position;
+
 namespace sf { class Mouse; }
 
 class EditorSys
@@ -22,13 +24,16 @@ private:
 	void DisableUnusefulSystems_();
 	void UpdateSetOfOptions_();
 	void CreateCursor_();
-	void WriteTextureLineToTemp_(int textureIndex);
+	void WriteTextureLineToTemp_(int textureIndex, Position const& pos);
 	void WriteSpriteLineToTemp_(std::string spriteName);
+	bool CheckIfTiledIndexExists_(std::string const& filepath, int xIndex, int yIndex);
+
 
 	entt::registry& m_rReg;
 
 	std::vector<std::string> m_thingsToPlaceDownSet;
 	int m_currentSetIndex;
+	bool m_bEditing;
 };
 
 #endif

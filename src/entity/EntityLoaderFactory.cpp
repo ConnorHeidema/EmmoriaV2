@@ -386,7 +386,6 @@ void EntityLoaderFactory::LoadWallTile(entt::registry& rReg, entt::entity& rEnti
  	rReg.emplace<RenderableComp>(rEntity);
  	rReg.emplace<DeloadableComp>(rEntity);
 	LoadTileMapPieceComp(rReg, rEntity, reader);
-	LoadIndexedPosition(rReg, rEntity, reader);
 	auto& interactableComp = rReg.get_or_emplace<InteractableComp>(rEntity);
 	interactableComp.m_interactTypeList.insert(InteractType_t::WallComp_t);
 }
@@ -397,7 +396,6 @@ void EntityLoaderFactory::LoadHoleTile(entt::registry& rReg, entt::entity& rEnti
  	rReg.emplace<RenderableComp>(rEntity);
  	rReg.emplace<DeloadableComp>(rEntity);
 	LoadTileMapPieceComp(rReg, rEntity, reader);
-	LoadIndexedPosition(rReg, rEntity, reader);
 	auto& interactableComp = rReg.get_or_emplace<InteractableComp>(rEntity);
 	interactableComp.m_interactTypeList.insert(InteractType_t::HoleComp_t);
 }

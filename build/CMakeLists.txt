@@ -40,6 +40,7 @@ add_executable(Emmoria
                 ../src/util/DialogParameters.cpp
                 ../src/util/TextureContainer.cpp
                 ../src/util/FontContainer.cpp
+                ../src/util/SFMLUtils.cpp
 
                 # System implementations
                 ../src/system/System.cpp

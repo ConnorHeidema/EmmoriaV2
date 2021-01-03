@@ -8,7 +8,6 @@
 #include "component/functional/LocationComp.hpp"
 #include "component/functional/SizeComp.hpp"
 #include "component/functional/TextComp.hpp"
-#include "component/functional/TileMapPtrComp.hpp"
 #include "component/functional/HealthComp.hpp"
 #include "component/functional/RotationComp.hpp"
 #include "component/functional/DialogComp.hpp"
@@ -34,6 +33,8 @@
 #include "config/ConfigItems.hpp"
 #include "util/SystemList.hpp"
 
+#include "util/SFMLUtils.hpp"
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -43,6 +44,7 @@ EditorSys::EditorSys(std::string systemConfigItem, entt::registry& rReg)
 	, m_rReg(rReg)
 	, m_thingsToPlaceDownSet()
 	, m_currentSetIndex(0)
+	, m_bEditing(false)
 { }
 
 // This needs to parse a file based on the location, open that file and when the user scrolls allow the user to place things
@@ -51,20 +53,49 @@ EditorSys::EditorSys(std::string systemConfigItem, entt::registry& rReg)
 // This should only work if a certain config item is set to true AllowEditing
 void EditorSys::Update_()
 {
-	if (ConfigItems::m_setConfigItems.find("EditorMode") == ConfigItems::m_setConfigItems.end())
+	m_rReg.view<CursorImageComp>().each([&](auto entity)
+	{
+		m_rReg.destroy(entity);
+	});
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F10))
+		m_bEditing = !m_bEditing;
+	if (ConfigItems::m_setConfigItems.find("EditorMode") == ConfigItems::m_setConfigItems.end() || !m_bEditing)
 	{
 		return;
 	}
 
 	DisableUnusefulSystems_();
-	UpdateSetOfOptions_();
-	GetNewScrollPosition_();
-	CreateCursor_();
+	// UpdateSetOfOptions_();
+	// GetNewScrollPosition_();
+	// CreateCursor_();
 }
 
-void EditorSys::WriteTextureLineToTemp_(int textureIndex)
+bool EditorSys::CheckIfTiledIndexExists_(std::string const& filepath, int xIndex, int yIndex)
 {
+	std::string substrToFind = "IndexedPosition " + std::to_string(xIndex) + " " + std::to_string(yIndex);
+	std::string token;
+	std::ifstream file(filepath);
+	while(std::getline(file, token))
+	{
+		if (token.find(substrToFind) != std::string::npos)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+void EditorSys::WriteTextureLineToTemp_(int textureIndex, Position const& pos)
+{
+	std::string lineToWrite = m_thingsToPlaceDownSet.at(m_currentSetIndex) +
+		" IndexedPosition " + std::to_string(int(pos.x)) + " " + std::to_string(int(pos.y)) + "\n";
 	// checks if texture exists at point, if one does, it is overriden
+	std::ofstream tmpFile(ApplicationParameters::k_dataPath + "/builder/tmp", std::ios_base::app);
+	if (!CheckIfTiledIndexExists_(ApplicationParameters::k_dataPath + "/builder/tmp", pos.x, pos.y))
+	{
+		tmpFile << lineToWrite;
+	}
+  	tmpFile.close();
 }
 
 void EditorSys::WriteSpriteLineToTemp_(std::string spriteName)
@@ -76,17 +107,13 @@ void EditorSys::WriteSpriteLineToTemp_(std::string spriteName)
 
 void EditorSys::GetNewScrollPosition_()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	if (SFMLUtils::s_wheelMovement == 1)
 	{
 		m_currentSetIndex = (m_currentSetIndex + 1) % m_thingsToPlaceDownSet.size();
-		std::cout << m_thingsToPlaceDownSet[m_currentSetIndex] << std::endl;
-		std::cout << m_currentSetIndex << std::endl;
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	else if (SFMLUtils::s_wheelMovement == -1)
 	{
 		m_currentSetIndex = (m_currentSetIndex == 0 ? m_thingsToPlaceDownSet.size() - 1 : m_currentSetIndex - 1);
-		std::cout << m_thingsToPlaceDownSet[m_currentSetIndex] << std::endl;
-		std::cout << m_currentSetIndex << std::endl;
 	}
 }
 
@@ -160,11 +187,6 @@ std::string EditorSys::GetSpriteName_()
 
 void EditorSys::CreateCursor_()
 {
-	m_rReg.view<CursorImageComp>().each([&](auto entity)
-	{
-		m_rReg.destroy(entity);
-	});
-
 	if (sf::Mouse::getPosition().y > ApplicationParameters::k_bottomOfScreen)
 		return;
 
@@ -173,7 +195,6 @@ void EditorSys::CreateCursor_()
 	if (spriteName != "")
 	{
 		auto size = Size{100, 100};
-		auto genericSprite = sf::RectangleShape(sf::Vector2f(size.width, size.height));
 		if (sf::Mouse::getPosition().y >= ApplicationParameters::k_bottomOfScreen)
 			return;
 
@@ -197,7 +218,6 @@ void EditorSys::CreateCursor_()
 	else if (textureIndex != -1)
 	{
 		auto size = Size{100, 100};
-		auto genericSprite = sf::RectangleShape(sf::Vector2f(size.width, size.height));
 
 		auto entity = m_rReg.create();
 		m_rReg.emplace<CursorImageComp>(entity);
@@ -219,7 +239,33 @@ void EditorSys::CreateCursor_()
 		});
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			WriteTextureLineToTemp_(textureIndex);
+			WriteTextureLineToTemp_(
+				textureIndex,
+				Position
+				{
+					static_cast<float>(sf::Mouse::getPosition().x / ApplicationParameters::k_widthAdjustment / ApplicationParameters::k_tileUnitSize),
+					static_cast<float>(sf::Mouse::getPosition().y / ApplicationParameters::k_heightAdjustment / ApplicationParameters::k_tileUnitSize)
+				});
 		}
+	}
+	else
+	{
+		// add line and show line as cursor
+		auto size = Size{10, 10};
+		if (sf::Mouse::getPosition().y >= ApplicationParameters::k_bottomOfScreen)
+			return;
+
+		auto entity = m_rReg.create();
+		m_rReg.emplace<CursorImageComp>(entity);
+		m_rReg.emplace<RenderableComp>(entity);
+		auto& posComp = m_rReg.emplace<PositionComp>(entity);
+		posComp.m_position.x = sf::Mouse::getPosition().x;
+		posComp.m_position.y = sf::Mouse::getPosition().y;
+
+		auto& sizeComp = m_rReg.emplace<SizeComp>(entity);
+		sizeComp.m_size.width = ApplicationParameters::k_widthAdjustment * 5;
+		sizeComp.m_size.height = ApplicationParameters::k_heightAdjustment * 5;
+		auto& textComp = m_rReg.emplace<TextComp>(entity);
+		textComp.m_text = m_thingsToPlaceDownSet[m_currentSetIndex];
 	}
 }

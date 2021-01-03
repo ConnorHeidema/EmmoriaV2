@@ -7,6 +7,7 @@
 #include "util/SystemList.hpp"
 
 #include "util/MediatoEntitymap.hpp"
+#include "util/SFMLUtils.hpp"
 
 #include <SFML/Window/Event.hpp>
 
@@ -53,8 +54,11 @@ void Application::RunLoop_()
 void Application::CheckForEvents_()
 {
 	sf::Event event;
+	SFMLUtils::ResetUserSFMLEventState();
 	while (m_renderWindow.pollEvent(event))
 	{
+		if (SFMLUtils::ProcessSFMLEvents(event));
+			break;
 		switch (event.type)
 		{
 			case sf::Event::Closed: m_renderWindow.close(); break;
