@@ -44,3 +44,8 @@ int const ApplicationParameters::k_bottomOfScreen = k_heightTiles * k_tileScreen
 int const ApplicationParameters::k_rightOfScreen = k_widthTiles * k_tileScreenWidthSize;
 
 uint64_t ApplicationParameters::uCurrentDialogIndex = 0;
+
+int const ApplicationParameters::k_debugRoomX = -400000;
+int const ApplicationParameters::k_debugRoomY = -400000;
+std::string const ApplicationParameters::k_debugRoomString =
+	std::to_string(ApplicationParameters::k_debugRoomX) + "," + std::to_string(ApplicationParameters::k_debugRoomY);

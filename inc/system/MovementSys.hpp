@@ -18,6 +18,7 @@ public:
 
 private:
 	void Update_() override;
+	void GoToDebugRoom_();
 	void UpdateLastPositions_();
 	void UpdatePlayerPosition_();
 	void UpdateArrowPosition_();

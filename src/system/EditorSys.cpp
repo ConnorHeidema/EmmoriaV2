@@ -88,11 +88,16 @@ bool EditorSys::CheckIfTiledIndexExists_(std::string const& filepath, int xIndex
 
 void EditorSys::WriteTextureLineToTemp_(int textureIndex, Position const& pos)
 {
+	std::string locationName = "";
+	m_rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
+	{
+		locationName = locationComp.area;
+	});
 	std::string lineToWrite = m_thingsToPlaceDownSet.at(m_currentSetIndex) +
 		" IndexedPosition " + std::to_string(int(pos.x)) + " " + std::to_string(int(pos.y)) + "\n";
 	// checks if texture exists at point, if one does, it is overriden
-	std::ofstream tmpFile(ApplicationParameters::k_dataPath + "/Debug/0,0", std::ios_base::app);
-	if (!CheckIfTiledIndexExists_(ApplicationParameters::k_dataPath + "/Debug/0,0", pos.x, pos.y))
+	std::ofstream tmpFile(ApplicationParameters::k_dataPath + "/" + locationName + "/" + ApplicationParameters::k_debugRoomString, std::ios_base::app);
+	if (!CheckIfTiledIndexExists_(ApplicationParameters::k_dataPath + "/" + locationName + "/" + ApplicationParameters::k_debugRoomString, pos.x, pos.y))
 	{
 		tmpFile << lineToWrite;
 	}

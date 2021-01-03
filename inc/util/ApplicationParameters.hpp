@@ -48,6 +48,10 @@ struct ApplicationParameters
 	static int const k_rightOfScreen;
 
 	static uint64_t uCurrentDialogIndex;
+
+	static int const k_debugRoomX;
+	static int const k_debugRoomY;
+	static std::string const k_debugRoomString;
 };
 
 #endif

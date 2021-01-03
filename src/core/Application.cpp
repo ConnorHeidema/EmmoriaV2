@@ -53,8 +53,8 @@ void Application::RunLoop_()
 
 void Application::CheckForEvents_()
 {
-	sf::Event event;
 	SFMLUtils::ResetUserSFMLEventState();
+	sf::Event event;
 	while (m_renderWindow.pollEvent(event))
 	{
 		if (SFMLUtils::ProcessSFMLEvents(event));

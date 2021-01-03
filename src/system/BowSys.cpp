@@ -81,7 +81,7 @@ void BowSys::CreateArrow_(
 		yPos2 += locationComp.yLocation * ApplicationParameters::k_bottomOfScreen;
 	});
 
-	auto& bowArrowPositionComp = m_rReg.emplace<PositionComp>(bowArrowEntity);
+	auto& bowArrowPositionComp = m_rReg.emplace<PositionComp>(bowArrowEntity); // should be changed to use helper mod
 	bowArrowPositionComp.m_position.x = ((int)playerPositionComp.m_position.x % ApplicationParameters::k_rightOfScreen) + xPos2;
 	bowArrowPositionComp.m_position.y = ((int)playerPositionComp.m_position.y % ApplicationParameters::k_bottomOfScreen) + yPos2;
 
@@ -91,8 +91,8 @@ void BowSys::CreateArrow_(
 	spriteComp.m_filePath = ApplicationParameters::k_spritePath + "Arrow" + ApplicationParameters::k_pictureExt;
 	m_rReg.emplace<ArrowComp>(bowArrowEntity);
 
-	std::cout << "Creating arrow at (" << bowArrowPositionComp.m_position.x <<
-		", " << bowArrowPositionComp.m_position.y << ")" << std::endl;
+	//std::cout << "Creating arrow at (" << bowArrowPositionComp.m_position.x <<
+	//	", " << bowArrowPositionComp.m_position.y << ")" << std::endl;
 
 	m_rReg.emplace_or_replace<DeloadableComp>(bowArrowEntity);
 

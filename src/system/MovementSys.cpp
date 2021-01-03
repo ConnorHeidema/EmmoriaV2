@@ -10,6 +10,7 @@
 
 #include "util/ApplicationParameters.hpp"
 #include "util/PositionUtils.hpp"
+#include "config/ConfigItems.hpp"
 
 #include <SFML/Window/Keyboard.hpp>
 
@@ -26,11 +27,24 @@ MovementSys::MovementSys(std::string systemConfigItem, entt::registry& rReg)
 
 void MovementSys::Update_()
 {
+	GoToDebugRoom_();
 	UpdateLastPositions_();
 	UpdatePlayerPosition_();
 	UpdateArrowPosition_();
 	UpdateBlobPosition_();
 	DeleteRolloverObjects_();
+}
+
+void MovementSys::GoToDebugRoom_()
+{
+	if (ConfigItems::m_setConfigItems.find("GoToTempRoom") != ConfigItems::m_setConfigItems.end())
+	{
+		m_rReg.view<PlayerComp, PositionComp, SpeedComp>().each([&](auto entity, auto& positionComp, auto& speedComp)
+		{
+			positionComp.m_position.x = ApplicationParameters::k_debugRoomX*ApplicationParameters::k_rightOfScreen + ApplicationParameters::k_rightOfScreen/2;
+			positionComp.m_position.y = ApplicationParameters::k_debugRoomY*ApplicationParameters::k_bottomOfScreen + ApplicationParameters::k_bottomOfScreen/2;
+		});
+	}
 }
 
 void MovementSys::UpdateLastPositions_()

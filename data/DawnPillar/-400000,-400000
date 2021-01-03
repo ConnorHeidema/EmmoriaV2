@@ -1,0 +1,13 @@
+TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp DeloadableComp IndexedPosition 6 9
+TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp DeloadableComp IndexedPosition 15 10
+TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp DeloadableComp IndexedPosition 14 12
+TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp DeloadableComp IndexedPosition 7 1
+TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp DeloadableComp IndexedPosition 2 6
+TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp DeloadableComp IndexedPosition 11 6
+TileMapComp DawnPillar RenderableComp DeloadableComp
+TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp DeloadableComp IndexedPosition 0 0
+TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp DeloadableComp IndexedPosition 11 14
+HoleTile DAWN_PILLAR_HOLE RenderableComp IndexedPosition 19 0
+WallTile DAWN_PILLAR_INACCESSIBLE IndexedPosition 14 14
+TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp DeloadableComp IndexedPosition 10 14
+TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp DeloadableComp IndexedPosition 0 2
