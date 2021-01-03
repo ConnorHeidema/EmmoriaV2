@@ -4,6 +4,7 @@
 #include "system/System.hpp"
 #include <entt/fwd.hpp>
 #include <vector>
+#include "util/Latch.hpp"
 
 class Position;
 
@@ -34,6 +35,8 @@ private:
 	std::vector<std::string> m_thingsToPlaceDownSet;
 	int m_currentSetIndex;
 	bool m_bEditing;
+	Latch m_changeLatch;
+	bool m_goodToChange;
 };
 
 #endif

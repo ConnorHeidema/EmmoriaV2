@@ -2,3 +2,8 @@ WallTile DAWN_PILLAR_LEFT_WALL IndexedPosition 19 1
 WallTile DAWN_PILLAR_RIGHT_WALL IndexedPosition 0 1
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp DeloadableComp IndexedPosition 9 1
 TileMapPieceComp DAWN_PILLAR_GROUND RenderableComp DeloadableComp IndexedPosition 10 1
+WallTile DAWN_PILLAR_SIGN InteractableComp SignComp SignComp ClickableComp SignInfoComp 5 *TEXTHERE* test || \ _ IndexedPosition 28 8
+WallTile DAWN_PILLAR_SIGN InteractableComp SignComp SignComp ClickableComp SignInfoComp 5 *TEXTHERE* test || \ _ IndexedPosition 26 8
+WallTile DAWN_PILLAR_SIGN InteractableComp SignComp SignComp ClickableComp SignInfoComp 5 *TEXTHERE* test || \ _ IndexedPosition 27 4
+WallTile DAWN_PILLAR_SIGN InteractableComp SignComp SignComp ClickableComp SignInfoComp 5 *TEXTHERE* test || \ _ IndexedPosition 24 4
+TileMapPieceComp DAWN_PILLAR_CARPET RenderableComp DeloadableComp IndexedPosition 26 14

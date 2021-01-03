@@ -45,6 +45,7 @@ EditorSys::EditorSys(std::string systemConfigItem, entt::registry& rReg)
 	, m_thingsToPlaceDownSet()
 	, m_currentSetIndex(0)
 	, m_bEditing(false)
+	, m_changeLatch(10)
 { }
 
 // This needs to parse a file based on the location, open that file and when the user scrolls allow the user to place things
@@ -107,12 +108,22 @@ void EditorSys::WriteSpriteLineToTemp_(std::string spriteName)
 
 void EditorSys::GetNewScrollPosition_()
 {
+	if (!m_goodToChange)
+	{
+		if (m_changeLatch.CheckLatch())
+		{
+			m_goodToChange = true;
+		}
+		return;
+	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num8))
 	{
+		m_goodToChange = false;
 		m_currentSetIndex = (m_currentSetIndex + 1) % m_thingsToPlaceDownSet.size();
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num9))
 	{
+		m_goodToChange = false;
 		m_currentSetIndex = (m_currentSetIndex == 0 ? m_thingsToPlaceDownSet.size() - 1 : m_currentSetIndex - 1);
 	}
 }
