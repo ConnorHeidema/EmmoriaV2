@@ -22,6 +22,7 @@ private:
 	void UpdateLastPositions_();
 	void UpdatePlayerPosition_();
 	void UpdateArrowPosition_();
+	void UpdateSwordPosition_();
 	void UpdateBlobPosition_();
 	void DeleteRolloverObjects_();
 

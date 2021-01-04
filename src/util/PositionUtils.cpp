@@ -7,6 +7,15 @@
 
 #include <iostream>
 
+Position PositionUtils::CalculatePositionFromSpeed(Position const& fromOldPosition, double const& speed, double const& angle)
+{
+	return Position
+	{
+		fromOldPosition.x + speed * cos(angle),
+		fromOldPosition.y + speed * sin(angle)
+	};
+}
+
 void PositionUtils::CalculateNewPosition(Position& position, double const& speed, double const& angle)
 {
 	position.x += speed * cos(angle);

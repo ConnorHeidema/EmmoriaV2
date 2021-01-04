@@ -76,6 +76,14 @@ void InteractStringMap::InteractArrowCompBlobComp(entt::registry& rReg, entt::en
 	blobHealth -= 5;
 }
 
+void InteractStringMap::InteractSwordCompBlobComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
+{
+	rReg.emplace_or_replace<DeleteAfterInteractionComp>(rInteractorEntity);
+	auto& blobHealth = rReg.get_or_emplace<HealthComp>(rInteractableEntity).m_health;
+	blobHealth -= 2;
+	// sword doesn't seem to hit as it should?
+}
+
 void InteractStringMap::InteractPlayerCompHoleComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
 {
 	rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)

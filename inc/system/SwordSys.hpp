@@ -1,27 +1,28 @@
-#ifndef __BOW_SYS__
-#define __BOW_SYS__
+#ifndef __SWORD_SYS__
+#define __SWORD_SYS__
 
 #include "system/System.hpp"
 
-#include "component/functional/PositionComp.hpp"
-#include "component/functional/ClickableComp.hpp"
-
 #include "util/Latch.hpp"
 #include <entt/fwd.hpp>
-class BowSys
+
+class PositionComp;
+class ClickableComp;
+
+class SwordSys
 	: public System
 {
 public:
-	BowSys(std::string systemConfigItem, entt::registry& rReg);
+	SwordSys(std::string systemConfigItem, entt::registry& rReg);
 private:
 	void Update_() override;
-	void CreateArrow_(
+	void CreateSword_(
 		PositionComp& playerPositionComp,
 		ClickableComp& clickableActionArea);
 
 	entt::registry& m_rReg;
 
-	Latch m_bowFrequencyLatch;
+	Latch m_swordFrequencyLatch;
 
 	static const int mk_frequency;
 	static const int mk_arrowWidthUnits;

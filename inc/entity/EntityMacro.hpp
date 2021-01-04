@@ -26,7 +26,9 @@
 	macroToUse(NearbyPlayerComp) \
 	macroToUse(StructuredDialogComp) \
 	macroToUse(ChestTagComp) \
-	macroToUse(CursorImageComp)
+	macroToUse(CursorImageComp) \
+	macroToUse(SwordComp) \
+	macroToUse(SwordHolderComp)
 
 
 #define ALL_FUNCTIONAL_MACRO(macroToUse) \
@@ -57,7 +59,8 @@
 	macroToUse(SignInfoComp) \
 	macroToUse(ChestComp) \
 	macroToUse(BackgroundMusicComp) \
-	macroToUse(SoundComp)
+	macroToUse(SoundComp) \
+	macroToUse(LinkComp)
 
 #define ALL_COMPONENT_PIECE_MACRO(macroToUse) \
 	macroToUse(Xposition) \

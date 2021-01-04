@@ -25,6 +25,7 @@
 #include "component/functional/SpeedComp.hpp"
 #include "component/functional/TrackingComp.hpp"
 #include "component/functional/SoundComp.hpp"
+#include "component/functional/LinkComp.hpp"
 #include "component/functional/DoorComp.hpp"
 #include "component/functional/stats/MaxHealthComp.hpp"
 #include "component/functional/SignInfoComp.hpp"
@@ -325,6 +326,11 @@ void EntityLoaderFactory::LoadButton(entt::registry& rReg, entt::entity& rEntity
 }
 
 void EntityLoaderFactory::LoadDialogComp(entt::registry&, entt::entity&, std::istringstream&)
+{
+	// @todo Connor Heidema 2020-12-5
+}
+
+void EntityLoaderFactory::LoadLinkComp(entt::registry&, entt::entity&, std::istringstream&)
 {
 	// @todo Connor Heidema 2020-12-5
 }

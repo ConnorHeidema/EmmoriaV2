@@ -9,6 +9,7 @@ class Size;
 class PositionUtils
 {
 public:
+	static Position CalculatePositionFromSpeed(Position const& fromOldPosition, double const& speed, double const& angle);
 	static void CalculateNewPosition(Position& position, double const& speed, double const& angle);
 	static void PrintPosition(Position const& position, std::string const& prefix = "");
 	static void SetObjectToViablePosition(

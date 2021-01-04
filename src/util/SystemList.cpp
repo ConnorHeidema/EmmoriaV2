@@ -22,6 +22,7 @@
 #include "system/SwitchSys.hpp"
 #include "system/MusicSys.hpp"
 #include "system/EditorSys.hpp"
+#include "system/SwordSys.hpp"
 
 #include "system/enemy/BlobSys.hpp"
 

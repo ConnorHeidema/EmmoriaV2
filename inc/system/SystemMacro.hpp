@@ -30,6 +30,7 @@
 	m2(MovieRender)\
 	m(Blob)\
 	m(Bow)\
+	m(Sword)\
 	m(Lifespan)\
 	m(Door)\
 	m(Switch)\

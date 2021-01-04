@@ -7,6 +7,7 @@
 #include "component/functional/RotationComp.hpp"
 #include "component/functional/SpeedComp.hpp"
 #include "component/functional/TrackingComp.hpp"
+#include "component/functional/LifespanComp.hpp"
 
 #include "util/ApplicationParameters.hpp"
 #include "util/PositionUtils.hpp"
@@ -31,6 +32,7 @@ void MovementSys::Update_()
 	UpdateLastPositions_();
 	UpdatePlayerPosition_();
 	UpdateArrowPosition_();
+	UpdateSwordPosition_();
 	UpdateBlobPosition_();
 	DeleteRolloverObjects_();
 }
@@ -84,6 +86,27 @@ void MovementSys::UpdateArrowPosition_()
 	{
 		//PositionUtils::PrintPosition(positionComp.m_position, "Arrow");
 		PositionUtils::CalculateNewPosition(positionComp.m_position, speedComp.m_speed, rotationComp.m_angle);
+	});
+}
+
+void MovementSys::UpdateSwordPosition_()
+{
+	Position pos = {0,0};
+	m_rReg.view<PlayerComp, PositionComp>().each([&](
+		auto entity,
+		auto& positionComp)
+	{
+		pos = positionComp.m_position;
+	});
+	m_rReg.view<SwordComp, PositionComp, RotationComp, SpeedComp, LifespanComp>().each([&](
+		auto entity,
+		auto& positionComp,
+		auto& rotationComp,
+		auto& speedComp,
+		auto& lifespanComp)
+	{
+		//PositionUtils::PrintPosition(positionComp.m_position, "Arrow");
+		positionComp.m_position = PositionUtils::CalculatePositionFromSpeed(pos, speedComp.m_speed * (30 - lifespanComp.m_framesToLive), rotationComp.m_angle);
 	});
 }
 
