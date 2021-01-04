@@ -17,6 +17,8 @@
 #include <SFML/Graphics/Text.hpp>
 #include <entt/entt.hpp>
 
+#include "util/ApplicationParameters.hpp"
+
 #include <sstream>
 #include <iostream>
 
@@ -27,7 +29,7 @@ DialogSys::DialogSys(std::string systemConfigItem, entt::registry& rReg)
     , k_mMaxTimer(30)
 	, m_rReg(rReg)
 {
-	m_font = *FontContainer::GetFont("/usr/share/fonts/truetype/ubuntu/Ubuntu-B.ttf");
+	m_font = *FontContainer::GetFont(ApplicationParameters::k_fontPath);
 }
 
 void DialogSys::Update_()

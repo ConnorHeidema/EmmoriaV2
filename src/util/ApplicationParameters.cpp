@@ -17,7 +17,7 @@ int const ApplicationParameters::k_debounceFrames = 10;
 int const ApplicationParameters::k_widthAdjustment = ApplicationParameters::k_screenWidth / ApplicationParameters::k_widthUnits;
 int const ApplicationParameters::k_heightAdjustment = ApplicationParameters::k_screenHeight / ApplicationParameters::k_heightUnits;
 
-std::string const ApplicationParameters::k_fontPath = "/usr/share/fonts/truetype/ubuntu/Ubuntu-B.ttf"; // should be more generic in the future.
+std::string const ApplicationParameters::k_fontPath = ApplicationParameters::k_spritePath + "Ubuntu-B.ttf"; // should be more generic in the future.
 std::string const ApplicationParameters::k_dialogDelimiter = "-";
 std::string const ApplicationParameters::k_dialogEscape = "\\";
 char const ApplicationParameters::k_dialogEscapeChar = '*';
