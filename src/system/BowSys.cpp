@@ -12,15 +12,12 @@
 #include "component/functional/SpeedComp.hpp"
 #include "component/functional/LocationComp.hpp"
 #include "component/functional/LifespanComp.hpp"
-
-#include "component/InteractType.hpp"
-
-#include "util/Mediamap.hpp"
+#include "component/functional/PositionComp.hpp"
+#include "component/functional/ClickableComp.hpp"
 
 #include <entt/entt.hpp>
 
 #include <math.h>
-#include <iostream>
 
 const int BowSys::mk_frequency = 60;
 const int BowSys::mk_arrowWidthUnits = 2;
@@ -67,11 +64,8 @@ void BowSys::CreateArrow_(
 {
 	auto bowArrowEntity = m_rReg.create();
 
-	auto& speedComp = m_rReg.emplace<SpeedComp>(bowArrowEntity);
-	speedComp.m_speed = 4;
-
-	auto& lifespanComp = m_rReg.emplace<LifespanComp>(bowArrowEntity);
-	lifespanComp.m_framesToLive = 120;
+	m_rReg.emplace<SpeedComp>(bowArrowEntity).m_speed = 4;
+	m_rReg.emplace<LifespanComp>(bowArrowEntity).m_framesToLive = 120;
 
 	double xPos2 = 0;
 	double yPos2 = 0;

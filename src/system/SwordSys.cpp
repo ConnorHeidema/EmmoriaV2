@@ -17,10 +17,6 @@
 
 #include "component/functional/LinkComp.hpp"
 
-#include "component/InteractType.hpp"
-
-#include "util/Mediamap.hpp"
-
 #include <entt/entt.hpp>
 
 #include <math.h>

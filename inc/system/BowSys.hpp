@@ -3,11 +3,12 @@
 
 #include "system/System.hpp"
 
-#include "component/functional/PositionComp.hpp"
-#include "component/functional/ClickableComp.hpp"
-
 #include "util/Latch.hpp"
 #include <entt/fwd.hpp>
+
+class PositionComp;
+class ClickableComp;
+
 class BowSys
 	: public System
 {
