@@ -7,6 +7,9 @@
 
 #include <iostream>
 
+#include <SFML/Graphics/RectangleShape.hpp>
+#include <SFMLUtil/Graphics/RectangularBoundaryCollision.hpp>
+
 Position PositionUtils::CalculatePositionFromSpeed(Position const& fromOldPosition, double const& speed, double const& angle)
 {
 	return Position
@@ -43,13 +46,24 @@ void PositionUtils::SetObjectToViablePosition(
 {
 	Position lastBlobXposition = {lastPosition.x, positionToRevert.y};
 	Position lastBlobYposition = {positionToRevert.x, lastPosition.y};
+	sf::RectangleShape wallObject;
+	wallObject.setPosition(sf::Vector2f(wallPosition.x, wallPosition.y));
+	wallObject.setSize(sf::Vector2f(wallSize.width, wallSize.height));
 
-	if (OverlapUtils::Overlapping(wallPosition, wallSize, lastBlobYposition, objectSize))
-	{
-		positionToRevert.x = lastPosition.x;
-	}
-	if (OverlapUtils::Overlapping(wallPosition, wallSize, lastBlobXposition, objectSize))
+	sf::RectangleShape oldYObject;
+	oldYObject.setPosition(sf::Vector2f(lastPosition.x, positionToRevert.y));
+	oldYObject.setSize(sf::Vector2f(objectSize.width, objectSize.height));
+
+	sf::RectangleShape oldXObject;
+	oldXObject.setPosition(sf::Vector2f(positionToRevert.x, lastPosition.y));
+	oldXObject.setSize(sf::Vector2f(objectSize.width, objectSize.height));
+
+	if (collision::areColliding(wallObject, oldYObject, -1))
 	{
 		positionToRevert.y = lastPosition.y;
+	}
+	if (collision::areColliding(wallObject, oldXObject, -1))
+	{
+		positionToRevert.x = lastPosition.x;
 	}
 }

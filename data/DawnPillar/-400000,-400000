@@ -45,3 +45,4 @@ TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp DeloadableComp IndexedPositi
 WallTile DAWN_PILLAR_RIGHT_WALL IndexedPosition 11 10
 WallTile DAWN_PILLAR_LEFT_WALL IndexedPosition 13 10
 WallTile DAWN_PILLAR_LEFT_WALL IndexedPosition 5 12
+TileMapPieceComp DAWN_PILLAR_GRASS_1 RenderableComp DeloadableComp IndexedPosition 5 2

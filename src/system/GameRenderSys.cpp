@@ -98,7 +98,8 @@ void GameRenderSys::RenderBasicSprites_()
 					0,
 					spriteComp.m_width,
 					spriteComp.m_height));
-
+			genericSprite.setOutlineThickness(-2);
+			genericSprite.setOutlineColor(sf::Color::Red);
 			if (m_rReg.has<RotationComp>(entity))
 			{
 				auto& angle = m_rReg.get<RotationComp>(entity).m_angle;

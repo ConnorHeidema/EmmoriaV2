@@ -8,6 +8,7 @@
 #include "component/functional/PositionComp.hpp"
 #include "component/functional/InteractableComp.hpp"
 #include "component/functional/InteractorComp.hpp"
+#include "component/functional/RotationComp.hpp"
 
 #include "component/InteractType.hpp"
 #include "component/InteractStringMap.hpp"
@@ -16,6 +17,10 @@
 #include "util/EnttUtils.hpp"
 
 #include "TileMap/TileMapIndexes.hpp"
+
+#include <SFML/Graphics/RectangleShape.hpp>
+#include <SFMLUtil/Graphics/RectangularBoundaryCollision.hpp>
+#include <iostream>
 
 #define INDEX() \
 	static_cast<int>(interactorType) * \
@@ -80,15 +85,26 @@ void InteractingSys::PerformObjectInteractions_()
 		m_rReg.view<PositionComp, SizeComp, InteractorComp>().each([&]
 			(auto interactorEntity, auto& interactorPositionComp, auto& interactorSizeComp, auto& interactorComp)
 		{
+			if (interactableEntity == interactorEntity)
+				return;
+
 			for (auto& interactableType : interactableComp.m_interactTypeList)
 			{
 				for (auto& interactorType : interactorComp.m_interactTypeList)
 				{
-					if (OverlapUtils::Overlapping(
-						interactablePositionComp.m_position,
-						interactableSizeComp.m_size,
-						interactorPositionComp.m_position,
-						interactorSizeComp.m_size))
+					sf::RectangleShape interactableObject;
+					interactableObject.setPosition(sf::Vector2f(interactablePositionComp.m_position.x, interactablePositionComp.m_position.y));
+					interactableObject.setSize(sf::Vector2f(interactableSizeComp.m_size.width, interactableSizeComp.m_size.height));
+					if (m_rReg.has<RotationComp>(interactableEntity))
+						interactableObject.setRotation(m_rReg.get<RotationComp>(interactableEntity).m_angle);
+
+					sf::RectangleShape interactorObject;
+					interactorObject.setPosition(sf::Vector2f(interactorPositionComp.m_position.x, interactorPositionComp.m_position.y));
+					interactorObject.setSize(sf::Vector2f(interactorSizeComp.m_size.width, interactorSizeComp.m_size.height));
+					if (m_rReg.has<RotationComp>(interactorEntity))
+						interactorObject.setRotation(m_rReg.get<RotationComp>(interactorEntity).m_angle);
+
+					if (collision::areColliding(interactableObject, interactorObject, -1))
 					{
 						if (InteractStringMap::fnInteractionMap.find(INDEX()) !=
 							InteractStringMap::fnInteractionMap.end())
