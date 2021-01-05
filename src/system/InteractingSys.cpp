@@ -22,6 +22,8 @@
 #include <SFMLUtil/Graphics/RectangularBoundaryCollision.hpp>
 #include <iostream>
 
+#include <math.h>
+
 #define INDEX() \
 	static_cast<int>(interactorType) * \
 	static_cast<int>(InteractType_t::NUM_INTERACTOR_TYPE) + \
@@ -79,6 +81,7 @@ void InteractingSys::CreateNearbyPlayerEntity_()
 
 void InteractingSys::PerformObjectInteractions_()
 {
+	float const k_tan1 = tan(1);
 	m_rReg.view<PositionComp, SizeComp, InteractableComp>().each([&]
 		(auto interactableEntity, auto& interactablePositionComp, auto& interactableSizeComp, auto& interactableComp)
 	{
@@ -93,16 +96,34 @@ void InteractingSys::PerformObjectInteractions_()
 				for (auto& interactorType : interactorComp.m_interactTypeList)
 				{
 					sf::RectangleShape interactableObject;
-					interactableObject.setPosition(sf::Vector2f(interactablePositionComp.m_position.x, interactablePositionComp.m_position.y));
-					interactableObject.setSize(sf::Vector2f(interactableSizeComp.m_size.width, interactableSizeComp.m_size.height));
-					if (m_rReg.has<RotationComp>(interactableEntity))
-						interactableObject.setRotation(m_rReg.get<RotationComp>(interactableEntity).m_angle);
+					{
+						interactableObject.setPosition(
+							sf::Vector2f(
+								interactablePositionComp.m_position.x,
+								interactablePositionComp.m_position.y));
+						interactableObject.setSize(sf::Vector2f(interactableSizeComp.m_size.width, interactableSizeComp.m_size.height));
+						interactableObject.setOrigin(interactableSizeComp.m_size.width/2, interactableSizeComp.m_size.height/2);
+						if (m_rReg.has<RotationComp>(interactableEntity))
+						{
+							auto& angle = m_rReg.get<RotationComp>(interactableEntity).m_angle;
+							interactableObject.setRotation(angle * 90 / k_tan1 + 90);
+						}
+					}
 
 					sf::RectangleShape interactorObject;
-					interactorObject.setPosition(sf::Vector2f(interactorPositionComp.m_position.x, interactorPositionComp.m_position.y));
-					interactorObject.setSize(sf::Vector2f(interactorSizeComp.m_size.width, interactorSizeComp.m_size.height));
-					if (m_rReg.has<RotationComp>(interactorEntity))
-						interactorObject.setRotation(m_rReg.get<RotationComp>(interactorEntity).m_angle);
+					{
+						interactorObject.setPosition(
+							sf::Vector2f(
+								interactorPositionComp.m_position.x,
+								interactorPositionComp.m_position.y));
+						interactorObject.setSize(sf::Vector2f(interactorSizeComp.m_size.width, interactorSizeComp.m_size.height));
+						interactorObject.setOrigin(interactorSizeComp.m_size.width/2, interactorSizeComp.m_size.height/2);
+						if (m_rReg.has<RotationComp>(interactorEntity))
+						{
+							auto& angle = m_rReg.get<RotationComp>(interactorEntity).m_angle;
+							interactorObject.setRotation(angle * 90 / k_tan1 + 90);
+						}
+					}
 
 					if (collision::areColliding(interactableObject, interactorObject, -1))
 					{

@@ -24,7 +24,6 @@
 #include <entt/entt.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
-
 #include <SFML/Audio/Music.hpp>
 
 #include <math.h>
