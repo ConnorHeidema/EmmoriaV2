@@ -97,12 +97,11 @@ void InteractingSys::PerformObjectInteractions_()
 				{
 					sf::RectangleShape interactableObject;
 					{
-						interactableObject.setPosition(
-							sf::Vector2f(
-								interactablePositionComp.m_position.x,
-								interactablePositionComp.m_position.y));
-						interactableObject.setSize(sf::Vector2f(interactableSizeComp.m_size.width, interactableSizeComp.m_size.height));
-						interactableObject.setOrigin(interactableSizeComp.m_size.width/2, interactableSizeComp.m_size.height/2);
+						auto& pos = interactablePositionComp.m_position;
+						auto& size = interactableSizeComp.m_size;
+						interactableObject.setPosition(sf::Vector2f(pos.x, pos.y));
+						interactableObject.setSize(sf::Vector2f(size.width, size.height));
+						interactableObject.setOrigin(size.width/2, size.height/2);
 						if (m_rReg.has<RotationComp>(interactableEntity))
 						{
 							auto& angle = m_rReg.get<RotationComp>(interactableEntity).m_angle;
@@ -112,12 +111,11 @@ void InteractingSys::PerformObjectInteractions_()
 
 					sf::RectangleShape interactorObject;
 					{
-						interactorObject.setPosition(
-							sf::Vector2f(
-								interactorPositionComp.m_position.x,
-								interactorPositionComp.m_position.y));
-						interactorObject.setSize(sf::Vector2f(interactorSizeComp.m_size.width, interactorSizeComp.m_size.height));
-						interactorObject.setOrigin(interactorSizeComp.m_size.width/2, interactorSizeComp.m_size.height/2);
+						auto& pos = interactorPositionComp.m_position;
+						auto& size = interactorSizeComp.m_size;
+						interactorObject.setPosition(sf::Vector2f(pos.x, pos.y));
+						interactorObject.setSize(sf::Vector2f(size.width, size.height));
+						interactorObject.setOrigin(size.width/2, size.height/2);
 						if (m_rReg.has<RotationComp>(interactorEntity))
 						{
 							auto& angle = m_rReg.get<RotationComp>(interactorEntity).m_angle;
@@ -125,7 +123,7 @@ void InteractingSys::PerformObjectInteractions_()
 						}
 					}
 
-					if (collision::areColliding(interactableObject, interactorObject, -1))
+					if (collision::areColliding(interactableObject, interactorObject))
 					{
 						if (InteractStringMap::fnInteractionMap.find(INDEX()) !=
 							InteractStringMap::fnInteractionMap.end())

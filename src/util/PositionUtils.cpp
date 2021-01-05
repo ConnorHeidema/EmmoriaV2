@@ -44,25 +44,23 @@ void PositionUtils::SetObjectToViablePosition(
 		Position const& wallPosition,
 		Size const& wallSize)
 {
-	Position lastBlobXposition = {lastPosition.x, positionToRevert.y};
-	Position lastBlobYposition = {positionToRevert.x, lastPosition.y};
 	sf::RectangleShape wallObject;
-	wallObject.setPosition(sf::Vector2f(wallPosition.x, wallPosition.y));
+	wallObject.setPosition(sf::Vector2f(wallPosition.x - wallSize.width/2, wallPosition.y - wallSize.height/2));
 	wallObject.setSize(sf::Vector2f(wallSize.width, wallSize.height));
 
 	sf::RectangleShape oldYObject;
-	oldYObject.setPosition(sf::Vector2f(lastPosition.x, positionToRevert.y));
+	oldYObject.setPosition(sf::Vector2f(lastPosition.x - objectSize.width/2, positionToRevert.y - objectSize.height/2));
 	oldYObject.setSize(sf::Vector2f(objectSize.width, objectSize.height));
 
 	sf::RectangleShape oldXObject;
-	oldXObject.setPosition(sf::Vector2f(positionToRevert.x, lastPosition.y));
+	oldXObject.setPosition(sf::Vector2f(positionToRevert.x - objectSize.width/2, lastPosition.y - objectSize.height/2));
 	oldXObject.setSize(sf::Vector2f(objectSize.width, objectSize.height));
 
-	if (collision::areColliding(wallObject, oldYObject, -1))
+	if (collision::areColliding(wallObject, oldYObject))
 	{
 		positionToRevert.y = lastPosition.y;
 	}
-	if (collision::areColliding(wallObject, oldXObject, -1))
+	if (collision::areColliding(wallObject, oldXObject))
 	{
 		positionToRevert.x = lastPosition.x;
 	}
