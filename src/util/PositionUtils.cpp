@@ -8,7 +8,7 @@
 #include <iostream>
 
 #include <SFML/Graphics/RectangleShape.hpp>
-#include <SFMLUtil/Graphics/RectangularBoundaryCollision.hpp>
+#include <Graphics/RectangularBoundaryCollision.hpp>
 
 Position PositionUtils::CalculatePositionFromSpeed(Position const& fromOldPosition, double const& speed, double const& angle)
 {

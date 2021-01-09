@@ -75,10 +75,9 @@ add_executable(Emmoria
                 ../src/entity/EntityLoaderFactory.cpp
 )
 
-target_link_directories(Emmoria PRIVATE ../ext/bin/SFML ../ext/bin/sfemovie)
+target_link_directories(Emmoria PRIVATE ../ext/bin/linux/SFML ../ext/bin/linux/sfemovie)
 
-target_include_directories(Emmoria PRIVATE ../ext/inc)
-target_include_directories(Emmoria PRIVATE ../inc)
+target_include_directories(Emmoria PRIVATE ../inc ../ext/inc/util ../ext/inc/linux)
 
 target_link_libraries(Emmoria avcodec)
 target_link_libraries(Emmoria avdevice)

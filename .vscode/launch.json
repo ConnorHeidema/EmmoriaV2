@@ -13,7 +13,7 @@
 			"environment":
 			[{
 				"name": "LD_LIBRARY_PATH",
-				"value": "${LD_LIBRARY_PATH}:${workspaceFolder}/ext/bin/sfemovie:${workspaceFolder}/ext/bin/SFML"
+				"value": "${LD_LIBRARY_PATH}:${workspaceFolder}/ext/bin/linux/sfemovie:${workspaceFolder}/ext/bin/linux/SFML"
             }],
 			"externalConsole": false,
 			"MIMode": "gdb",

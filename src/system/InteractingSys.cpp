@@ -19,7 +19,7 @@
 #include "TileMap/TileMapIndexes.hpp"
 
 #include <SFML/Graphics/RectangleShape.hpp>
-#include <SFMLUtil/Graphics/RectangularBoundaryCollision.hpp>
+#include <Graphics/RectangularBoundaryCollision.hpp>
 #include <iostream>
 
 #include <math.h>
