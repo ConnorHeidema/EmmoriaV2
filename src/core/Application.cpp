@@ -57,7 +57,7 @@ void Application::CheckForEvents_()
 	sf::Event event;
 	while (m_renderWindow.pollEvent(event))
 	{
-		if (SFMLUtils::ProcessSFMLEvents(event));
+		if (SFMLUtils::ProcessSFMLEvents(event))
 			break;
 		switch (event.type)
 		{
