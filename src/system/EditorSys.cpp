@@ -46,6 +46,7 @@ EditorSys::EditorSys(std::string systemConfigItem, entt::registry& rReg)
 	, m_currentSetIndex(0)
 	, m_bEditing(false)
 	, m_changeLatch(10)
+	, m_goodToChange(false)
 { }
 
 // This needs to parse a file based on the location, open that file and when the user scrolls allow the user to place things

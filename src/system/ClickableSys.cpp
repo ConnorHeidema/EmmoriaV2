@@ -12,6 +12,7 @@
 #include <entt/entt.hpp>
 
 #include <iostream>
+
 #include <SFML/Window/Mouse.hpp>
 
 ClickableSys::ClickableSys(std::string systemConfigItem, entt::registry& rReg)
@@ -55,6 +56,8 @@ void ClickableSys::Update_()
 
 void ClickableSys::CheckClick_(int clickInt)
 {
+#pragma warning( push ) // sf::Mouse::Button is an enum and not an enum class in SFML
+#pragma warning( disable : 26812 )
 	sf::Mouse::Button click = static_cast<sf::Mouse::Button>(clickInt);
 	bool& buttonClicked = ((click == sf::Mouse::Left ? m_bLeftClicked : m_bRightClicked));
 
@@ -67,6 +70,7 @@ void ClickableSys::CheckClick_(int clickInt)
 			compClicked = false;
 		});
 		return;
+#pragma warning( pop )
 	}
 
 	if (!sf::Mouse::isButtonPressed(click))

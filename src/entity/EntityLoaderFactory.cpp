@@ -367,8 +367,8 @@ void EntityLoaderFactory::LoadIndexedPosition(entt::registry& rReg, entt::entity
 	double y = 0;
 	rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
 	{
-		x = locationComp.xLocation * ApplicationParameters::k_rightOfScreen;
-		y = locationComp.yLocation * ApplicationParameters::k_bottomOfScreen;
+		x = double(locationComp.xLocation * ApplicationParameters::k_rightOfScreen);
+		y = double(locationComp.yLocation * ApplicationParameters::k_bottomOfScreen);
 	});
 
 	positionComp.m_position.x =

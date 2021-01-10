@@ -14,7 +14,7 @@ int Helper::Rand(int const& lowerBound, int const& higherBound)
 {
 	if (!m_firstInitialization)
 	{
-		srand(time(0));
+		srand(static_cast<unsigned int>(time(0)));
 		m_firstInitialization = true;
 	}
 	return rand() % ((higherBound + 1) - lowerBound) + lowerBound;

@@ -73,8 +73,8 @@ void SwordSys::CreateSword_(
 	double yPos2 = 0;
 	m_rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
 	{
-		xPos2 += locationComp.xLocation * ApplicationParameters::k_rightOfScreen;
-		yPos2 += locationComp.yLocation * ApplicationParameters::k_bottomOfScreen;
+		xPos2 += double(locationComp.xLocation) * ApplicationParameters::k_rightOfScreen;
+		yPos2 += double(locationComp.yLocation) * ApplicationParameters::k_bottomOfScreen;
 	});
 
 	auto& bowArrowPositionComp = m_rReg.emplace<PositionComp>(swordEntity) =
@@ -106,8 +106,8 @@ void SwordSys::CreateSword_(
 		double yPos = clickableActionArea.m_y * ApplicationParameters::k_heightAdjustment - adjustedPlayerPositionY;
 		m_rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
 		{
-			xPos += locationComp.xLocation * ApplicationParameters::k_rightOfScreen;
-			yPos += locationComp.yLocation * ApplicationParameters::k_bottomOfScreen;
+			xPos += double(locationComp.xLocation) * ApplicationParameters::k_rightOfScreen;
+			yPos += double(locationComp.yLocation) * ApplicationParameters::k_bottomOfScreen;
 		});
 		if (xPos != 0 || yPos != 0)
 		{
@@ -119,10 +119,10 @@ void SwordSys::CreateSword_(
 	auto& widthAdjust = ApplicationParameters::k_widthAdjustment;
 	auto& heightAdjust = ApplicationParameters::k_heightAdjustment;
 
-	sizeComp.m_size.width = hypot(
-		mk_arrowWidthUnits * widthAdjust * sin(angle),
-		mk_arrowWidthUnits * heightAdjust * cos(angle));
-	sizeComp.m_size.height = hypot(
-		mk_arrowHeightUnits * heightAdjust * sin(angle),
-		mk_arrowHeightUnits * widthAdjust * cos(angle));
+	sizeComp.m_size.width = uint32_t(hypot(
+		sin(angle) * mk_arrowWidthUnits * widthAdjust,
+		cos(angle) * mk_arrowWidthUnits * heightAdjust));
+	sizeComp.m_size.height = uint32_t(hypot(
+		sin(angle) * mk_arrowHeightUnits * heightAdjust,
+		cos(angle) * mk_arrowHeightUnits * widthAdjust));
 }

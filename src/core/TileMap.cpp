@@ -76,18 +76,18 @@ void TileMap::ApplyTexturesToCorners_(
 	int const& textureColumn)
 {
 	currentTile[TOP_LEFT].texCoords = sf::Vector2f(
-		ApplicationParameters::k_tileMapUnitSizeInFile*textureColumn,
+		float(ApplicationParameters::k_tileMapUnitSizeInFile*textureColumn),
 		0);
 
 	currentTile[TOP_RIGHT].texCoords = sf::Vector2f(
-		ApplicationParameters::k_tileMapUnitSizeInFile*(textureColumn + 1),
+		float(ApplicationParameters::k_tileMapUnitSizeInFile*(textureColumn + 1)),
 		0);
 
 	currentTile[BOTTOM_RIGHT].texCoords = sf::Vector2f(
-		ApplicationParameters::k_tileMapUnitSizeInFile*(textureColumn + 1),
-		ApplicationParameters::k_tileMapUnitSizeInFile);
+		float(ApplicationParameters::k_tileMapUnitSizeInFile*(textureColumn + 1)),
+		float(ApplicationParameters::k_tileMapUnitSizeInFile));
 
 	currentTile[BOTTOM_LEFT].texCoords = sf::Vector2f(
-		ApplicationParameters::k_tileMapUnitSizeInFile*textureColumn,
-		ApplicationParameters::k_tileMapUnitSizeInFile);
+		float(ApplicationParameters::k_tileMapUnitSizeInFile*textureColumn),
+		float(ApplicationParameters::k_tileMapUnitSizeInFile));
 }

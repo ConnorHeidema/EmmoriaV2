@@ -11,7 +11,7 @@ int EntityLoaderUtils::GetTextWidth(std::string text, int height)
 	sf::Font font;
 	font = *FontContainer::GetFont(ApplicationParameters::k_fontPath);
 	dummyText.setFont(font);
-	dummyText.setCharacterSize(static_cast<float>(height*ApplicationParameters::k_textFactor));
+	dummyText.setCharacterSize(static_cast<unsigned int>(height*ApplicationParameters::k_textFactor));
 	dummyText.setString(text);
 	return static_cast<int>(dummyText.getLocalBounds().width);
 }
