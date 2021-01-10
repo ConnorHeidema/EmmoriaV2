@@ -45,8 +45,6 @@ EditorSys::EditorSys(std::string systemConfigItem, entt::registry& rReg)
 	, m_thingsToPlaceDownSet()
 	, m_currentSetIndex(0)
 	, m_bEditing(false)
-	, m_changeLatch(10)
-	, m_goodToChange(false)
 { }
 
 // This needs to parse a file based on the location, open that file and when the user scrolls allow the user to place things
@@ -98,7 +96,7 @@ void EditorSys::WriteTextureLineToTemp_(int textureIndex, Position const& pos)
 		" IndexedPosition " + std::to_string(int(pos.x)) + " " + std::to_string(int(pos.y)) + "\n";
 	// checks if texture exists at point, if one does, it is overriden
 	std::ofstream tmpFile(ApplicationParameters::k_dataPath + "/" + locationName + "/" + ApplicationParameters::k_debugRoomString, std::ios_base::app);
-	if (!CheckIfTiledIndexExists_(ApplicationParameters::k_dataPath + "/" + locationName + "/" + ApplicationParameters::k_debugRoomString, pos.x, pos.y))
+	if (!CheckIfTiledIndexExists_(ApplicationParameters::k_dataPath + "/" + locationName + "/" + ApplicationParameters::k_debugRoomString, (int)pos.x, (int)pos.y))
 	{
 		tmpFile << lineToWrite;
 	}
@@ -114,22 +112,12 @@ void EditorSys::WriteSpriteLineToTemp_(std::string spriteName)
 
 void EditorSys::GetNewScrollPosition_()
 {
-	if (!m_goodToChange)
+	if (SFMLUtils::s_wheelMovement > 0)
 	{
-		if (m_changeLatch.CheckLatch())
-		{
-			m_goodToChange = true;
-		}
-		return;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num8))
-	{
-		m_goodToChange = false;
 		m_currentSetIndex = (m_currentSetIndex + 1) % m_thingsToPlaceDownSet.size();
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num9))
+	else if (SFMLUtils::s_wheelMovement < 0)
 	{
-		m_goodToChange = false;
 		m_currentSetIndex = (m_currentSetIndex == 0 ? m_thingsToPlaceDownSet.size() - 1 : m_currentSetIndex - 1);
 	}
 }
@@ -235,7 +223,6 @@ void EditorSys::CreateCursor_()
 	else if (textureIndex != -1)
 	{
 		auto size = Size{100, 100};
-
 		auto entity = m_rReg.create();
 		m_rReg.emplace<CursorImageComp>(entity);
 		m_rReg.emplace<RenderableComp>(entity);

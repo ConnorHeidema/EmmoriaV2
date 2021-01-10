@@ -45,8 +45,8 @@ void MovementSys::GoToDebugRoom_()
 		m_rReg.view<PlayerComp, PositionComp, SpeedComp>().each([&](auto entity, auto& positionComp, auto& speedComp)
 		{
 			bBeenMoved = true;
-			positionComp.m_position.x = ApplicationParameters::k_debugRoomX*ApplicationParameters::k_rightOfScreen + ApplicationParameters::k_rightOfScreen/2;
-			positionComp.m_position.y = ApplicationParameters::k_debugRoomY*ApplicationParameters::k_bottomOfScreen + ApplicationParameters::k_bottomOfScreen/2;
+			positionComp.m_position.x = (double)ApplicationParameters::k_debugRoomX*ApplicationParameters::k_rightOfScreen + ApplicationParameters::k_rightOfScreen/2;
+			positionComp.m_position.y = (double)ApplicationParameters::k_debugRoomY*ApplicationParameters::k_bottomOfScreen + ApplicationParameters::k_bottomOfScreen/2;
 		});
 	}
 }
@@ -64,9 +64,9 @@ void MovementSys::UpdatePlayerPosition_()
 {
 	m_rReg.view<PlayerComp, PositionComp, SpeedComp>().each([&](auto entity, auto& positionComp, auto& speedComp) {
 		using namespace sf;
-		float xPos = (static_cast<int>(Keyboard::isKeyPressed(Keyboard::D)) -
+		float xPos = float(static_cast<int>(Keyboard::isKeyPressed(Keyboard::D)) -
 					static_cast<int>(Keyboard::isKeyPressed(Keyboard::A)));
-		float yPos = (static_cast<int>(Keyboard::isKeyPressed(Keyboard::S)) -
+		float yPos = float(static_cast<int>(Keyboard::isKeyPressed(Keyboard::S)) -
 					static_cast<int>(Keyboard::isKeyPressed(Keyboard::W)));
 		if (xPos != 0 || yPos != 0)
 		{
@@ -106,7 +106,7 @@ void MovementSys::UpdateSwordPosition_()
 		auto& lifespanComp)
 	{
 		//PositionUtils::PrintPosition(positionComp.m_position, "Arrow");
-		positionComp.m_position = PositionUtils::CalculatePositionFromSpeed(pos, speedComp.m_speed * (30 - lifespanComp.m_framesToLive), rotationComp.m_angle);
+		positionComp.m_position = PositionUtils::CalculatePositionFromSpeed(pos, (double)speedComp.m_speed * (30.L - lifespanComp.m_framesToLive), rotationComp.m_angle);
 	});
 }
 
@@ -124,9 +124,9 @@ void MovementSys::UpdateBlobPosition_()
 			if (hypot(playerPositionComp.m_position.x - positionComp.m_position.x,
 					playerPositionComp.m_position.y - positionComp.m_position.y) < trackingComp.m_sight)
 			{
-				float angle = atan2(
+				float angle = float(atan2(
 					playerPositionComp.m_position.y - positionComp.m_position.y,
-					playerPositionComp.m_position.x - positionComp.m_position.x);
+					playerPositionComp.m_position.x - positionComp.m_position.x));
 				PositionUtils::CalculateNewPosition(positionComp.m_position, speedComp.m_speed, angle);
 			}
 		});

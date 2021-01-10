@@ -39,8 +39,8 @@ void ClickableSys::Update_()
 		clickableComp.m_y = (double)sf::Mouse::getPosition().y / (double)ApplicationParameters::k_heightAdjustment;
 
 		if (MouseUtils::IsCollisionDetected_(
-				positionComp.m_position.x - sizeComp.m_size.width/2,
-				positionComp.m_position.y - sizeComp.m_size.height/2,
+				int((double)positionComp.m_position.x - sizeComp.m_size.width/2),
+				int((double)positionComp.m_position.y - sizeComp.m_size.height/2),
 				sizeComp.m_size.width,
 				sizeComp.m_size.height,
 				sf::Mouse::getPosition().x + x,
@@ -102,8 +102,8 @@ void ClickableSys::CheckClick_(int clickInt)
 	{
 		if (sf::Mouse::isButtonPressed(click) &&
 			MouseUtils::IsCollisionDetected_(
-				positionComp.m_position.x - sizeComp.m_size.width/2,
-				positionComp.m_position.y - sizeComp.m_size.height/2,
+				int((double)positionComp.m_position.x - (double)sizeComp.m_size.width/2),
+				int((double)positionComp.m_position.y - (double)sizeComp.m_size.height/2),
 				sizeComp.m_size.width,
 				sizeComp.m_size.height,
 				sf::Mouse::getPosition().x + x,

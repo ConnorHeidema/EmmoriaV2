@@ -90,8 +90,8 @@ void DialogSys::ProcessWaiting()
 				continue;
 			}
 
-			sf::Text testText(m_pDialogContainer->contentList.back().back() + std::string(subs), m_font, static_cast<float>(DialogParameters::k_fTextHeight));
-			int textActualWidth = testText.getLocalBounds().width;
+			sf::Text testText(m_pDialogContainer->contentList.back().back() + std::string(subs), m_font, static_cast<unsigned int>(DialogParameters::k_fTextHeight));
+			int textActualWidth = static_cast<int>(testText.getLocalBounds().width);
 			if (textActualWidth > DialogParameters::k_fTextWidth)
 			{
 				if (m_pDialogContainer->contentList.back().size() > 2)
