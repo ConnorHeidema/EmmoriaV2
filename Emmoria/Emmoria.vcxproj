@@ -72,9 +72,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)..\output</OutDir>
+    <IntDir>$(SolutionDir)..\build\windows</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\output</OutDir>
+    <IntDir>$(SolutionDir)..\build\windows</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -289,6 +293,9 @@
     <ClInclude Include="..\inc\util\Size.hpp" />
     <ClInclude Include="..\inc\util\SystemList.hpp" />
     <ClInclude Include="..\inc\util\TextureContainer.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\data\Config\config.ini" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -57,7 +57,8 @@ void DialogSys::ProcessWaiting()
 		{
 			std::string subs;
 			iss >> subs;
-
+			if (subs.empty())
+				break;
 			if (subs.front() == '*' && subs.back() == '*')
 			{
 				if (m_pDialogContainer)

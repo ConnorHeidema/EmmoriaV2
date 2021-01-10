@@ -498,4 +498,9 @@
       <Filter>Header Files\util\animation</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\data\Config\config.ini">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>
