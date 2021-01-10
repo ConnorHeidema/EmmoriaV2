@@ -83,13 +83,13 @@ void GameRenderSys::RenderBasicSprites_()
 		{
 			auto& pos = positionComp.m_position;
 			auto& size = sizeComp.m_size;
-			float const k_tan1 = tan(1);
-			auto genericSprite = sf::RectangleShape(sf::Vector2f(size.width, size.height));
+			auto const k_tan1 = tanf(1);
+			auto genericSprite = sf::RectangleShape(sf::Vector2f((float)size.width, (float)size.height));
 			genericSprite.setTexture(&(*TextureContainer::GetTexture(spriteComp.m_filePath)));
 
 			genericSprite.setPosition(
-				Helper::Mod((int)pos.x, ApplicationParameters::k_rightOfScreen) - (int)size.width/2,
-				Helper::Mod((int)pos.y, ApplicationParameters::k_bottomOfScreen) - (int)size.height/2);
+				(float)Helper::Mod((int)pos.x, ApplicationParameters::k_rightOfScreen) - (int)size.width/2.f,
+				(float)Helper::Mod((int)pos.y, ApplicationParameters::k_bottomOfScreen) - (int)size.height/2.f);
 
 			genericSprite.setTextureRect(
 				sf::IntRect(
@@ -104,10 +104,10 @@ void GameRenderSys::RenderBasicSprites_()
 				auto& angle = m_rReg.get<RotationComp>(entity).m_angle;
 				sf::Transform transform;
 				transform.rotate(
-					angle * 90 / k_tan1 + 90,
+					float((angle * 90.L / k_tan1) + 90.L),
 					sf::Vector2f(
-						Helper::Mod((int)pos.x, ApplicationParameters::k_rightOfScreen),
-						Helper::Mod((int)pos.y, ApplicationParameters::k_bottomOfScreen)));
+						(float)Helper::Mod((int)pos.x, ApplicationParameters::k_rightOfScreen),
+						(float)Helper::Mod((int)pos.y, ApplicationParameters::k_bottomOfScreen)));
 				m_rRenderWindow.draw(genericSprite, transform);
 			}
 			else
@@ -130,22 +130,22 @@ void GameRenderSys::RenderText_()
 	{
 		if (renderableComp.m_bRendered == false)
 		{
-			sf::RectangleShape rectShape(sf::Vector2f(sizeComp.m_size.width,sizeComp.m_size.height));
+			sf::RectangleShape rectShape(sf::Vector2f((float)sizeComp.m_size.width, (float)sizeComp.m_size.height));
 			rectShape.setPosition(
 				sf::Vector2f(
-					positionComp.m_position.x - sizeComp.m_size.width/2,
-					positionComp.m_position.y - sizeComp.m_size.height/2));
+					(float)positionComp.m_position.x - sizeComp.m_size.width/2.f,
+					(float)positionComp.m_position.y - sizeComp.m_size.height/2.f));
 			rectShape.setFillColor(sf::Color(0,255,0,150));
 			m_rRenderWindow.draw(rectShape);
 
 			sf::Text text;
 			text.setFont(*FontContainer::GetFont(ApplicationParameters::k_fontPath));
-			text.setCharacterSize(sizeComp.m_size.height*ApplicationParameters::k_textFactor);
+			text.setCharacterSize(static_cast<unsigned int>(float(sizeComp.m_size.height)*ApplicationParameters::k_textFactor));
 			text.setString(textComp.m_text);
 			text.setPosition(
 				sf::Vector2f(
-					positionComp.m_position.x - sizeComp.m_size.width/2,
-					positionComp.m_position.y - sizeComp.m_size.height/2));
+					(float)positionComp.m_position.x - sizeComp.m_size.width/2,
+					(float)positionComp.m_position.y - sizeComp.m_size.height/2));
 			m_rRenderWindow.draw(text);
 			renderableComp.m_bRendered = true;
 		}
@@ -181,8 +181,8 @@ void GameRenderSys::RenderHealth_()
 		{
 			RenderHealthBar_(
 				float(sizeComp.m_size.width),
-				Helper::Mod(int(positionComp.m_position.x - float(sizeComp.m_size.width/2)), ApplicationParameters::k_rightOfScreen),
-				Helper::Mod(int(positionComp.m_position.y - sizeComp.m_size.height/2 - 10), ApplicationParameters::k_bottomOfScreen),
+				(float)Helper::Mod(int(positionComp.m_position.x - float(sizeComp.m_size.width/2)), ApplicationParameters::k_rightOfScreen),
+				(float)Helper::Mod(int(positionComp.m_position.y - sizeComp.m_size.height/2 - 10), ApplicationParameters::k_bottomOfScreen),
 				float(healthComp.m_health) / float(maxHealthComp.m_maxHealth));
 		}
 	});

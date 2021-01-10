@@ -81,7 +81,7 @@ void InteractingSys::CreateNearbyPlayerEntity_()
 
 void InteractingSys::PerformObjectInteractions_()
 {
-	float const k_tan1 = tan(1);
+	auto const k_tan1 = tanf(1);
 	m_rReg.view<PositionComp, SizeComp, InteractableComp>().each([&]
 		(auto interactableEntity, auto& interactablePositionComp, auto& interactableSizeComp, auto& interactableComp)
 	{

@@ -15,8 +15,8 @@ bool OverlapUtils::Overlapping(
 		OverlappingOnAxis_(rPosition1.y, rPosition2.y, rSize1.height, rSize2.height);
 }
 
-bool OverlapUtils::OverlappingOnAxis_(int point1, int point2, int length1, int length2)
+bool OverlapUtils::OverlappingOnAxis_(double point1, double point2, int length1, int length2)
 {
-	return !(point1 - length1/2 >= point2 + length2/2 - ApplicationParameters::k_overlapBuffer ||
-		point2 - length2/2 >= point1 + length1/2 + ApplicationParameters::k_overlapBuffer);
+	return !(point1 - length1/2.f >= point2 + length2/2.f - ApplicationParameters::k_overlapBuffer ||
+		point2 - length2/2.f >= point1 + length1/2.f + ApplicationParameters::k_overlapBuffer);
 }
