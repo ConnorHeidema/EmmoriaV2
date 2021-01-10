@@ -77,7 +77,7 @@ add_executable(Emmoria
 
 target_link_directories(Emmoria PRIVATE ../ext/bin/linux/SFML ../ext/bin/linux/sfemovie)
 
-target_include_directories(Emmoria PRIVATE ../inc ../ext/inc/util ../ext/inc/linux)
+target_include_directories(Emmoria PRIVATE ../inc ../ext/inc)
 
 target_link_libraries(Emmoria avcodec)
 target_link_libraries(Emmoria avdevice)
