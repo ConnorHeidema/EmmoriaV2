@@ -6,7 +6,7 @@
 #include <vector>
 #include "util/Latch.hpp"
 
-class Position;
+struct Position;
 
 namespace sf { class Mouse; }
 

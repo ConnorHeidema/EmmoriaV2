@@ -1,7 +1,7 @@
 #ifndef __OVERLAP_UTILS__
 #define __OVERLAP_UTILS__
-class Size;
-class Position;
+struct Size;
+struct Position;
 
 class OverlapUtils
 {

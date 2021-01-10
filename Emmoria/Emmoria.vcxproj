@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{15f7e2b0-15db-4b0e-8215-d46bd1d6e3d3}</ProjectGuid>
+    <RootNamespace>Emmoria</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>E:\Documents\git\Emmoria\ext\inc\util;E:\Documents\git\Emmoria\ext\inc\linux;E:\Documents\git\Emmoria\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>E:\Documents\git\Emmoria\ext\inc\windows\sfeMovie\lib;E:\Documents\git\Emmoria\ext\inc\windows\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfeMovie-d.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>E:\Documents\git\Emmoria\ext\inc\util;E:\Documents\git\Emmoria\ext\inc\linux;E:\Documents\git\Emmoria\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>E:\Documents\git\Emmoria\ext\inc\windows\sfeMovie\lib;E:\Documents\git\Emmoria\ext\inc\windows\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfeMovie-d.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="..\src\component\InteractStringMap.cpp" />
+    <ClCompile Include="..\src\config\ConfigItems.cpp" />
+    <ClCompile Include="..\src\core\Application.cpp" />
+    <ClCompile Include="..\src\core\TileMap.cpp" />
+    <ClCompile Include="..\src\entity\EntityLoaderFactory.cpp" />
+    <ClCompile Include="..\src\system\AnimationSys.cpp" />
+    <ClCompile Include="..\src\system\BowSys.cpp" />
+    <ClCompile Include="..\src\system\ButtonSys.cpp" />
+    <ClCompile Include="..\src\system\ClickableSys.cpp" />
+    <ClCompile Include="..\src\system\ConfigSys.cpp" />
+    <ClCompile Include="..\src\system\DialogSys.cpp" />
+    <ClCompile Include="..\src\system\DoorSys.cpp" />
+    <ClCompile Include="..\src\system\EditorSys.cpp" />
+    <ClCompile Include="..\src\system\enemy\BlobSys.cpp" />
+    <ClCompile Include="..\src\system\GameRenderSys.cpp" />
+    <ClCompile Include="..\src\system\HealthSys.cpp" />
+    <ClCompile Include="..\src\system\InteractingSys.cpp" />
+    <ClCompile Include="..\src\system\LifespanSys.cpp" />
+    <ClCompile Include="..\src\system\LoadingSys.cpp" />
+    <ClCompile Include="..\src\system\MovementSys.cpp" />
+    <ClCompile Include="..\src\system\MovieRenderSys.cpp" />
+    <ClCompile Include="..\src\system\MusicSys.cpp" />
+    <ClCompile Include="..\src\system\PersistentSys.cpp" />
+    <ClCompile Include="..\src\system\RebootSys.cpp" />
+    <ClCompile Include="..\src\system\ReloadSys.cpp" />
+    <ClCompile Include="..\src\system\SceneLoadSys.cpp" />
+    <ClCompile Include="..\src\system\SwitchSys.cpp" />
+    <ClCompile Include="..\src\system\SwordSys.cpp" />
+    <ClCompile Include="..\src\system\System.cpp" />
+    <ClCompile Include="..\src\system\TileMapSys.cpp" />
+    <ClCompile Include="..\src\TileMap\TileMapIndexes.cpp" />
+    <ClCompile Include="..\src\util\AnimationMappings.cpp" />
+    <ClCompile Include="..\src\util\ApplicationParameters.cpp" />
+    <ClCompile Include="..\src\util\DialogParameters.cpp" />
+    <ClCompile Include="..\src\util\EntityLoaderUtils.cpp" />
+    <ClCompile Include="..\src\util\Entitymap.cpp" />
+    <ClCompile Include="..\src\util\EnttUtils.cpp" />
+    <ClCompile Include="..\src\util\FontContainer.cpp" />
+    <ClCompile Include="..\src\util\Helper.cpp" />
+    <ClCompile Include="..\src\util\Latch.cpp" />
+    <ClCompile Include="..\src\util\Mediamap.cpp" />
+    <ClCompile Include="..\src\util\MediatoEntitymap.cpp" />
+    <ClCompile Include="..\src\util\MouseUtils.cpp" />
+    <ClCompile Include="..\src\util\OverlapUtils.cpp" />
+    <ClCompile Include="..\src\util\PositionUtils.cpp" />
+    <ClCompile Include="..\src\util\SFMLUtils.cpp" />
+    <ClCompile Include="..\src\util\SystemList.cpp" />
+    <ClCompile Include="..\src\util\TextureContainer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\inc\component\EndInteractMacro.hpp" />
+    <ClInclude Include="..\inc\component\functional\BackgroundMusicComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\ButtonComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\ChestComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\ClickableComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\DialogComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\DialogFacadeComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\DoorComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\HealthComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\InteractableComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\InteractorComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\LastPositionComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\LifespanComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\LinkComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\LoadComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\LocationComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\MovieComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\PositionComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\RenderableComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\RotationComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\SignInfoComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\SizeComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\SoundComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\SpeedComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\SpriteComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\stats\MaxHealthComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\SwitchComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\TextComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\TileMapComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\TileMapPieceComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\TileMapPtrComp.hpp" />
+    <ClInclude Include="..\inc\component\functional\TrackingComp.hpp" />
+    <ClInclude Include="..\inc\component\InteractMacro.hpp" />
+    <ClInclude Include="..\inc\component\InteractStringMap.hpp" />
+    <ClInclude Include="..\inc\component\InteractType.hpp" />
+    <ClInclude Include="..\inc\component\tag\AllTagComp.hpp" />
+    <ClInclude Include="..\inc\config\ConfigItems.hpp" />
+    <ClInclude Include="..\inc\core\Application.hpp" />
+    <ClInclude Include="..\inc\core\TileMap.hpp" />
+    <ClInclude Include="..\inc\entity\EntityLoaderFactory.hpp" />
+    <ClInclude Include="..\inc\entity\EntityMacro.hpp" />
+    <ClInclude Include="..\inc\entity\EntityMacroEnd.hpp" />
+    <ClInclude Include="..\inc\system\AnimationSys.hpp" />
+    <ClInclude Include="..\inc\system\BowSys.hpp" />
+    <ClInclude Include="..\inc\system\ButtonSys.hpp" />
+    <ClInclude Include="..\inc\system\ClickableSys.hpp" />
+    <ClInclude Include="..\inc\system\ConfigSys.hpp" />
+    <ClInclude Include="..\inc\system\DialogSys.hpp" />
+    <ClInclude Include="..\inc\system\DoorSys.hpp" />
+    <ClInclude Include="..\inc\system\EditorSys.hpp" />
+    <ClInclude Include="..\inc\system\enemy\BlobSys.hpp" />
+    <ClInclude Include="..\inc\system\GameRenderSys.hpp" />
+    <ClInclude Include="..\inc\system\HealthSys.hpp" />
+    <ClInclude Include="..\inc\system\InteractingSys.hpp" />
+    <ClInclude Include="..\inc\system\LifespanSys.hpp" />
+    <ClInclude Include="..\inc\system\LoadingSys.hpp" />
+    <ClInclude Include="..\inc\system\MovementSys.hpp" />
+    <ClInclude Include="..\inc\system\MovieRenderSys.hpp" />
+    <ClInclude Include="..\inc\system\MusicSys.hpp" />
+    <ClInclude Include="..\inc\system\PersistentSys.hpp" />
+    <ClInclude Include="..\inc\system\RebootSys.hpp" />
+    <ClInclude Include="..\inc\system\ReloadSys.hpp" />
+    <ClInclude Include="..\inc\system\SceneLoadSys.hpp" />
+    <ClInclude Include="..\inc\system\SwitchSys.hpp" />
+    <ClInclude Include="..\inc\system\SwordSys.hpp" />
+    <ClInclude Include="..\inc\system\System.hpp" />
+    <ClInclude Include="..\inc\system\SystemMacro.hpp" />
+    <ClInclude Include="..\inc\system\SystemMacroEnd.hpp" />
+    <ClInclude Include="..\inc\system\TileMapSys.hpp" />
+    <ClInclude Include="..\inc\TileMap\TileMapIndexes.hpp" />
+    <ClInclude Include="..\inc\util\AnimationMappings.hpp" />
+    <ClInclude Include="..\inc\util\animation\AnimationMacro.hpp" />
+    <ClInclude Include="..\inc\util\animation\AnimationMacroEnd.hpp" />
+    <ClInclude Include="..\inc\util\ApplicationParameters.hpp" />
+    <ClInclude Include="..\inc\util\DialogParameters.hpp" />
+    <ClInclude Include="..\inc\util\EntityLoaderUtils.hpp" />
+    <ClInclude Include="..\inc\util\Entitymap.hpp" />
+    <ClInclude Include="..\inc\util\EnttUtils.hpp" />
+    <ClInclude Include="..\inc\util\FontContainer.hpp" />
+    <ClInclude Include="..\inc\util\Helper.hpp" />
+    <ClInclude Include="..\inc\util\Latch.hpp" />
+    <ClInclude Include="..\inc\util\Mediamap.hpp" />
+    <ClInclude Include="..\inc\util\MediatoEntitymap.hpp" />
+    <ClInclude Include="..\inc\util\MouseUtils.hpp" />
+    <ClInclude Include="..\inc\util\OverlapUtils.hpp" />
+    <ClInclude Include="..\inc\util\Position.hpp" />
+    <ClInclude Include="..\inc\util\PositionUtils.hpp" />
+    <ClInclude Include="..\inc\util\SFMLUtils.hpp" />
+    <ClInclude Include="..\inc\util\Size.hpp" />
+    <ClInclude Include="..\inc\util\SystemList.hpp" />
+    <ClInclude Include="..\inc\util\TextureContainer.hpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

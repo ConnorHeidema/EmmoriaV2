@@ -3,8 +3,8 @@
 
 #include <string>
 
-class Position;
-class Size;
+struct Position;
+struct Size;
 
 class PositionUtils
 {

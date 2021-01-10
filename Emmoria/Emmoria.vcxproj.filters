@@ -1,0 +1,501 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\component">
+      <UniqueIdentifier>{e7ea9511-806a-496d-85ea-6df2cbe3c2fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\system">
+      <UniqueIdentifier>{f5e4bc52-cd0f-4c86-8994-671ac1fcf395}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\util">
+      <UniqueIdentifier>{01a100d9-8fbc-49e8-b6ce-128578f5b886}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\entity">
+      <UniqueIdentifier>{30b065f3-19f7-4a98-a693-5ff20cd750d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\component">
+      <UniqueIdentifier>{5e5f346c-f284-4c13-9517-b047ec95fac6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\entity">
+      <UniqueIdentifier>{5a7acc8b-8c8b-4822-9e9c-590d098a6e16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\util">
+      <UniqueIdentifier>{ac672174-fc60-4bb6-96dd-a13bffab9a94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\system">
+      <UniqueIdentifier>{722b6ba5-f933-495f-9650-2eac0e2ba987}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\config">
+      <UniqueIdentifier>{dd23f5ef-1fbc-42ff-8ca2-6d0a58eef7e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core">
+      <UniqueIdentifier>{9a469094-8b40-4fbe-a8bc-1ebfc37bfb8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TileMap">
+      <UniqueIdentifier>{5ac567d6-6eec-4146-95de-743b31237f7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\system\enemy">
+      <UniqueIdentifier>{85406c06-047b-45a9-9fda-0e0f28dd719b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\config">
+      <UniqueIdentifier>{3b602c8a-0657-4893-9c86-a775af4ca90b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core">
+      <UniqueIdentifier>{fdcd9132-ff4f-4d10-8a54-9971779614ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\TileMap">
+      <UniqueIdentifier>{7ddd33a6-709f-41e6-84ae-f357d164612d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\system\enemy">
+      <UniqueIdentifier>{62331f3e-4f2b-4483-b1f9-e9f7718764ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\component\functional">
+      <UniqueIdentifier>{568705b7-11d3-4872-9f91-024c817a2f04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\component\tag">
+      <UniqueIdentifier>{71b9c7e4-8c36-45e5-9a4d-492f1e638ba1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\util\animation">
+      <UniqueIdentifier>{57050bcb-5364-4887-b1b8-64869ba5f475}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\component\functional\stats">
+      <UniqueIdentifier>{464d859a-84f3-4fb0-adec-8871acd03b3b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\component\InteractStringMap.cpp">
+      <Filter>Source Files\component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\entity\EntityLoaderFactory.cpp">
+      <Filter>Source Files\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\config\ConfigItems.cpp">
+      <Filter>Source Files\config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\core\Application.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\core\TileMap.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\TileMap\TileMapIndexes.cpp">
+      <Filter>Source Files\TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\AnimationMappings.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\ApplicationParameters.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\DialogParameters.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\EntityLoaderUtils.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\Entitymap.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\EnttUtils.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\FontContainer.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\Helper.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\Latch.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\Mediamap.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\MediatoEntitymap.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\MouseUtils.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\OverlapUtils.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\PositionUtils.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\SFMLUtils.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\SystemList.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\TextureContainer.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\AnimationSys.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\BowSys.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\ButtonSys.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\ClickableSys.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\ConfigSys.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\DialogSys.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\DoorSys.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\EditorSys.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\GameRenderSys.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\HealthSys.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\InteractingSys.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\LifespanSys.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\LoadingSys.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\MovementSys.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\MovieRenderSys.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\MusicSys.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\PersistentSys.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\RebootSys.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\ReloadSys.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\SceneLoadSys.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\SwitchSys.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\SwordSys.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\System.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\TileMapSys.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\system\enemy\BlobSys.cpp">
+      <Filter>Source Files\system\enemy</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\inc\component\functional\BackgroundMusicComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\ButtonComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\ChestComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\ClickableComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\DialogComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\DialogFacadeComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\DoorComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\HealthComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\InteractableComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\InteractorComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\LastPositionComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\LifespanComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\LinkComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\LoadComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\LocationComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\MovieComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\PositionComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\RenderableComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\RotationComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\SignInfoComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\SizeComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\SoundComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\SpeedComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\SpriteComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\SwitchComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\TextComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\TileMapComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\TileMapPieceComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\TileMapPtrComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\TrackingComp.hpp">
+      <Filter>Header Files\component\functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\functional\stats\MaxHealthComp.hpp">
+      <Filter>Header Files\component\functional\stats</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\tag\AllTagComp.hpp">
+      <Filter>Header Files\component\tag</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\EndInteractMacro.hpp">
+      <Filter>Header Files\component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\InteractMacro.hpp">
+      <Filter>Header Files\component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\InteractStringMap.hpp">
+      <Filter>Header Files\component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\component\InteractType.hpp">
+      <Filter>Header Files\component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\entity\EntityLoaderFactory.hpp">
+      <Filter>Header Files\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\entity\EntityMacro.hpp">
+      <Filter>Header Files\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\entity\EntityMacroEnd.hpp">
+      <Filter>Header Files\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\config\ConfigItems.hpp">
+      <Filter>Header Files\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\core\Application.hpp">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\core\TileMap.hpp">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\TileMap\TileMapIndexes.hpp">
+      <Filter>Header Files\TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\AnimationSys.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\BowSys.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\ButtonSys.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\ClickableSys.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\ConfigSys.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\DialogSys.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\DoorSys.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\EditorSys.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\GameRenderSys.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\HealthSys.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\InteractingSys.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\LifespanSys.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\LoadingSys.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\MovementSys.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\MovieRenderSys.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\MusicSys.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\PersistentSys.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\RebootSys.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\ReloadSys.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\SceneLoadSys.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\SwitchSys.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\SwordSys.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\System.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\SystemMacro.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\SystemMacroEnd.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\TileMapSys.hpp">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\enemy\BlobSys.hpp">
+      <Filter>Header Files\system\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\util\AnimationMappings.hpp">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\util\ApplicationParameters.hpp">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\util\DialogParameters.hpp">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\util\EntityLoaderUtils.hpp">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\util\Entitymap.hpp">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\util\EnttUtils.hpp">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\util\FontContainer.hpp">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\util\Helper.hpp">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\util\Latch.hpp">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\util\Mediamap.hpp">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\util\MediatoEntitymap.hpp">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\util\MouseUtils.hpp">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\util\OverlapUtils.hpp">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\util\Position.hpp">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\util\PositionUtils.hpp">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\util\SFMLUtils.hpp">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\util\Size.hpp">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\util\SystemList.hpp">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\util\TextureContainer.hpp">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\util\animation\AnimationMacro.hpp">
+      <Filter>Header Files\util\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\util\animation\AnimationMacroEnd.hpp">
+      <Filter>Header Files\util\animation</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
