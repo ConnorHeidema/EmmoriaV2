@@ -227,8 +227,8 @@ void EditorSys::CreateCursor_()
 		m_rReg.emplace<CursorImageComp>(entity);
 		m_rReg.emplace<RenderableComp>(entity);
 		auto& posComp = m_rReg.emplace<PositionComp>(entity);
-		posComp.m_position.x = int(sf::Mouse::getPosition().x / ApplicationParameters::k_widthAdjustment / ApplicationParameters::k_tileUnitSize) * ApplicationParameters::k_tileScreenWidthSize;
-		posComp.m_position.y = int(sf::Mouse::getPosition().y / ApplicationParameters::k_heightAdjustment / ApplicationParameters::k_tileUnitSize) * ApplicationParameters::k_tileScreenHeightSize;
+		posComp.m_position.x = (double)static_cast<int>(sf::Mouse::getPosition().x / static_cast<double>(ApplicationParameters::k_widthAdjustment) / ApplicationParameters::k_tileUnitSize) * ApplicationParameters::k_tileScreenWidthSize;
+		posComp.m_position.y = (double)static_cast<int>(sf::Mouse::getPosition().y / static_cast<double>(ApplicationParameters::k_heightAdjustment) / ApplicationParameters::k_tileUnitSize) * ApplicationParameters::k_tileScreenHeightSize;
 		posComp.m_position.x += ApplicationParameters::k_tileScreenWidthSize / 2;
 		posComp.m_position.y += ApplicationParameters::k_tileScreenHeightSize / 2;
 
