@@ -11,6 +11,4 @@ size of tilemap - 6
 goals:
 
 1. try to get ride of all warnings from g++ and vs compilers
-2. make video's run on windows
-3. get music to run on windows
 4. don't allow windows to edit .so files like it currently automatically does

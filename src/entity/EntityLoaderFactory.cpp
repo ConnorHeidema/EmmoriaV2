@@ -142,8 +142,8 @@ void EntityLoaderFactory::LoadLastPositionComp(entt::registry& rReg, entt::entit
 {
 	auto tokens = ReadTokenList_(2, reader);
 	auto& position = rReg.get_or_emplace<LastPositionComp>(rEntity).m_lastPosition;
-	position.x = double(std::stoi(tokens.at(0)) * ApplicationParameters::k_widthAdjustment);
-	position.y = double(std::stoi(tokens.at(1)) * ApplicationParameters::k_heightAdjustment);
+	position.x = double(std::stoi(tokens.at(0))) * ApplicationParameters::k_widthAdjustment;
+	position.y = double(std::stoi(tokens.at(1))) * ApplicationParameters::k_heightAdjustment;
 }
 
 void EntityLoaderFactory::LoadLoadComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -158,12 +158,12 @@ void EntityLoaderFactory::LoadPositionComp(entt::registry& rReg, entt::entity& r
 	double y = 0;
 	rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
 	{
-		x = double(locationComp.xLocation * ApplicationParameters::k_rightOfScreen);
-		y = double(locationComp.yLocation * ApplicationParameters::k_bottomOfScreen);
+		x = double(locationComp.xLocation) * ApplicationParameters::k_rightOfScreen;
+		y = double(locationComp.yLocation) * ApplicationParameters::k_bottomOfScreen;
 	});
 	auto tokens = ReadTokenList_(2, reader);
-	position.x = double(std::stoi(tokens.at(0)) * ApplicationParameters::k_widthAdjustment + x);
-	position.y = double(std::stoi(tokens.at(1)) * ApplicationParameters::k_heightAdjustment + y);
+	position.x = std::stod(tokens.at(0)) * ApplicationParameters::k_widthAdjustment + x;
+	position.y = std::stod(tokens.at(1)) * ApplicationParameters::k_heightAdjustment + y;
 }
 
 void EntityLoaderFactory::LoadSizeComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -214,7 +214,7 @@ void EntityLoaderFactory::LoadTrackingComp(entt::registry& rReg, entt::entity& r
 
 void EntityLoaderFactory::LoadSpeedComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
-	rReg.get_or_emplace<SpeedComp>(rEntity).m_speed = std::stoi(ReadTokenList_(1, reader)[0]);
+	rReg.get_or_emplace<SpeedComp>(rEntity).m_speed = std::stof(ReadTokenList_(1, reader)[0]);
 }
 
 void EntityLoaderFactory::LoadTileMapComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -259,11 +259,11 @@ void EntityLoaderFactory::LoadXposition(entt::registry& rReg, entt::entity& rEnt
 	double x = 0;
 	rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
 	{
-		x = double(locationComp.xLocation * ApplicationParameters::k_rightOfScreen);
+		x = double(locationComp.xLocation) * ApplicationParameters::k_rightOfScreen;
 	});
 
 	auto& positionComp = rReg.get_or_emplace<PositionComp>(rEntity);
-	positionComp.m_position.x = double(std::stoi(tokens.at(0)) * ApplicationParameters::k_widthAdjustment + x);
+	positionComp.m_position.x = std::stod(tokens.at(0)) * ApplicationParameters::k_widthAdjustment + x;
 }
 
 void EntityLoaderFactory::LoadYposition(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -273,11 +273,11 @@ void EntityLoaderFactory::LoadYposition(entt::registry& rReg, entt::entity& rEnt
 	double y = 0;
 	rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
 	{
-		y = double(locationComp.xLocation * ApplicationParameters::k_bottomOfScreen);
+		y = double(locationComp.xLocation) * ApplicationParameters::k_bottomOfScreen;
 	});
 
 	auto& positionComp = rReg.get_or_emplace<PositionComp>(rEntity);
-	positionComp.m_position.y = double(std::stoi(tokens.at(0)) * ApplicationParameters::k_heightAdjustment + y);
+	positionComp.m_position.y = std::stod(tokens.at(0)) * ApplicationParameters::k_heightAdjustment + y;
 }
 
 void EntityLoaderFactory::LoadWidth(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
@@ -360,8 +360,8 @@ void EntityLoaderFactory::LoadIndexedPosition(entt::registry& rReg, entt::entity
 {
 	auto& positionComp = rReg.get_or_emplace<PositionComp>(rEntity);
 	auto tokens = ReadTokenList_(2, reader);
-	positionComp.m_position.x = double(std::stoi(tokens.at(0)) * ApplicationParameters::k_widthAdjustment);
-	positionComp.m_position.y = double(std::stoi(tokens.at(1)) * ApplicationParameters::k_heightAdjustment);
+	positionComp.m_position.x = std::stod(tokens.at(0)) * ApplicationParameters::k_widthAdjustment;
+	positionComp.m_position.y = std::stod(tokens.at(1)) * ApplicationParameters::k_heightAdjustment;
 
 	double x = 0;
 	double y = 0;

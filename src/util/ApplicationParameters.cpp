@@ -35,6 +35,10 @@ int const ApplicationParameters::k_tileScreenWidthSize = ApplicationParameters::
 
 int const ApplicationParameters::k_tileScreenHeightSize = ApplicationParameters::k_heightAdjustment * ApplicationParameters::k_tileUnitSize;
 
+float const ApplicationParameters::k_fTileScreenWidthSize = static_cast<float>(ApplicationParameters::k_tileScreenWidthSize);
+
+float const ApplicationParameters::k_fTileScreenHeightSize = static_cast<float>(ApplicationParameters::k_tileScreenHeightSize);
+
 int const ApplicationParameters::k_overlapBuffer = 4;
 
 int const ApplicationParameters::k_widthTiles = 20;

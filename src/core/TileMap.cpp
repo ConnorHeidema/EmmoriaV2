@@ -52,23 +52,23 @@ void TileMap::DefineQuadCorners_(
 {
 	currentTile[TOP_LEFT].position =
 		sf::Vector2f(
-			xPosition - ApplicationParameters::k_tileScreenWidthSize / 2,
-			yPosition - ApplicationParameters::k_tileScreenHeightSize / 2);
+			xPosition - ApplicationParameters::k_fTileScreenWidthSize / 2,
+			yPosition - ApplicationParameters::k_fTileScreenHeightSize / 2);
 
 	currentTile[TOP_RIGHT].position =
 		sf::Vector2f(
-			xPosition + ApplicationParameters::k_tileScreenWidthSize / 2,
-			yPosition - ApplicationParameters::k_tileScreenHeightSize / 2);
+			xPosition + ApplicationParameters::k_fTileScreenWidthSize / 2,
+			yPosition - ApplicationParameters::k_fTileScreenHeightSize / 2);
 
 	currentTile[BOTTOM_RIGHT].position =
 		sf::Vector2f(
-			xPosition + ApplicationParameters::k_tileScreenWidthSize / 2,
-			yPosition + ApplicationParameters::k_tileScreenHeightSize / 2);
+			xPosition + ApplicationParameters::k_fTileScreenWidthSize / 2,
+			yPosition + ApplicationParameters::k_fTileScreenHeightSize / 2);
 
 	currentTile[BOTTOM_LEFT].position =
 		sf::Vector2f(
-			xPosition - ApplicationParameters::k_tileScreenWidthSize / 2,
-			yPosition + ApplicationParameters::k_tileScreenHeightSize / 2);
+			xPosition - ApplicationParameters::k_fTileScreenWidthSize / 2,
+			yPosition + ApplicationParameters::k_fTileScreenHeightSize / 2);
 }
 
 void TileMap::ApplyTexturesToCorners_(

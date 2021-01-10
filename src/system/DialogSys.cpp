@@ -90,7 +90,7 @@ void DialogSys::ProcessWaiting()
 				continue;
 			}
 
-			sf::Text testText(m_pDialogContainer->contentList.back().back() + std::string(subs), m_font, DialogParameters::k_fTextHeight);
+			sf::Text testText(m_pDialogContainer->contentList.back().back() + std::string(subs), m_font, static_cast<float>(DialogParameters::k_fTextHeight));
 			int textActualWidth = testText.getLocalBounds().width;
 			if (textActualWidth > DialogParameters::k_fTextWidth)
 			{
@@ -150,7 +150,7 @@ void DialogSys::ProcessProducing()
 
 
 			dialogComp.m_portrait = m_dialogContainerList.front().portraitName;
-			for (auto const thingToAdd : m_dialogContainerList.front().contentList.front())
+			for (auto& thingToAdd : m_dialogContainerList.front().contentList.front())
 			{
 				dialogComp.m_dialogList.emplace_back(thingToAdd);
 			}
