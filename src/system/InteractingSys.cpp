@@ -99,13 +99,13 @@ void InteractingSys::PerformObjectInteractions_()
 					{
 						auto& pos = interactablePositionComp.m_position;
 						auto& size = interactableSizeComp.m_size;
-						interactableObject.setPosition(sf::Vector2f(pos.x, pos.y));
-						interactableObject.setSize(sf::Vector2f(size.width, size.height));
-						interactableObject.setOrigin(size.width/2, size.height/2);
+						interactableObject.setPosition(sf::Vector2f((float)pos.x, (float)pos.y));
+						interactableObject.setSize(sf::Vector2f((float)size.width, (float)size.height));
+						interactableObject.setOrigin(size.width/2.f, size.height/2.f);
 						if (m_rReg.has<RotationComp>(interactableEntity))
 						{
 							auto& angle = m_rReg.get<RotationComp>(interactableEntity).m_angle;
-							interactableObject.setRotation(angle * 90 / k_tan1 + 90);
+							interactableObject.setRotation(float((angle * 90.L / k_tan1) + 90.L));
 						}
 					}
 
@@ -113,13 +113,13 @@ void InteractingSys::PerformObjectInteractions_()
 					{
 						auto& pos = interactorPositionComp.m_position;
 						auto& size = interactorSizeComp.m_size;
-						interactorObject.setPosition(sf::Vector2f(pos.x, pos.y));
-						interactorObject.setSize(sf::Vector2f(size.width, size.height));
-						interactorObject.setOrigin(size.width/2, size.height/2);
+						interactorObject.setPosition(sf::Vector2f((float)pos.x, (float)pos.y));
+						interactorObject.setSize(sf::Vector2f((float)size.width, (float)size.height));
+						interactorObject.setOrigin((float)size.width/2.f, (float)size.height/2.f);
 						if (m_rReg.has<RotationComp>(interactorEntity))
 						{
 							auto& angle = m_rReg.get<RotationComp>(interactorEntity).m_angle;
-							interactorObject.setRotation(angle * 90 / k_tan1 + 90);
+							interactorObject.setRotation(float((angle * 90.L / k_tan1) + 90.L));
 						}
 					}
 

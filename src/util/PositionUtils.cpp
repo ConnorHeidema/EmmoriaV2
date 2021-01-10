@@ -45,16 +45,16 @@ void PositionUtils::SetObjectToViablePosition(
 		Size const& wallSize)
 {
 	sf::RectangleShape wallObject;
-	wallObject.setPosition(sf::Vector2f(wallPosition.x - wallSize.width/2, wallPosition.y - wallSize.height/2));
-	wallObject.setSize(sf::Vector2f(wallSize.width, wallSize.height));
+	wallObject.setPosition(sf::Vector2f(float(wallPosition.x - (double)wallSize.width/2.L), float(wallPosition.y - (double)(wallSize.height/2.L))));
+	wallObject.setSize(sf::Vector2f((float)wallSize.width, (float)wallSize.height));
 
 	sf::RectangleShape oldYObject;
-	oldYObject.setPosition(sf::Vector2f(lastPosition.x - objectSize.width/2, positionToRevert.y - objectSize.height/2));
-	oldYObject.setSize(sf::Vector2f(objectSize.width, objectSize.height));
+	oldYObject.setPosition(sf::Vector2f(float(lastPosition.x - (double)objectSize.width/2.L), float(positionToRevert.y - (double)(objectSize.height/2.L))));
+	oldYObject.setSize(sf::Vector2f((float)objectSize.width, (float)objectSize.height));
 
 	sf::RectangleShape oldXObject;
-	oldXObject.setPosition(sf::Vector2f(positionToRevert.x - objectSize.width/2, lastPosition.y - objectSize.height/2));
-	oldXObject.setSize(sf::Vector2f(objectSize.width, objectSize.height));
+	oldXObject.setPosition(sf::Vector2f(float(positionToRevert.x - (double)objectSize.width/2.L), float(lastPosition.y - (double)(objectSize.height/2.L))));
+	oldXObject.setSize(sf::Vector2f((float)objectSize.width, (float)objectSize.height));
 
 	if (collision::areColliding(wallObject, oldYObject))
 	{

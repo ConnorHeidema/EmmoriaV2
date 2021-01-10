@@ -8,7 +8,6 @@ size of tilemap - 6
 
 ## Goals
 
-goals:
-
-1. try to get ride of all warnings from g++ and vs compilers
-4. don't allow windows to edit .so files like it currently automatically does
+todo: put self made quadmap to be used for interactions
+finish editor system integration
+remove all g++ warnings
