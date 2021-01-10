@@ -4,10 +4,10 @@
 #include <fstream>
 #include <string>
 
-bool ConfigItems::LoadConfigFile(std::string configFilePath)
+bool ConfigItems::LoadConfigFile(std::string const& configFilePath)
 {
 	std::string line;
-	std::ifstream configFile("data/Config/config.ini");
+	std::ifstream configFile(configFilePath);
   	if (configFile.is_open())
 	{
 		m_setConfigItems = m_currentSetConfigItems;

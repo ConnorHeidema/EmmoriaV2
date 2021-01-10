@@ -79,6 +79,8 @@ target_link_directories(Emmoria PRIVATE ../ext/bin/linux/SFML ../ext/bin/linux/s
 
 target_include_directories(Emmoria PRIVATE ../inc ../ext/inc)
 
+#target_compile_options(Emmoria PRIVATE -Wall -Wextra -pedantic -Werror)
+
 target_link_libraries(Emmoria avcodec)
 target_link_libraries(Emmoria avdevice)
 target_link_libraries(Emmoria avfilter)

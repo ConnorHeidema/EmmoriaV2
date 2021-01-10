@@ -23,7 +23,7 @@ std::unordered_map<std::string, fnAnimationMapping> AnimationMappings::Create_ma
 	return m;
 }
 
-void AnimationMappings::DawnPillarMapping(entt::registry& rReg, entt::entity& rEntity, int& animation)
+void AnimationMappings::DawnPillarMapping(entt::registry& /*rReg*/, entt::entity& rEntity, int& animation)
 {
 	switch (animation)
 	{
@@ -35,7 +35,7 @@ void AnimationMappings::DawnPillarMapping(entt::registry& rReg, entt::entity& rE
 	}
 }
 
-void AnimationMappings::BlobMapping(entt::registry& rReg, entt::entity& rEntity, int& animation)
+void AnimationMappings::BlobMapping(entt::registry& /*rReg*/, entt::entity& /*rEntity*/, int& animation)
 {
 	switch (animation)
 	{
@@ -52,7 +52,7 @@ void AnimationMappings::ChestTagMapping(entt::registry& rReg, entt::entity& rEnt
 	animation = rReg.get<ChestComp>(rEntity).m_bOpened;
 }
 
-void AnimationMappings::PlayerMapping(entt::registry& rReg, entt::entity& rEntity, int& animation)
+void AnimationMappings::PlayerMapping(entt::registry& rReg, entt::entity& /*rEntity*/, int& animation)
 {
 	rReg.view<PlayerComp, PositionComp>().each([&](auto entity, auto& positionComp)
 	{

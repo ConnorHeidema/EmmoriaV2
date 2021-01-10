@@ -14,7 +14,7 @@ template <typename T>
 bool EnttUtils<T>::ComponentExists(entt::registry& rReg)
 {
 	bool bExists = false;
-	rReg.view<T>().each([&](auto entity) { bExists = true; });
+	rReg.view<T>().each([&](auto /*entity*/) { bExists = true; });
 	return bExists;
 }
 

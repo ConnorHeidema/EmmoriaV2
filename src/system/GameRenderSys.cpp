@@ -194,12 +194,12 @@ void GameRenderSys::RenderDialog_()
 	text.setPosition(400.f, 903.f);
 	bool b_dialogExists = false;
 	m_rReg.view<RenderableComp, DialogComp, ClickableComp, PositionComp, SizeComp>().each([&](
-		auto entity,
+		auto /*entity*/,
 		auto& renderableComp,
 		auto& dialogComp,
-		auto& clickableComp,
-		auto& positionComp,
-		auto& sizeComp)
+		auto& /*clickableComp*/,
+		auto& /*positionComp*/,
+		auto& /*sizeComp*/)
 	{
 		b_dialogExists = true;
 		if (renderableComp.m_bRendered == false)

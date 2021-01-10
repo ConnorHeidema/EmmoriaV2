@@ -42,7 +42,7 @@ std::unordered_map<InteractType_t, std::string> InteractStringMap::s_interactTyp
 #undef INTERACT_TYPE_TO_STRING_MAPPING
 #include "entity/EntityMacroEnd.hpp"
 
-void InteractStringMap::InteractPlayerCompHealingPadComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
+void InteractStringMap::InteractPlayerCompHealingPadComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& /*rInteractableEntity*/)
 {
 	auto& healthComp = rReg.get<HealthComp>(rInteractorEntity);
 	int maxHealth = INT32_MAX;
@@ -53,7 +53,7 @@ void InteractStringMap::InteractPlayerCompHealingPadComp(entt::registry& rReg, e
 	healthComp.m_health = std::min(healthComp.m_health + 1, maxHealth);
 }
 
-void InteractStringMap::InteractPlayerCompBlobComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
+void InteractStringMap::InteractPlayerCompBlobComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& /*rInteractableEntity*/)
 {
 	auto& healthComp = rReg.get<HealthComp>(rInteractorEntity);
 	healthComp.m_health -= 1;
@@ -84,11 +84,11 @@ void InteractStringMap::InteractSwordCompBlobComp(entt::registry& rReg, entt::en
 	// sword doesn't seem to hit as it should?
 }
 
-void InteractStringMap::InteractPlayerCompHoleComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
+void InteractStringMap::InteractPlayerCompHoleComp(entt::registry& rReg, entt::entity& /*rInteractorEntity*/, entt::entity& /*rInteractableEntity*/)
 {
-	rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
+	rReg.view<LocationComp>().each([&](auto /*entity*/, auto& locationComp)
 	{
-		rReg.view<PlayerComp, PositionComp, HealthComp>().each([&](auto entity, auto& positionComp, auto& healthComp)
+		rReg.view<PlayerComp, PositionComp, HealthComp>().each([&](auto /*entity*/, auto& positionComp, auto& healthComp)
 		{
 			healthComp.m_health /= 2;
 			healthComp.m_health -= 1;
@@ -109,11 +109,11 @@ void InteractStringMap::InteractBlobCompHoleComp(entt::registry& rReg, entt::ent
 	PositionUtils::SetObjectToViablePosition(blobPosition, blobLastPosition, blobSize, wallPosition, wallSize);
 }
 
-void InteractStringMap::InteractDepressableCompWeightComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
+void InteractStringMap::InteractDepressableCompWeightComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& /*rInteractableEntity*/)
 {
 	auto& switchComp = rReg.get_or_emplace<SwitchComp>(rInteractorEntity);
 	switchComp.m_bPressed = true;
-	rReg.view<DoorComp>().each([&](auto entity, auto& doorComp)
+	rReg.view<DoorComp>().each([&](auto /*entity*/, auto& doorComp)
 	{
 		if (switchComp.m_action == doorComp.m_action)
 		{
@@ -126,7 +126,7 @@ void InteractStringMap::InteractNearbyPlayerCompSignComp(entt::registry& rReg, e
 {
 	auto& bLeftDown = rReg.get_or_emplace<ClickableComp>(rInteractableEntity).m_bLeftDown;
 	bool dialogExists = false;
-	rReg.view<DialogComp>().each([&](auto entity, auto& doorComp)
+	rReg.view<DialogComp>().each([&](auto /*entity*/, auto& /*doorComp*/)
 	{
 		dialogExists = true;
 	});
@@ -138,7 +138,7 @@ void InteractStringMap::InteractNearbyPlayerCompSignComp(entt::registry& rReg, e
 	}
 }
 
-void InteractStringMap::InteractNearbyPlayerCompChestTagComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
+void InteractStringMap::InteractNearbyPlayerCompChestTagComp(entt::registry& rReg, entt::entity& /*rInteractorEntity*/, entt::entity& rInteractableEntity)
 {
 	auto& chestAlreadyOpened = rReg.get<ChestComp>(rInteractableEntity).m_bOpened;
 
