@@ -6,8 +6,8 @@
 #include "util/Latch.hpp"
 #include <entt/fwd.hpp>
 
-class PositionComp;
-class ClickableComp;
+struct PositionComp;
+struct ClickableComp;
 
 class SwordSys
 	: public System

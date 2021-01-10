@@ -17,7 +17,7 @@ bool SFMLUtils::ProcessSFMLEvents(sf::Event event)
 	switch (event.type)
 	case sf::Event::MouseWheelScrolled:
 	{
-		s_wheelMovement = event.mouseWheelScroll.delta;
+		s_wheelMovement = static_cast<int>(event.mouseWheelScroll.delta);
 		return true;
 	}
 	return false;
