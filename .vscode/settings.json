@@ -76,5 +76,6 @@
 		"BuildAndDebug": "g++-7 - build and debug all",
 		"Debug": "g++-7 - debug all",
 		"JustMain":"g++-7 - build and debug main"
-	}
+	},
+	"cmake.sourceDirectory": "${workspaceFolder}/build"
 }
