@@ -85,10 +85,10 @@ bool EditorSys::CheckIfTiledIndexExists_(std::string const& filepath, int xIndex
 	return false;
 }
 
-void EditorSys::WriteTextureLineToTemp_(int textureIndex, Position const& pos)
+void EditorSys::WriteTextureLineToTemp_(int /*textureIndex*/, Position const& pos)
 {
 	std::string locationName = "";
-	m_rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
+	m_rReg.view<LocationComp>().each([&](auto& locationComp)
 	{
 		locationName = locationComp.area;
 	});
@@ -136,7 +136,7 @@ void EditorSys::UpdateSetOfOptions_()
 {
 	m_thingsToPlaceDownSet.clear();
 	std::string m_currentLocation = "";
-	m_rReg.view<LocationComp>().each([&m_currentLocation](auto entity, auto& locationComp)
+	m_rReg.view<LocationComp>().each([&m_currentLocation](auto& locationComp)
 	{
 		m_currentLocation = locationComp.area;
 	});
@@ -237,7 +237,7 @@ void EditorSys::CreateCursor_()
 		sizeComp.m_size.height = ApplicationParameters::k_heightAdjustment * ApplicationParameters::k_tileUnitSize;
 		auto& spriteComp = m_rReg.emplace<SpriteComp>(entity);
 		spriteComp.m_spriteIndex = textureIndex;
-		m_rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
+		m_rReg.view<LocationComp>().each([&](auto& locationComp)
 		{
 			spriteComp.m_filePath = ApplicationParameters::k_spritePath + "tilemap/" + locationComp.area + ApplicationParameters::k_pictureExt;
 		});

@@ -12,8 +12,6 @@ private:
 	void Update_() override;
 
 	entt::registry& m_rReg;
-
-	entt::entity m_entity;
 };
 
 #endif

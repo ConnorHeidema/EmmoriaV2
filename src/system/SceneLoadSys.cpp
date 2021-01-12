@@ -22,7 +22,7 @@ SceneLoadSys::SceneLoadSys(std::string systemConfigItem, entt::registry& rReg)
 void SceneLoadSys::Update_()
 {
 	bool bPlayerOnScreen = false;
-	m_rReg.view<PlayerComp, PositionComp>().each([&](auto entity, auto& positionComp)
+	m_rReg.view<PlayerComp, PositionComp>().each([&](auto& /*positionComp*/)
 	{
 		bPlayerOnScreen = true;
 	});
@@ -36,7 +36,7 @@ void SceneLoadSys::Update_()
 
 void SceneLoadSys::CreateLoadCompFromLocationComp_()
 {
-	m_rReg.view<LocationComp>().each([&](auto locationEntity, auto& locationComp)
+	m_rReg.view<LocationComp>().each([&](auto& locationComp)
 	{
 		m_rReg.clear<DeloadableComp>();
 		auto loadEntity = m_rReg.create();
@@ -50,9 +50,9 @@ void SceneLoadSys::CreateLoadCompFromLocationComp_()
 
 void SceneLoadSys::CreateLoadCompFromLocationCompWithPlayer_()
 {
-	m_rReg.view<PlayerComp, PositionComp>().each([&](auto entity, auto& positionComp)
+	m_rReg.view<PlayerComp, PositionComp>().each([&](auto& positionComp)
 	{
-		m_rReg.view<LocationComp>().each([&](auto locationEntity, auto& locationComp)
+		m_rReg.view<LocationComp>().each([&](auto& locationComp)
 		{
 			if (locationComp.xLocation != (int)floor((double)positionComp.m_position.x / ApplicationParameters::k_rightOfScreen) ||
 				locationComp.yLocation != (int)floor((double)positionComp.m_position.y / ApplicationParameters::k_bottomOfScreen) ||

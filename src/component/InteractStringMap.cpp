@@ -86,9 +86,9 @@ void InteractStringMap::InteractSwordCompBlobComp(entt::registry& rReg, entt::en
 
 void InteractStringMap::InteractPlayerCompHoleComp(entt::registry& rReg, entt::entity& /*rInteractorEntity*/, entt::entity& /*rInteractableEntity*/)
 {
-	rReg.view<LocationComp>().each([&](auto /*entity*/, auto& locationComp)
+	rReg.view<LocationComp>().each([&](auto& locationComp)
 	{
-		rReg.view<PlayerComp, PositionComp, HealthComp>().each([&](auto /*entity*/, auto& positionComp, auto& healthComp)
+		rReg.view<PlayerComp, PositionComp, HealthComp>().each([&](auto& positionComp, auto& healthComp)
 		{
 			healthComp.m_health /= 2;
 			healthComp.m_health -= 1;
@@ -113,7 +113,7 @@ void InteractStringMap::InteractDepressableCompWeightComp(entt::registry& rReg, 
 {
 	auto& switchComp = rReg.get_or_emplace<SwitchComp>(rInteractorEntity);
 	switchComp.m_bPressed = true;
-	rReg.view<DoorComp>().each([&](auto /*entity*/, auto& doorComp)
+	rReg.view<DoorComp>().each([&](auto& doorComp)
 	{
 		if (switchComp.m_action == doorComp.m_action)
 		{
@@ -122,11 +122,11 @@ void InteractStringMap::InteractDepressableCompWeightComp(entt::registry& rReg, 
 	});
 }
 
-void InteractStringMap::InteractNearbyPlayerCompSignComp(entt::registry& rReg, entt::entity& rInteractorEntity, entt::entity& rInteractableEntity)
+void InteractStringMap::InteractNearbyPlayerCompSignComp(entt::registry& rReg, entt::entity& /*rInteractorEntity*/, entt::entity& rInteractableEntity)
 {
 	auto& bLeftDown = rReg.get_or_emplace<ClickableComp>(rInteractableEntity).m_bLeftDown;
 	bool dialogExists = false;
-	rReg.view<DialogComp>().each([&](auto /*entity*/, auto& /*doorComp*/)
+	rReg.view<DialogComp>().each([&](auto& /*doorComp*/)
 	{
 		dialogExists = true;
 	});

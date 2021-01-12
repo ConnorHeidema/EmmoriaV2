@@ -32,7 +32,6 @@ void AnimationSys::AnimateTileMapPieces_()
 {
 	std::string currentTileMap = "";
 	m_rReg.view<TileMapComp>().each([&](
-		auto entity,
 		auto& tileMapComp)
 	{
 		currentTileMap = tileMapComp.m_tileMapBase;

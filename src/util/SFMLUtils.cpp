@@ -26,5 +26,4 @@ bool SFMLUtils::ProcessSFMLEvents(sf::Event event)
 			return false;
 		}
 	}
-	return false;
 }

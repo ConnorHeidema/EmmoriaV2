@@ -48,9 +48,8 @@ void DialogSys::ProcessWaiting()
 {
 	mTimer = 0;
 	m_rReg.view<DialogChainComp, StructuredDialogComp, TextComp, SizeComp>().each([&]
-		(auto entity,
-		auto& textComp,
-		auto& sizeComp)
+		(auto& textComp,
+		auto& /*sizeComp*/)
 	{
 		std::istringstream iss(textComp.m_text);
 		do
@@ -113,9 +112,7 @@ void DialogSys::ProcessWaiting()
 void DialogSys::ProcessProducing()
 {
 	bool dialogExists1 = false;
-	m_rReg.view<DialogComp>().each([&]
-		(auto entity,
-		auto& dialogComp)
+	m_rReg.view<DialogComp>().each([&](auto& /*dialogComp*/)
 	{
 		dialogExists1 = true;
 	});
@@ -126,9 +123,7 @@ void DialogSys::ProcessProducing()
     else
     {
 		bool dialogExists = false;
-		m_rReg.view<DialogComp>().each([&]
-			(auto entity,
-			auto& dialogComp)
+		m_rReg.view<DialogComp>().each([&](auto& /*dialogComp*/)
 		{
 			dialogExists = true;
 		});
@@ -158,10 +153,7 @@ void DialogSys::ProcessProducing()
     }
 	bool clicked = false;
 
-	m_rReg.view<ClickableComp, DialogComp>().each([&]
-		(auto entity,
-		auto& clickableComp,
-		auto& dialogComp)
+	m_rReg.view<ClickableComp, DialogComp>().each([&](auto& clickableComp, auto& /*dialogComp*/)
 	{
 		if (clickableComp.m_bLeftClicked)
 		{
@@ -173,17 +165,15 @@ void DialogSys::ProcessProducing()
     {
         mTimer = 0;
 		bool dialogExists = false;
-		m_rReg.view<DialogComp>().each([&]
-			(auto entity,
-			auto& dialogComp)
+		m_rReg.view<DialogComp>().each([&](auto& /*dialogComp*/)
 		{
 			dialogExists = true;
 		});
         if (dialogExists)
         {
-			m_rReg.view<DialogComp>().each([&]
-				(auto entity,
-				auto& dialogComp)
+			m_rReg.view<DialogComp>().each([&](
+				auto entity,
+				auto& /*dialogComp*/)
 			{
 				m_rReg.destroy(entity);
 				if (m_dialogContainerList.front().nextFileToLoad != "")

@@ -14,9 +14,9 @@ SwitchSys::SwitchSys(std::string systemConfigItem, entt::registry& rReg)
 
 void SwitchSys::Update_()
 {
-	m_rReg.view<SwitchComp>().each([&](auto entity, auto& switchComp)
+	m_rReg.view<SwitchComp>().each([&](auto& switchComp)
 	{
-		m_rReg.view<DoorComp>().each([&](auto entity, auto& doorComp)
+		m_rReg.view<DoorComp>().each([&](auto& doorComp)
 		{
 			if (switchComp.m_action == doorComp.m_action)
 			{

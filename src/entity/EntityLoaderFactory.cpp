@@ -46,7 +46,7 @@
 
 #include "entity/EntityMacro.hpp"
 #define LOAD_DEF_TAG(name) \
-void EntityLoaderFactory::Load##name(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader) \
+void EntityLoaderFactory::Load##name(entt::registry& rReg, entt::entity& rEntity, std::istringstream& /*reader*/) \
 { rReg.emplace_or_replace< name >(rEntity); }
 ALL_TAG_MACRO(LOAD_DEF_TAG)
 #undef LOAD_DEF
@@ -55,7 +55,7 @@ ALL_TAG_MACRO(LOAD_DEF_TAG)
 /* Individual functional component Loaders */
 
 #define SIMPLE_FUNCTIONAL_NO_PARAMETER(name) \
-	void EntityLoaderFactory::Load## name ## Comp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader) \
+	void EntityLoaderFactory::Load## name ## Comp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& /*reader*/) \
 	{ \
 		rReg.get_or_emplace< name ## Comp>(rEntity); \
 	}
@@ -156,7 +156,7 @@ void EntityLoaderFactory::LoadPositionComp(entt::registry& rReg, entt::entity& r
 	auto& position = rReg.get_or_emplace<PositionComp>(rEntity).m_position;
 	double x = 0;
 	double y = 0;
-	rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
+	rReg.view<LocationComp>().each([&](auto& locationComp)
 	{
 		x = double(locationComp.xLocation) * ApplicationParameters::k_rightOfScreen;
 		y = double(locationComp.yLocation) * ApplicationParameters::k_bottomOfScreen;
@@ -257,7 +257,7 @@ void EntityLoaderFactory::LoadXposition(entt::registry& rReg, entt::entity& rEnt
 	auto tokens = ReadTokenList_(1, reader);
 
 	double x = 0;
-	rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
+	rReg.view<LocationComp>().each([&](auto& locationComp)
 	{
 		x = double(locationComp.xLocation) * ApplicationParameters::k_rightOfScreen;
 	});
@@ -271,7 +271,7 @@ void EntityLoaderFactory::LoadYposition(entt::registry& rReg, entt::entity& rEnt
 	auto tokens = ReadTokenList_(1, reader);
 
 	double y = 0;
-	rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
+	rReg.view<LocationComp>().each([&](auto& locationComp)
 	{
 		y = double(locationComp.xLocation) * ApplicationParameters::k_bottomOfScreen;
 	});
@@ -365,10 +365,10 @@ void EntityLoaderFactory::LoadIndexedPosition(entt::registry& rReg, entt::entity
 
 	double x = 0;
 	double y = 0;
-	rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
+	rReg.view<LocationComp>().each([&](auto& locationComp)
 	{
-		x = double(locationComp.xLocation * ApplicationParameters::k_rightOfScreen);
-		y = double(locationComp.yLocation * ApplicationParameters::k_bottomOfScreen);
+		x = double(locationComp.xLocation) * ApplicationParameters::k_rightOfScreen;
+		y = double(locationComp.yLocation) * ApplicationParameters::k_bottomOfScreen;
 	});
 
 	positionComp.m_position.x =
@@ -400,7 +400,7 @@ void EntityLoaderFactory::LoadHoleTile(entt::registry& rReg, entt::entity& rEnti
 	interactableComp.m_interactTypeList.insert(InteractType_t::HoleComp_t);
 }
 
-void EntityLoaderFactory::LoadBlob(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
+void EntityLoaderFactory::LoadBlob(entt::registry& rReg, entt::entity& rEntity, std::istringstream& /*reader*/)
 {
 	rReg.emplace<BlobComp>(rEntity);
 	rReg.emplace<RenderableComp>(rEntity);

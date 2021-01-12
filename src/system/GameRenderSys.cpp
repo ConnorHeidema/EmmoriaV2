@@ -46,9 +46,7 @@ void GameRenderSys::Update_()
 
 void GameRenderSys::ResetRenderState_()
 {
-	m_rReg.view<RenderableComp>().each([&](
-	auto entity,
-	auto& renderableComp)
+	m_rReg.view<RenderableComp>().each([&](auto& renderableComp)
 	{
 		renderableComp.m_bRendered = false;
 	});
@@ -57,9 +55,8 @@ void GameRenderSys::ResetRenderState_()
 
 void GameRenderSys::RenderTileMapPieces_()
 {
-	m_rReg.view<TileMapPtrComp, RenderableComp>().each([&](
-		auto entity,
-		auto& tileMapPtrComp,
+	m_rReg.view<TileMapPtrComp, RenderableComp>().each([&]
+		(auto& tileMapPtrComp,
 		auto& renderableComp)
 	{
 		if (tileMapPtrComp.m_pTileMap != nullptr)
@@ -122,7 +119,6 @@ void GameRenderSys::RenderBasicSprites_()
 void GameRenderSys::RenderText_()
 {
 	m_rReg.view<RenderableComp, PositionComp, SizeComp, TextComp>().each([&](
-		auto entity,
 		auto& renderableComp,
 		auto& positionComp,
 		auto& sizeComp,
@@ -155,7 +151,6 @@ void GameRenderSys::RenderText_()
 void GameRenderSys::RenderHealth_()
 {
 	m_rReg.view<PlayerComp, HealthComp, MaxHealthComp>().each([&](
-		auto entity,
 		auto& healthComp,
 		auto& maxHealthComp)
 	{
@@ -193,13 +188,9 @@ void GameRenderSys::RenderDialog_()
 	static sf::Text text("", *FontContainer::GetFont(ApplicationParameters::k_fontPath), 50);
 	text.setPosition(400.f, 903.f);
 	bool b_dialogExists = false;
-	m_rReg.view<RenderableComp, DialogComp, ClickableComp, PositionComp, SizeComp>().each([&](
-		auto /*entity*/,
+	m_rReg.view<RenderableComp, DialogComp>().each([&](
 		auto& renderableComp,
-		auto& dialogComp,
-		auto& /*clickableComp*/,
-		auto& /*positionComp*/,
-		auto& /*sizeComp*/)
+		auto& dialogComp)
 	{
 		b_dialogExists = true;
 		if (renderableComp.m_bRendered == false)

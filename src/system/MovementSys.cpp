@@ -42,7 +42,7 @@ void MovementSys::GoToDebugRoom_()
 	static bool bBeenMoved = false; //quickfix and dirty
 	if (!bBeenMoved && ConfigItems::m_setConfigItems.find("GoToTempRoom") != ConfigItems::m_setConfigItems.end())
 	{
-		m_rReg.view<PlayerComp, PositionComp, SpeedComp>().each([&](auto entity, auto& positionComp, auto& speedComp)
+		m_rReg.view<PlayerComp, PositionComp, SpeedComp>().each([&](auto& positionComp, auto& /*speedComp*/)
 		{
 			bBeenMoved = true;
 			positionComp.m_position.x = (double)ApplicationParameters::k_debugRoomX*ApplicationParameters::k_rightOfScreen + ApplicationParameters::k_rightOfScreen/2;
@@ -62,7 +62,8 @@ void MovementSys::UpdateLastPositions_()
 
 void MovementSys::UpdatePlayerPosition_()
 {
-	m_rReg.view<PlayerComp, PositionComp, SpeedComp>().each([&](auto entity, auto& positionComp, auto& speedComp) {
+	m_rReg.view<PlayerComp, PositionComp, SpeedComp>().each([&](auto& positionComp, auto& speedComp) 
+	{
 		using namespace sf;
 		float xPos = float(static_cast<int>(Keyboard::isKeyPressed(Keyboard::D)) -
 					static_cast<int>(Keyboard::isKeyPressed(Keyboard::A)));
@@ -79,7 +80,6 @@ void MovementSys::UpdatePlayerPosition_()
 void MovementSys::UpdateArrowPosition_()
 {
 	m_rReg.view<ArrowComp, PositionComp, RotationComp, SpeedComp>().each([&](
-		auto entity,
 		auto& positionComp,
 		auto& rotationComp,
 		auto& speedComp)
@@ -92,30 +92,26 @@ void MovementSys::UpdateArrowPosition_()
 void MovementSys::UpdateSwordPosition_()
 {
 	Position pos = {0,0};
-	m_rReg.view<PlayerComp, PositionComp>().each([&](
-		auto entity,
-		auto& positionComp)
+	m_rReg.view<PlayerComp, PositionComp>().each([&](auto& positionComp)
 	{
 		pos = positionComp.m_position;
 	});
 	m_rReg.view<SwordComp, PositionComp, RotationComp, SpeedComp, LifespanComp>().each([&](
-		auto entity,
 		auto& positionComp,
 		auto& rotationComp,
 		auto& speedComp,
 		auto& lifespanComp)
 	{
 		//PositionUtils::PrintPosition(positionComp.m_position, "Arrow");
-		positionComp.m_position = PositionUtils::CalculatePositionFromSpeed(pos, (double)speedComp.m_speed * (30.L - lifespanComp.m_framesToLive), rotationComp.m_angle);
+		positionComp.m_position = PositionUtils::CalculatePositionFromSpeed(pos, (double)speedComp.m_speed * (30.0 - lifespanComp.m_framesToLive), rotationComp.m_angle);
 	});
 }
 
 void MovementSys::UpdateBlobPosition_()
 {
-	m_rReg.view<PlayerComp, PositionComp>().each([&](auto playerEntity, auto& playerPositionComp)
+	m_rReg.view<PlayerComp, PositionComp>().each([&](auto& playerPositionComp)
 	{
 		m_rReg.view<PositionComp, SpeedComp, TrackingComp>().each([&](
-			auto blobEntity,
 			auto& positionComp,
 			auto& speedComp,
 			auto& trackingComp)

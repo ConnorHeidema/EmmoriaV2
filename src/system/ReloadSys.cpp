@@ -52,7 +52,7 @@ void ReloadSys::ReloadEverything_()
 	{
 		m_rReg.destroy(entity);
 	});
-	m_rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
+	m_rReg.view<LocationComp>().each([&](auto& locationComp)
 	{
 		auto loadEntity = m_rReg.create();
 		auto& fragmentLoadComp = m_rReg.emplace<LoadComp>(loadEntity);

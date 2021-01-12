@@ -39,10 +39,9 @@ void BowSys::Update_()
 
 	if (m_bowFrequencyLatch.Peek() && playerBowExists)
 	{
-		m_rReg.view<PlayerComp, PositionComp>().each([&](auto entity, auto& playerPositionComp)
+		m_rReg.view<PlayerComp, PositionComp>().each([&](auto& playerPositionComp)
 		{
-			bool bPerformAction = false;
-			m_rReg.view<ItemActionAreaComp, ClickableComp>().each([&](auto entity, auto& clickableActionArea)
+			m_rReg.view<ItemActionAreaComp, ClickableComp>().each([&](auto& clickableActionArea)
 			{
 				if (clickableActionArea.m_bLeftDown)
 				{
@@ -69,7 +68,7 @@ void BowSys::CreateArrow_(
 
 	double xPos2 = 0;
 	double yPos2 = 0;
-	m_rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
+	m_rReg.view<LocationComp>().each([&](auto& locationComp)
 	{
 		xPos2 += double(locationComp.xLocation) * ApplicationParameters::k_rightOfScreen;
 		yPos2 += double(locationComp.yLocation) * ApplicationParameters::k_bottomOfScreen;
@@ -101,7 +100,7 @@ void BowSys::CreateArrow_(
 	{
 		double xPos = clickableActionArea.m_x * ApplicationParameters::k_widthAdjustment - adjustedPlayerPositionX;
 		double yPos = clickableActionArea.m_y * ApplicationParameters::k_heightAdjustment - adjustedPlayerPositionY;
-		m_rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
+		m_rReg.view<LocationComp>().each([&](auto& locationComp)
 		{
 			xPos += double(locationComp.xLocation) * ApplicationParameters::k_rightOfScreen;
 			yPos += double(locationComp.yLocation) * ApplicationParameters::k_bottomOfScreen;

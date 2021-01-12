@@ -17,7 +17,7 @@ PersistentSys::PersistentSys(std::string systemConfigItem, entt::registry& rReg)
 void PersistentSys::Update_()
 {
 	bool m_bPersistentCompExists = false;
-	m_rReg.view<PersistentComp>().each([&](auto entity)
+	m_rReg.view<PersistentComp>().each([&]()
 	{
 		m_bPersistentCompExists = true;
 	});
@@ -25,7 +25,7 @@ void PersistentSys::Update_()
 	{
 		if (m_frameToLiveLatch.CheckLatch())
 		{
-			m_rReg.view<PositionComp>(entt::exclude<PersistentComp>).each([&](auto entity, auto& posComp)
+			m_rReg.view<PositionComp>(entt::exclude<PersistentComp>).each([&](auto entity, auto& /*posComp*/)
 			{
 				m_rReg.destroy(entity);
 			});

@@ -41,7 +41,7 @@ void Application::RunLoop_()
 {
 	CheckForEvents_();
 	m_renderWindow.clear();
-	for (auto system : SystemList::m_pSystemList)
+	for (auto& system : SystemList::m_pSystemList)
 	{
 		if (m_renderWindow.hasFocus() || UpdateWhenNotFocused_())
 		{

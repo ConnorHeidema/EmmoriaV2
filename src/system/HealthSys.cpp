@@ -13,7 +13,7 @@ HealthSys::HealthSys(std::string systemConfigItem, entt::registry& rReg)
 
 void HealthSys::Update_()
 {
-	m_rReg.view<PlayerComp, HealthComp>().each([&](auto entity, auto& healthComp) {
+	m_rReg.view<PlayerComp, HealthComp>().each([&](auto& healthComp) {
 		if (healthComp.m_health <= 0)
 		{
 			auto reboot = m_rReg.create();

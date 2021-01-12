@@ -44,13 +44,15 @@ void InteractingSys::Update_()
 
 void InteractingSys::CreateNearbyPlayerEntity_()
 {
-	m_rReg.view<PlayerComp, PositionComp, SizeComp>().each([&]
-		(auto playerEntity, auto& playerPositionComp, auto& playerSizeComp)
+	m_rReg.view<PlayerComp, PositionComp, SizeComp>().each([&](
+		auto& playerPositionComp, 
+		auto& playerSizeComp)
 	{
 		if (EnttUtils<NearbyPlayerComp>::ComponentExists(m_rReg))
 		{
-			m_rReg.view<NearbyPlayerComp, PositionComp, SizeComp>().each([&]
-				(auto nearbyPlayerEntity, auto& nearbyPlayerPositionComp, auto& nearbyPlayerSizeComp)
+			m_rReg.view<NearbyPlayerComp, PositionComp, SizeComp>().each([&](
+				auto& nearbyPlayerPositionComp, 
+				auto& nearbyPlayerSizeComp)
 			{
 				nearbyPlayerPositionComp.m_position.x = playerPositionComp.m_position.x;
 				nearbyPlayerPositionComp.m_position.y = playerPositionComp.m_position.y;

@@ -25,12 +25,11 @@ ClickableSys::ClickableSys(std::string systemConfigItem, entt::registry& rReg)
 void ClickableSys::Update_()
 {
 	m_rReg.view<ClickableComp, SizeComp, PositionComp>()
-		.each([&](auto entity, auto& clickableComp, auto& sizeComp, auto& positionComp)
+		.each([&](auto& clickableComp, auto& sizeComp, auto& positionComp)
 	{
 		int x = 0;
 		int y = 0;
-		m_rReg.view<LocationComp>()
-			.each([&](auto entity, auto& locationComp)
+		m_rReg.view<LocationComp>().each([&](auto& locationComp)
 		{
 			x = ApplicationParameters::k_rightOfScreen * locationComp.xLocation;
 			y = ApplicationParameters::k_bottomOfScreen * locationComp.yLocation;
@@ -64,7 +63,7 @@ void ClickableSys::CheckClick_(int clickInt)
 	if (buttonClicked && sf::Mouse::isButtonPressed(click))
 	{
 		m_rReg.view<ClickableComp, SizeComp, PositionComp>()
-			.each([&](auto entity, auto& clickableComp, auto& sizeComp, auto& positionComp)
+			.each([&](auto& clickableComp, auto& /*sizeComp*/, auto& /*positionComp*/)
 		{
 			bool& compClicked = (click == sf::Mouse::Left ? clickableComp.m_bLeftClicked : clickableComp.m_bRightClicked);
 			compClicked = false;
@@ -76,7 +75,7 @@ void ClickableSys::CheckClick_(int clickInt)
 	if (!sf::Mouse::isButtonPressed(click))
 	{
 		m_rReg.view<ClickableComp, SizeComp, PositionComp>()
-			.each([&](auto entity, auto& clickableComp, auto& sizeComp, auto& positionComp)
+			.each([&](auto& clickableComp, auto& /*sizeComp*/, auto& /*positionComp*/)
 		{
 			bool& compClicked = (click == sf::Mouse::Left ?
 				clickableComp.m_bLeftClicked :
@@ -92,13 +91,13 @@ void ClickableSys::CheckClick_(int clickInt)
 	int x = 0;
 	int y = 0;
 	m_rReg.view<LocationComp>()
-		.each([&](auto entity, auto& locationComp)
+		.each([&](auto& locationComp)
 	{
 		x = ApplicationParameters::k_rightOfScreen * locationComp.xLocation;
 		y = ApplicationParameters::k_bottomOfScreen * locationComp.yLocation;
 	});
 	m_rReg.view<ClickableComp, SizeComp, PositionComp>()
-		.each([&](auto entity, auto& clickableComp, auto& sizeComp, auto& positionComp)
+		.each([&](auto& clickableComp, auto& sizeComp, auto& positionComp)
 	{
 		if (sf::Mouse::isButtonPressed(click) &&
 			MouseUtils::IsCollisionDetected_(

@@ -27,7 +27,6 @@ void ButtonSys::Update_()
 
 	std::string buttonPressed = "";
 	m_rReg.view<ButtonComp, ClickableComp>().each([&](
-		auto entity,
 		auto& buttonComp,
 		auto& clickableComp)
 	{
@@ -49,27 +48,26 @@ void ButtonSys::Update_()
 			else if (buttonComp.m_action == "LoadFile1")
 			{
 				m_rReg.clear();
-				auto entity = m_rReg.create();
-				m_rReg.emplace<LoadComp>(entity).m_filePath = "Files/0";
+				auto loadEntity = m_rReg.create();
+				m_rReg.emplace<LoadComp>(loadEntity).m_filePath = "Files/0";
 			}
 			else if (buttonComp.m_action == "LoadFile2")
 			{
 				m_rReg.clear();
-				auto entity = m_rReg.create();
-				m_rReg.emplace<LoadComp>(entity).m_filePath = "Files/0";
+				auto loadEntity = m_rReg.create();
+				m_rReg.emplace<LoadComp>(loadEntity).m_filePath = "Files/0";
 			}
 			else if (buttonComp.m_action == "LoadFile3")
 			{
 				m_rReg.clear();
-				auto entity = m_rReg.create();
-				m_rReg.emplace<LoadComp>(entity).m_filePath = "Files/0";
+				auto loadEntity = m_rReg.create();
+				m_rReg.emplace<LoadComp>(loadEntity).m_filePath = "Files/0";
 			}
 		}
 	});
 
 	if (buttonPressed == "LoadGame")
 	{
-		bool fileExists = false;
 		std::ifstream f(ApplicationParameters::k_dataPath + "Files/0");
 		std::ifstream f2(ApplicationParameters::k_dataPath + "Files/1");
 		std::ifstream f3(ApplicationParameters::k_dataPath + "Files/2");
@@ -79,8 +77,8 @@ void ButtonSys::Update_()
 		}
 		m_rReg.view<ButtonComp, ClickableComp>().each([&](
 			auto entity,
-			auto& buttonComp,
-			auto& clickableComp)
+			auto& /*buttonComp*/,
+			auto& /*clickableComp*/)
 		{
 			m_rReg.destroy(entity);
 		});

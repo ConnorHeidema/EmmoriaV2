@@ -30,7 +30,7 @@ void TileMapSys::Update_()
 		tileMapPtrComp.m_pTileMap = m_pTileMap;
 	});
 
-	m_rReg.view<TileMapPieceComp, PositionComp, RenderableComp>().each([&](auto entity, auto& tileMapPieceComp, auto& positionComp, auto& renderableComp)
+	m_rReg.view<TileMapPieceComp, PositionComp>().each([&](auto& tileMapPieceComp, auto& positionComp)
 	{
 		m_pTileMap->PopulateQuad(
 			Helper::Mod(int(positionComp.m_position.x), ApplicationParameters::k_rightOfScreen),

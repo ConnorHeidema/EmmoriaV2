@@ -41,10 +41,9 @@ void SwordSys::Update_()
 
 	if (m_swordFrequencyLatch.Peek() && playerSwordExists)
 	{
-		m_rReg.view<PlayerComp, PositionComp>().each([&](auto entity, auto& playerPositionComp)
+		m_rReg.view<PlayerComp, PositionComp>().each([&](auto& playerPositionComp)
 		{
-			bool bPerformAction = false;
-			m_rReg.view<ItemActionAreaComp, ClickableComp>().each([&](auto entity, auto& clickableActionArea)
+			m_rReg.view<ItemActionAreaComp, ClickableComp>().each([&](auto& clickableActionArea)
 			{
 				if (clickableActionArea.m_bLeftDown)
 				{
@@ -71,13 +70,13 @@ void SwordSys::CreateSword_(
 
 	double xPos2 = 0;
 	double yPos2 = 0;
-	m_rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
+	m_rReg.view<LocationComp>().each([&](auto& locationComp)
 	{
 		xPos2 += double(locationComp.xLocation) * ApplicationParameters::k_rightOfScreen;
 		yPos2 += double(locationComp.yLocation) * ApplicationParameters::k_bottomOfScreen;
 	});
 
-	auto& bowArrowPositionComp = m_rReg.emplace<PositionComp>(swordEntity) =
+	m_rReg.emplace<PositionComp>(swordEntity) =
 	{
 		((int)playerPositionComp.m_position.x % ApplicationParameters::k_rightOfScreen) + xPos2,
 		((int)playerPositionComp.m_position.y % ApplicationParameters::k_bottomOfScreen) + yPos2
@@ -104,7 +103,7 @@ void SwordSys::CreateSword_(
 	{
 		double xPos = clickableActionArea.m_x * ApplicationParameters::k_widthAdjustment - adjustedPlayerPositionX;
 		double yPos = clickableActionArea.m_y * ApplicationParameters::k_heightAdjustment - adjustedPlayerPositionY;
-		m_rReg.view<LocationComp>().each([&](auto entity, auto& locationComp)
+		m_rReg.view<LocationComp>().each([&](auto& locationComp)
 		{
 			xPos += double(locationComp.xLocation) * ApplicationParameters::k_rightOfScreen;
 			yPos += double(locationComp.yLocation) * ApplicationParameters::k_bottomOfScreen;
