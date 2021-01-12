@@ -185,6 +185,8 @@
     <ClCompile Include="..\src\TileMap\TileMapIndexes.cpp" />
     <ClCompile Include="..\src\util\AnimationMappings.cpp" />
     <ClCompile Include="..\src\util\ApplicationParameters.cpp" />
+    <ClCompile Include="..\src\util\datastructure\QuadNode.cpp" />
+    <ClCompile Include="..\src\util\datastructure\QuadTree.cpp" />
     <ClCompile Include="..\src\util\DialogParameters.cpp" />
     <ClCompile Include="..\src\util\EntityLoaderUtils.cpp" />
     <ClCompile Include="..\src\util\Entitymap.cpp" />
@@ -276,6 +278,8 @@
     <ClInclude Include="..\inc\util\animation\AnimationMacro.hpp" />
     <ClInclude Include="..\inc\util\animation\AnimationMacroEnd.hpp" />
     <ClInclude Include="..\inc\util\ApplicationParameters.hpp" />
+    <ClInclude Include="..\inc\util\datastructure\QuadNode.hpp" />
+    <ClInclude Include="..\inc\util\datastructure\QuadTree.hpp" />
     <ClInclude Include="..\inc\util\DialogParameters.hpp" />
     <ClInclude Include="..\inc\util\EntityLoaderUtils.hpp" />
     <ClInclude Include="..\inc\util\Entitymap.hpp" />

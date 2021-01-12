@@ -73,6 +73,12 @@
     <Filter Include="Header Files\component\functional\stats">
       <UniqueIdentifier>{464d859a-84f3-4fb0-adec-8871acd03b3b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\util\datastructure">
+      <UniqueIdentifier>{fbff7bda-0195-432e-9641-08c74d9b8712}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\util\datastructure">
+      <UniqueIdentifier>{621daca4-8a93-468d-802d-60c14fe1e246}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\main.cpp">
@@ -221,6 +227,12 @@
     </ClCompile>
     <ClCompile Include="..\src\system\enemy\BlobSys.cpp">
       <Filter>Source Files\system\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\datastructure\QuadNode.cpp">
+      <Filter>Source Files\util\datastructure</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\datastructure\QuadTree.cpp">
+      <Filter>Source Files\util\datastructure</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -496,6 +508,12 @@
     </ClInclude>
     <ClInclude Include="..\inc\util\animation\AnimationMacroEnd.hpp">
       <Filter>Header Files\util\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\util\datastructure\QuadNode.hpp">
+      <Filter>Header Files\util\datastructure</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\util\datastructure\QuadTree.hpp">
+      <Filter>Header Files\util\datastructure</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

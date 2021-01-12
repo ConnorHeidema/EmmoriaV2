@@ -15,12 +15,14 @@
 
 #include "util/OverlapUtils.hpp"
 #include "util/EnttUtils.hpp"
+#include "util/datastructure/QuadTree.hpp"
 
 #include "TileMap/TileMapIndexes.hpp"
 
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <util/Graphics/RectangularBoundaryCollision.hpp>
 #include <iostream>
+#include <list>
 
 #include <math.h>
 
@@ -86,7 +88,9 @@ void InteractingSys::PerformObjectInteractions_()
 	auto const k_tan1 = tanf(1);
 	sf::RectangleShape interactableObject;
 	sf::RectangleShape interactorObject;
-
+	/* Quadtree should be implemented over contiguous memory... @todo connor */
+	//std::list<entt::entity> interactorList;
+	//QuadTree interactableQuadMap(0, 0, ApplicationParameters::k_rightOfScreen, ApplicationParameters::k_bottomOfScreen);
 	m_rReg.view<PositionComp, SizeComp, InteractableComp>().each([&]
 		(auto interactableEntity, auto& interactablePositionComp, auto& interactableSizeComp, auto& interactableComp)
 	{

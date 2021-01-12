@@ -41,6 +41,8 @@ add_executable(Emmoria
                 ../src/util/TextureContainer.cpp
                 ../src/util/FontContainer.cpp
                 ../src/util/SFMLUtils.cpp
+                ../src/datastructure/QuadTree.cpp
+                ../src/datastructure/QuadNode.cpp
 
                 # System implementations
                 ../src/system/System.cpp
