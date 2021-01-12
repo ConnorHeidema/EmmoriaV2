@@ -84,12 +84,16 @@ void InteractingSys::CreateNearbyPlayerEntity_()
 void InteractingSys::PerformObjectInteractions_()
 {
 	auto const k_tan1 = tanf(1);
+	sf::RectangleShape interactableObject;
+	sf::RectangleShape interactorObject;
+
 	m_rReg.view<PositionComp, SizeComp, InteractableComp>().each([&]
 		(auto interactableEntity, auto& interactablePositionComp, auto& interactableSizeComp, auto& interactableComp)
 	{
 		m_rReg.view<PositionComp, SizeComp, InteractorComp>().each([&]
 			(auto interactorEntity, auto& interactorPositionComp, auto& interactorSizeComp, auto& interactorComp)
 		{
+			// Need to insert everything into quadmap and do it that way instead...
 			if (interactableEntity == interactorEntity)
 				return;
 
@@ -97,35 +101,52 @@ void InteractingSys::PerformObjectInteractions_()
 			{
 				for (auto& interactorType : interactorComp.m_interactTypeList)
 				{
-					sf::RectangleShape interactableObject;
+					bool bPerformInteraction = false;
+					auto& posable = interactablePositionComp.m_position;
+					auto& sizeable = interactableSizeComp.m_size;
+					auto& posor = interactorPositionComp.m_position;
+					auto& sizeor = interactorSizeComp.m_size;
+					if (!m_rReg.has<RotationComp>(interactableEntity) &&
+						!m_rReg.has<RotationComp>(interactorEntity))
 					{
-						auto& pos = interactablePositionComp.m_position;
-						auto& size = interactableSizeComp.m_size;
-						interactableObject.setPosition(sf::Vector2f((float)pos.x, (float)pos.y));
-						interactableObject.setSize(sf::Vector2f((float)size.width, (float)size.height));
-						interactableObject.setOrigin(size.width/2.f, size.height/2.f);
-						if (m_rReg.has<RotationComp>(interactableEntity))
-						{
-							auto& angle = m_rReg.get<RotationComp>(interactableEntity).m_angle;
-							interactableObject.setRotation(float((angle * 90.L / k_tan1) + 90.L));
-						}
+						if (OverlapUtils::Overlapping(posable, sizeable, posor, sizeor))
+							bPerformInteraction = true;
 					}
-
-					sf::RectangleShape interactorObject;
+					else
 					{
-						auto& pos = interactorPositionComp.m_position;
-						auto& size = interactorSizeComp.m_size;
-						interactorObject.setPosition(sf::Vector2f((float)pos.x, (float)pos.y));
-						interactorObject.setSize(sf::Vector2f((float)size.width, (float)size.height));
-						interactorObject.setOrigin((float)size.width/2.f, (float)size.height/2.f);
-						if (m_rReg.has<RotationComp>(interactorEntity))
 						{
-							auto& angle = m_rReg.get<RotationComp>(interactorEntity).m_angle;
-							interactorObject.setRotation(float((angle * 90.L / k_tan1) + 90.L));
+							interactableObject.setPosition(sf::Vector2f((float)posable.x, (float)posable.y));
+							interactableObject.setSize(sf::Vector2f((float)sizeable.width, (float)sizeable.height));
+							interactableObject.setOrigin(sizeable.width / 2.f, sizeable.height / 2.f);
+							if (m_rReg.has<RotationComp>(interactableEntity)) {
+								auto& angle = m_rReg.get<RotationComp>(interactableEntity).m_angle;
+								interactableObject.setRotation(float((angle * 90.L / k_tan1) + 90.L));
+							}
+							else 								
+							{
+								interactableObject.setRotation(0);
+							}
 						}
-					}
 
-					if (collision::areColliding(interactableObject, interactorObject))
+						{
+							interactorObject.setPosition(sf::Vector2f((float)posor.x, (float)posor.y));
+							interactorObject.setSize(sf::Vector2f((float)sizeor.width, (float)sizeor.height));
+							interactorObject.setOrigin((float)sizeor.width / 2.f, (float)sizeor.height / 2.f);
+							if (m_rReg.has<RotationComp>(interactorEntity)) {
+								auto& angle = m_rReg.get<RotationComp>(interactorEntity).m_angle;
+								interactorObject.setRotation(float((angle * 90.L / k_tan1) + 90.L));
+							} 
+							else 
+							{
+								interactorObject.setRotation(0);
+							}
+						}
+						bPerformInteraction = collision::areColliding(interactableObject, interactorObject);
+					}
+					
+
+
+					if (bPerformInteraction)
 					{
 						if (InteractStringMap::fnInteractionMap.find(INDEX()) !=
 							InteractStringMap::fnInteractionMap.end())
