@@ -19,6 +19,7 @@
 
 #include "TileMap/TileMapIndexes.hpp"
 
+#include <ltbl/lighting/LightShape.h>
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <util/Graphics/RectangularBoundaryCollision.hpp>
 #include <iostream>
@@ -34,7 +35,10 @@
 InteractingSys::InteractingSys(std::string systemConfigItem, entt::registry& rReg)
 	: System(systemConfigItem)
 	, m_rReg(rReg)
-{ }
+{
+	// to be removed when light works on ubuntu
+	ltbl::LightShape light;
+}
 
 // Have to deal with segfault where interact entities are destroyed in map but we are trying to iterate over them still
 void InteractingSys::Update_()
