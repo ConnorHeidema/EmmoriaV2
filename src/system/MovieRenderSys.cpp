@@ -6,6 +6,7 @@
 
 #include "component/functional/MovieComp.hpp"
 #include "component/functional/LoadComp.hpp"
+#include "component/functional/BackgroundMusicComp.hpp"
 
 #include "util/Entitymap.hpp"
 #include "util/MediatoEntitymap.hpp"
@@ -42,6 +43,8 @@ void MovieRenderSys::Update_()
 			if (ConfigItems::m_setConfigItems.find(mediaConfig)
 				== ConfigItems::m_setConfigItems.end())
 			{
+				auto entity = m_rReg.create();
+				m_rReg.emplace_or_replace<BackgroundMusicComp>(entity).m_backgroundMusic = "";
 				m_lastMedia = movieComp.m_currentMedia;
 				m_movie.openFromFile(media);
 				m_movie.play();
