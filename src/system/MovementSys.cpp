@@ -71,8 +71,13 @@ void MovementSys::UpdatePlayerPosition_()
 					static_cast<int>(Keyboard::isKeyPressed(Keyboard::W)));
 		if (xPos != 0 || yPos != 0)
 		{
+			auto speed = speedComp.m_speed;
+			if (Keyboard::isKeyPressed(Keyboard::LControl)) 
+			{
+				speed /= 2;
+			}
 			float angle = atan2(yPos, xPos);
-			PositionUtils::CalculateNewPosition(positionComp.m_position, speedComp.m_speed, angle);
+			PositionUtils::CalculateNewPosition(positionComp.m_position, speed, angle);
 		}
 	});
 }
