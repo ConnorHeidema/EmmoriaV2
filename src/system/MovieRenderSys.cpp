@@ -43,8 +43,10 @@ void MovieRenderSys::Update_()
 			if (ConfigItems::m_setConfigItems.find(mediaConfig)
 				== ConfigItems::m_setConfigItems.end())
 			{
-				auto entity = m_rReg.create();
-				m_rReg.emplace_or_replace<BackgroundMusicComp>(entity).m_backgroundMusic = "";
+				// I should add the below if I want all movies to negate any other music while playing.
+				// I'm not sure this is ideal however in the long run
+				//auto entity = m_rReg.create();
+				//m_rReg.emplace_or_replace<BackgroundMusicComp>(entity).m_backgroundMusic = "";
 				m_lastMedia = movieComp.m_currentMedia;
 				m_movie.openFromFile(media);
 				m_movie.play();

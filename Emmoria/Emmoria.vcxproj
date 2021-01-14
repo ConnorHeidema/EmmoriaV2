@@ -170,6 +170,7 @@
     <ClCompile Include="..\src\system\HealthSys.cpp" />
     <ClCompile Include="..\src\system\InteractingSys.cpp" />
     <ClCompile Include="..\src\system\LifespanSys.cpp" />
+    <ClCompile Include="..\src\system\LightSys.cpp" />
     <ClCompile Include="..\src\system\LoadingSys.cpp" />
     <ClCompile Include="..\src\system\MovementSys.cpp" />
     <ClCompile Include="..\src\system\MovieRenderSys.cpp" />
@@ -259,6 +260,7 @@
     <ClInclude Include="..\inc\system\HealthSys.hpp" />
     <ClInclude Include="..\inc\system\InteractingSys.hpp" />
     <ClInclude Include="..\inc\system\LifespanSys.hpp" />
+    <ClInclude Include="..\inc\system\LightSys.hpp" />
     <ClInclude Include="..\inc\system\LoadingSys.hpp" />
     <ClInclude Include="..\inc\system\MovementSys.hpp" />
     <ClInclude Include="..\inc\system\MovieRenderSys.hpp" />

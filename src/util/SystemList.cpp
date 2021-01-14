@@ -17,6 +17,7 @@
 #include "system/AnimationSys.hpp"
 #include "system/SceneLoadSys.hpp"
 #include "system/BowSys.hpp"
+#include "system/LightSys.hpp"
 #include "system/LifespanSys.hpp"
 #include "system/DoorSys.hpp"
 #include "system/SwitchSys.hpp"

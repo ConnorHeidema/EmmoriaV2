@@ -69,6 +69,7 @@ add_executable(Emmoria
                 ../src/system/MusicSys.cpp
                 ../src/system/EditorSys.cpp
                 ../src/system/SwordSys.cpp
+                ../src/system/LightSys.cpp
 
                 # Enemy system implementations
                 ../src/system/enemy/BlobSys.cpp

@@ -27,6 +27,7 @@
 	m(Interacting)\
 	m(Animation)\
 	m2(GameRender)\
+	m(Light)\
 	m2(MovieRender)\
 	m(Blob)\
 	m(Bow)\

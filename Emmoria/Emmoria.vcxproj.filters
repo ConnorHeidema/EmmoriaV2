@@ -234,6 +234,9 @@
     <ClCompile Include="..\src\util\datastructure\QuadTree.cpp">
       <Filter>Source Files\util\datastructure</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\system\LightSys.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\inc\component\functional\BackgroundMusicComp.hpp">
@@ -514,6 +517,9 @@
     </ClInclude>
     <ClInclude Include="..\inc\util\datastructure\QuadTree.hpp">
       <Filter>Header Files\util\datastructure</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\system\LightSys.hpp">
+      <Filter>Header Files\system</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
