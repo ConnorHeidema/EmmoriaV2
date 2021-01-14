@@ -107,6 +107,10 @@ void EntityLoaderFactory::LoadChestComp(entt::registry& rReg, entt::entity& rEnt
 
 void EntityLoaderFactory::LoadBackgroundMusicComp(entt::registry& rReg, entt::entity& rEntity, std::istringstream& reader)
 {
+	rReg.view<BackgroundMusicComp>().each([&](auto entity, auto& /*backgroundMusicComp*/)
+	{
+		rReg.destroy(entity);
+	});
 	rReg.get_or_emplace<BackgroundMusicComp>(rEntity).m_backgroundMusic = ReadTokenList_(1, reader).at(0);
 }
 

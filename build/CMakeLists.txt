@@ -41,8 +41,8 @@ add_executable(Emmoria
                 ../src/util/TextureContainer.cpp
                 ../src/util/FontContainer.cpp
                 ../src/util/SFMLUtils.cpp
-                ../src/datastructure/QuadTree.cpp
-                ../src/datastructure/QuadNode.cpp
+                ../src/util/datastructure/QuadTree.cpp
+                ../src/util/datastructure/QuadNode.cpp
 
                 # System implementations
                 ../src/system/System.cpp
@@ -77,7 +77,7 @@ add_executable(Emmoria
                 ../src/entity/EntityLoaderFactory.cpp
 )
 
-target_link_directories(Emmoria PRIVATE ../ext/bin/linux/SFML ../ext/bin/linux/sfemovie)
+target_link_directories(Emmoria PRIVATE ../ext/bin/linux/SFML ../ext/bin/linux/sfemovie ../ext/bin/linux/ltbl)
 
 target_include_directories(Emmoria PRIVATE ../inc ../ext/inc)
 

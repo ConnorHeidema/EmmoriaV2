@@ -1,2 +1,1 @@
 BottomDialog 5 *charles* Where am I? Why have I been put in this pit. Well I guess I need to find a way out. *anonymous* Good luck :) *charles* Who is that! |newgame_redirect| \
-BackgroundMusicComp DawnPillar.wav
