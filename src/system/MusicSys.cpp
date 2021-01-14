@@ -32,8 +32,11 @@ void MusicSys::Update_()
 	{
 		m_pMusic = std::make_shared<sf::Music>();
 	}
+
+	bool bMusic = false;
 	m_rReg.view<BackgroundMusicComp>().each([&](auto& backgroundMusicComp) 
 	{
+		bMusic = true;
 		auto& music = backgroundMusicComp.m_backgroundMusic;
 		if (m_lastMusic == music)
 			return;
@@ -51,4 +54,6 @@ void MusicSys::Update_()
 		}
 		m_lastMusic = music;
 	});
+	if (!bMusic)
+		m_pMusic->stop();
 }
