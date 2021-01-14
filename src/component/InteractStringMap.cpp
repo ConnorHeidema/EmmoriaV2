@@ -126,10 +126,7 @@ void InteractStringMap::InteractNearbyPlayerCompSignComp(entt::registry& rReg, e
 {
 	auto& bLeftDown = rReg.get_or_emplace<ClickableComp>(rInteractableEntity).m_bLeftDown;
 	bool dialogExists = false;
-	rReg.view<DialogComp>().each([&](auto& /*doorComp*/)
-	{
-		dialogExists = true;
-	});
+	rReg.view<DialogComp>().each([&](auto& /*dialogComp*/) { dialogExists = true; });
 	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || bLeftDown) && !dialogExists)
 	{
 		std::istringstream s(rReg.get_or_emplace<SignInfoComp>(rInteractableEntity).m_text);
@@ -141,8 +138,6 @@ void InteractStringMap::InteractNearbyPlayerCompSignComp(entt::registry& rReg, e
 void InteractStringMap::InteractNearbyPlayerCompChestTagComp(entt::registry& rReg, entt::entity& /*rInteractorEntity*/, entt::entity& rInteractableEntity)
 {
 	auto& chestAlreadyOpened = rReg.get<ChestComp>(rInteractableEntity).m_bOpened;
-
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !chestAlreadyOpened)
 	{
 		std::cout << "chest opened" << std::endl;

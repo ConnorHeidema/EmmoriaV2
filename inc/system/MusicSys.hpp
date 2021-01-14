@@ -25,6 +25,7 @@ private:
 	std::shared_ptr<sf::Sound> m_pSound;
 	std::shared_ptr<sf::SoundBuffer> m_pSoundBuffer;
 	entt::registry& m_rReg;
+	std::string m_lastMusic;
 };
 
 #endif

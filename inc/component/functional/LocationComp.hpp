@@ -2,6 +2,7 @@
 #define __LOCATION_COMP__
 
 #include <string>
+#include <memory>
 
 /**
  * This tag is is used to tell the location of the user
@@ -14,6 +15,7 @@ struct LocationComp
 	bool m_bLoaded;
 	int xSpawnLocation;
 	int ySpawnLocation;
+	std::string music;
 	LocationComp()
 		: area("")
 		, xLocation(-1)
@@ -21,6 +23,7 @@ struct LocationComp
 		, m_bLoaded(false)
 		, xSpawnLocation(-1)
 		, ySpawnLocation(-1)
+		, music("")
 	{ }
 };
 

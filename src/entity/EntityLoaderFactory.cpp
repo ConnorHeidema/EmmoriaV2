@@ -244,6 +244,7 @@ void EntityLoaderFactory::LoadLocationComp(entt::registry& rReg, entt::entity& r
 	locationComp.area = tokens.at(0);
 	locationComp.xLocation = std::stoi(tokens.at(1));
 	locationComp.yLocation = std::stoi(tokens.at(2));
+	locationComp.music = tokens.at(1);
 	std::cout << "Loaded location comp" << std::endl;
 }
 

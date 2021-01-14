@@ -1,6 +1,7 @@
 #include "system/MusicSys.hpp"
 
 #include "component/functional/SoundComp.hpp"
+#include "component/functional/BackgroundMusicComp.hpp"
 
 #include <SFML/Audio/Music.hpp>
 #include <SFML/Audio/Sound.hpp>
@@ -30,9 +31,24 @@ void MusicSys::Update_()
 	if (!m_pMusic)
 	{
 		m_pMusic = std::make_shared<sf::Music>();
-		m_pMusic->openFromFile("media/DawnPillar.wav");
-		m_pMusic->setVolume(1);
-		m_pMusic->play();
-		m_pMusic->setLoop(true);
 	}
+	m_rReg.view<BackgroundMusicComp>().each([&](auto& backgroundMusicComp) 
+	{
+		auto& music = backgroundMusicComp.m_backgroundMusic;
+		if (m_lastMusic == music)
+			return;
+
+		if (music == "")
+		{
+			m_pMusic->stop();
+		}
+		else 
+		{
+			m_pMusic->openFromFile("media/" + std::string(music) + ".wav");
+			m_pMusic->setVolume(1);
+			m_pMusic->play();
+			m_pMusic->setLoop(true);
+		}
+		m_lastMusic = music;
+	});
 }
