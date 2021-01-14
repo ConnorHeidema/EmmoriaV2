@@ -54,6 +54,9 @@ void MusicSys::Update_()
 		}
 		m_lastMusic = music;
 	});
-	if (!bMusic)
+	if (!bMusic) 
+	{
 		m_pMusic->stop();
+		m_lastMusic = "";
+	}
 }
