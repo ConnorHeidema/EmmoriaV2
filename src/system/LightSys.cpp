@@ -6,7 +6,7 @@
 
 #include <iostream>
 
-struct LightSys::Impl 
+struct LightSys::Impl
 {
 	Impl(entt::registry& rReg, sf::RenderWindow& rRenderWindow)
 		: m_rReg(rReg)
@@ -14,11 +14,11 @@ struct LightSys::Impl
 		, m_unshadowShader()
 		, m_lightOverShapeShader()
 		, m_penumbraTexture()
-	{ 
-		m_unshadowShader.loadFromFile("sprite/light/unshadowShader.vert", "sprite/light/unshadowShader.frag");
-		m_lightOverShapeShader.loadFromFile("sprite/light/lightOverShapeShader.vert", "sprite/light/lightOverShapeShader.frag");
-		m_penumbraTexture.loadFromFile("sprite/light/penumbraTexture.png");
-		m_penumbraTexture.setSmooth(true);
+	{
+		// m_unshadowShader.loadFromFile("sprite/light/unshadowShader.vert", "sprite/light/unshadowShader.frag");
+		// m_lightOverShapeShader.loadFromFile("sprite/light/lightOverShapeShader.vert", "sprite/light/lightOverShapeShader.frag");
+		// m_penumbraTexture.loadFromFile("sprite/light/penumbraTexture.png");
+		// m_penumbraTexture.setSmooth(true);
 	}
 	~Impl() {};
 
@@ -33,15 +33,18 @@ struct LightSys::Impl
 
 void LightSys::Impl::Update()
 {
-	ltbl::LightSystem ls;
-	ls.create(sf::FloatRect(-1000.0f, -1000.0f, 1000.0f, 1000.0f), m_rRenderWindow.getSize(), m_penumbraTexture, m_unshadowShader, m_lightOverShapeShader);
+	// ltbl::LightSystem ls;
+	// ls.create(sf::FloatRect(-1000.0f, -1000.0f, 1000.0f, 1000.0f), m_rRenderWindow.getSize(), m_penumbraTexture, m_unshadowShader, m_lightOverShapeShader);
 }
 
 LightSys::LightSys(std::string systemConfigItem, entt::registry& rReg, sf::RenderWindow& rRenderWindow)
 	: System(systemConfigItem)
-	, pImpl(std::make_unique<Impl>(rReg, rRenderWindow)) 
+	, pImpl(std::make_unique<Impl>(rReg, rRenderWindow))
 {
 }
+
+LightSys::~LightSys()
+{}
 
 void LightSys::Update_()
 {

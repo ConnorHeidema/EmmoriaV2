@@ -11,6 +11,7 @@ class LightSys
 	: public System {
 public:
 	LightSys(std::string systemConfigItem, entt::registry& rReg, sf::RenderWindow& rRenderWindow);
+	virtual ~LightSys();
 private:
 	void Update_() override;
 

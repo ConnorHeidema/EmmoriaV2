@@ -34,7 +34,7 @@ void MusicSys::Update_()
 	}
 
 	bool bMusic = false;
-	m_rReg.view<BackgroundMusicComp>().each([&](auto& backgroundMusicComp) 
+	m_rReg.view<BackgroundMusicComp>().each([&](auto& backgroundMusicComp)
 	{
 		bMusic = true;
 		auto& music = backgroundMusicComp.m_backgroundMusic;
@@ -45,7 +45,7 @@ void MusicSys::Update_()
 		{
 			m_pMusic->stop();
 		}
-		else 
+		else
 		{
 			m_pMusic->openFromFile("media/" + std::string(music) + ".wav");
 			m_pMusic->setVolume(1);
@@ -54,7 +54,7 @@ void MusicSys::Update_()
 		}
 		m_lastMusic = music;
 	});
-	if (!bMusic) 
+	if (!bMusic)
 	{
 		m_pMusic->stop();
 		m_lastMusic = "";
